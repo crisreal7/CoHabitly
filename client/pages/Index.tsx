@@ -38,7 +38,7 @@ export default function Index() {
                 Roommate harmony starts here.
               </h1>
               <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl">
-                FairTrade helps students live better together — anonymously,
+                CoHabitly helps students live better together — anonymously,
                 intelligently, and peacefully.
               </p>
               <form
@@ -74,7 +74,7 @@ export default function Index() {
                     <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
                       <Home className="w-5 h-5 text-white" />
                     </div>
-                    <span className="font-semibold text-lg">FairTrade</span>
+                    <span className="font-semibold text-lg">CoHabitly</span>
                   </div>
                   <div className="space-y-3">
                     <div className="bg-mint-50 p-3 rounded-lg">
@@ -361,7 +361,7 @@ export default function Index() {
                   ))}
                 </div>
                 <p className="text-muted-foreground mb-4">
-                  "FairTrade helped us avoid so many roommate conflicts. The
+                  "CoHabitly helped us avoid so many roommate conflicts. The
                   anonymous feedback is a game-changer."
                 </p>
                 <div className="flex items-center gap-3">
@@ -474,7 +474,7 @@ export default function Index() {
               Early Access Launching Soon
             </p>
             <p className="text-sm text-primary-foreground/80">
-              Join the FairTrade Movement
+              Join the CoHabitly Movement
             </p>
           </div>
           <Button
