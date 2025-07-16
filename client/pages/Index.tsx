@@ -626,10 +626,20 @@ export default function Index() {
             </div>
 
             {/* 3. Anonymous Feedback Inbox */}
-            <div className="mb-8">
-              <h4 className="text-lg font-semibold mb-4 text-foreground">
-                Anonymous Feedback Inbox
-              </h4>
+            <div className="mb-12">
+              <div className="mb-6">
+                <div className="inline-flex items-center gap-2 px-3 py-1 bg-coral-100 text-coral-800 rounded-full text-sm font-medium mb-3">
+                  <MessageCircle className="w-4 h-4" />
+                  Feedback Management
+                </div>
+                <h3 className="text-2xl font-bold text-foreground mb-2">
+                  Anonymous Feedback Inbox
+                </h3>
+                <p className="text-muted-foreground max-w-2xl">
+                  Privately review filtered anonymous messages to catch early
+                  warning signs.
+                </p>
+              </div>
               <div className="grid md:grid-cols-2 gap-4">
                 <Card className="border-sage-100">
                   <CardContent className="p-4">
