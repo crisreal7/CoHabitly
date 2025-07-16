@@ -1069,85 +1069,152 @@ export default function Index() {
 
           {/* Scrolling Reviews */}
           <div className="animate-scroll-reviews flex gap-8 w-fit">
-            <Card className="border-sage-100 shadow-sm hover:shadow-md transition-shadow">
-              <CardContent className="p-6">
-                <div className="flex items-center gap-1 mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className="w-4 h-4 fill-primary text-primary"
-                    />
-                  ))}
-                </div>
-                <p className="text-muted-foreground mb-4">
-                  "CoHabitly helped us avoid so many roommate conflicts. The
-                  anonymous feedback is a game-changer."
-                </p>
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-mint-100 rounded-full flex items-center justify-center">
-                    <span className="text-mint-600 font-semibold">SA</span>
-                  </div>
-                  <div className="text-left">
-                    <p className="font-semibold">Sarah A.</p>
-                    <p className="text-sm text-muted-foreground">
-                      Junior, Psychology
+            {/* Duplicate the reviews for seamless loop */}
+            {[...Array(3)].map((_, setIndex) => (
+              <div key={setIndex} className="flex gap-8 min-w-fit">
+                <Card className="border-sage-100 shadow-sm hover:shadow-md transition-shadow min-w-[320px] max-w-[320px]">
+                  <CardContent className="p-6">
+                    <div className="flex items-center gap-1 mb-4">
+                      {[...Array(5)].map((_, i) => (
+                        <Star
+                          key={i}
+                          className="w-4 h-4 fill-primary text-primary"
+                        />
+                      ))}
+                    </div>
+                    <p className="text-muted-foreground mb-4">
+                      "CoHabitly helped us avoid so many roommate conflicts. The
+                      anonymous feedback is a game-changer."
                     </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-            <Card className="border-sage-100 shadow-sm hover:shadow-md transition-shadow">
-              <CardContent className="p-6">
-                <div className="flex items-center gap-1 mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className="w-4 h-4 fill-primary text-primary"
-                    />
-                  ))}
-                </div>
-                <p className="text-muted-foreground mb-4">
-                  "I finally felt heard without causing drama. The chore
-                  tracking keeps everything fair and transparent."
-                </p>
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-lavender-100 rounded-full flex items-center justify-center">
-                    <span className="text-lavender-600 font-semibold">MR</span>
-                  </div>
-                  <div className="text-left">
-                    <p className="font-semibold">Marcus R.</p>
-                    <p className="text-sm text-muted-foreground">
-                      Sophomore, Engineering
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-mint-100 rounded-full flex items-center justify-center">
+                        <span className="text-mint-600 font-semibold">SA</span>
+                      </div>
+                      <div className="text-left">
+                        <p className="font-semibold">Sarah A.</p>
+                        <p className="text-sm text-muted-foreground">
+                          Junior, Psychology
+                        </p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="border-sage-100 shadow-sm hover:shadow-md transition-shadow min-w-[320px] max-w-[320px]">
+                  <CardContent className="p-6">
+                    <div className="flex items-center gap-1 mb-4">
+                      {[...Array(5)].map((_, i) => (
+                        <Star
+                          key={i}
+                          className="w-4 h-4 fill-primary text-primary"
+                        />
+                      ))}
+                    </div>
+                    <p className="text-muted-foreground mb-4">
+                      "I finally felt heard without causing drama. The chore
+                      tracking keeps everything fair and transparent."
                     </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-            <Card className="border-sage-100 shadow-sm hover:shadow-md transition-shadow md:col-span-2 lg:col-span-1">
-              <CardContent className="p-6">
-                <div className="flex items-center gap-1 mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className="w-4 h-4 fill-primary text-primary"
-                    />
-                  ))}
-                </div>
-                <p className="text-muted-foreground mb-4">
-                  "As an RA, the admin dashboard gives me insights I never had
-                  before. I can help students proactively."
-                </p>
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-coral-100 rounded-full flex items-center justify-center">
-                    <span className="text-coral-600 font-semibold">JL</span>
-                  </div>
-                  <div className="text-left">
-                    <p className="font-semibold">Jessica L.</p>
-                    <p className="text-sm text-muted-foreground">Senior, RA</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-lavender-100 rounded-full flex items-center justify-center">
+                        <span className="text-lavender-600 font-semibold">
+                          MR
+                        </span>
+                      </div>
+                      <div className="text-left">
+                        <p className="font-semibold">Marcus R.</p>
+                        <p className="text-sm text-muted-foreground">
+                          Sophomore, Engineering
+                        </p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="border-sage-100 shadow-sm hover:shadow-md transition-shadow min-w-[320px] max-w-[320px]">
+                  <CardContent className="p-6">
+                    <div className="flex items-center gap-1 mb-4">
+                      {[...Array(5)].map((_, i) => (
+                        <Star
+                          key={i}
+                          className="w-4 h-4 fill-primary text-primary"
+                        />
+                      ))}
+                    </div>
+                    <p className="text-muted-foreground mb-4">
+                      "As an RA, the admin dashboard gives me insights I never
+                      had before. I can help students proactively."
+                    </p>
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-coral-100 rounded-full flex items-center justify-center">
+                        <span className="text-coral-600 font-semibold">JL</span>
+                      </div>
+                      <div className="text-left">
+                        <p className="font-semibold">Jessica L.</p>
+                        <p className="text-sm text-muted-foreground">
+                          Senior, RA
+                        </p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="border-sage-100 shadow-sm hover:shadow-md transition-shadow min-w-[320px] max-w-[320px]">
+                  <CardContent className="p-6">
+                    <div className="flex items-center gap-1 mb-4">
+                      {[...Array(5)].map((_, i) => (
+                        <Star
+                          key={i}
+                          className="w-4 h-4 fill-primary text-primary"
+                        />
+                      ))}
+                    </div>
+                    <p className="text-muted-foreground mb-4">
+                      "The compatibility matching actually works! I love my new
+                      roommate and we get along so well."
+                    </p>
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-sage-100 rounded-full flex items-center justify-center">
+                        <span className="text-sage-600 font-semibold">AK</span>
+                      </div>
+                      <div className="text-left">
+                        <p className="font-semibold">Ashley K.</p>
+                        <p className="text-sm text-muted-foreground">
+                          Freshman, Business
+                        </p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="border-sage-100 shadow-sm hover:shadow-md transition-shadow min-w-[320px] max-w-[320px]">
+                  <CardContent className="p-6">
+                    <div className="flex items-center gap-1 mb-4">
+                      {[...Array(5)].map((_, i) => (
+                        <Star
+                          key={i}
+                          className="w-4 h-4 fill-primary text-primary"
+                        />
+                      ))}
+                    </div>
+                    <p className="text-muted-foreground mb-4">
+                      "No more awkward conversations about chores. The app
+                      handles everything fairly and transparently."
+                    </p>
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-brand-100 rounded-full flex items-center justify-center">
+                        <span className="text-brand-600 font-semibold">DM</span>
+                      </div>
+                      <div className="text-left">
+                        <p className="font-semibold">David M.</p>
+                        <p className="text-sm text-muted-foreground">
+                          Senior, Computer Science
+                        </p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            ))}
           </div>
         </div>
       </section>
