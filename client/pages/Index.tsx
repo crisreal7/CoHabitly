@@ -381,12 +381,47 @@ export default function Index() {
               </div>
             </div>
 
-            {/* 1. Dorm Overview Cards */}
-            <div className="mb-8">
-              <h4 className="text-lg font-semibold mb-4 text-foreground">
-                Dorm Overview
-              </h4>
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                        {/* Feature 1: Dorm Health Overview */}
+            <div className="mb-16">
+              <div className="grid lg:grid-cols-2 gap-12 items-start">
+                <div className="lg:order-1">
+                  <div className="space-y-4">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 bg-mint-100 text-mint-800 rounded-full text-sm font-medium">
+                      <BarChart3 className="w-4 h-4" />
+                      Dorm Management
+                    </div>
+                    <h3 className="text-2xl font-bold text-foreground">Dorm Health Overview</h3>
+                    <p className="text-muted-foreground leading-relaxed">
+                      See average vibe scores, flagged messages, and completion rates across all dorms.
+                    </p>
+                    <div className="space-y-3 pt-4">
+                      <div className="flex items-center gap-3 text-sm">
+                        <div className="w-2 h-2 bg-mint-500 rounded-full"></div>
+                        <span>Real-time harmony tracking</span>
+                      </div>
+                      <div className="flex items-center gap-3 text-sm">
+                        <div className="w-2 h-2 bg-lavender-500 rounded-full"></div>
+                        <span>Instant flagged content alerts</span>
+                      </div>
+                      <div className="flex items-center gap-3 text-sm">
+                        <div className="w-2 h-2 bg-coral-500 rounded-full"></div>
+                        <span>Automated health scoring</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="lg:order-2">
+                  <Card className="border-sage-100 shadow-xl bg-white">
+                    <CardContent className="p-6">
+                      <div className="flex items-center justify-between mb-6">
+                        <h4 className="text-lg font-semibold text-foreground">Campus Overview</h4>
+                        <div className="flex items-center gap-2 px-3 py-1 bg-mint-50 rounded-lg">
+                          <div className="w-2 h-2 bg-mint-500 rounded-full animate-pulse"></div>
+                          <span className="text-sm text-mint-700 font-medium">Live</span>
+                        </div>
+                      </div>
+                      <div className="grid gap-4">
                 <Card className="border-sage-100 hover:shadow-md transition-shadow">
                   <CardContent className="p-4">
                     <div className="flex justify-between items-start mb-3">
