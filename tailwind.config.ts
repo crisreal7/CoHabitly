@@ -57,7 +57,7 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        // FairTrade soft pastel color palette
+        // CoHabitly soft pastel color palette
         brand: {
           50: "#fdf2f8",
           100: "#fce7f3",
