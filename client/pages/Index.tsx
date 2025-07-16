@@ -1051,14 +1051,24 @@ export default function Index() {
 
       {/* Testimonials */}
       <section className="px-4 py-16">
-        <div className="max-w-6xl mx-auto text-center">
+        <div className="max-w-6xl mx-auto text-center px-4 mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
             What students are saying
           </h2>
-          <p className="text-lg text-muted-foreground mb-12">
+          <p className="text-lg text-muted-foreground">
             Real feedback from beta testers across campus
           </p>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        </div>
+
+        {/* Scrolling Container with Fade Edges */}
+        <div className="relative">
+          {/* Left Fade */}
+          <div className="absolute left-0 top-0 w-32 h-full bg-gradient-to-r from-background to-transparent z-10 pointer-events-none"></div>
+          {/* Right Fade */}
+          <div className="absolute right-0 top-0 w-32 h-full bg-gradient-to-l from-background to-transparent z-10 pointer-events-none"></div>
+
+          {/* Scrolling Reviews */}
+          <div className="animate-scroll-reviews flex gap-8 w-fit">
             <Card className="border-sage-100 shadow-sm hover:shadow-md transition-shadow">
               <CardContent className="p-6">
                 <div className="flex items-center gap-1 mb-4">
