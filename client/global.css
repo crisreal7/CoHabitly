@@ -119,10 +119,5 @@
 
   .animate-scroll-reviews {
     animation: scroll-reviews 160s linear infinite;
-    transition: animation-duration 0.8s ease-in-out;
-  }
-
-  .animate-scroll-reviews:hover {
-    animation-duration: 800s;
   }
 }
