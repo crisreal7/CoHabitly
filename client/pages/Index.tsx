@@ -291,10 +291,14 @@ export default function Index() {
               <Button
                 className="h-12 px-8 bg-sage-600 hover:bg-sage-700 text-white rounded-xl font-semibold"
                 onClick={() => {
-                  const adminSection = document.getElementById(
-                    "admin-portal-section",
-                  );
-                  adminSection?.scrollIntoView({ behavior: "smooth" });
+                  setShowAdminDemo(true);
+                  // Small delay to ensure the section is rendered before scrolling
+                  setTimeout(() => {
+                    const adminSection = document.getElementById(
+                      "admin-portal-section",
+                    );
+                    adminSection?.scrollIntoView({ behavior: "smooth" });
+                  }, 100);
                 }}
               >
                 View Admin Demo
