@@ -480,7 +480,11 @@ export default function Index() {
           <Button
             className="bg-white text-primary hover:bg-white/90 rounded-xl font-semibold"
             onClick={() =>
-              document.querySelector('input[type="email"]')?.focus()
+              (
+                document.querySelector(
+                  'input[type="email"]',
+                ) as HTMLInputElement
+              )?.focus()
             }
           >
             <Mail className="w-4 h-4 mr-2" />
