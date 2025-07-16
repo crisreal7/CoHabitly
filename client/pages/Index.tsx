@@ -1213,6 +1213,148 @@ export default function Index() {
                     </div>
                   </CardContent>
                 </Card>
+
+                <Card className="border-sage-100 shadow-sm hover:shadow-md transition-shadow min-w-[320px] max-w-[320px]">
+                  <CardContent className="p-6">
+                    <div className="flex items-center gap-1 mb-4">
+                      {[...Array(5)].map((_, i) => (
+                        <Star
+                          key={i}
+                          className="w-4 h-4 fill-primary text-primary"
+                        />
+                      ))}
+                    </div>
+                    <p className="text-muted-foreground mb-4">
+                      "The anonymous feedback feature saved my mental health.
+                      Finally, a way to address issues without drama."
+                    </p>
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-mint-100 rounded-full flex items-center justify-center">
+                        <span className="text-mint-600 font-semibold">LK</span>
+                      </div>
+                      <div className="text-left">
+                        <p className="font-semibold">Luna K.</p>
+                        <p className="text-sm text-muted-foreground">
+                          Sophomore, Art & Design
+                        </p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="border-sage-100 shadow-sm hover:shadow-md transition-shadow min-w-[320px] max-w-[320px]">
+                  <CardContent className="p-6">
+                    <div className="flex items-center gap-1 mb-4">
+                      {[...Array(5)].map((_, i) => (
+                        <Star
+                          key={i}
+                          className="w-4 h-4 fill-primary text-primary"
+                        />
+                      ))}
+                    </div>
+                    <p className="text-muted-foreground mb-4">
+                      "Best housing app ever! The vibe checks help us understand
+                      each other better and resolve conflicts early."
+                    </p>
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-lavender-100 rounded-full flex items-center justify-center">
+                        <span className="text-lavender-600 font-semibold">
+                          RT
+                        </span>
+                      </div>
+                      <div className="text-left">
+                        <p className="font-semibold">Riley T.</p>
+                        <p className="text-sm text-muted-foreground">
+                          Junior, Environmental Science
+                        </p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="border-sage-100 shadow-sm hover:shadow-md transition-shadow min-w-[320px] max-w-[320px]">
+                  <CardContent className="p-6">
+                    <div className="flex items-center gap-1 mb-4">
+                      {[...Array(5)].map((_, i) => (
+                        <Star
+                          key={i}
+                          className="w-4 h-4 fill-primary text-primary"
+                        />
+                      ))}
+                    </div>
+                    <p className="text-muted-foreground mb-4">
+                      "CoHabitly transformed our dorm dynamic. We went from
+                      chaos to harmony in just a few weeks!"
+                    </p>
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-coral-100 rounded-full flex items-center justify-center">
+                        <span className="text-coral-600 font-semibold">ZC</span>
+                      </div>
+                      <div className="text-left">
+                        <p className="font-semibold">Zoe C.</p>
+                        <p className="text-sm text-muted-foreground">
+                          Freshman, Pre-Med
+                        </p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="border-sage-100 shadow-sm hover:shadow-md transition-shadow min-w-[320px] max-w-[320px]">
+                  <CardContent className="p-6">
+                    <div className="flex items-center gap-1 mb-4">
+                      {[...Array(5)].map((_, i) => (
+                        <Star
+                          key={i}
+                          className="w-4 h-4 fill-primary text-primary"
+                        />
+                      ))}
+                    </div>
+                    <p className="text-muted-foreground mb-4">
+                      "The smart matching algorithm is incredible. My roommate
+                      and I are perfectly compatible - no conflicts at all!"
+                    </p>
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-sage-100 rounded-full flex items-center justify-center">
+                        <span className="text-sage-600 font-semibold">EM</span>
+                      </div>
+                      <div className="text-left">
+                        <p className="font-semibold">Ethan M.</p>
+                        <p className="text-sm text-muted-foreground">
+                          Senior, Business Administration
+                        </p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="border-sage-100 shadow-sm hover:shadow-md transition-shadow min-w-[320px] max-w-[320px]">
+                  <CardContent className="p-6">
+                    <div className="flex items-center gap-1 mb-4">
+                      {[...Array(5)].map((_, i) => (
+                        <Star
+                          key={i}
+                          className="w-4 h-4 fill-primary text-primary"
+                        />
+                      ))}
+                    </div>
+                    <p className="text-muted-foreground mb-4">
+                      "As a transfer student, CoHabitly helped me find the
+                      perfect living situation. I felt welcomed immediately!"
+                    </p>
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-brand-100 rounded-full flex items-center justify-center">
+                        <span className="text-brand-600 font-semibold">NP</span>
+                      </div>
+                      <div className="text-left">
+                        <p className="font-semibold">Nora P.</p>
+                        <p className="text-sm text-muted-foreground">
+                          Junior, Transfer Student
+                        </p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
               </div>
             ))}
           </div>
