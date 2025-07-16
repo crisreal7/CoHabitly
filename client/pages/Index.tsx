@@ -719,7 +719,7 @@ export default function Index() {
                       </div>
                       <Button
                         size="sm"
-                        className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg"
+                        className="mt-2 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg"
                       >
                         Reassign
                       </Button>
