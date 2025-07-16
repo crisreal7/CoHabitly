@@ -338,9 +338,9 @@ export default function Index() {
             </div>
           </div>
         </div>
-      </section>
+            </section>
 
-      {/* Admin Preview Section */}
+            {/* Admin Preview Section */}
       <section className="px-4 py-16 bg-gradient-to-br from-sage-25 via-white to-lavender-25">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
@@ -348,61 +348,63 @@ export default function Index() {
               See the CoHabitly Admin Portal in Action
             </h2>
             <p className="text-lg md:text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-              A live glimpse at how RAs and housing staff monitor dorm health,
-              address roommate issues, and manage assignments — all in one view.
+              A live glimpse at how RAs and housing staff monitor dorm health, address roommate issues,
+              and manage assignments — all in one view.
             </p>
           </div>
 
-          {/* Dashboard Container */}
-          <div className="bg-white rounded-2xl shadow-2xl p-6 border border-sage-100">
-            {/* Dashboard Header */}
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8 pb-4 border-b border-sage-100">
-              <div>
-                <h3 className="text-2xl font-bold text-foreground">
-                  Admin Dashboard
-                </h3>
-                <p className="text-muted-foreground">
-                  West Campus Housing • Fall 2024
-                </p>
-              </div>
-              <div className="flex items-center gap-3 mt-4 sm:mt-0">
-                <select className="px-3 py-2 border border-sage-200 rounded-lg text-sm bg-white">
-                  <option>Filter by Dorm</option>
-                  <option>Building A</option>
-                  <option>Building B</option>
-                  <option>Building C</option>
-                </select>
-                <div className="flex items-center gap-2 px-3 py-2 bg-mint-50 rounded-lg">
-                  <div className="w-2 h-2 bg-mint-500 rounded-full animate-pulse"></div>
-                  <span className="text-sm text-mint-700 font-medium">
-                    Live
-                  </span>
-                </div>
-              </div>
-            </div>
+                    {/* Feature Showcase Container */}
+          <div className="space-y-12">
 
-            {/* 1. Dorm Overview Cards */}
-            <div className="mb-8">
-              <h4 className="text-lg font-semibold mb-4 text-foreground">
-                Dorm Overview
-              </h4>
+            {/* Feature 1: Dorm Health Overview */}
+            <div className="animate-fade-in">
+              <div className="flex flex-col lg:flex-row gap-8 items-start">
+                <div className="lg:w-1/3 space-y-4">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 bg-mint-100 text-mint-800 rounded-full text-sm font-medium">
+                    <BarChart3 className="w-4 h-4" />
+                    Dorm Management
+                  </div>
+                  <h3 className="text-2xl font-bold text-foreground">Dorm Health Overview</h3>
+                  <p className="text-muted-foreground leading-relaxed">
+                    See average vibe scores, flagged messages, and completion rates across all dorms.
+                  </p>
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2 text-sm">
+                      <div className="w-2 h-2 bg-mint-500 rounded-full"></div>
+                      <span>Real-time harmony tracking</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm">
+                      <div className="w-2 h-2 bg-lavender-500 rounded-full"></div>
+                      <span>Instant flagged content alerts</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm">
+                      <div className="w-2 h-2 bg-coral-500 rounded-full"></div>
+                      <span>Automated health scoring</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="lg:w-2/3">
+                  <Card className="border-sage-100 shadow-xl bg-white">
+                    <CardContent className="p-6">
+                      <div className="flex items-center justify-between mb-6">
+                        <h4 className="text-lg font-semibold text-foreground">Campus Overview</h4>
+                        <div className="flex items-center gap-2 px-3 py-1 bg-mint-50 rounded-lg">
+                          <div className="w-2 h-2 bg-mint-500 rounded-full animate-pulse"></div>
+                          <span className="text-sm text-mint-700 font-medium">Live</span>
+                        </div>
+                      </div>
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 <Card className="border-sage-100 hover:shadow-md transition-shadow">
                   <CardContent className="p-4">
                     <div className="flex justify-between items-start mb-3">
                       <div>
-                        <h5 className="font-semibold text-foreground">
-                          Harrison Hall
-                        </h5>
-                        <p className="text-sm text-muted-foreground">
-                          Floor 1-4
-                        </p>
+                        <h5 className="font-semibold text-foreground">Harrison Hall</h5>
+                        <p className="text-sm text-muted-foreground">Floor 1-4</p>
                       </div>
                       <div className="flex items-center gap-1 px-2 py-1 bg-mint-100 rounded-full">
                         <div className="w-2 h-2 bg-mint-500 rounded-full"></div>
-                        <span className="text-xs text-mint-700 font-medium">
-                          94%
-                        </span>
+                        <span className="text-xs text-mint-700 font-medium">94%</span>
                       </div>
                     </div>
                     <div className="space-y-2">
@@ -425,18 +427,12 @@ export default function Index() {
                   <CardContent className="p-4">
                     <div className="flex justify-between items-start mb-3">
                       <div>
-                        <h5 className="font-semibold text-foreground">
-                          Kennedy Tower
-                        </h5>
-                        <p className="text-sm text-muted-foreground">
-                          Floor 5-12
-                        </p>
+                        <h5 className="font-semibold text-foreground">Kennedy Tower</h5>
+                        <p className="text-sm text-muted-foreground">Floor 5-12</p>
                       </div>
                       <div className="flex items-center gap-1 px-2 py-1 bg-coral-100 rounded-full">
                         <div className="w-2 h-2 bg-coral-500 rounded-full"></div>
-                        <span className="text-xs text-coral-700 font-medium">
-                          67%
-                        </span>
+                        <span className="text-xs text-coral-700 font-medium">67%</span>
                       </div>
                     </div>
                     <div className="space-y-2">
@@ -459,18 +455,12 @@ export default function Index() {
                   <CardContent className="p-4">
                     <div className="flex justify-between items-start mb-3">
                       <div>
-                        <h5 className="font-semibold text-foreground">
-                          Wilson Commons
-                        </h5>
-                        <p className="text-sm text-muted-foreground">
-                          Floor 1-3
-                        </p>
+                        <h5 className="font-semibold text-foreground">Wilson Commons</h5>
+                        <p className="text-sm text-muted-foreground">Floor 1-3</p>
                       </div>
                       <div className="flex items-center gap-1 px-2 py-1 bg-lavender-100 rounded-full">
                         <div className="w-2 h-2 bg-lavender-500 rounded-full"></div>
-                        <span className="text-xs text-lavender-700 font-medium">
-                          88%
-                        </span>
+                        <span className="text-xs text-lavender-700 font-medium">88%</span>
                       </div>
                     </div>
                     <div className="space-y-2">
@@ -493,30 +483,18 @@ export default function Index() {
 
             {/* 2. Student Roster Table */}
             <div className="mb-8">
-              <h4 className="text-lg font-semibold mb-4 text-foreground">
-                Student Roster
-              </h4>
+              <h4 className="text-lg font-semibold mb-4 text-foreground">Student Roster</h4>
               <Card className="border-sage-100">
                 <CardContent className="p-0">
                   <div className="overflow-x-auto">
                     <table className="w-full">
                       <thead className="bg-sage-50">
                         <tr className="border-b border-sage-100">
-                          <th className="text-left p-4 font-medium text-foreground">
-                            Student
-                          </th>
-                          <th className="text-left p-4 font-medium text-foreground">
-                            Dorm
-                          </th>
-                          <th className="text-center p-4 font-medium text-foreground">
-                            Compatibility
-                          </th>
-                          <th className="text-center p-4 font-medium text-foreground">
-                            Profile
-                          </th>
-                          <th className="text-center p-4 font-medium text-foreground">
-                            Status
-                          </th>
+                          <th className="text-left p-4 font-medium text-foreground">Student</th>
+                          <th className="text-left p-4 font-medium text-foreground">Dorm</th>
+                          <th className="text-center p-4 font-medium text-foreground">Compatibility</th>
+                          <th className="text-center p-4 font-medium text-foreground">Profile</th>
+                          <th className="text-center p-4 font-medium text-foreground">Status</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -524,16 +502,12 @@ export default function Index() {
                           <td className="p-4">
                             <div className="flex items-center gap-3">
                               <div className="w-8 h-8 bg-mint-100 rounded-full flex items-center justify-center">
-                                <span className="text-xs font-semibold text-mint-600">
-                                  AM
-                                </span>
+                                <span className="text-xs font-semibold text-mint-600">AM</span>
                               </div>
                               <span className="font-medium">Alex Martinez</span>
                             </div>
                           </td>
-                          <td className="p-4 text-muted-foreground">
-                            Harrison 312
-                          </td>
+                          <td className="p-4 text-muted-foreground">Harrison 312</td>
                           <td className="p-4 text-center">
                             <span className="px-2 py-1 bg-mint-100 text-mint-700 rounded-full text-sm font-medium">
                               92%
@@ -550,16 +524,12 @@ export default function Index() {
                           <td className="p-4">
                             <div className="flex items-center gap-3">
                               <div className="w-8 h-8 bg-lavender-100 rounded-full flex items-center justify-center">
-                                <span className="text-xs font-semibold text-lavender-600">
-                                  JR
-                                </span>
+                                <span className="text-xs font-semibold text-lavender-600">JR</span>
                               </div>
                               <span className="font-medium">Jordan Reed</span>
                             </div>
                           </td>
-                          <td className="p-4 text-muted-foreground">
-                            Kennedy 847
-                          </td>
+                          <td className="p-4 text-muted-foreground">Kennedy 847</td>
                           <td className="p-4 text-center">
                             <span className="px-2 py-1 bg-coral-100 text-coral-700 rounded-full text-sm font-medium">
                               54%
@@ -576,16 +546,12 @@ export default function Index() {
                           <td className="p-4">
                             <div className="flex items-center gap-3">
                               <div className="w-8 h-8 bg-sage-100 rounded-full flex items-center justify-center">
-                                <span className="text-xs font-semibold text-sage-600">
-                                  TP
-                                </span>
+                                <span className="text-xs font-semibold text-sage-600">TP</span>
                               </div>
                               <span className="font-medium">Taylor Park</span>
                             </div>
                           </td>
-                          <td className="p-4 text-muted-foreground">
-                            Wilson 204
-                          </td>
+                          <td className="p-4 text-muted-foreground">Wilson 204</td>
                           <td className="p-4 text-center">
                             <span className="px-2 py-1 bg-lavender-100 text-lavender-700 rounded-full text-sm font-medium">
                               89%
@@ -607,18 +573,14 @@ export default function Index() {
 
             {/* 3. Anonymous Feedback Inbox */}
             <div className="mb-8">
-              <h4 className="text-lg font-semibold mb-4 text-foreground">
-                Anonymous Feedback Inbox
-              </h4>
+              <h4 className="text-lg font-semibold mb-4 text-foreground">Anonymous Feedback Inbox</h4>
               <div className="grid md:grid-cols-2 gap-4">
                 <Card className="border-sage-100">
                   <CardContent className="p-4">
                     <div className="flex items-start justify-between mb-3">
                       <div className="flex items-center gap-2">
                         <MessageCircle className="w-4 h-4 text-muted-foreground" />
-                        <span className="text-sm text-muted-foreground">
-                          Harrison Hall
-                        </span>
+                        <span className="text-sm text-muted-foreground">Harrison Hall</span>
                       </div>
                       <div className="flex gap-2">
                         <span className="px-2 py-1 bg-coral-100 text-coral-700 rounded-full text-xs">
@@ -631,15 +593,12 @@ export default function Index() {
                     </div>
                     <div className="bg-sage-50 p-3 rounded-lg mb-3">
                       <p className="text-sm text-foreground">
-                        "My roommate never cleans and plays music super late.
-                        It's affecting my sleep and grades."
+                        "My roommate never cleans and plays music super late. It's affecting my sleep and grades."
                       </p>
                     </div>
                     <div className="flex items-center justify-between text-xs text-muted-foreground">
                       <span>2 hours ago</span>
-                      <button className="text-primary hover:underline">
-                        Review
-                      </button>
+                      <button className="text-primary hover:underline">Review</button>
                     </div>
                   </CardContent>
                 </Card>
@@ -649,9 +608,7 @@ export default function Index() {
                     <div className="flex items-start justify-between mb-3">
                       <div className="flex items-center gap-2">
                         <MessageCircle className="w-4 h-4 text-muted-foreground" />
-                        <span className="text-sm text-muted-foreground">
-                          Wilson Commons
-                        </span>
+                        <span className="text-sm text-muted-foreground">Wilson Commons</span>
                       </div>
                       <div className="flex gap-2">
                         <span className="px-2 py-1 bg-mint-100 text-mint-700 rounded-full text-xs">
@@ -664,8 +621,7 @@ export default function Index() {
                     </div>
                     <div className="bg-sage-50 p-3 rounded-lg mb-3">
                       <p className="text-sm text-foreground">
-                        "Really appreciate how fair the chore system is. My
-                        roommates and I finally found balance!"
+                        "Really appreciate how fair the chore system is. My roommates and I finally found balance!"
                       </p>
                     </div>
                     <div className="flex items-center justify-between text-xs text-muted-foreground">
@@ -679,48 +635,33 @@ export default function Index() {
 
             {/* 4. Matching Queue */}
             <div className="mb-8">
-              <h4 className="text-lg font-semibold mb-4 text-foreground">
-                Dorm Reassignment Queue
-              </h4>
+              <h4 className="text-lg font-semibold mb-4 text-foreground">Dorm Reassignment Queue</h4>
               <Card className="border-sage-100">
                 <CardContent className="p-4">
                   <div className="flex flex-col md:flex-row md:items-center gap-4">
                     <div className="flex items-center gap-3 flex-1">
                       <div className="w-10 h-10 bg-coral-100 rounded-full flex items-center justify-center">
-                        <span className="text-sm font-semibold text-coral-600">
-                          JR
-                        </span>
+                        <span className="text-sm font-semibold text-coral-600">JR</span>
                       </div>
                       <div>
-                        <p className="font-medium text-foreground">
-                          Jordan Reed
-                        </p>
-                        <p className="text-sm text-muted-foreground">
-                          Current: Kennedy 847 (54% compatibility)
-                        </p>
+                        <p className="font-medium text-foreground">Jordan Reed</p>
+                        <p className="text-sm text-muted-foreground">Current: Kennedy 847 (54% compatibility)</p>
                       </div>
                     </div>
                     <div className="flex gap-3">
                       <div className="text-center">
                         <div className="px-3 py-2 bg-mint-50 rounded-lg border border-mint-200">
-                          <p className="text-sm font-medium text-mint-700">
-                            Harrison Hall
-                          </p>
+                          <p className="text-sm font-medium text-mint-700">Harrison Hall</p>
                           <p className="text-xs text-mint-600">92% match</p>
                         </div>
                       </div>
                       <div className="text-center">
                         <div className="px-3 py-2 bg-lavender-50 rounded-lg border border-lavender-200">
-                          <p className="text-sm font-medium text-lavender-700">
-                            Wilson Commons
-                          </p>
+                          <p className="text-sm font-medium text-lavender-700">Wilson Commons</p>
                           <p className="text-xs text-lavender-600">88% match</p>
                         </div>
                       </div>
-                      <Button
-                        size="sm"
-                        className="mt-2 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg"
-                      >
+                                            <Button size="sm" className="mt-2 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg">
                         Reassign
                       </Button>
                     </div>
@@ -731,21 +672,15 @@ export default function Index() {
 
             {/* 5. Chore Summary Cards */}
             <div>
-              <h4 className="text-lg font-semibold mb-4 text-foreground">
-                Chore Analytics
-              </h4>
+              <h4 className="text-lg font-semibold mb-4 text-foreground">Chore Analytics</h4>
               <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 <Card className="border-sage-100">
                   <CardContent className="p-4 text-center">
                     <div className="w-12 h-12 bg-mint-100 rounded-full flex items-center justify-center mx-auto mb-3">
                       <CheckCircle className="w-6 h-6 text-mint-600" />
                     </div>
-                    <h5 className="font-bold text-2xl text-foreground mb-1">
-                      847
-                    </h5>
-                    <p className="text-sm text-muted-foreground">
-                      Chores completed this week
-                    </p>
+                    <h5 className="font-bold text-2xl text-foreground mb-1">847</h5>
+                    <p className="text-sm text-muted-foreground">Chores completed this week</p>
                   </CardContent>
                 </Card>
 
@@ -754,12 +689,8 @@ export default function Index() {
                     <div className="w-12 h-12 bg-coral-100 rounded-full flex items-center justify-center mx-auto mb-3">
                       <Home className="w-6 h-6 text-coral-600" />
                     </div>
-                    <h5 className="font-bold text-xl text-foreground mb-1">
-                      Kitchen Cleaning
-                    </h5>
-                    <p className="text-sm text-muted-foreground">
-                      Most skipped chore
-                    </p>
+                    <h5 className="font-bold text-xl text-foreground mb-1">Kitchen Cleaning</h5>
+                    <p className="text-sm text-muted-foreground">Most skipped chore</p>
                   </CardContent>
                 </Card>
 
@@ -768,12 +699,8 @@ export default function Index() {
                     <div className="w-12 h-12 bg-lavender-100 rounded-full flex items-center justify-center mx-auto mb-3">
                       <BarChart3 className="w-6 h-6 text-lavender-600" />
                     </div>
-                    <h5 className="font-bold text-2xl text-foreground mb-1">
-                      67%
-                    </h5>
-                    <p className="text-sm text-muted-foreground">
-                      Kennedy Tower completion rate
-                    </p>
+                    <h5 className="font-bold text-2xl text-foreground mb-1">67%</h5>
+                    <p className="text-sm text-muted-foreground">Kennedy Tower completion rate</p>
                   </CardContent>
                 </Card>
 
@@ -782,12 +709,8 @@ export default function Index() {
                     <div className="w-12 h-12 bg-sage-100 rounded-full flex items-center justify-center mx-auto mb-3">
                       <Users className="w-6 h-6 text-sage-600" />
                     </div>
-                    <h5 className="font-bold text-2xl text-foreground mb-1">
-                      94%
-                    </h5>
-                    <p className="text-sm text-muted-foreground">
-                      Average satisfaction score
-                    </p>
+                    <h5 className="font-bold text-2xl text-foreground mb-1">94%</h5>
+                    <p className="text-sm text-muted-foreground">Average satisfaction score</p>
                   </CardContent>
                 </Card>
               </div>
@@ -802,9 +725,8 @@ export default function Index() {
                   Book a University Demo
                 </h3>
                 <p className="text-muted-foreground mb-6">
-                  See how CoHabitly could improve dorm life on your campus. Get
-                  a personalized walkthrough of all admin features and discuss
-                  implementation for your institution.
+                  See how CoHabitly could improve dorm life on your campus. Get a personalized
+                  walkthrough of all admin features and discuss implementation for your institution.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
                   <Input
