@@ -708,10 +708,20 @@ export default function Index() {
             </div>
 
             {/* 4. Matching Queue */}
-            <div className="mb-8">
-              <h4 className="text-lg font-semibold mb-4 text-foreground">
-                Dorm Reassignment Queue
-              </h4>
+            <div className="mb-12">
+              <div className="mb-6">
+                <div className="inline-flex items-center gap-2 px-3 py-1 bg-sage-100 text-sage-800 rounded-full text-sm font-medium mb-3">
+                  <Shield className="w-4 h-4" />
+                  Smart Matching
+                </div>
+                <h3 className="text-2xl font-bold text-foreground mb-2">
+                  Matching Queue
+                </h3>
+                <p className="text-muted-foreground max-w-2xl">
+                  When a living situation degrades, CoHabitly recommends new
+                  dorm assignments automatically.
+                </p>
+              </div>
               <Card className="border-sage-100">
                 <CardContent className="p-4">
                   <div className="flex flex-col md:flex-row md:items-center gap-4">
