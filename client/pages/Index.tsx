@@ -798,13 +798,12 @@ export default function Index() {
           <div className="mt-12 text-center">
             <Card className="border-primary/20 bg-gradient-to-r from-primary/5 to-lavender-50 max-w-2xl mx-auto">
               <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-foreground mb-4">
-                  Book a University Demo
+                <h3 className="text-3xl font-bold text-foreground mb-4">
+                  Want to Pilot CoHabitly at Your Campus?
                 </h3>
-                <p className="text-muted-foreground mb-6">
-                  See how CoHabitly could improve dorm life on your campus. Get
-                  a personalized walkthrough of all admin features and discuss
-                  implementation for your institution.
+                <p className="text-lg text-muted-foreground mb-6 max-w-2xl mx-auto">
+                  Join our early access partners and bring harmony to student
+                  housing.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
                   <Input
