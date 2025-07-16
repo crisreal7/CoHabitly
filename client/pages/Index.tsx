@@ -842,6 +842,149 @@ export default function Index() {
                 </Card>
               </div>
             </div>
+
+            {/* Feature 6: Household Digest */}
+            <div className="mb-12">
+              <div className="mb-6">
+                <div className="inline-flex items-center gap-2 px-3 py-1 bg-lavender-100 text-lavender-800 rounded-full text-sm font-medium mb-3">
+                  <Mail className="w-4 h-4" />
+                  AI Reports
+                </div>
+                <h3 className="text-2xl font-bold text-foreground mb-2">
+                  Household Digest
+                </h3>
+                <p className="text-muted-foreground max-w-2xl">
+                  Weekly AI-generated reports are delivered to housing admins
+                  with tone trends, alerts, and engagement metrics.
+                </p>
+              </div>
+              <Card className="border-sage-100 shadow-lg">
+                <CardContent className="p-6">
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between pb-4 border-b border-sage-100">
+                      <h4 className="text-lg font-semibold text-foreground">
+                        Weekly Housing Report
+                      </h4>
+                      <span className="text-sm text-muted-foreground">
+                        Week of Nov 4-10, 2024
+                      </span>
+                    </div>
+                    <div className="grid md:grid-cols-3 gap-4">
+                      <div className="bg-mint-50 p-4 rounded-lg">
+                        <h5 className="font-semibold text-mint-800 mb-2">
+                          Positive Trends
+                        </h5>
+                        <p className="text-sm text-mint-700">
+                          Chore completion up 15% campus-wide
+                        </p>
+                      </div>
+                      <div className="bg-coral-50 p-4 rounded-lg">
+                        <h5 className="font-semibold text-coral-800 mb-2">
+                          Attention Needed
+                        </h5>
+                        <p className="text-sm text-coral-700">
+                          Kennedy Tower reports 3 noise complaints
+                        </p>
+                      </div>
+                      <div className="bg-lavender-50 p-4 rounded-lg">
+                        <h5 className="font-semibold text-lavender-800 mb-2">
+                          Engagement
+                        </h5>
+                        <p className="text-sm text-lavender-700">
+                          89% weekly check-in participation
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Feature 7: Compatibility Logic Table */}
+            <div className="mb-12">
+              <div className="mb-6">
+                <div className="inline-flex items-center gap-2 px-3 py-1 bg-sage-100 text-sage-800 rounded-full text-sm font-medium mb-3">
+                  <Heart className="w-4 h-4" />
+                  Admin Only
+                </div>
+                <h3 className="text-2xl font-bold text-foreground mb-2">
+                  Compatibility Logic Table
+                </h3>
+                <p className="text-muted-foreground max-w-2xl">
+                  Match roommates by shared values, routines, and feedback —
+                  invisible to users.
+                </p>
+              </div>
+              <Card className="border-sage-100 shadow-lg">
+                <CardContent className="p-6">
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-foreground">
+                      Matching Criteria Weights
+                    </h4>
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div className="space-y-3">
+                        <div className="flex justify-between items-center">
+                          <span className="text-sm">Sleep Schedule</span>
+                          <div className="flex items-center gap-2">
+                            <div className="w-20 h-2 bg-sage-100 rounded-full overflow-hidden">
+                              <div className="w-5/6 h-full bg-primary rounded-full"></div>
+                            </div>
+                            <span className="text-xs font-medium">85%</span>
+                          </div>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span className="text-sm">Cleanliness Standards</span>
+                          <div className="flex items-center gap-2">
+                            <div className="w-20 h-2 bg-sage-100 rounded-full overflow-hidden">
+                              <div className="w-4/5 h-full bg-primary rounded-full"></div>
+                            </div>
+                            <span className="text-xs font-medium">80%</span>
+                          </div>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span className="text-sm">Social Preferences</span>
+                          <div className="flex items-center gap-2">
+                            <div className="w-20 h-2 bg-sage-100 rounded-full overflow-hidden">
+                              <div className="w-3/5 h-full bg-primary rounded-full"></div>
+                            </div>
+                            <span className="text-xs font-medium">60%</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="space-y-3">
+                        <div className="flex justify-between items-center">
+                          <span className="text-sm">Study Habits</span>
+                          <div className="flex items-center gap-2">
+                            <div className="w-20 h-2 bg-sage-100 rounded-full overflow-hidden">
+                              <div className="w-3/4 h-full bg-primary rounded-full"></div>
+                            </div>
+                            <span className="text-xs font-medium">75%</span>
+                          </div>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span className="text-sm">Communication Style</span>
+                          <div className="flex items-center gap-2">
+                            <div className="w-20 h-2 bg-sage-100 rounded-full overflow-hidden">
+                              <div className="w-1/2 h-full bg-primary rounded-full"></div>
+                            </div>
+                            <span className="text-xs font-medium">50%</span>
+                          </div>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span className="text-sm">Guest Policies</span>
+                          <div className="flex items-center gap-2">
+                            <div className="w-20 h-2 bg-sage-100 rounded-full overflow-hidden">
+                              <div className="w-2/5 h-full bg-primary rounded-full"></div>
+                            </div>
+                            <span className="text-xs font-medium">40%</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
           </div>
 
           {/* Request Live Demo CTA */}
