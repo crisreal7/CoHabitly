@@ -382,10 +382,20 @@ export default function Index() {
             </div>
 
             {/* 1. Dorm Overview Cards */}
-            <div className="mb-8">
-              <h4 className="text-lg font-semibold mb-4 text-foreground">
-                Dorm Overview
-              </h4>
+            <div className="mb-12">
+              <div className="mb-6">
+                <div className="inline-flex items-center gap-2 px-3 py-1 bg-mint-100 text-mint-800 rounded-full text-sm font-medium mb-3">
+                  <BarChart3 className="w-4 h-4" />
+                  Dorm Management
+                </div>
+                <h3 className="text-2xl font-bold text-foreground mb-2">
+                  Dorm Health Overview
+                </h3>
+                <p className="text-muted-foreground max-w-2xl">
+                  See average vibe scores, flagged messages, and completion
+                  rates across all dorms.
+                </p>
+              </div>
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 <Card className="border-sage-100 hover:shadow-md transition-shadow">
                   <CardContent className="p-4">
