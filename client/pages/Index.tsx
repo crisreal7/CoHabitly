@@ -343,13 +343,13 @@ export default function Index() {
       {/* Admin Preview Section */}
       <section className="px-4 py-16">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
+          <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              CoHabitly Admin Demo
+              See the CoHabitly Admin Portal in Action
             </h2>
-            <p className="text-lg text-muted-foreground">
-              See exactly how RAs and housing administrators monitor dorm health
-              and improve student living
+            <p className="text-lg md:text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
+              A live glimpse at how RAs and housing staff monitor dorm health,
+              address roommate issues, and manage assignments — all in one view.
             </p>
           </div>
 
