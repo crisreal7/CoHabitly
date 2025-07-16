@@ -287,8 +287,16 @@ export default function Index() {
                   <span>Dorm assignment automation</span>
                 </div>
               </div>
-              <Button className="h-12 px-8 bg-sage-600 hover:bg-sage-700 text-white rounded-xl font-semibold">
-                Request Admin Demo
+              <Button
+                className="h-12 px-8 bg-sage-600 hover:bg-sage-700 text-white rounded-xl font-semibold"
+                onClick={() => {
+                  const adminSection = document.getElementById(
+                    "admin-portal-section",
+                  );
+                  adminSection?.scrollIntoView({ behavior: "smooth" });
+                }}
+              >
+                View Admin Demo
                 <ChevronRight className="w-4 h-4 ml-2" />
               </Button>
             </div>
