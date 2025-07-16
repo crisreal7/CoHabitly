@@ -770,10 +770,20 @@ export default function Index() {
             </div>
 
             {/* 5. Chore Summary Cards */}
-            <div>
-              <h4 className="text-lg font-semibold mb-4 text-foreground">
-                Chore Analytics
-              </h4>
+            <div className="mb-12">
+              <div className="mb-6">
+                <div className="inline-flex items-center gap-2 px-3 py-1 bg-mint-100 text-mint-800 rounded-full text-sm font-medium mb-3">
+                  <CheckCircle className="w-4 h-4" />
+                  Task Oversight
+                </div>
+                <h3 className="text-2xl font-bold text-foreground mb-2">
+                  Chore Management
+                </h3>
+                <p className="text-muted-foreground max-w-2xl">
+                  Assign chores across dorms and visualize consistency,
+                  delegation, and follow-through.
+                </p>
+              </div>
               <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 <Card className="border-sage-100">
                   <CardContent className="p-4 text-center">
