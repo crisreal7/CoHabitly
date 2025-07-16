@@ -1050,7 +1050,7 @@ export default function Index() {
       )}
 
       {/* Testimonials */}
-      <section className="px-4 py-16">
+      <section className="py-16 overflow-hidden">
         <div className="max-w-6xl mx-auto text-center px-4 mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
             What students are saying
