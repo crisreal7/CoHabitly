@@ -811,9 +811,9 @@ export default function Index() {
                     placeholder="University email address"
                     className="flex-1 h-12 px-4 rounded-xl border-sage-200 focus:border-primary focus:ring-primary"
                   />
-                  <Button className="h-12 px-8 bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl font-semibold">
-                    Book Demo
-                    <ChevronRight className="w-4 h-4 ml-2" />
+                  <Button className="h-14 px-8 bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl font-semibold text-lg">
+                    Book a University Demo
+                    <ChevronRight className="w-5 h-5 ml-2" />
                   </Button>
                 </div>
                 <p className="text-xs text-muted-foreground mt-4">
