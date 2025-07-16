@@ -106,3 +106,22 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  @keyframes scroll-reviews {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  .animate-scroll-reviews {
+    animation: scroll-reviews 60s linear infinite;
+  }
+
+  .animate-scroll-reviews:hover {
+    animation-play-state: paused;
+  }
+}
