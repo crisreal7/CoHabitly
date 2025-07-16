@@ -340,6 +340,492 @@ export default function Index() {
         </div>
       </section>
 
+      {/* Admin Preview Section */}
+      <section className="px-4 py-16">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              CoHabitly Admin Demo
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              See exactly how RAs and housing administrators monitor dorm health
+              and improve student living
+            </p>
+          </div>
+
+          {/* Dashboard Container */}
+          <div className="bg-white rounded-2xl shadow-2xl p-6 border border-sage-100">
+            {/* Dashboard Header */}
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8 pb-4 border-b border-sage-100">
+              <div>
+                <h3 className="text-2xl font-bold text-foreground">
+                  Admin Dashboard
+                </h3>
+                <p className="text-muted-foreground">
+                  West Campus Housing • Fall 2024
+                </p>
+              </div>
+              <div className="flex items-center gap-3 mt-4 sm:mt-0">
+                <select className="px-3 py-2 border border-sage-200 rounded-lg text-sm bg-white">
+                  <option>Filter by Dorm</option>
+                  <option>Building A</option>
+                  <option>Building B</option>
+                  <option>Building C</option>
+                </select>
+                <div className="flex items-center gap-2 px-3 py-2 bg-mint-50 rounded-lg">
+                  <div className="w-2 h-2 bg-mint-500 rounded-full animate-pulse"></div>
+                  <span className="text-sm text-mint-700 font-medium">
+                    Live
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* 1. Dorm Overview Cards */}
+            <div className="mb-8">
+              <h4 className="text-lg font-semibold mb-4 text-foreground">
+                Dorm Overview
+              </h4>
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <Card className="border-sage-100 hover:shadow-md transition-shadow">
+                  <CardContent className="p-4">
+                    <div className="flex justify-between items-start mb-3">
+                      <div>
+                        <h5 className="font-semibold text-foreground">
+                          Harrison Hall
+                        </h5>
+                        <p className="text-sm text-muted-foreground">
+                          Floor 1-4
+                        </p>
+                      </div>
+                      <div className="flex items-center gap-1 px-2 py-1 bg-mint-100 rounded-full">
+                        <div className="w-2 h-2 bg-mint-500 rounded-full"></div>
+                        <span className="text-xs text-mint-700 font-medium">
+                          94%
+                        </span>
+                      </div>
+                    </div>
+                    <div className="space-y-2">
+                      <div className="flex justify-between text-sm">
+                        <span className="text-muted-foreground">Students</span>
+                        <span className="font-medium">156</span>
+                      </div>
+                      <div className="flex justify-between text-sm">
+                        <span className="text-muted-foreground">Flagged</span>
+                        <span className="font-medium text-coral-600">2</span>
+                      </div>
+                      <div className="w-full h-2 bg-sage-100 rounded-full overflow-hidden">
+                        <div className="w-11/12 h-full bg-mint-500 rounded-full"></div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="border-sage-100 hover:shadow-md transition-shadow">
+                  <CardContent className="p-4">
+                    <div className="flex justify-between items-start mb-3">
+                      <div>
+                        <h5 className="font-semibold text-foreground">
+                          Kennedy Tower
+                        </h5>
+                        <p className="text-sm text-muted-foreground">
+                          Floor 5-12
+                        </p>
+                      </div>
+                      <div className="flex items-center gap-1 px-2 py-1 bg-coral-100 rounded-full">
+                        <div className="w-2 h-2 bg-coral-500 rounded-full"></div>
+                        <span className="text-xs text-coral-700 font-medium">
+                          67%
+                        </span>
+                      </div>
+                    </div>
+                    <div className="space-y-2">
+                      <div className="flex justify-between text-sm">
+                        <span className="text-muted-foreground">Students</span>
+                        <span className="font-medium">203</span>
+                      </div>
+                      <div className="flex justify-between text-sm">
+                        <span className="text-muted-foreground">Flagged</span>
+                        <span className="font-medium text-coral-600">8</span>
+                      </div>
+                      <div className="w-full h-2 bg-sage-100 rounded-full overflow-hidden">
+                        <div className="w-2/3 h-full bg-coral-500 rounded-full"></div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="border-sage-100 hover:shadow-md transition-shadow">
+                  <CardContent className="p-4">
+                    <div className="flex justify-between items-start mb-3">
+                      <div>
+                        <h5 className="font-semibold text-foreground">
+                          Wilson Commons
+                        </h5>
+                        <p className="text-sm text-muted-foreground">
+                          Floor 1-3
+                        </p>
+                      </div>
+                      <div className="flex items-center gap-1 px-2 py-1 bg-lavender-100 rounded-full">
+                        <div className="w-2 h-2 bg-lavender-500 rounded-full"></div>
+                        <span className="text-xs text-lavender-700 font-medium">
+                          88%
+                        </span>
+                      </div>
+                    </div>
+                    <div className="space-y-2">
+                      <div className="flex justify-between text-sm">
+                        <span className="text-muted-foreground">Students</span>
+                        <span className="font-medium">89</span>
+                      </div>
+                      <div className="flex justify-between text-sm">
+                        <span className="text-muted-foreground">Flagged</span>
+                        <span className="font-medium text-coral-600">1</span>
+                      </div>
+                      <div className="w-full h-2 bg-sage-100 rounded-full overflow-hidden">
+                        <div className="w-5/6 h-full bg-lavender-500 rounded-full"></div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+
+            {/* 2. Student Roster Table */}
+            <div className="mb-8">
+              <h4 className="text-lg font-semibold mb-4 text-foreground">
+                Student Roster
+              </h4>
+              <Card className="border-sage-100">
+                <CardContent className="p-0">
+                  <div className="overflow-x-auto">
+                    <table className="w-full">
+                      <thead className="bg-sage-50">
+                        <tr className="border-b border-sage-100">
+                          <th className="text-left p-4 font-medium text-foreground">
+                            Student
+                          </th>
+                          <th className="text-left p-4 font-medium text-foreground">
+                            Dorm
+                          </th>
+                          <th className="text-center p-4 font-medium text-foreground">
+                            Compatibility
+                          </th>
+                          <th className="text-center p-4 font-medium text-foreground">
+                            Profile
+                          </th>
+                          <th className="text-center p-4 font-medium text-foreground">
+                            Status
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr className="border-b border-sage-50 hover:bg-sage-25">
+                          <td className="p-4">
+                            <div className="flex items-center gap-3">
+                              <div className="w-8 h-8 bg-mint-100 rounded-full flex items-center justify-center">
+                                <span className="text-xs font-semibold text-mint-600">
+                                  AM
+                                </span>
+                              </div>
+                              <span className="font-medium">Alex Martinez</span>
+                            </div>
+                          </td>
+                          <td className="p-4 text-muted-foreground">
+                            Harrison 312
+                          </td>
+                          <td className="p-4 text-center">
+                            <span className="px-2 py-1 bg-mint-100 text-mint-700 rounded-full text-sm font-medium">
+                              92%
+                            </span>
+                          </td>
+                          <td className="p-4 text-center">
+                            <span className="text-sm font-medium">100%</span>
+                          </td>
+                          <td className="p-4 text-center">
+                            <CheckCircle className="w-4 h-4 text-mint-500 mx-auto" />
+                          </td>
+                        </tr>
+                        <tr className="border-b border-sage-50 hover:bg-sage-25">
+                          <td className="p-4">
+                            <div className="flex items-center gap-3">
+                              <div className="w-8 h-8 bg-lavender-100 rounded-full flex items-center justify-center">
+                                <span className="text-xs font-semibold text-lavender-600">
+                                  JR
+                                </span>
+                              </div>
+                              <span className="font-medium">Jordan Reed</span>
+                            </div>
+                          </td>
+                          <td className="p-4 text-muted-foreground">
+                            Kennedy 847
+                          </td>
+                          <td className="p-4 text-center">
+                            <span className="px-2 py-1 bg-coral-100 text-coral-700 rounded-full text-sm font-medium">
+                              54%
+                            </span>
+                          </td>
+                          <td className="p-4 text-center">
+                            <span className="text-sm font-medium">78%</span>
+                          </td>
+                          <td className="p-4 text-center">
+                            <div className="w-4 h-4 bg-coral-500 rounded-full mx-auto animate-pulse"></div>
+                          </td>
+                        </tr>
+                        <tr className="border-b border-sage-50 hover:bg-sage-25">
+                          <td className="p-4">
+                            <div className="flex items-center gap-3">
+                              <div className="w-8 h-8 bg-sage-100 rounded-full flex items-center justify-center">
+                                <span className="text-xs font-semibold text-sage-600">
+                                  TP
+                                </span>
+                              </div>
+                              <span className="font-medium">Taylor Park</span>
+                            </div>
+                          </td>
+                          <td className="p-4 text-muted-foreground">
+                            Wilson 204
+                          </td>
+                          <td className="p-4 text-center">
+                            <span className="px-2 py-1 bg-lavender-100 text-lavender-700 rounded-full text-sm font-medium">
+                              89%
+                            </span>
+                          </td>
+                          <td className="p-4 text-center">
+                            <span className="text-sm font-medium">95%</span>
+                          </td>
+                          <td className="p-4 text-center">
+                            <CheckCircle className="w-4 h-4 text-mint-500 mx-auto" />
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* 3. Anonymous Feedback Inbox */}
+            <div className="mb-8">
+              <h4 className="text-lg font-semibold mb-4 text-foreground">
+                Anonymous Feedback Inbox
+              </h4>
+              <div className="grid md:grid-cols-2 gap-4">
+                <Card className="border-sage-100">
+                  <CardContent className="p-4">
+                    <div className="flex items-start justify-between mb-3">
+                      <div className="flex items-center gap-2">
+                        <MessageCircle className="w-4 h-4 text-muted-foreground" />
+                        <span className="text-sm text-muted-foreground">
+                          Harrison Hall
+                        </span>
+                      </div>
+                      <div className="flex gap-2">
+                        <span className="px-2 py-1 bg-coral-100 text-coral-700 rounded-full text-xs">
+                          Flagged
+                        </span>
+                        <span className="px-2 py-1 bg-sage-100 text-sage-700 rounded-full text-xs">
+                          Unreviewed
+                        </span>
+                      </div>
+                    </div>
+                    <div className="bg-sage-50 p-3 rounded-lg mb-3">
+                      <p className="text-sm text-foreground">
+                        "My roommate never cleans and plays music super late.
+                        It's affecting my sleep and grades."
+                      </p>
+                    </div>
+                    <div className="flex items-center justify-between text-xs text-muted-foreground">
+                      <span>2 hours ago</span>
+                      <button className="text-primary hover:underline">
+                        Review
+                      </button>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="border-sage-100">
+                  <CardContent className="p-4">
+                    <div className="flex items-start justify-between mb-3">
+                      <div className="flex items-center gap-2">
+                        <MessageCircle className="w-4 h-4 text-muted-foreground" />
+                        <span className="text-sm text-muted-foreground">
+                          Wilson Commons
+                        </span>
+                      </div>
+                      <div className="flex gap-2">
+                        <span className="px-2 py-1 bg-mint-100 text-mint-700 rounded-full text-xs">
+                          Positive
+                        </span>
+                        <span className="px-2 py-1 bg-mint-100 text-mint-700 rounded-full text-xs">
+                          Reviewed
+                        </span>
+                      </div>
+                    </div>
+                    <div className="bg-sage-50 p-3 rounded-lg mb-3">
+                      <p className="text-sm text-foreground">
+                        "Really appreciate how fair the chore system is. My
+                        roommates and I finally found balance!"
+                      </p>
+                    </div>
+                    <div className="flex items-center justify-between text-xs text-muted-foreground">
+                      <span>1 day ago</span>
+                      <span className="text-mint-600">✓ Reviewed</span>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+
+            {/* 4. Matching Queue */}
+            <div className="mb-8">
+              <h4 className="text-lg font-semibold mb-4 text-foreground">
+                Dorm Reassignment Queue
+              </h4>
+              <Card className="border-sage-100">
+                <CardContent className="p-4">
+                  <div className="flex flex-col md:flex-row md:items-center gap-4">
+                    <div className="flex items-center gap-3 flex-1">
+                      <div className="w-10 h-10 bg-coral-100 rounded-full flex items-center justify-center">
+                        <span className="text-sm font-semibold text-coral-600">
+                          JR
+                        </span>
+                      </div>
+                      <div>
+                        <p className="font-medium text-foreground">
+                          Jordan Reed
+                        </p>
+                        <p className="text-sm text-muted-foreground">
+                          Current: Kennedy 847 (54% compatibility)
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex gap-3">
+                      <div className="text-center">
+                        <div className="px-3 py-2 bg-mint-50 rounded-lg border border-mint-200">
+                          <p className="text-sm font-medium text-mint-700">
+                            Harrison Hall
+                          </p>
+                          <p className="text-xs text-mint-600">92% match</p>
+                        </div>
+                      </div>
+                      <div className="text-center">
+                        <div className="px-3 py-2 bg-lavender-50 rounded-lg border border-lavender-200">
+                          <p className="text-sm font-medium text-lavender-700">
+                            Wilson Commons
+                          </p>
+                          <p className="text-xs text-lavender-600">88% match</p>
+                        </div>
+                      </div>
+                      <Button
+                        size="sm"
+                        className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg"
+                      >
+                        Reassign
+                      </Button>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* 5. Chore Summary Cards */}
+            <div>
+              <h4 className="text-lg font-semibold mb-4 text-foreground">
+                Chore Analytics
+              </h4>
+              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <Card className="border-sage-100">
+                  <CardContent className="p-4 text-center">
+                    <div className="w-12 h-12 bg-mint-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <CheckCircle className="w-6 h-6 text-mint-600" />
+                    </div>
+                    <h5 className="font-bold text-2xl text-foreground mb-1">
+                      847
+                    </h5>
+                    <p className="text-sm text-muted-foreground">
+                      Chores completed this week
+                    </p>
+                  </CardContent>
+                </Card>
+
+                <Card className="border-sage-100">
+                  <CardContent className="p-4 text-center">
+                    <div className="w-12 h-12 bg-coral-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <Home className="w-6 h-6 text-coral-600" />
+                    </div>
+                    <h5 className="font-bold text-xl text-foreground mb-1">
+                      Kitchen Cleaning
+                    </h5>
+                    <p className="text-sm text-muted-foreground">
+                      Most skipped chore
+                    </p>
+                  </CardContent>
+                </Card>
+
+                <Card className="border-sage-100">
+                  <CardContent className="p-4 text-center">
+                    <div className="w-12 h-12 bg-lavender-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <BarChart3 className="w-6 h-6 text-lavender-600" />
+                    </div>
+                    <h5 className="font-bold text-2xl text-foreground mb-1">
+                      67%
+                    </h5>
+                    <p className="text-sm text-muted-foreground">
+                      Kennedy Tower completion rate
+                    </p>
+                  </CardContent>
+                </Card>
+
+                <Card className="border-sage-100">
+                  <CardContent className="p-4 text-center">
+                    <div className="w-12 h-12 bg-sage-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <Users className="w-6 h-6 text-sage-600" />
+                    </div>
+                    <h5 className="font-bold text-2xl text-foreground mb-1">
+                      94%
+                    </h5>
+                    <p className="text-sm text-muted-foreground">
+                      Average satisfaction score
+                    </p>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </div>
+
+          {/* Request Live Demo CTA */}
+          <div className="mt-12 text-center">
+            <Card className="border-primary/20 bg-gradient-to-r from-primary/5 to-lavender-50 max-w-2xl mx-auto">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-foreground mb-4">
+                  Book a University Demo
+                </h3>
+                <p className="text-muted-foreground mb-6">
+                  See how CoHabitly could improve dorm life on your campus. Get
+                  a personalized walkthrough of all admin features and discuss
+                  implementation for your institution.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+                  <Input
+                    type="email"
+                    placeholder="University email address"
+                    className="flex-1 h-12 px-4 rounded-xl border-sage-200 focus:border-primary focus:ring-primary"
+                  />
+                  <Button className="h-12 px-8 bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl font-semibold">
+                    Book Demo
+                    <ChevronRight className="w-4 h-4 ml-2" />
+                  </Button>
+                </div>
+                <p className="text-xs text-muted-foreground mt-4">
+                  Free consultation • No commitment required • FERPA compliant
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
       {/* Testimonials */}
       <section className="px-4 py-16">
         <div className="max-w-6xl mx-auto text-center">
