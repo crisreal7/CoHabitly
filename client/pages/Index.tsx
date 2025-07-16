@@ -502,10 +502,20 @@ export default function Index() {
             </div>
 
             {/* 2. Student Roster Table */}
-            <div className="mb-8">
-              <h4 className="text-lg font-semibold mb-4 text-foreground">
-                Student Roster
-              </h4>
+            <div className="mb-12">
+              <div className="mb-6">
+                <div className="inline-flex items-center gap-2 px-3 py-1 bg-lavender-100 text-lavender-800 rounded-full text-sm font-medium mb-3">
+                  <Users className="w-4 h-4" />
+                  Vibe Monitoring
+                </div>
+                <h3 className="text-2xl font-bold text-foreground mb-2">
+                  Student Roster & Alerts
+                </h3>
+                <p className="text-muted-foreground max-w-2xl">
+                  Monitor profile completion, roommate feedback, and AI-flagged
+                  tension indicators.
+                </p>
+              </div>
               <Card className="border-sage-100">
                 <CardContent className="p-0">
                   <div className="overflow-x-auto">
