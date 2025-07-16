@@ -1069,8 +1069,8 @@ export default function Index() {
 
           {/* Scrolling Reviews */}
           <div className="animate-scroll-reviews flex gap-8 w-fit">
-            {/* Duplicate the reviews for seamless loop */}
-            {[...Array(3)].map((_, setIndex) => (
+            {/* Create continuous loop with double set for seamless animation */}
+            {[...Array(2)].map((_, setIndex) => (
               <div key={setIndex} className="flex gap-8 min-w-fit">
                 <Card className="border-sage-100 shadow-sm hover:shadow-md transition-shadow min-w-[320px] max-w-[320px]">
                   <CardContent className="p-6">
