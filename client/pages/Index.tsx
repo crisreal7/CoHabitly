@@ -288,16 +288,14 @@ export default function Index() {
                   <span>Dorm assignment automation</span>
                 </div>
               </div>
-              <Button
+                                          <Button
                 className="h-12 px-8 bg-sage-600 hover:bg-sage-700 text-white rounded-xl font-semibold"
                 onClick={() => {
                   setShowAdminDemo(true);
                   // Small delay to ensure the section is rendered before scrolling
                   setTimeout(() => {
-                    const adminSection = document.getElementById(
-                      "admin-portal-section",
-                    );
-                    adminSection?.scrollIntoView({ behavior: "smooth" });
+                    const adminSection = document.getElementById('admin-portal-section');
+                    adminSection?.scrollIntoView({ behavior: 'smooth' });
                   }, 100);
                 }}
               >
@@ -353,11 +351,9 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Admin Preview Section */}
-      <section
-        id="admin-portal-section"
-        className="px-4 py-16 bg-gradient-to-br from-sage-25 via-white to-lavender-25"
-      >
+                  {/* Admin Preview Section */}
+      {showAdminDemo && (
+        <section id="admin-portal-section" className="px-4 py-16 bg-gradient-to-br from-sage-25 via-white to-lavender-25">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
@@ -856,7 +852,7 @@ export default function Index() {
                     </p>
                   </CardContent>
                 </Card>
-              </div>
+                            </div>
             </div>
 
             {/* Feature 6: Household Digest */}
@@ -866,49 +862,30 @@ export default function Index() {
                   <Mail className="w-4 h-4" />
                   AI Reports
                 </div>
-                <h3 className="text-2xl font-bold text-foreground mb-2">
-                  Household Digest
-                </h3>
+                <h3 className="text-2xl font-bold text-foreground mb-2">Household Digest</h3>
                 <p className="text-muted-foreground max-w-2xl">
-                  Weekly AI-generated reports are delivered to housing admins
-                  with tone trends, alerts, and engagement metrics.
+                  Weekly AI-generated reports are delivered to housing admins with tone trends, alerts, and engagement metrics.
                 </p>
               </div>
               <Card className="border-sage-100 shadow-lg">
                 <CardContent className="p-6">
                   <div className="space-y-4">
                     <div className="flex items-center justify-between pb-4 border-b border-sage-100">
-                      <h4 className="text-lg font-semibold text-foreground">
-                        Weekly Housing Report
-                      </h4>
-                      <span className="text-sm text-muted-foreground">
-                        Week of Nov 4-10, 2024
-                      </span>
+                      <h4 className="text-lg font-semibold text-foreground">Weekly Housing Report</h4>
+                      <span className="text-sm text-muted-foreground">Week of Nov 4-10, 2024</span>
                     </div>
                     <div className="grid md:grid-cols-3 gap-4">
                       <div className="bg-mint-50 p-4 rounded-lg">
-                        <h5 className="font-semibold text-mint-800 mb-2">
-                          Positive Trends
-                        </h5>
-                        <p className="text-sm text-mint-700">
-                          Chore completion up 15% campus-wide
-                        </p>
+                        <h5 className="font-semibold text-mint-800 mb-2">Positive Trends</h5>
+                        <p className="text-sm text-mint-700">Chore completion up 15% campus-wide</p>
                       </div>
                       <div className="bg-coral-50 p-4 rounded-lg">
-                        <h5 className="font-semibold text-coral-800 mb-2">
-                          Attention Needed
-                        </h5>
-                        <p className="text-sm text-coral-700">
-                          Kennedy Tower reports 3 noise complaints
-                        </p>
+                        <h5 className="font-semibold text-coral-800 mb-2">Attention Needed</h5>
+                        <p className="text-sm text-coral-700">Kennedy Tower reports 3 noise complaints</p>
                       </div>
                       <div className="bg-lavender-50 p-4 rounded-lg">
-                        <h5 className="font-semibold text-lavender-800 mb-2">
-                          Engagement
-                        </h5>
-                        <p className="text-sm text-lavender-700">
-                          89% weekly check-in participation
-                        </p>
+                        <h5 className="font-semibold text-lavender-800 mb-2">Engagement</h5>
+                        <p className="text-sm text-lavender-700">89% weekly check-in participation</p>
                       </div>
                     </div>
                   </div>
@@ -923,20 +900,15 @@ export default function Index() {
                   <Heart className="w-4 h-4" />
                   Admin Only
                 </div>
-                <h3 className="text-2xl font-bold text-foreground mb-2">
-                  Compatibility Logic Table
-                </h3>
+                <h3 className="text-2xl font-bold text-foreground mb-2">Compatibility Logic Table</h3>
                 <p className="text-muted-foreground max-w-2xl">
-                  Match roommates by shared values, routines, and feedback —
-                  invisible to users.
+                  Match roommates by shared values, routines, and feedback — invisible to users.
                 </p>
               </div>
               <Card className="border-sage-100 shadow-lg">
                 <CardContent className="p-6">
                   <div className="space-y-4">
-                    <h4 className="text-lg font-semibold text-foreground">
-                      Matching Criteria Weights
-                    </h4>
+                    <h4 className="text-lg font-semibold text-foreground">Matching Criteria Weights</h4>
                     <div className="grid md:grid-cols-2 gap-6">
                       <div className="space-y-3">
                         <div className="flex justify-between items-center">
