@@ -472,7 +472,7 @@ export default function Index() {
                           <span className="text-muted-foreground">
                             Students
                           </span>
-                          <span className="font-medium">203</span>
+                          <span className="font-medium">73</span>
                         </div>
                         <div className="flex justify-between text-sm">
                           <span className="text-muted-foreground">Flagged</span>
