@@ -80,9 +80,7 @@ export default function Index() {
                   <div className="space-y-3">
                     <div className="bg-mint-50 p-3 rounded-lg">
                       <div className="flex justify-between items-center">
-                        <span className="text-sm font-medium">
-                          Weekly Vibe Check
-                        </span>
+                        <span className="text-sm font-medium">Vibe Check</span>
                         <span className="text-xs text-sage-600">Anonymous</span>
                       </div>
                     </div>
