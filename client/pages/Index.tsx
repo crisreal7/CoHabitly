@@ -707,7 +707,7 @@ export default function Index() {
                         </div>
                         <div className="flex gap-2">
                           <span className="px-2 py-1 bg-mint-100 text-mint-700 rounded-full text-xs">
-                            Positive
+                            Resolved
                           </span>
                           <span className="px-2 py-1 bg-mint-100 text-mint-700 rounded-full text-xs">
                             Reviewed
