@@ -657,7 +657,7 @@ export default function Index() {
                     Feedback Management
                   </div>
                   <h3 className="text-2xl font-bold text-foreground mb-2">
-                    Anonymous Feedback Inbox
+                    Anonymous Message Inbox
                   </h3>
                   <p className="text-muted-foreground max-w-2xl">
                     Privately review filtered anonymous messages to catch early
