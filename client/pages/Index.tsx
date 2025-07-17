@@ -454,7 +454,7 @@ export default function Index() {
                       <div className="flex justify-between items-start mb-3">
                         <div>
                           <h5 className="font-semibold text-foreground">
-                            Kennedy Tower
+                            Harrison Hall
                           </h5>
                           <p className="text-sm text-muted-foreground">
                             Floor 5-12
