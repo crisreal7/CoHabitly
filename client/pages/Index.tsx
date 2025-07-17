@@ -660,8 +660,7 @@ export default function Index() {
                     Anonymous Message Inbox
                   </h3>
                   <p className="text-muted-foreground max-w-2xl">
-                    Privately review filtered anonymous messages to catch early
-                    warning signs.
+                    Privately review anonymous messages to resolve conflict.
                   </p>
                 </div>
                 <div className="grid md:grid-cols-2 gap-4">
