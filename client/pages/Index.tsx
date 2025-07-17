@@ -734,7 +734,7 @@ export default function Index() {
                     Smart Matching
                   </div>
                   <h3 className="text-2xl font-bold text-foreground mb-2">
-                    Matching Queue
+                    Dorm Reassignment Request's
                   </h3>
                   <p className="text-muted-foreground max-w-2xl">
                     When a living situation degrades, CoHabitly recommends new
