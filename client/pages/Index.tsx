@@ -457,7 +457,7 @@ export default function Index() {
                             Harrison Hall
                           </h5>
                           <p className="text-sm text-muted-foreground">
-                            Floor 5-12
+                            Floor 2
                           </p>
                         </div>
                         <div className="flex items-center gap-1 px-2 py-1 bg-coral-100 rounded-full">
