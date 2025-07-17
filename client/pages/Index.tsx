@@ -602,7 +602,7 @@ export default function Index() {
                               </div>
                             </td>
                             <td className="p-4 text-muted-foreground">
-                              Kennedy 847
+                              Harrison 247
                             </td>
                             <td className="p-4 text-center">
                               <span className="px-2 py-1 bg-coral-100 text-coral-700 rounded-full text-sm font-medium">
