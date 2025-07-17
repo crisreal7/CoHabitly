@@ -684,8 +684,7 @@ export default function Index() {
                       </div>
                       <div className="bg-sage-50 p-3 rounded-lg mb-3">
                         <p className="text-sm text-foreground">
-                          "My roommate never cleans and plays music super late.
-                          It's affecting my sleep and grades."
+                          "Someone's throwing a party in Harrison Hall."
                         </p>
                       </div>
                       <div className="flex items-center justify-between text-xs text-muted-foreground">
