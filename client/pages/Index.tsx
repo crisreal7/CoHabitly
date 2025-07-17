@@ -737,8 +737,8 @@ export default function Index() {
                     Dorm Reassignment Request's
                   </h3>
                   <p className="text-muted-foreground max-w-2xl">
-                    When a living situation degrades, CoHabitly recommends new
-                    dorm assignments automatically.
+                    When a living situation degrades, CoHabitly algorithms find,
+                    new dorm assignments automatically.
                   </p>
                 </div>
                 <Card className="border-sage-100">
