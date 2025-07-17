@@ -709,9 +709,6 @@ export default function Index() {
                           <span className="px-2 py-1 bg-mint-100 text-mint-700 rounded-full text-xs">
                             Resolved
                           </span>
-                          <span className="px-2 py-1 bg-mint-100 text-mint-700 rounded-full text-xs">
-                            Reviewed
-                          </span>
                         </div>
                       </div>
                       <div className="bg-sage-50 p-3 rounded-lg mb-3">
