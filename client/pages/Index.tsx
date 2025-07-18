@@ -411,6 +411,237 @@ export default function Index() {
         </div>
       </section>
 
+      {/* Why We Built CoHabitly */}
+      <section className="px-4 py-16 bg-gradient-to-br from-slate-50 via-white to-blue-50">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
+            Why We Built CoHabitly
+          </h2>
+          <div className="prose prose-lg mx-auto text-gray-600">
+            <p className="text-xl leading-relaxed mb-6">
+              Shared living is hard. Whether you're in college, living with
+              roommates, or sharing life with a partner — miscommunication,
+              unspoken tension, and mismatched habits can quietly erode peace at
+              home.
+            </p>
+            <p className="text-lg font-semibold text-primary">
+              CoHabitly makes it easier to talk, organize, and resolve — without
+              confrontation.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* One App, Every Stage */}
+      <section className="px-4 py-16 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              One App, Every Stage of Shared Living
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              Life changes, but your need for harmony doesn't. CoHabitly grows
+              with you through every living situation.
+            </p>
+          </div>
+
+          <div className="grid gap-6">
+            {/* Life Stages Cards */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <Card className="border-emerald-200 hover:shadow-lg transition-shadow group">
+                <CardContent className="p-6">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <GraduationCap className="w-6 h-6 text-emerald-600" />
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-lg">🧑‍🎓 Student Dorms</h3>
+                    </div>
+                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    Smart roommate matching, vibe check-ins, AI conflict
+                    detection, admin alerts
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="border-blue-200 hover:shadow-lg transition-shadow group">
+                <CardContent className="p-6">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <Users className="w-6 h-6 text-blue-600" />
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-lg">👯 Adult Roommates</h3>
+                    </div>
+                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    Chore systems, shared goals, trust metrics, anonymous
+                    messaging
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="border-pink-200 hover:shadow-lg transition-shadow group">
+                <CardContent className="p-6">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-12 h-12 bg-pink-100 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <Heart className="w-6 h-6 text-pink-600" />
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-lg">💑 Couples Mode</h3>
+                    </div>
+                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    Grocery lists, soft conflict mediation, love languages,
+                    emotional check-ins
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="border-amber-200 hover:shadow-lg transition-shadow group">
+                <CardContent className="p-6">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <Home className="w-6 h-6 text-amber-600" />
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-lg">🏠 Moving Out</h3>
+                    </div>
+                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    Track past vibe data, transition to new homes, preserve your
+                    living habits
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="border-purple-200 hover:shadow-lg transition-shadow group">
+                <CardContent className="p-6">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <Sparkles className="w-6 h-6 text-purple-600" />
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-lg">�� Long-Term Vision</h3>
+                    </div>
+                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    Become your co-living assistant for every shared home,
+                    forever
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Key Features Section */}
+      <section className="px-4 py-16 bg-gradient-to-br from-gray-50 via-white to-slate-50">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Key Features
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Intelligent tools that make shared living smoother, fairer, and
+              more harmonious.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <Card className="border-indigo-200 hover:shadow-xl transition-all duration-300 group">
+              <CardContent className="p-6">
+                <div className="w-16 h-16 bg-indigo-100 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                  <MessageCircle className="w-8 h-8 text-indigo-600" />
+                </div>
+                <h3 className="text-xl font-semibold mb-3 text-center">
+                  🧠 Anonymous Messaging
+                </h3>
+                <p className="text-muted-foreground text-center">
+                  Speak your mind — safely. AI rewrites the tone and keeps it
+                  constructive.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-emerald-200 hover:shadow-xl transition-all duration-300 group">
+              <CardContent className="p-6">
+                <div className="w-16 h-16 bg-emerald-100 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                  <BarChart3 className="w-8 h-8 text-emerald-600" />
+                </div>
+                <h3 className="text-xl font-semibold mb-3 text-center">
+                  🔄 AI Vibe Monitoring
+                </h3>
+                <p className="text-muted-foreground text-center">
+                  Weekly check-ins detect mood trends and alert RAs or partners.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-purple-200 hover:shadow-xl transition-all duration-300 group">
+              <CardContent className="p-6">
+                <div className="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                  <Users className="w-8 h-8 text-purple-600" />
+                </div>
+                <h3 className="text-xl font-semibold mb-3 text-center">
+                  🤝 Compatibility Matching
+                </h3>
+                <p className="text-muted-foreground text-center">
+                  Find better roommate or partner fits over time — without
+                  starting from scratch.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-blue-200 hover:shadow-xl transition-all duration-300 group">
+              <CardContent className="p-6">
+                <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                  <CheckCircle className="w-8 h-8 text-blue-600" />
+                </div>
+                <h3 className="text-xl font-semibold mb-3 text-center">
+                  🧽 Chore Coordination
+                </h3>
+                <p className="text-muted-foreground text-center">
+                  Fair task delegation based on preferences, past habits, and
+                  communication style.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-orange-200 hover:shadow-xl transition-all duration-300 group">
+              <CardContent className="p-6">
+                <div className="w-16 h-16 bg-orange-100 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                  <Mail className="w-8 h-8 text-orange-600" />
+                </div>
+                <h3 className="text-xl font-semibold mb-3 text-center">
+                  💬 Private Feedback Loop
+                </h3>
+                <p className="text-muted-foreground text-center">
+                  One-way messages let you nudge change without confrontation.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-rose-200 hover:shadow-xl transition-all duration-300 group">
+              <CardContent className="p-6">
+                <div className="w-16 h-16 bg-rose-100 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                  <Heart className="w-8 h-8 text-rose-600" />
+                </div>
+                <h3 className="text-xl font-semibold mb-3 text-center">
+                  💡 Couples AI Mode
+                </h3>
+                <p className="text-muted-foreground text-center">
+                  "We need to talk" becomes: "Hey, want to revisit how we split
+                  cooking this week?"
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
       {/* How It Works Section */}
       <section className="px-4 py-16 bg-white/60">
         <div className="max-w-6xl mx-auto text-center">
