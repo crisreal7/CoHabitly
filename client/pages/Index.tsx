@@ -499,39 +499,83 @@ export default function Index() {
                 </div>
 
                 {/* Stage 2: Off-Campus Expansion */}
-                <div className="flex-none w-80 relative">
-                  <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-blue-500 rounded-full border-4 border-white shadow-lg z-10"></div>
-                  <Card className="mt-8 border-blue-200 hover:shadow-lg transition-all duration-300 group">
-                    <CardContent className="p-6">
-                      <div className="flex items-center gap-3 mb-4">
-                        <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                          <Home className="w-6 h-6 text-blue-600" />
-                        </div>
-                        <div>
-                          <div className="flex items-center gap-2 mb-1">
-                            <span className="text-xs font-medium text-blue-600 bg-blue-100 px-2 py-1 rounded-full">
-                              Stage 2
-                            </span>
-                            <span className="flex items-center gap-1 text-xs font-medium text-blue-700 bg-blue-50 px-2 py-1 rounded-full">
-                              In Testing
-                            </span>
+                <div className="flex-none w-96 relative snap-center group">
+                  <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 w-6 h-6 bg-blue-500 rounded-full border-4 border-white shadow-xl z-20 group-hover:scale-125 transition-transform duration-300">
+                    <div className="absolute inset-1 bg-white rounded-full animate-ping delay-100"></div>
+                  </div>
+
+                  {/* Glassmorphism Card */}
+                  <div className="mt-8 relative group-hover:scale-105 transition-all duration-500 ease-out">
+                    {/* Background Glow */}
+                    <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-400 to-blue-600 rounded-2xl blur opacity-25 group-hover:opacity-75 transition duration-500"></div>
+
+                    {/* Main Card */}
+                    <Card className="relative bg-white/80 backdrop-blur-xl border border-white/20 shadow-2xl hover:shadow-blue-500/25 transition-all duration-500">
+                      <CardContent className="p-8">
+                        {/* Enhanced Header */}
+                        <div className="flex items-start gap-4 mb-6">
+                          <div className="relative">
+                            <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:rotate-6 transition-transform duration-300">
+                              <Home className="w-8 h-8 text-white" />
+                            </div>
+                            <div className="absolute -top-1 -right-1 w-6 h-6 bg-blue-500 rounded-full border-2 border-white flex items-center justify-center animate-pulse">
+                              <div className="w-2 h-2 bg-white rounded-full"></div>
+                            </div>
                           </div>
-                          <h3 className="font-bold text-lg">
-                            Off-Campus Expansion
-                          </h3>
+                          <div className="flex-1">
+                            <div className="flex flex-wrap items-center gap-2 mb-3">
+                              <span className="text-sm font-bold text-white bg-gradient-to-r from-blue-500 to-blue-600 px-3 py-1 rounded-full shadow-lg">
+                                Stage 2
+                              </span>
+                              <span className="flex items-center gap-1 text-sm font-medium text-blue-700 bg-blue-100/80 backdrop-blur-sm px-3 py-1 rounded-full border border-blue-200/50">
+                                <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+                                In Testing
+                              </span>
+                            </div>
+                            <h3 className="font-bold text-xl text-gray-900 group-hover:text-blue-700 transition-colors duration-300">
+                              Off-Campus Expansion
+                            </h3>
+                          </div>
                         </div>
-                      </div>
-                      <p className="text-sm text-muted-foreground mb-4">
-                        CoHabitly partners with landlords near campuses to
-                        support smooth transitions to first-time renting.
-                      </p>
-                      <div className="bg-blue-50 p-3 rounded-lg border border-blue-100">
-                        <p className="text-sm font-medium text-blue-800 italic">
-                          "Harmony beyond the quad."
-                        </p>
-                      </div>
-                    </CardContent>
-                  </Card>
+
+                        {/* Enhanced Description */}
+                        <div className="space-y-4">
+                          <p className="text-gray-600 leading-relaxed">
+                            CoHabitly partners with landlords near campuses to
+                            support smooth transitions to first-time renting.
+                          </p>
+
+                          {/* Progress Indicator */}
+                          <div className="w-full bg-blue-100 rounded-full h-2 overflow-hidden">
+                            <div
+                              className="bg-gradient-to-r from-blue-400 to-blue-600 h-full rounded-full animate-pulse"
+                              style={{ width: "75%" }}
+                            ></div>
+                          </div>
+
+                          {/* Vision Quote */}
+                          <div className="relative bg-gradient-to-br from-blue-50 to-blue-100/50 p-4 rounded-xl border border-blue-200/50 backdrop-blur-sm">
+                            <div className="absolute top-2 left-2 text-blue-300 text-2xl font-serif">
+                              "
+                            </div>
+                            <p className="text-blue-800 font-medium italic text-center pt-2">
+                              Harmony beyond the quad.
+                            </p>
+                            <div className="absolute bottom-2 right-2 text-blue-300 text-2xl font-serif rotate-180">
+                              "
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Interactive Elements */}
+                        <div className="mt-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          <button className="w-full py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-xl font-medium hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200">
+                            Preview Testing
+                          </button>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
                 </div>
 
                 {/* Stage 3: Lifestyle-Based Matching */}
