@@ -2006,10 +2006,10 @@ export default function Index() {
         <div className="max-w-6xl mx-auto flex items-center justify-between">
           <div>
             <p className="font-semibold text-primary-foreground">
-              Early Access Launching Soon
+              Your Life-Long Living Companion
             </p>
             <p className="text-sm text-primary-foreground/80">
-              Join the CoHabitly Movement
+              From Dorms to Forever Homes
             </p>
           </div>
           <Button
