@@ -708,33 +708,46 @@ export default function Index() {
             </div>
           </div>
 
-          {/* Enhanced Timeline Container */}
-          <div className="relative">
-            {/* Animated Progress Line */}
-            <div className="absolute top-20 left-8 right-8 h-1 bg-gradient-to-r from-emerald-200 via-blue-200 via-purple-200 via-pink-200 via-amber-200 to-violet-200 rounded-full overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-r from-emerald-500 via-blue-500 to-purple-500 rounded-full animate-pulse"></div>
+          {/* Dynamic Timeline Container */}
+          <div
+            className={`relative transition-all duration-700 ${isTransitioning ? "opacity-50 scale-95" : "opacity-100 scale-100"}`}
+          >
+            {/* Dynamic Progress Line */}
+            <div
+              className={`absolute top-20 left-8 right-8 h-1 rounded-full overflow-hidden transition-all duration-700 ${
+                roadmapView === "student"
+                  ? "bg-gradient-to-r from-emerald-200 via-blue-200 via-purple-200 via-pink-200 via-amber-200 to-violet-200"
+                  : "bg-gradient-to-r from-indigo-200 via-slate-200 via-cyan-200 via-teal-200 via-sky-200 via-blue-200 to-gray-200"
+              }`}
+            >
+              <div
+                className={`absolute inset-0 rounded-full animate-pulse transition-all duration-700 ${
+                  roadmapView === "student"
+                    ? "bg-gradient-to-r from-emerald-500 via-blue-500 to-purple-500"
+                    : "bg-gradient-to-r from-indigo-600 via-slate-600 to-cyan-600"
+                }`}
+              ></div>
             </div>
 
-            {/* Floating Progress Indicators */}
+            {/* Dynamic Progress Indicators */}
             <div className="absolute top-16 left-8 right-8 flex justify-between">
-              <div className="w-8 h-8 bg-emerald-500 rounded-full border-4 border-white shadow-lg flex items-center justify-center animate-bounce delay-0">
-                <div className="w-2 h-2 bg-white rounded-full"></div>
-              </div>
-              <div className="w-8 h-8 bg-blue-500 rounded-full border-4 border-white shadow-lg flex items-center justify-center animate-bounce delay-100">
-                <div className="w-2 h-2 bg-white rounded-full"></div>
-              </div>
-              <div className="w-8 h-8 bg-purple-500 rounded-full border-4 border-white shadow-lg flex items-center justify-center animate-bounce delay-200">
-                <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
-              </div>
-              <div className="w-8 h-8 bg-pink-400 rounded-full border-4 border-white shadow-lg flex items-center justify-center animate-bounce delay-300">
-                <div className="w-2 h-2 bg-white rounded-full"></div>
-              </div>
-              <div className="w-8 h-8 bg-amber-400 rounded-full border-4 border-white shadow-lg flex items-center justify-center animate-bounce delay-400">
-                <div className="w-2 h-2 bg-white rounded-full"></div>
-              </div>
-              <div className="w-8 h-8 bg-violet-500 rounded-full border-4 border-white shadow-lg flex items-center justify-center animate-bounce delay-500">
-                <div className="w-2 h-2 bg-white rounded-full"></div>
-              </div>
+              {currentStages.map((stage, index) => (
+                <div
+                  key={stage.id}
+                  className={`w-8 h-8 bg-${stage.color.primary} rounded-full border-4 border-white shadow-lg flex items-center justify-center animate-bounce transition-all duration-500`}
+                  style={{
+                    animationDelay: `${index * 100}ms`,
+                    backgroundColor:
+                      roadmapView === "student"
+                        ? `rgb(${index === 0 ? "34, 197, 94" : index === 1 ? "59, 130, 246" : index === 2 ? "168, 85, 247" : index === 3 ? "236, 72, 153" : index === 4 ? "245, 158, 11" : "139, 92, 246"})`
+                        : `rgb(${index === 0 ? "99, 102, 241" : index === 1 ? "100, 116, 139" : index === 2 ? "34, 211, 238" : index === 3 ? "20, 184, 166" : index === 4 ? "14, 165, 233" : index === 5 ? "59, 130, 246" : "107, 114, 128"})`,
+                  }}
+                >
+                  <div
+                    className={`w-2 h-2 bg-white rounded-full ${stage.status === "In Progress" ? "animate-pulse" : ""}`}
+                  ></div>
+                </div>
+              ))}
             </div>
 
             {/* Enhanced Roadmap Stages */}
