@@ -608,31 +608,103 @@ export default function Index() {
         <div className="max-w-7xl mx-auto relative z-10">
           {/* Enhanced Header */}
           <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full mb-6">
-              <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
-              <span className="text-sm font-medium text-primary">
-                Product Roadmap
+            <div
+              className={`inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 transition-all duration-500 ${
+                roadmapView === "student" ? "bg-primary/10" : "bg-indigo-100/80"
+              }`}
+            >
+              <div
+                className={`w-2 h-2 rounded-full animate-pulse transition-colors duration-500 ${
+                  roadmapView === "student" ? "bg-primary" : "bg-indigo-600"
+                }`}
+              ></div>
+              <span
+                className={`text-sm font-medium transition-colors duration-500 ${
+                  roadmapView === "student" ? "text-primary" : "text-indigo-700"
+                }`}
+              >
+                {roadmapView === "student" ? "🎓 Student" : "🛠️ Admin"} Roadmap
               </span>
             </div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-slate-900 via-primary to-slate-700 bg-clip-text text-transparent mb-6 leading-tight">
+            <h2
+              className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight transition-all duration-500 ${
+                roadmapView === "student"
+                  ? "bg-gradient-to-r from-slate-900 via-primary to-slate-700"
+                  : "bg-gradient-to-r from-indigo-900 via-slate-700 to-indigo-900"
+              } bg-clip-text text-transparent`}
+            >
               The CoHabitly Journey
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              From solving roommate conflicts to reimagining how communities
-              form and thrive — follow our mission to create harmony in every
-              living space.
+              {roadmapView === "student"
+                ? "From solving roommate conflicts to reimagining how communities form and thrive — follow our mission to create harmony in every living space."
+                : "Empowering housing administrators with intelligent tools to create better living environments and streamline dorm management at scale."}
             </p>
           </div>
 
-          {/* Journey Selector */}
+          {/* Enhanced Journey Selector */}
           <div className="flex justify-center mb-12">
-            <div className="inline-flex p-1 bg-white/80 backdrop-blur-sm rounded-xl border border-gray-200/50 shadow-lg">
-              <button className="px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium transition-all duration-300 hover:shadow-md">
-                Student Journey
-              </button>
-              <button className="px-6 py-3 text-gray-600 rounded-lg font-medium transition-all duration-300 hover:text-primary hover:bg-primary/5">
-                Admin Journey
-              </button>
+            <div className="relative">
+              {/* Background glow */}
+              <div
+                className={`absolute -inset-1 rounded-2xl blur transition-all duration-500 ${
+                  roadmapView === "student"
+                    ? "bg-gradient-to-r from-primary/30 to-lavender-300/30"
+                    : "bg-gradient-to-r from-indigo-400/30 to-slate-400/30"
+                }`}
+              ></div>
+
+              {/* Main toggle */}
+              <div className="relative inline-flex p-1.5 bg-white/90 backdrop-blur-xl rounded-2xl border border-white/30 shadow-2xl">
+                <button
+                  onClick={() => handleViewToggle("student")}
+                  disabled={isTransitioning}
+                  className={`relative px-8 py-4 rounded-xl font-semibold transition-all duration-300 group ${
+                    roadmapView === "student"
+                      ? "bg-gradient-to-r from-primary to-lavender-500 text-white shadow-lg"
+                      : "text-gray-600 hover:text-primary hover:bg-primary/5"
+                  }`}
+                >
+                  <span className="flex items-center gap-3">
+                    <span className="text-lg">🎓</span>
+                    <span>Student Journey</span>
+                    {roadmapView === "student" && (
+                      <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+                    )}
+                  </span>
+                  {roadmapView === "student" && (
+                    <div className="absolute inset-0 bg-white/20 rounded-xl animate-pulse"></div>
+                  )}
+                </button>
+
+                <button
+                  onClick={() => handleViewToggle("admin")}
+                  disabled={isTransitioning}
+                  className={`relative px-8 py-4 rounded-xl font-semibold transition-all duration-300 group ${
+                    roadmapView === "admin"
+                      ? "bg-gradient-to-r from-indigo-600 to-slate-600 text-white shadow-lg"
+                      : "text-gray-600 hover:text-indigo-600 hover:bg-indigo-50/50"
+                  }`}
+                >
+                  <span className="flex items-center gap-3">
+                    <span className="text-lg">🛠️</span>
+                    <span>Admin Journey</span>
+                    {roadmapView === "admin" && (
+                      <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+                    )}
+                  </span>
+                  {roadmapView === "admin" && (
+                    <div className="absolute inset-0 bg-white/20 rounded-xl animate-pulse"></div>
+                  )}
+                </button>
+              </div>
+
+              {/* Transition indicator */}
+              {isTransitioning && (
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
+                </div>
+              )}
             </div>
           </div>
 
