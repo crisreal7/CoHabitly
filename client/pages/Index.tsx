@@ -1850,6 +1850,97 @@ export default function Index() {
                     </div>
                   </CardContent>
                 </Card>
+
+                <Card className="border-indigo-100 shadow-sm hover:shadow-md transition-shadow min-w-[320px] max-w-[320px]">
+                  <CardContent className="p-6">
+                    <div className="flex items-center gap-1 mb-4">
+                      {[...Array(5)].map((_, i) => (
+                        <Star
+                          key={i}
+                          className="w-4 h-4 fill-indigo-500 text-indigo-500"
+                        />
+                      ))}
+                    </div>
+                    <p className="text-muted-foreground mb-4">
+                      "The admin dashboard gives me insights I never had before.
+                      I can help students proactively and prevent conflicts
+                      before they escalate."
+                    </p>
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center">
+                        <span className="text-indigo-600 font-semibold">
+                          DR
+                        </span>
+                      </div>
+                      <div className="text-left">
+                        <p className="font-semibold">Dr. Rachel M.</p>
+                        <p className="text-sm text-muted-foreground">
+                          Housing Director
+                        </p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="border-pink-100 shadow-sm hover:shadow-md transition-shadow min-w-[320px] max-w-[320px]">
+                  <CardContent className="p-6">
+                    <div className="flex items-center gap-1 mb-4">
+                      {[...Array(5)].map((_, i) => (
+                        <Star
+                          key={i}
+                          className="w-4 h-4 fill-pink-500 text-pink-500"
+                        />
+                      ))}
+                    </div>
+                    <p className="text-muted-foreground mb-4">
+                      "Couples Mode helped us navigate our first year living
+                      together. The gentle nudges and shared goals made all the
+                      difference!"
+                    </p>
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-pink-100 rounded-full flex items-center justify-center">
+                        <span className="text-pink-600 font-semibold">A&J</span>
+                      </div>
+                      <div className="text-left">
+                        <p className="font-semibold">Alex & Jordan</p>
+                        <p className="text-sm text-muted-foreground">
+                          Couple, 1 Year Together
+                        </p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="border-emerald-100 shadow-sm hover:shadow-md transition-shadow min-w-[320px] max-w-[320px]">
+                  <CardContent className="p-6">
+                    <div className="flex items-center gap-1 mb-4">
+                      {[...Array(5)].map((_, i) => (
+                        <Star
+                          key={i}
+                          className="w-4 h-4 fill-emerald-500 text-emerald-500"
+                        />
+                      ))}
+                    </div>
+                    <p className="text-muted-foreground mb-4">
+                      "We manage 2,000+ students across 12 buildings.
+                      CoHabitly's bulk assignment tool saved us weeks of manual
+                      work during move-in."
+                    </p>
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center">
+                        <span className="text-emerald-600 font-semibold">
+                          MK
+                        </span>
+                      </div>
+                      <div className="text-left">
+                        <p className="font-semibold">Mark K.</p>
+                        <p className="text-sm text-muted-foreground">
+                          Assistant Dean of Housing
+                        </p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
               </div>
             ))}
           </div>
