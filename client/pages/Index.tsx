@@ -18,9 +18,29 @@ import {
   GraduationCap,
 } from "lucide-react";
 
+type RoadmapView = "student" | "admin";
+
+interface RoadmapStage {
+  id: string;
+  phase: string;
+  title: string;
+  description: string;
+  status: string;
+  visionTag: string;
+  progress: number;
+  color: {
+    primary: string;
+    secondary: string;
+    bg: string;
+    border: string;
+  };
+}
+
 export default function Index() {
   const [email, setEmail] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [roadmapView, setRoadmapView] = useState<RoadmapView>("student");
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   const handleEmailSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -28,6 +48,236 @@ export default function Index() {
       setIsSubmitted(true);
       setEmail("");
     }
+  };
+
+  const studentStages: RoadmapStage[] = [
+    {
+      id: "S1",
+      phase: "Stage 1",
+      title: "University Dorm Harmony",
+      description:
+        "CoHabitly launches in student dorms to reduce tension, improve fit, and ease RA load.",
+      status: "Live",
+      visionTag: "Living well starts early.",
+      progress: 100,
+      color: {
+        primary: "emerald-500",
+        secondary: "emerald-600",
+        bg: "emerald-50",
+        border: "emerald-200",
+      },
+    },
+    {
+      id: "S2",
+      phase: "Stage 2",
+      title: "Off-Campus Expansion",
+      description:
+        "CoHabitly partners with landlords near campuses to support smooth transitions to first-time renting.",
+      status: "In Testing",
+      visionTag: "Harmony beyond the quad.",
+      progress: 75,
+      color: {
+        primary: "blue-500",
+        secondary: "blue-600",
+        bg: "blue-50",
+        border: "blue-200",
+      },
+    },
+    {
+      id: "S3",
+      phase: "Stage 3",
+      title: "Lifestyle-Based Roommate Matching",
+      description:
+        "Users create in-depth lifestyle profiles. CoHabitly recommends compatible roommates based on long-term fit.",
+      status: "In Progress",
+      visionTag: "Your space. Your rhythm. Your people.",
+      progress: 50,
+      color: {
+        primary: "purple-500",
+        secondary: "purple-600",
+        bg: "purple-50",
+        border: "purple-200",
+      },
+    },
+    {
+      id: "S4",
+      phase: "Stage 4",
+      title: "Partner & Couple Living Tools",
+      description:
+        "Add modules for cohabiting couples to manage chores, communication, and shared goals respectfully.",
+      status: "Coming Soon",
+      visionTag: "Love where you live — together.",
+      progress: 25,
+      color: {
+        primary: "pink-500",
+        secondary: "pink-600",
+        bg: "pink-50",
+        border: "pink-200",
+      },
+    },
+    {
+      id: "S5",
+      phase: "Stage 5",
+      title: "Citywide Shared Housing Network",
+      description:
+        "Build public listings of high-score households and vacant rooms. Make moving city-to-city feel seamless.",
+      status: "Vision",
+      visionTag: "Harmony, wherever you land.",
+      progress: 10,
+      color: {
+        primary: "amber-500",
+        secondary: "amber-600",
+        bg: "amber-50",
+        border: "amber-200",
+      },
+    },
+    {
+      id: "S6",
+      phase: "Stage 6",
+      title: "AI Life Matching Engine",
+      description:
+        "CoHabitly evolves into a long-term compatibility engine for homes, pods, and even intentional communities.",
+      status: "R&D",
+      visionTag: "Your best life, better lived together.",
+      progress: 5,
+      color: {
+        primary: "violet-500",
+        secondary: "violet-600",
+        bg: "violet-50",
+        border: "violet-200",
+      },
+    },
+  ];
+
+  const adminStages: RoadmapStage[] = [
+    {
+      id: "A1",
+      phase: "Admin 1",
+      title: "Dorm Feedback Intelligence",
+      description:
+        "Admins gain access to dashboards of vibe scores, chore completion, and sentiment heatmaps.",
+      status: "Live",
+      visionTag: "No more flying blind.",
+      progress: 100,
+      color: {
+        primary: "indigo-500",
+        secondary: "indigo-600",
+        bg: "indigo-50",
+        border: "indigo-200",
+      },
+    },
+    {
+      id: "A2",
+      phase: "Admin 2",
+      title: "Real-Time Roommate Monitoring",
+      description:
+        "AI flags emerging roommate conflict patterns & notifies RAs early.",
+      status: "In Testing",
+      visionTag: "Intervene before it escalates.",
+      progress: 80,
+      color: {
+        primary: "slate-500",
+        secondary: "slate-600",
+        bg: "slate-50",
+        border: "slate-200",
+      },
+    },
+    {
+      id: "A3",
+      phase: "Admin 3",
+      title: "Smart Matching & Reassignment",
+      description:
+        "Admins can reassign dorms based on lifestyle compatibility and live feedback.",
+      status: "Rolling Out",
+      visionTag: "Roommate harmony at scale.",
+      progress: 65,
+      color: {
+        primary: "cyan-500",
+        secondary: "cyan-600",
+        bg: "cyan-50",
+        border: "cyan-200",
+      },
+    },
+    {
+      id: "A4",
+      phase: "Admin 4",
+      title: "Bulk Dorm Assignment",
+      description:
+        "Use AI and data profiles to assign 1,000+ students in hours — not weeks.",
+      status: "Coming Soon",
+      visionTag: "The end of spreadsheet chaos.",
+      progress: 40,
+      color: {
+        primary: "teal-500",
+        secondary: "teal-600",
+        bg: "teal-50",
+        border: "teal-200",
+      },
+    },
+    {
+      id: "A5",
+      phase: "Admin 5",
+      title: "Campus-Wide Health Reports",
+      description:
+        "Receive weekly digests of dorm health, feedback trends, and flagged events.",
+      status: "Beta",
+      visionTag: "A heartbeat for your housing system.",
+      progress: 30,
+      color: {
+        primary: "sky-500",
+        secondary: "sky-600",
+        bg: "sky-50",
+        border: "sky-200",
+      },
+    },
+    {
+      id: "A6",
+      phase: "Admin 6",
+      title: "Discreet Admin Escalation Panel",
+      description:
+        "High-priority flagged feedback bypasses noise and gets triaged intelligently.",
+      status: "Planned",
+      visionTag: "Focus where it matters most.",
+      progress: 15,
+      color: {
+        primary: "blue-500",
+        secondary: "blue-600",
+        bg: "blue-50",
+        border: "blue-200",
+      },
+    },
+    {
+      id: "A7",
+      phase: "Admin 7",
+      title: "Admin-Level Vibe & Policy Control",
+      description:
+        "Tweak feedback mechanisms, tone models, and visibility settings per dorm.",
+      status: "Vision",
+      visionTag: "Fully customizable dorm governance.",
+      progress: 5,
+      color: {
+        primary: "gray-500",
+        secondary: "gray-600",
+        bg: "gray-50",
+        border: "gray-200",
+      },
+    },
+  ];
+
+  const currentStages = roadmapView === "student" ? studentStages : adminStages;
+
+  const handleViewToggle = async (view: RoadmapView) => {
+    if (view === roadmapView || isTransitioning) return;
+
+    setIsTransitioning(true);
+
+    // Brief delay for animation
+    setTimeout(() => {
+      setRoadmapView(view);
+      setTimeout(() => {
+        setIsTransitioning(false);
+      }, 300);
+    }, 200);
   };
 
   return (
