@@ -1980,9 +1980,24 @@ export default function Index() {
               </Button>
             </div>
           </form>
-          <p className="text-sm text-muted-foreground">
-            We never share your info. Privacy guaranteed.
-          </p>
+          <div className="text-sm text-muted-foreground space-y-2">
+            <p className="font-medium">
+              🔐 Privacy-first approach: Your data is never shown without
+              consent.
+            </p>
+            <div className="flex flex-wrap justify-center gap-4 text-xs">
+              <span>📚 Resources:</span>
+              <a href="#" className="text-primary hover:underline">
+                Conflict Resolution
+              </a>
+              <a href="#" className="text-primary hover:underline">
+                Roommate Matching
+              </a>
+              <a href="#" className="text-primary hover:underline">
+                AI in Communication
+              </a>
+            </div>
+          </div>
         </div>
       </section>
 
