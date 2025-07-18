@@ -911,7 +911,17 @@ export default function Index() {
                 {roadmapView === "student" ? "🎓 Student" : "🛠️ Admin"} Roadmap
               </span>
             </div>
-            <h2
+
+            <div className="mb-8">
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+                The Long-Term Roadmap
+              </h2>
+              <p className="text-lg text-muted-foreground mb-6 max-w-2xl mx-auto">
+                🚀 CoHabitly starts in the dorm — and grows with you for life.
+              </p>
+            </div>
+
+            <h3
               className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight transition-all duration-500 ${
                 roadmapView === "student"
                   ? "bg-gradient-to-r from-slate-900 via-primary to-slate-700"
@@ -919,7 +929,7 @@ export default function Index() {
               } bg-clip-text text-transparent`}
             >
               The CoHabitly Journey
-            </h2>
+            </h3>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
               {roadmapView === "student"
                 ? "From solving roommate conflicts to reimagining how communities form and thrive — follow our mission to create harmony in every living space."
