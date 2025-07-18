@@ -16,6 +16,8 @@ import {
   Building,
   Sparkles,
   GraduationCap,
+  TrendingUp,
+  AlertTriangle,
 } from "lucide-react";
 
 type RoadmapView = "student" | "admin";
