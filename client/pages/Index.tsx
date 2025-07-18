@@ -415,43 +415,87 @@ export default function Index() {
               </div>
             </div>
 
-            {/* Roadmap Stages */}
-            <div className="overflow-x-auto scrollbar-hide">
-              <div className="flex gap-8 pb-4 min-w-max px-8">
+            {/* Enhanced Roadmap Stages */}
+            <div className="overflow-x-auto scrollbar-hide snap-x snap-mandatory">
+              <div className="flex gap-12 pb-8 min-w-max px-8 pt-16">
                 {/* Stage 1: University Dorm Harmony */}
-                <div className="flex-none w-80 relative">
-                  <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-emerald-500 rounded-full border-4 border-white shadow-lg z-10"></div>
-                  <Card className="mt-8 border-emerald-200 hover:shadow-lg transition-all duration-300 group">
-                    <CardContent className="p-6">
-                      <div className="flex items-center gap-3 mb-4">
-                        <div className="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center">
-                          <GraduationCap className="w-6 h-6 text-emerald-600" />
-                        </div>
-                        <div>
-                          <div className="flex items-center gap-2 mb-1">
-                            <span className="text-xs font-medium text-emerald-600 bg-emerald-100 px-2 py-1 rounded-full">
-                              Stage 1
-                            </span>
-                            <span className="flex items-center gap-1 text-xs font-medium text-emerald-700 bg-emerald-50 px-2 py-1 rounded-full">
-                              Live
-                            </span>
+                <div className="flex-none w-96 relative snap-center group">
+                  <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 w-6 h-6 bg-emerald-500 rounded-full border-4 border-white shadow-xl z-20 group-hover:scale-125 transition-transform duration-300">
+                    <div className="absolute inset-1 bg-white rounded-full animate-ping"></div>
+                  </div>
+
+                  {/* Glassmorphism Card */}
+                  <div className="mt-8 relative group-hover:scale-105 transition-all duration-500 ease-out">
+                    {/* Background Glow */}
+                    <div className="absolute -inset-0.5 bg-gradient-to-r from-emerald-400 to-emerald-600 rounded-2xl blur opacity-25 group-hover:opacity-75 transition duration-500"></div>
+
+                    {/* Main Card */}
+                    <Card className="relative bg-white/80 backdrop-blur-xl border border-white/20 shadow-2xl hover:shadow-emerald-500/25 transition-all duration-500">
+                      <CardContent className="p-8">
+                        {/* Enhanced Header */}
+                        <div className="flex items-start gap-4 mb-6">
+                          <div className="relative">
+                            <div className="w-16 h-16 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:rotate-6 transition-transform duration-300">
+                              <GraduationCap className="w-8 h-8 text-white" />
+                            </div>
+                            <div className="absolute -top-1 -right-1 w-6 h-6 bg-emerald-500 rounded-full border-2 border-white flex items-center justify-center animate-pulse">
+                              <div className="w-2 h-2 bg-white rounded-full"></div>
+                            </div>
                           </div>
-                          <h3 className="font-bold text-lg">
-                            University Dorm Harmony
-                          </h3>
+                          <div className="flex-1">
+                            <div className="flex flex-wrap items-center gap-2 mb-3">
+                              <span className="text-sm font-bold text-white bg-gradient-to-r from-emerald-500 to-emerald-600 px-3 py-1 rounded-full shadow-lg">
+                                Stage 1
+                              </span>
+                              <span className="flex items-center gap-1 text-sm font-medium text-emerald-700 bg-emerald-100/80 backdrop-blur-sm px-3 py-1 rounded-full border border-emerald-200/50">
+                                <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
+                                Live
+                              </span>
+                            </div>
+                            <h3 className="font-bold text-xl text-gray-900 group-hover:text-emerald-700 transition-colors duration-300">
+                              University Dorm Harmony
+                            </h3>
+                          </div>
                         </div>
-                      </div>
-                      <p className="text-sm text-muted-foreground mb-4">
-                        CoHabitly launches in student dorms to reduce tension,
-                        improve fit, and ease RA load.
-                      </p>
-                      <div className="bg-emerald-50 p-3 rounded-lg border border-emerald-100">
-                        <p className="text-sm font-medium text-emerald-800 italic">
-                          "Living well starts early."
-                        </p>
-                      </div>
-                    </CardContent>
-                  </Card>
+
+                        {/* Enhanced Description */}
+                        <div className="space-y-4">
+                          <p className="text-gray-600 leading-relaxed">
+                            CoHabitly launches in student dorms to reduce
+                            tension, improve fit, and ease RA load.
+                          </p>
+
+                          {/* Progress Indicator */}
+                          <div className="w-full bg-emerald-100 rounded-full h-2 overflow-hidden">
+                            <div
+                              className="bg-gradient-to-r from-emerald-400 to-emerald-600 h-full rounded-full animate-pulse"
+                              style={{ width: "100%" }}
+                            ></div>
+                          </div>
+
+                          {/* Vision Quote */}
+                          <div className="relative bg-gradient-to-br from-emerald-50 to-emerald-100/50 p-4 rounded-xl border border-emerald-200/50 backdrop-blur-sm">
+                            <div className="absolute top-2 left-2 text-emerald-300 text-2xl font-serif">
+                              "
+                            </div>
+                            <p className="text-emerald-800 font-medium italic text-center pt-2">
+                              Living well starts early.
+                            </p>
+                            <div className="absolute bottom-2 right-2 text-emerald-300 text-2xl font-serif rotate-180">
+                              "
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Interactive Elements */}
+                        <div className="mt-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          <button className="w-full py-3 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white rounded-xl font-medium hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200">
+                            Explore Stage 1
+                          </button>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
                 </div>
 
                 {/* Stage 2: Off-Campus Expansion */}
