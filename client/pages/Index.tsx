@@ -1547,10 +1547,11 @@ export default function Index() {
       <section className="py-16 overflow-hidden">
         <div className="max-w-6xl mx-auto text-center px-4 mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            What students are saying
+            Loved By Everyone
           </h2>
           <p className="text-lg text-muted-foreground">
-            Real feedback from beta testers across campus
+            Real feedback from students, housing admins, and couples using
+            CoHabitly
           </p>
         </div>
 
