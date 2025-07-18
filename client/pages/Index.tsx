@@ -1947,15 +1947,21 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Email Signup Form */}
+      {/* Let's Build a More Harmonious World */}
       <section className="px-4 py-16 bg-gradient-to-r from-primary/10 via-lavender-50 to-mint-50">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Be the first to join the harmony.
+            Let's Build a More Harmonious World
           </h2>
-          <p className="text-lg text-muted-foreground mb-8">
-            Join our waitlist and help shape the future of campus housing.
-          </p>
+          <div className="mb-8">
+            <p className="text-xl text-muted-foreground mb-4 font-medium">
+              CoHabitly isn't just an app.
+            </p>
+            <p className="text-lg text-muted-foreground">
+              It's a new way to understand and care for the people you live
+              with.
+            </p>
+          </div>
           <form onSubmit={handleEmailSubmit} className="max-w-md mx-auto mb-4">
             <div className="flex flex-col sm:flex-row gap-3">
               <Input
