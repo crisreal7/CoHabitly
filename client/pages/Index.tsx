@@ -1966,7 +1966,7 @@ export default function Index() {
             <div className="flex flex-col sm:flex-row gap-3">
               <Input
                 type="email"
-                placeholder="Enter your email address"
+                placeholder="Want to live better together?"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="flex-1 h-12 px-4 rounded-xl border-sage-200 focus:border-primary focus:ring-primary"
@@ -1976,7 +1976,7 @@ export default function Index() {
                 type="submit"
                 className="h-12 px-8 bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl font-semibold"
               >
-                Join Waitlist
+                Join the Movement
               </Button>
             </div>
           </form>
