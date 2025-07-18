@@ -1,0 +1,245 @@
+{/* Dynamic Stages Rendering */}
+                {currentStages.map((stage, index) => {
+                  const getIcon = () => {
+                    if (roadmapView === 'student') {
+                      switch (index) {
+                        case 0: return <GraduationCap className="w-8 h-8 text-white" />;
+                        case 1: return <Home className="w-8 h-8 text-white" />;
+                        case 2: return <Users className="w-8 h-8 text-white" />;
+                        case 3: return <Heart className="w-8 h-8 text-white" />;
+                        case 4: return <Building className="w-8 h-8 text-white" />;
+                        case 5: return <Sparkles className="w-8 h-8 text-white" />;
+                        default: return <Star className="w-8 h-8 text-white" />;
+                      }
+                    } else {
+                      switch (index) {
+                        case 0: return <BarChart3 className="w-8 h-8 text-white" />;
+                        case 1: return <AlertTriangle className="w-8 h-8 text-white" />;
+                        case 2: return <Users className="w-8 h-8 text-white" />;
+                        case 3: return <Shield className="w-8 h-8 text-white" />;
+                        case 4: return <TrendingUp className="w-8 h-8 text-white" />;
+                        case 5: return <MessageCircle className="w-8 h-8 text-white" />;
+                        case 6: return <CheckCircle className="w-8 h-8 text-white" />;
+                        default: return <Star className="w-8 h-8 text-white" />;
+                      }
+                    }
+                  };
+
+                  return (
+                    <div 
+                      key={stage.id}
+                      className={`flex-none relative group transition-all duration-700 ${
+                        roadmapView === 'student' 
+                          ? 'w-96 snap-center' 
+                          : 'w-80 cursor-grab active:cursor-grabbing'
+                      }`}
+                      style={{
+                        transform: isTransitioning ? 'scale(0.95)' : 'scale(1)',
+                        opacity: isTransitioning ? 0.5 : 1,
+                      }}
+                    >
+                      {/* Dynamic Top Indicator */}
+                      <div 
+                        className={`absolute -top-8 left-1/2 transform -translate-x-1/2 w-6 h-6 rounded-full border-4 border-white shadow-xl z-20 group-hover:scale-125 transition-transform duration-300 ${
+                          stage.status === 'In Progress' ? 'animate-pulse' : ''
+                        }`}
+                        style={{
+                          backgroundColor: roadmapView === 'student' 
+                            ? `rgb(${index === 0 ? '34, 197, 94' : index === 1 ? '59, 130, 246' : index === 2 ? '168, 85, 247' : index === 3 ? '236, 72, 153' : index === 4 ? '245, 158, 11' : '139, 92, 246'})`
+                            : `rgb(${index === 0 ? '99, 102, 241' : index === 1 ? '100, 116, 139' : index === 2 ? '34, 211, 238' : index === 3 ? '20, 184, 166' : index === 4 ? '14, 165, 233' : index === 5 ? '59, 130, 246' : '107, 114, 128'})`
+                        }}
+                      >
+                        <div className="absolute inset-1 bg-white rounded-full animate-ping"></div>
+                      </div>
+
+                      {/* Enhanced Glassmorphism Card */}
+                      <div className="mt-8 relative group-hover:scale-105 transition-all duration-500 ease-out">
+                        {/* Dynamic Background Glow */}
+                        <div 
+                          className={`absolute -inset-0.5 rounded-2xl blur opacity-25 group-hover:opacity-75 transition duration-500`}
+                          style={{
+                            background: roadmapView === 'student' 
+                              ? `linear-gradient(to right, ${index === 0 ? 'rgb(34, 197, 94), rgb(22, 163, 74)' : index === 1 ? 'rgb(59, 130, 246), rgb(37, 99, 235)' : index === 2 ? 'rgb(168, 85, 247), rgb(147, 51, 234)' : index === 3 ? 'rgb(236, 72, 153), rgb(219, 39, 119)' : index === 4 ? 'rgb(245, 158, 11), rgb(217, 119, 6)' : 'rgb(139, 92, 246), rgb(124, 58, 237)'})`
+                              : `linear-gradient(to right, ${index === 0 ? 'rgb(99, 102, 241), rgb(79, 70, 229)' : index === 1 ? 'rgb(100, 116, 139), rgb(71, 85, 105)' : index === 2 ? 'rgb(34, 211, 238), rgb(6, 182, 212)' : index === 3 ? 'rgb(20, 184, 166), rgb(13, 148, 136)' : index === 4 ? 'rgb(14, 165, 233), rgb(2, 132, 199)' : index === 5 ? 'rgb(59, 130, 246), rgb(37, 99, 235)' : 'rgb(107, 114, 128), rgb(75, 85, 99)'})`
+                          }}
+                        ></div>
+                        
+                        {/* Main Card */}
+                        <Card className={`relative bg-white/80 backdrop-blur-xl border border-white/20 shadow-2xl transition-all duration-500`}
+                          style={{
+                            boxShadow: roadmapView === 'student' 
+                              ? `0 25px 50px -12px ${index === 0 ? 'rgba(34, 197, 94, 0.25)' : index === 1 ? 'rgba(59, 130, 246, 0.25)' : index === 2 ? 'rgba(168, 85, 247, 0.25)' : index === 3 ? 'rgba(236, 72, 153, 0.25)' : index === 4 ? 'rgba(245, 158, 11, 0.25)' : 'rgba(139, 92, 246, 0.25)'}`
+                              : `0 25px 50px -12px ${index === 0 ? 'rgba(99, 102, 241, 0.25)' : index === 1 ? 'rgba(100, 116, 139, 0.25)' : index === 2 ? 'rgba(34, 211, 238, 0.25)' : index === 3 ? 'rgba(20, 184, 166, 0.25)' : index === 4 ? 'rgba(14, 165, 233, 0.25)' : index === 5 ? 'rgba(59, 130, 246, 0.25)' : 'rgba(107, 114, 128, 0.25)'}`
+                          }}
+                        >
+                          <CardContent className="p-8">
+                            {/* Enhanced Header */}
+                            <div className="flex items-start gap-4 mb-6">
+                              <div className="relative">
+                                <div 
+                                  className="w-16 h-16 rounded-2xl flex items-center justify-center shadow-lg group-hover:rotate-6 transition-transform duration-300"
+                                  style={{
+                                    background: roadmapView === 'student' 
+                                      ? `linear-gradient(to bottom right, ${index === 0 ? 'rgb(34, 197, 94), rgb(22, 163, 74)' : index === 1 ? 'rgb(59, 130, 246), rgb(37, 99, 235)' : index === 2 ? 'rgb(168, 85, 247), rgb(147, 51, 234)' : index === 3 ? 'rgb(236, 72, 153), rgb(219, 39, 119)' : index === 4 ? 'rgb(245, 158, 11), rgb(217, 119, 6)' : 'rgb(139, 92, 246), rgb(124, 58, 237)'})`
+                                      : `linear-gradient(to bottom right, ${index === 0 ? 'rgb(99, 102, 241), rgb(79, 70, 229)' : index === 1 ? 'rgb(100, 116, 139), rgb(71, 85, 105)' : index === 2 ? 'rgb(34, 211, 238), rgb(6, 182, 212)' : index === 3 ? 'rgb(20, 184, 166), rgb(13, 148, 136)' : index === 4 ? 'rgb(14, 165, 233), rgb(2, 132, 199)' : index === 5 ? 'rgb(59, 130, 246), rgb(37, 99, 235)' : 'rgb(107, 114, 128), rgb(75, 85, 99)'})`
+                                  }}
+                                >
+                                  {getIcon()}
+                                </div>
+                                <div 
+                                  className="absolute -top-1 -right-1 w-6 h-6 rounded-full border-2 border-white flex items-center justify-center animate-pulse"
+                                  style={{
+                                    backgroundColor: roadmapView === 'student' 
+                                      ? `rgb(${index === 0 ? '34, 197, 94' : index === 1 ? '59, 130, 246' : index === 2 ? '168, 85, 247' : index === 3 ? '236, 72, 153' : index === 4 ? '245, 158, 11' : '139, 92, 246'})`
+                                      : `rgb(${index === 0 ? '99, 102, 241' : index === 1 ? '100, 116, 139' : index === 2 ? '34, 211, 238' : index === 3 ? '20, 184, 166' : index === 4 ? '14, 165, 233' : index === 5 ? '59, 130, 246' : '107, 114, 128'})`
+                                  }}
+                                >
+                                  <div className="w-2 h-2 bg-white rounded-full"></div>
+                                </div>
+                              </div>
+                              <div className="flex-1">
+                                <div className="flex flex-wrap items-center gap-2 mb-3">
+                                  <span 
+                                    className="text-sm font-bold text-white px-3 py-1 rounded-full shadow-lg"
+                                    style={{
+                                      background: roadmapView === 'student' 
+                                        ? `linear-gradient(to right, ${index === 0 ? 'rgb(34, 197, 94), rgb(22, 163, 74)' : index === 1 ? 'rgb(59, 130, 246), rgb(37, 99, 235)' : index === 2 ? 'rgb(168, 85, 247), rgb(147, 51, 234)' : index === 3 ? 'rgb(236, 72, 153), rgb(219, 39, 119)' : index === 4 ? 'rgb(245, 158, 11), rgb(217, 119, 6)' : 'rgb(139, 92, 246), rgb(124, 58, 237)'})`
+                                        : `linear-gradient(to right, ${index === 0 ? 'rgb(99, 102, 241), rgb(79, 70, 229)' : index === 1 ? 'rgb(100, 116, 139), rgb(71, 85, 105)' : index === 2 ? 'rgb(34, 211, 238), rgb(6, 182, 212)' : index === 3 ? 'rgb(20, 184, 166), rgb(13, 148, 136)' : index === 4 ? 'rgb(14, 165, 233), rgb(2, 132, 199)' : index === 5 ? 'rgb(59, 130, 246), rgb(37, 99, 235)' : 'rgb(107, 114, 128), rgb(75, 85, 99)'})`
+                                    }}
+                                  >
+                                    {stage.phase}
+                                  </span>
+                                  <span 
+                                    className={`flex items-center gap-1 text-sm font-medium backdrop-blur-sm px-3 py-1 rounded-full border`}
+                                    style={{
+                                      color: roadmapView === 'student' 
+                                        ? `rgb(${index === 0 ? '5, 150, 105' : index === 1 ? '29, 78, 216' : index === 2 ? '126, 34, 206' : index === 3 ? '190, 24, 93' : index === 4 ? '180, 83, 9' : '109, 40, 217'})`
+                                        : `rgb(${index === 0 ? '67, 56, 202' : index === 1 ? '51, 65, 85' : index === 2 ? '14, 116, 144' : index === 3 ? '15, 118, 110' : index === 4 ? '7, 89, 133' : index === 5 ? '29, 78, 216' : '55, 65, 81'})`,
+                                      backgroundColor: roadmapView === 'student' 
+                                        ? `rgba(${index === 0 ? '209, 250, 229' : index === 1 ? '219, 234, 254' : index === 2 ? '243, 232, 255' : index === 3 ? '252, 231, 243' : index === 4 ? '254, 243, 199' : '237, 233, 254'}, 0.8)`
+                                        : `rgba(${index === 0 ? '238, 242, 255' : index === 1 ? '248, 250, 252' : index === 2 ? '236, 254, 255' : index === 3 ? '240, 253, 250' : index === 4 ? '240, 249, 255' : index === 5 ? '219, 234, 254' : '249, 250, 251'}, 0.8)`,
+                                      borderColor: roadmapView === 'student' 
+                                        ? `rgba(${index === 0 ? '167, 243, 208' : index === 1 ? '147, 197, 253' : index === 2 ? '196, 181, 253' : index === 3 ? '244, 114, 182' : index === 4 ? '252, 211, 77' : '183, 148, 244'}, 0.5)`
+                                        : `rgba(${index === 0 ? '165, 180, 252' : index === 1 ? '203, 213, 225' : index === 2 ? '103, 232, 249' : index === 3 ? '94, 234, 212' : index === 4 ? '125, 211, 252' : index === 5 ? '147, 197, 253' : '209, 213, 219'}, 0.5)`
+                                    }}
+                                  >
+                                    <div 
+                                      className={`w-2 h-2 rounded-full ${stage.status === 'In Progress' ? 'animate-pulse' : ''}`}
+                                      style={{
+                                        backgroundColor: roadmapView === 'student' 
+                                          ? `rgb(${index === 0 ? '34, 197, 94' : index === 1 ? '59, 130, 246' : index === 2 ? '168, 85, 247' : index === 3 ? '236, 72, 153' : index === 4 ? '245, 158, 11' : '139, 92, 246'})`
+                                          : `rgb(${index === 0 ? '99, 102, 241' : index === 1 ? '100, 116, 139' : index === 2 ? '34, 211, 238' : index === 3 ? '20, 184, 166' : index === 4 ? '14, 165, 233' : index === 5 ? '59, 130, 246' : '107, 114, 128'})`
+                                      }}
+                                    ></div>
+                                    {stage.status}
+                                  </span>
+                                </div>
+                                <h3 
+                                  className={`font-bold text-xl text-gray-900 transition-colors duration-300`}
+                                  style={{
+                                    color: roadmapView === 'student' 
+                                      ? `rgb(${index === 0 ? '5, 150, 105' : index === 1 ? '29, 78, 216' : index === 2 ? '126, 34, 206' : index === 3 ? '190, 24, 93' : index === 4 ? '180, 83, 9' : '109, 40, 217'})`
+                                      : `rgb(${index === 0 ? '67, 56, 202' : index === 1 ? '51, 65, 85' : index === 2 ? '14, 116, 144' : index === 3 ? '15, 118, 110' : index === 4 ? '7, 89, 133' : index === 5 ? '29, 78, 216' : '55, 65, 81'})`
+                                  }}
+                                >
+                                  {stage.title}
+                                </h3>
+                              </div>
+                            </div>
+                            
+                            {/* Enhanced Description */}
+                            <div className="space-y-4">
+                              <p className="text-gray-600 leading-relaxed">
+                                {stage.description}
+                              </p>
+                              
+                              {/* Dynamic Progress Indicator */}
+                              <div 
+                                className="w-full rounded-full h-2 overflow-hidden"
+                                style={{
+                                  backgroundColor: roadmapView === 'student' 
+                                    ? `rgba(${index === 0 ? '209, 250, 229' : index === 1 ? '219, 234, 254' : index === 2 ? '243, 232, 255' : index === 3 ? '252, 231, 243' : index === 4 ? '254, 243, 199' : '237, 233, 254'}, 1)`
+                                    : `rgba(${index === 0 ? '238, 242, 255' : index === 1 ? '248, 250, 252' : index === 2 ? '236, 254, 255' : index === 3 ? '240, 253, 250' : index === 4 ? '240, 249, 255' : index === 5 ? '219, 234, 254' : '249, 250, 251'}, 1)`
+                                }}
+                              >
+                                <div 
+                                  className="h-full rounded-full animate-pulse transition-all duration-1000"
+                                  style={{
+                                    width: `${stage.progress}%`,
+                                    background: roadmapView === 'student' 
+                                      ? `linear-gradient(to right, ${index === 0 ? 'rgb(34, 197, 94), rgb(22, 163, 74)' : index === 1 ? 'rgb(59, 130, 246), rgb(37, 99, 235)' : index === 2 ? 'rgb(168, 85, 247), rgb(147, 51, 234)' : index === 3 ? 'rgb(236, 72, 153), rgb(219, 39, 119)' : index === 4 ? 'rgb(245, 158, 11), rgb(217, 119, 6)' : 'rgb(139, 92, 246), rgb(124, 58, 237)'})`
+                                      : `linear-gradient(to right, ${index === 0 ? 'rgb(99, 102, 241), rgb(79, 70, 229)' : index === 1 ? 'rgb(100, 116, 139), rgb(71, 85, 105)' : index === 2 ? 'rgb(34, 211, 238), rgb(6, 182, 212)' : index === 3 ? 'rgb(20, 184, 166), rgb(13, 148, 136)' : index === 4 ? 'rgb(14, 165, 233), rgb(2, 132, 199)' : index === 5 ? 'rgb(59, 130, 246), rgb(37, 99, 235)' : 'rgb(107, 114, 128), rgb(75, 85, 99)'})`
+                                  }}
+                                ></div>
+                              </div>
+                              
+                              {/* Vision Quote */}
+                              <div 
+                                className="relative p-4 rounded-xl backdrop-blur-sm border"
+                                style={{
+                                  background: roadmapView === 'student' 
+                                    ? `linear-gradient(to bottom right, rgba(${index === 0 ? '236, 253, 245' : index === 1 ? '239, 246, 255' : index === 2 ? '250, 245, 255' : index === 3 ? '253, 242, 248' : index === 4 ? '255, 251, 235' : '245, 243, 255'}, 1), rgba(${index === 0 ? '209, 250, 229' : index === 1 ? '219, 234, 254' : index === 2 ? '243, 232, 255' : index === 3 ? '252, 231, 243' : index === 4 ? '254, 243, 199' : '237, 233, 254'}, 0.5))`
+                                    : `linear-gradient(to bottom right, rgba(${index === 0 ? '238, 242, 255' : index === 1 ? '248, 250, 252' : index === 2 ? '236, 254, 255' : index === 3 ? '240, 253, 250' : index === 4 ? '240, 249, 255' : index === 5 ? '219, 234, 254' : '249, 250, 251'}, 1), rgba(${index === 0 ? '199, 210, 254' : index === 1 ? '203, 213, 225' : index === 2 ? '103, 232, 249' : index === 3 ? '94, 234, 212' : index === 4 ? '125, 211, 252' : index === 5 ? '147, 197, 253' : '209, 213, 219'}, 0.5))`,
+                                  borderColor: roadmapView === 'student' 
+                                    ? `rgba(${index === 0 ? '167, 243, 208' : index === 1 ? '147, 197, 253' : index === 2 ? '196, 181, 253' : index === 3 ? '244, 114, 182' : index === 4 ? '252, 211, 77' : '183, 148, 244'}, 0.5)`
+                                    : `rgba(${index === 0 ? '165, 180, 252' : index === 1 ? '203, 213, 225' : index === 2 ? '103, 232, 249' : index === 3 ? '94, 234, 212' : index === 4 ? '125, 211, 252' : index === 5 ? '147, 197, 253' : '209, 213, 219'}, 0.5)`
+                                }}
+                              >
+                                <div 
+                                  className="absolute top-2 left-2 text-2xl font-serif"
+                                  style={{
+                                    color: roadmapView === 'student' 
+                                      ? `rgba(${index === 0 ? '110, 231, 183' : index === 1 ? '96, 165, 250' : index === 2 ? '196, 181, 253' : index === 3 ? '244, 114, 182' : index === 4 ? '252, 211, 77' : '183, 148, 244'}, 1)`
+                                      : `rgba(${index === 0 ? '165, 180, 252' : index === 1 ? '203, 213, 225' : index === 2 ? '103, 232, 249' : index === 3 ? '94, 234, 212' : index === 4 ? '125, 211, 252' : index === 5 ? '147, 197, 253' : '209, 213, 219'}, 1)`
+                                  }}
+                                >"</div>
+                                <p 
+                                  className="font-medium italic text-center pt-2"
+                                  style={{
+                                    color: roadmapView === 'student' 
+                                      ? `rgb(${index === 0 ? '6, 120, 87' : index === 1 ? '30, 64, 175' : index === 2 ? '107, 33, 168' : index === 3 ? '157, 23, 77' : index === 4 ? '146, 64, 14' : '91, 33, 182'})`
+                                      : `rgb(${index === 0 ? '67, 56, 202' : index === 1 ? '51, 65, 85' : index === 2 ? '14, 116, 144' : index === 3 ? '15, 118, 110' : index === 4 ? '7, 89, 133' : index === 5 ? '29, 78, 216' : '55, 65, 81'})`
+                                  }}
+                                >
+                                  {stage.visionTag}
+                                </p>
+                                <div 
+                                  className="absolute bottom-2 right-2 text-2xl font-serif rotate-180"
+                                  style={{
+                                    color: roadmapView === 'student' 
+                                      ? `rgba(${index === 0 ? '110, 231, 183' : index === 1 ? '96, 165, 250' : index === 2 ? '196, 181, 253' : index === 3 ? '244, 114, 182' : index === 4 ? '252, 211, 77' : '183, 148, 244'}, 1)`
+                                      : `rgba(${index === 0 ? '165, 180, 252' : index === 1 ? '203, 213, 225' : index === 2 ? '103, 232, 249' : index === 3 ? '94, 234, 212' : index === 4 ? '125, 211, 252' : index === 5 ? '147, 197, 253' : '209, 213, 219'}, 1)`
+                                  }}
+                                >"</div>
+                              </div>
+                            </div>
+                            
+                            {/* Interactive Elements */}
+                            <div className="mt-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                              <button 
+                                className="w-full py-3 text-white rounded-xl font-medium hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200"
+                                style={{
+                                  background: roadmapView === 'student' 
+                                    ? `linear-gradient(to right, ${index === 0 ? 'rgb(34, 197, 94), rgb(22, 163, 74)' : index === 1 ? 'rgb(59, 130, 246), rgb(37, 99, 235)' : index === 2 ? 'rgb(168, 85, 247), rgb(147, 51, 234)' : index === 3 ? 'rgb(236, 72, 153), rgb(219, 39, 119)' : index === 4 ? 'rgb(245, 158, 11), rgb(217, 119, 6)' : 'rgb(139, 92, 246), rgb(124, 58, 237)'})`
+                                    : `linear-gradient(to right, ${index === 0 ? 'rgb(99, 102, 241), rgb(79, 70, 229)' : index === 1 ? 'rgb(100, 116, 139), rgb(71, 85, 105)' : index === 2 ? 'rgb(34, 211, 238), rgb(6, 182, 212)' : index === 3 ? 'rgb(20, 184, 166), rgb(13, 148, 136)' : index === 4 ? 'rgb(14, 165, 233), rgb(2, 132, 199)' : index === 5 ? 'rgb(59, 130, 246), rgb(37, 99, 235)' : 'rgb(107, 114, 128), rgb(75, 85, 99)'})`
+                                }}
+                                onClick={() => {
+                                  if (roadmapView === 'admin' && stage.id === 'A1') {
+                                    window.open('/admin', '_blank');
+                                  }
+                                }}
+                              >
+                                {roadmapView === 'student' 
+                                  ? `Explore ${stage.phase}`
+                                  : stage.id === 'A1' 
+                                    ? 'Launch Live Demo'
+                                    : `Preview ${stage.phase.split(' ')[1]}`
+                                }
+                              </button>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      </div>
+                    </div>
+                  );
+                })}
