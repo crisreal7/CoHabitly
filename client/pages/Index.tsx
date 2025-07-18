@@ -523,7 +523,7 @@ export default function Index() {
                       <Sparkles className="w-6 h-6 text-purple-600" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-lg">�� Long-Term Vision</h3>
+                      <h3 className="font-bold text-lg">🧭 Long-Term Vision</h3>
                     </div>
                   </div>
                   <p className="text-sm text-muted-foreground">
@@ -878,8 +878,11 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Interactive Roadmap */}
-      <section className="relative px-4 py-20 overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50">
+      {/* The Long-Term Roadmap */}
+      <section
+        id="roadmap-section"
+        className="relative px-4 py-20 overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50"
+      >
         {/* Animated Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-primary/10 to-lavender-100/30 rounded-full blur-xl animate-pulse"></div>
