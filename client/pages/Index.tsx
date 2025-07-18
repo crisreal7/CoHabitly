@@ -382,7 +382,7 @@ export default function Index() {
                               Stage 1
                             </span>
                             <span className="flex items-center gap-1 text-xs font-medium text-emerald-700 bg-emerald-50 px-2 py-1 rounded-full">
-                              ✅ Live
+                              Live
                             </span>
                           </div>
                           <h3 className="font-bold text-lg">
@@ -418,7 +418,7 @@ export default function Index() {
                               Stage 2
                             </span>
                             <span className="flex items-center gap-1 text-xs font-medium text-blue-700 bg-blue-50 px-2 py-1 rounded-full">
-                              🧪 In Testing
+                              In Testing
                             </span>
                           </div>
                           <h3 className="font-bold text-lg">
@@ -454,7 +454,7 @@ export default function Index() {
                               Stage 3
                             </span>
                             <span className="flex items-center gap-1 text-xs font-medium text-purple-700 bg-purple-50 px-2 py-1 rounded-full">
-                              🔄 In Progress
+                              In Progress
                             </span>
                           </div>
                           <h3 className="font-bold text-lg">
@@ -490,7 +490,7 @@ export default function Index() {
                               Stage 4
                             </span>
                             <span className="flex items-center gap-1 text-xs font-medium text-pink-700 bg-pink-50 px-2 py-1 rounded-full">
-                              🔮 Coming Soon
+                              Coming Soon
                             </span>
                           </div>
                           <h3 className="font-bold text-lg">
@@ -526,7 +526,7 @@ export default function Index() {
                               Stage 5
                             </span>
                             <span className="flex items-center gap-1 text-xs font-medium text-amber-700 bg-amber-50 px-2 py-1 rounded-full">
-                              🔮 Vision
+                              Vision
                             </span>
                           </div>
                           <h3 className="font-bold text-lg">
@@ -562,7 +562,7 @@ export default function Index() {
                               Stage 6
                             </span>
                             <span className="flex items-center gap-1 text-xs font-medium text-violet-700 bg-violet-50 px-2 py-1 rounded-full">
-                              🚧 R&D
+                              R&D
                             </span>
                           </div>
                           <h3 className="font-bold text-lg">
