@@ -13,6 +13,9 @@ import {
   Home,
   Mail,
   ChevronRight,
+  Building,
+  Sparkles,
+  GraduationCap,
 } from "lucide-react";
 
 export default function Index() {
