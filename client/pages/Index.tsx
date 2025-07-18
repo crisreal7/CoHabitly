@@ -290,31 +290,80 @@ export default function Index() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="text-center lg:text-left">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
-                Roommate harmony starts here.
+                Live better together — from your first dorm to your forever
+                home.
               </h1>
-              <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl">
-                CoHabitly helps students live better together — anonymously,
-                intelligently, and peacefully.
+              <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-3xl">
+                An AI-powered roommate and partner harmony platform that evolves
+                with your life — from finding the perfect dorm match to managing
+                shared chores, resolving tension, and building trust in any
+                living situation.
               </p>
-              <form
-                onSubmit={handleEmailSubmit}
-                className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto lg:mx-0"
-              >
-                <Input
-                  type="email"
-                  placeholder="Enter your email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="flex-1 h-12 px-4 rounded-xl border-sage-200 focus:border-primary focus:ring-primary"
-                  required
-                />
-                <Button
-                  type="submit"
-                  className="h-12 px-8 bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl font-semibold"
-                >
-                  Get Early Access
-                </Button>
-              </form>
+
+              {/* Enhanced CTA Section */}
+              <div className="space-y-6">
+                {/* Primary CTAs */}
+                <div className="flex flex-col sm:flex-row gap-3 max-w-2xl mx-auto lg:mx-0">
+                  <Button
+                    className="h-12 px-6 bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl font-semibold flex items-center gap-2"
+                    onClick={() =>
+                      window.scrollTo({
+                        top: document.querySelector("#roadmap-section")
+                          ?.offsetTop,
+                        behavior: "smooth",
+                      })
+                    }
+                  >
+                    <GraduationCap className="w-4 h-4" />
+                    See Student Demo
+                  </Button>
+                  <Button
+                    className="h-12 px-6 bg-sage-600 hover:bg-sage-700 text-white rounded-xl font-semibold flex items-center gap-2"
+                    onClick={() => window.open("/admin", "_blank")}
+                  >
+                    <Shield className="w-4 h-4" />
+                    See Admin Dashboard
+                  </Button>
+                  <Button className="h-12 px-6 bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white rounded-xl font-semibold flex items-center gap-2">
+                    <Heart className="w-4 h-4" />
+                    See Couples Mode
+                  </Button>
+                </div>
+
+                {/* Secondary CTAs */}
+                <div className="flex flex-col sm:flex-row gap-3 max-w-2xl mx-auto lg:mx-0">
+                  <form
+                    onSubmit={handleEmailSubmit}
+                    className="flex flex-col sm:flex-row gap-3 flex-1"
+                  >
+                    <Input
+                      type="email"
+                      placeholder="Enter your email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="flex-1 h-12 px-4 rounded-xl border-sage-200 focus:border-primary focus:ring-primary"
+                      required
+                    />
+                    <Button
+                      type="submit"
+                      className="h-12 px-6 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white rounded-xl font-semibold"
+                    >
+                      Request Early Access
+                    </Button>
+                  </form>
+                </div>
+
+                {/* University CTA */}
+                <div className="text-center lg:text-left">
+                  <Button
+                    variant="outline"
+                    className="h-12 px-6 border-2 border-indigo-200 text-indigo-700 hover:bg-indigo-50 rounded-xl font-semibold flex items-center gap-2 mx-auto lg:mx-0 w-fit"
+                  >
+                    <Building className="w-4 h-4" />
+                    Universities → Get a Pilot
+                  </Button>
+                </div>
+              </div>
               {isSubmitted && (
                 <div className="mt-4 flex items-center gap-2 text-sage-600 justify-center lg:justify-start">
                   <CheckCircle className="w-5 h-5" />
