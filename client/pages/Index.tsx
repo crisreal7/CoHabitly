@@ -724,13 +724,65 @@ export default function Index() {
               </div>
             </div>
 
-            {/* Scroll Indicators */}
-            <div className="flex justify-center mt-8 gap-2">
-              <div className="flex items-center gap-2 px-4 py-2 bg-sage-50 rounded-full border border-sage-200">
-                <ChevronRight className="w-4 h-4 text-sage-600" />
-                <span className="text-sm text-sage-700 font-medium">
-                  Scroll to explore our journey
-                </span>
+            {/* Enhanced Navigation */}
+            <div className="mt-12 space-y-6">
+              {/* Mini-Map Navigator */}
+              <div className="flex justify-center">
+                <div className="bg-white/90 backdrop-blur-sm border border-gray-200/50 rounded-2xl p-4 shadow-xl">
+                  <div className="flex items-center gap-4">
+                    <span className="text-sm font-medium text-gray-600">
+                      Journey Progress
+                    </span>
+                    <div className="flex items-center gap-2">
+                      <div className="w-3 h-3 bg-emerald-500 rounded-full shadow-sm animate-pulse"></div>
+                      <div className="w-8 h-0.5 bg-emerald-200"></div>
+                      <div className="w-3 h-3 bg-blue-500 rounded-full shadow-sm animate-pulse delay-100"></div>
+                      <div className="w-8 h-0.5 bg-blue-200"></div>
+                      <div className="w-3 h-3 bg-purple-500 rounded-full shadow-sm animate-pulse delay-200"></div>
+                      <div className="w-8 h-0.5 bg-purple-200"></div>
+                      <div className="w-3 h-3 bg-pink-400 rounded-full shadow-sm"></div>
+                      <div className="w-8 h-0.5 bg-pink-200"></div>
+                      <div className="w-3 h-3 bg-amber-400 rounded-full shadow-sm"></div>
+                      <div className="w-8 h-0.5 bg-amber-200"></div>
+                      <div className="w-3 h-3 bg-violet-500 rounded-full shadow-sm"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Interactive Scroll Hint */}
+              <div className="flex justify-center gap-4">
+                <div className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-primary/10 to-lavender-100/50 rounded-full border border-primary/20 shadow-lg animate-float">
+                  <ChevronRight className="w-5 h-5 text-primary animate-pulse" />
+                  <span className="text-sm font-medium text-primary">
+                    Scroll horizontally to explore each stage
+                  </span>
+                  <ChevronRight className="w-5 h-5 text-primary animate-pulse" />
+                </div>
+              </div>
+
+              {/* Stage Navigation Pills */}
+              <div className="flex justify-center">
+                <div className="flex flex-wrap justify-center gap-2 max-w-2xl">
+                  <button className="px-4 py-2 bg-emerald-100 hover:bg-emerald-200 text-emerald-700 rounded-full text-sm font-medium transition-all duration-200 hover:scale-105">
+                    Dorms
+                  </button>
+                  <button className="px-4 py-2 bg-blue-100 hover:bg-blue-200 text-blue-700 rounded-full text-sm font-medium transition-all duration-200 hover:scale-105">
+                    Off-Campus
+                  </button>
+                  <button className="px-4 py-2 bg-purple-100 hover:bg-purple-200 text-purple-700 rounded-full text-sm font-medium transition-all duration-200 hover:scale-105">
+                    Matching
+                  </button>
+                  <button className="px-4 py-2 bg-pink-100 hover:bg-pink-200 text-pink-700 rounded-full text-sm font-medium transition-all duration-200 hover:scale-105">
+                    Couples
+                  </button>
+                  <button className="px-4 py-2 bg-amber-100 hover:bg-amber-200 text-amber-700 rounded-full text-sm font-medium transition-all duration-200 hover:scale-105">
+                    Citywide
+                  </button>
+                  <button className="px-4 py-2 bg-violet-100 hover:bg-violet-200 text-violet-700 rounded-full text-sm font-medium transition-all duration-200 hover:scale-105">
+                    AI Engine
+                  </button>
+                </div>
               </div>
             </div>
           </div>
