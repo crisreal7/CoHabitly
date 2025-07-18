@@ -750,9 +750,19 @@ export default function Index() {
               ))}
             </div>
 
-            {/* Enhanced Roadmap Stages */}
-            <div className="overflow-x-auto scrollbar-hide snap-x snap-mandatory">
-              <div className="flex gap-12 pb-8 min-w-max px-8 pt-16">
+            {/* Dynamic Roadmap Stages */}
+            <div
+              className={`transition-all duration-500 ${
+                roadmapView === "student"
+                  ? "overflow-x-auto scrollbar-hide snap-x snap-mandatory"
+                  : "overflow-x-auto scrollbar-hide"
+              }`}
+            >
+              <div
+                className={`flex gap-12 pb-8 min-w-max px-8 pt-16 transition-all duration-700 ${
+                  isTransitioning ? "opacity-50 blur-sm" : "opacity-100 blur-0"
+                }`}
+              >
                 {/* Stage 1: University Dorm Harmony */}
                 <div className="flex-none w-96 relative snap-center group">
                   <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 w-6 h-6 bg-emerald-500 rounded-full border-4 border-white shadow-xl z-20 group-hover:scale-125 transition-transform duration-300">
