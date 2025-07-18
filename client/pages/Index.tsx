@@ -787,34 +787,118 @@ export default function Index() {
             </div>
           </div>
 
-          {/* Vision Toggle Section */}
-          <div className="mt-16 text-center">
-            <Card className="border-primary/20 bg-gradient-to-r from-primary/5 to-lavender-50 max-w-2xl mx-auto">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-foreground mb-4">
-                  Building Tomorrow's Living Harmony
-                </h3>
-                <p className="text-muted-foreground mb-6">
-                  Each stage represents our commitment to creating better living
-                  experiences. From solving immediate roommate conflicts to
-                  reimagining how communities form and thrive.
-                </p>
-                <div className="flex flex-wrap justify-center gap-2">
-                  <span className="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-sm font-medium">
-                    Students First
-                  </span>
-                  <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">
-                    Data-Driven
-                  </span>
-                  <span className="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm font-medium">
-                    Privacy-Focused
-                  </span>
-                  <span className="px-3 py-1 bg-pink-100 text-pink-700 rounded-full text-sm font-medium">
-                    Community-Centered
-                  </span>
-                </div>
-              </CardContent>
-            </Card>
+          {/* Enhanced Vision Section */}
+          <div className="mt-20 text-center relative">
+            {/* Background Elements */}
+            <div className="absolute inset-0 overflow-hidden">
+              <div className="absolute top-10 left-1/4 w-20 h-20 bg-gradient-to-br from-primary/20 to-lavender-200/30 rounded-full blur-xl animate-pulse"></div>
+              <div className="absolute bottom-10 right-1/4 w-16 h-16 bg-gradient-to-br from-sage-200/40 to-mint-200/30 rounded-full blur-lg animate-pulse delay-1000"></div>
+            </div>
+
+            {/* Main Vision Card */}
+            <div className="relative max-w-4xl mx-auto">
+              {/* Glassmorphism Card */}
+              <div className="relative group">
+                {/* Background Glow */}
+                <div className="absolute -inset-1 bg-gradient-to-r from-primary/30 via-lavender-300/30 to-sage-300/30 rounded-3xl blur-lg opacity-50 group-hover:opacity-75 transition duration-500"></div>
+
+                {/* Main Card */}
+                <Card className="relative bg-white/80 backdrop-blur-xl border border-white/30 shadow-2xl">
+                  <CardContent className="p-12">
+                    {/* Animated Header */}
+                    <div className="mb-8">
+                      <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full mb-6 animate-float">
+                        <Sparkles className="w-4 h-4 text-primary animate-pulse" />
+                        <span className="text-sm font-medium text-primary">
+                          Our Vision
+                        </span>
+                        <Sparkles className="w-4 h-4 text-primary animate-pulse delay-300" />
+                      </div>
+
+                      <h3 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-slate-900 via-primary to-slate-700 bg-clip-text text-transparent mb-6 leading-tight">
+                        Building Tomorrow's Living Harmony
+                      </h3>
+
+                      <p className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
+                        Each stage represents our commitment to creating better
+                        living experiences. From solving immediate roommate
+                        conflicts to reimagining how communities form and
+                        thrive.
+                      </p>
+                    </div>
+
+                    {/* Enhanced Value Props */}
+                    <div className="grid md:grid-cols-2 gap-4 mb-8">
+                      <div className="flex items-center gap-3 p-4 bg-emerald-50/80 backdrop-blur-sm rounded-xl border border-emerald-200/50 group-hover:scale-105 transition-transform duration-300">
+                        <div className="w-12 h-12 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-full flex items-center justify-center shadow-lg">
+                          <GraduationCap className="w-6 h-6 text-white" />
+                        </div>
+                        <div>
+                          <p className="font-semibold text-emerald-800">
+                            Students First
+                          </p>
+                          <p className="text-sm text-emerald-600">
+                            Designed for student needs
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center gap-3 p-4 bg-blue-50/80 backdrop-blur-sm rounded-xl border border-blue-200/50 group-hover:scale-105 transition-transform duration-300 delay-75">
+                        <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center shadow-lg">
+                          <BarChart3 className="w-6 h-6 text-white" />
+                        </div>
+                        <div>
+                          <p className="font-semibold text-blue-800">
+                            Data-Driven
+                          </p>
+                          <p className="text-sm text-blue-600">
+                            Evidence-based matching
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center gap-3 p-4 bg-purple-50/80 backdrop-blur-sm rounded-xl border border-purple-200/50 group-hover:scale-105 transition-transform duration-300 delay-150">
+                        <div className="w-12 h-12 bg-gradient-to-br from-purple-400 to-purple-600 rounded-full flex items-center justify-center shadow-lg">
+                          <Shield className="w-6 h-6 text-white" />
+                        </div>
+                        <div>
+                          <p className="font-semibold text-purple-800">
+                            Privacy-Focused
+                          </p>
+                          <p className="text-sm text-purple-600">
+                            Anonymous and secure
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center gap-3 p-4 bg-pink-50/80 backdrop-blur-sm rounded-xl border border-pink-200/50 group-hover:scale-105 transition-transform duration-300 delay-225">
+                        <div className="w-12 h-12 bg-gradient-to-br from-pink-400 to-pink-600 rounded-full flex items-center justify-center shadow-lg">
+                          <Heart className="w-6 h-6 text-white" />
+                        </div>
+                        <div>
+                          <p className="font-semibold text-pink-800">
+                            Community-Centered
+                          </p>
+                          <p className="text-sm text-pink-600">
+                            Building connections
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Call to Action */}
+                    <div className="flex justify-center">
+                      <button className="px-8 py-4 bg-gradient-to-r from-primary to-lavender-500 text-white rounded-2xl font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 group">
+                        <span className="flex items-center gap-2">
+                          Join the Journey
+                          <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
+                        </span>
+                      </button>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
           </div>
         </div>
       </section>
