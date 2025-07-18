@@ -343,6 +343,288 @@ export default function Index() {
         </div>
       </section>
 
+      {/* Interactive Roadmap */}
+      <section className="px-4 py-16 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Where CoHabitly Is Going
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Follow our journey as we transform how people live together — from
+              dorms to cities, from roommates to communities.
+            </p>
+          </div>
+
+          {/* Timeline Container */}
+          <div className="relative">
+            {/* Progress Line */}
+            <div className="absolute top-16 left-8 right-8 h-0.5 bg-gradient-to-r from-primary via-lavender-300 to-sage-200 rounded-full"></div>
+
+            {/* Roadmap Stages */}
+            <div className="overflow-x-auto scrollbar-hide">
+              <div className="flex gap-8 pb-4 min-w-max px-8">
+                {/* Stage 1: University Dorm Harmony */}
+                <div className="flex-none w-80 relative">
+                  <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-emerald-500 rounded-full border-4 border-white shadow-lg z-10"></div>
+                  <Card className="mt-8 border-emerald-200 hover:shadow-lg transition-all duration-300 group">
+                    <CardContent className="p-6">
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center">
+                          <GraduationCap className="w-6 h-6 text-emerald-600" />
+                        </div>
+                        <div>
+                          <div className="flex items-center gap-2 mb-1">
+                            <span className="text-xs font-medium text-emerald-600 bg-emerald-100 px-2 py-1 rounded-full">
+                              Stage 1
+                            </span>
+                            <span className="flex items-center gap-1 text-xs font-medium text-emerald-700 bg-emerald-50 px-2 py-1 rounded-full">
+                              ✅ Live
+                            </span>
+                          </div>
+                          <h3 className="font-bold text-lg">
+                            University Dorm Harmony
+                          </h3>
+                        </div>
+                      </div>
+                      <p className="text-sm text-muted-foreground mb-4">
+                        CoHabitly launches in student dorms to reduce tension,
+                        improve fit, and ease RA load.
+                      </p>
+                      <div className="bg-emerald-50 p-3 rounded-lg border border-emerald-100">
+                        <p className="text-sm font-medium text-emerald-800 italic">
+                          "Living well starts early."
+                        </p>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+
+                {/* Stage 2: Off-Campus Expansion */}
+                <div className="flex-none w-80 relative">
+                  <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-blue-500 rounded-full border-4 border-white shadow-lg z-10"></div>
+                  <Card className="mt-8 border-blue-200 hover:shadow-lg transition-all duration-300 group">
+                    <CardContent className="p-6">
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
+                          <Home className="w-6 h-6 text-blue-600" />
+                        </div>
+                        <div>
+                          <div className="flex items-center gap-2 mb-1">
+                            <span className="text-xs font-medium text-blue-600 bg-blue-100 px-2 py-1 rounded-full">
+                              Stage 2
+                            </span>
+                            <span className="flex items-center gap-1 text-xs font-medium text-blue-700 bg-blue-50 px-2 py-1 rounded-full">
+                              🧪 In Testing
+                            </span>
+                          </div>
+                          <h3 className="font-bold text-lg">
+                            Off-Campus Expansion
+                          </h3>
+                        </div>
+                      </div>
+                      <p className="text-sm text-muted-foreground mb-4">
+                        CoHabitly partners with landlords near campuses to
+                        support smooth transitions to first-time renting.
+                      </p>
+                      <div className="bg-blue-50 p-3 rounded-lg border border-blue-100">
+                        <p className="text-sm font-medium text-blue-800 italic">
+                          "Harmony beyond the quad."
+                        </p>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+
+                {/* Stage 3: Lifestyle-Based Matching */}
+                <div className="flex-none w-80 relative">
+                  <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-purple-500 rounded-full border-4 border-white shadow-lg z-10 animate-pulse"></div>
+                  <Card className="mt-8 border-purple-200 hover:shadow-lg transition-all duration-300 group">
+                    <CardContent className="p-6">
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
+                          <Users className="w-6 h-6 text-purple-600" />
+                        </div>
+                        <div>
+                          <div className="flex items-center gap-2 mb-1">
+                            <span className="text-xs font-medium text-purple-600 bg-purple-100 px-2 py-1 rounded-full">
+                              Stage 3
+                            </span>
+                            <span className="flex items-center gap-1 text-xs font-medium text-purple-700 bg-purple-50 px-2 py-1 rounded-full">
+                              🔄 In Progress
+                            </span>
+                          </div>
+                          <h3 className="font-bold text-lg">
+                            Lifestyle-Based Roommate Matching
+                          </h3>
+                        </div>
+                      </div>
+                      <p className="text-sm text-muted-foreground mb-4">
+                        Users create in-depth lifestyle profiles. CoHabitly
+                        recommends compatible roommates based on long-term fit.
+                      </p>
+                      <div className="bg-purple-50 p-3 rounded-lg border border-purple-100">
+                        <p className="text-sm font-medium text-purple-800 italic">
+                          "Your space. Your rhythm. Your people."
+                        </p>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+
+                {/* Stage 4: Partner & Couple Living Tools */}
+                <div className="flex-none w-80 relative">
+                  <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-pink-500 rounded-full border-4 border-white shadow-lg z-10"></div>
+                  <Card className="mt-8 border-pink-200 hover:shadow-lg transition-all duration-300 group">
+                    <CardContent className="p-6">
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center">
+                          <Heart className="w-6 h-6 text-pink-600" />
+                        </div>
+                        <div>
+                          <div className="flex items-center gap-2 mb-1">
+                            <span className="text-xs font-medium text-pink-600 bg-pink-100 px-2 py-1 rounded-full">
+                              Stage 4
+                            </span>
+                            <span className="flex items-center gap-1 text-xs font-medium text-pink-700 bg-pink-50 px-2 py-1 rounded-full">
+                              🔮 Coming Soon
+                            </span>
+                          </div>
+                          <h3 className="font-bold text-lg">
+                            Partner & Couple Living Tools
+                          </h3>
+                        </div>
+                      </div>
+                      <p className="text-sm text-muted-foreground mb-4">
+                        Add modules for cohabiting couples to manage chores,
+                        communication, and shared goals respectfully.
+                      </p>
+                      <div className="bg-pink-50 p-3 rounded-lg border border-pink-100">
+                        <p className="text-sm font-medium text-pink-800 italic">
+                          "Love where you live — together."
+                        </p>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+
+                {/* Stage 5: Citywide Shared Housing Network */}
+                <div className="flex-none w-80 relative">
+                  <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-amber-500 rounded-full border-4 border-white shadow-lg z-10"></div>
+                  <Card className="mt-8 border-amber-200 hover:shadow-lg transition-all duration-300 group">
+                    <CardContent className="p-6">
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center">
+                          <Building className="w-6 h-6 text-amber-600" />
+                        </div>
+                        <div>
+                          <div className="flex items-center gap-2 mb-1">
+                            <span className="text-xs font-medium text-amber-600 bg-amber-100 px-2 py-1 rounded-full">
+                              Stage 5
+                            </span>
+                            <span className="flex items-center gap-1 text-xs font-medium text-amber-700 bg-amber-50 px-2 py-1 rounded-full">
+                              🔮 Vision
+                            </span>
+                          </div>
+                          <h3 className="font-bold text-lg">
+                            Citywide Shared Housing Network
+                          </h3>
+                        </div>
+                      </div>
+                      <p className="text-sm text-muted-foreground mb-4">
+                        Build public listings of high-score households and
+                        vacant rooms. Make moving city-to-city feel seamless.
+                      </p>
+                      <div className="bg-amber-50 p-3 rounded-lg border border-amber-100">
+                        <p className="text-sm font-medium text-amber-800 italic">
+                          "Harmony, wherever you land."
+                        </p>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+
+                {/* Stage 6: AI Life Matching Engine */}
+                <div className="flex-none w-80 relative">
+                  <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-violet-500 rounded-full border-4 border-white shadow-lg z-10"></div>
+                  <Card className="mt-8 border-violet-200 hover:shadow-lg transition-all duration-300 group">
+                    <CardContent className="p-6">
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="w-12 h-12 bg-violet-100 rounded-full flex items-center justify-center">
+                          <Sparkles className="w-6 h-6 text-violet-600" />
+                        </div>
+                        <div>
+                          <div className="flex items-center gap-2 mb-1">
+                            <span className="text-xs font-medium text-violet-600 bg-violet-100 px-2 py-1 rounded-full">
+                              Stage 6
+                            </span>
+                            <span className="flex items-center gap-1 text-xs font-medium text-violet-700 bg-violet-50 px-2 py-1 rounded-full">
+                              🚧 R&D
+                            </span>
+                          </div>
+                          <h3 className="font-bold text-lg">
+                            AI Life Matching Engine
+                          </h3>
+                        </div>
+                      </div>
+                      <p className="text-sm text-muted-foreground mb-4">
+                        CoHabitly evolves into a long-term compatibility engine
+                        for homes, pods, and even intentional communities.
+                      </p>
+                      <div className="bg-violet-50 p-3 rounded-lg border border-violet-100">
+                        <p className="text-sm font-medium text-violet-800 italic">
+                          "Your best life, better lived together."
+                        </p>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+              </div>
+            </div>
+
+            {/* Scroll Indicators */}
+            <div className="flex justify-center mt-8 gap-2">
+              <div className="flex items-center gap-2 px-4 py-2 bg-sage-50 rounded-full border border-sage-200">
+                <ChevronRight className="w-4 h-4 text-sage-600" />
+                <span className="text-sm text-sage-700 font-medium">
+                  Scroll to explore our journey
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Vision Toggle Section */}
+          <div className="mt-16 text-center">
+            <Card className="border-primary/20 bg-gradient-to-r from-primary/5 to-lavender-50 max-w-2xl mx-auto">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-foreground mb-4">
+                  Building Tomorrow's Living Harmony
+                </h3>
+                <p className="text-muted-foreground mb-6">
+                  Each stage represents our commitment to creating better living
+                  experiences. From solving immediate roommate conflicts to
+                  reimagining how communities form and thrive.
+                </p>
+                <div className="flex flex-wrap justify-center gap-2">
+                  <span className="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-sm font-medium">
+                    Students First
+                  </span>
+                  <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">
+                    Data-Driven
+                  </span>
+                  <span className="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm font-medium">
+                    Privacy-Focused
+                  </span>
+                  <span className="px-3 py-1 bg-pink-100 text-pink-700 rounded-full text-sm font-medium">
+                    Community-Centered
+                  </span>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
       {/* Testimonials */}
       <section className="py-16 overflow-hidden">
         <div className="max-w-6xl mx-auto text-center px-4 mb-12">
