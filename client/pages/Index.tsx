@@ -289,17 +289,10 @@ export default function Index() {
               <Button
                 className="h-12 px-8 bg-sage-600 hover:bg-sage-700 text-white rounded-xl font-semibold"
                 onClick={() => {
-                  setShowAdminDemo(true);
-                  // Small delay to ensure the section is rendered before scrolling
-                  setTimeout(() => {
-                    const adminSection = document.getElementById(
-                      "admin-portal-section",
-                    );
-                    adminSection?.scrollIntoView({ behavior: "smooth" });
-                  }, 100);
+                  window.open("/admin", "_blank");
                 }}
               >
-                View Admin Demo
+                View Admin Dashboard
                 <ChevronRight className="w-4 h-4 ml-2" />
               </Button>
             </div>
