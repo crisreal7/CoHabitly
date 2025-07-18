@@ -347,22 +347,73 @@ export default function Index() {
       </section>
 
       {/* Interactive Roadmap */}
-      <section className="px-4 py-16 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Where CoHabitly Is Going
+      <section className="relative px-4 py-20 overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50">
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-primary/10 to-lavender-100/30 rounded-full blur-xl animate-pulse"></div>
+          <div className="absolute bottom-32 right-10 w-40 h-40 bg-gradient-to-br from-sage-100/40 to-mint-100/30 rounded-full blur-2xl animate-pulse delay-1000"></div>
+          <div className="absolute top-1/2 left-1/3 w-24 h-24 bg-gradient-to-br from-coral-100/20 to-lavender-100/20 rounded-full blur-lg animate-pulse delay-500"></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto relative z-10">
+          {/* Enhanced Header */}
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full mb-6">
+              <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
+              <span className="text-sm font-medium text-primary">
+                Product Roadmap
+              </span>
+            </div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-slate-900 via-primary to-slate-700 bg-clip-text text-transparent mb-6 leading-tight">
+              The CoHabitly Journey
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Follow our journey as we transform how people live together — from
-              dorms to cities, from roommates to communities.
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              From solving roommate conflicts to reimagining how communities
+              form and thrive — follow our mission to create harmony in every
+              living space.
             </p>
           </div>
 
-          {/* Timeline Container */}
+          {/* Journey Selector */}
+          <div className="flex justify-center mb-12">
+            <div className="inline-flex p-1 bg-white/80 backdrop-blur-sm rounded-xl border border-gray-200/50 shadow-lg">
+              <button className="px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium transition-all duration-300 hover:shadow-md">
+                Student Journey
+              </button>
+              <button className="px-6 py-3 text-gray-600 rounded-lg font-medium transition-all duration-300 hover:text-primary hover:bg-primary/5">
+                Admin Journey
+              </button>
+            </div>
+          </div>
+
+          {/* Enhanced Timeline Container */}
           <div className="relative">
-            {/* Progress Line */}
-            <div className="absolute top-16 left-8 right-8 h-0.5 bg-gradient-to-r from-primary via-lavender-300 to-sage-200 rounded-full"></div>
+            {/* Animated Progress Line */}
+            <div className="absolute top-20 left-8 right-8 h-1 bg-gradient-to-r from-emerald-200 via-blue-200 via-purple-200 via-pink-200 via-amber-200 to-violet-200 rounded-full overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-r from-emerald-500 via-blue-500 to-purple-500 rounded-full animate-pulse"></div>
+            </div>
+
+            {/* Floating Progress Indicators */}
+            <div className="absolute top-16 left-8 right-8 flex justify-between">
+              <div className="w-8 h-8 bg-emerald-500 rounded-full border-4 border-white shadow-lg flex items-center justify-center animate-bounce delay-0">
+                <div className="w-2 h-2 bg-white rounded-full"></div>
+              </div>
+              <div className="w-8 h-8 bg-blue-500 rounded-full border-4 border-white shadow-lg flex items-center justify-center animate-bounce delay-100">
+                <div className="w-2 h-2 bg-white rounded-full"></div>
+              </div>
+              <div className="w-8 h-8 bg-purple-500 rounded-full border-4 border-white shadow-lg flex items-center justify-center animate-bounce delay-200">
+                <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+              </div>
+              <div className="w-8 h-8 bg-pink-400 rounded-full border-4 border-white shadow-lg flex items-center justify-center animate-bounce delay-300">
+                <div className="w-2 h-2 bg-white rounded-full"></div>
+              </div>
+              <div className="w-8 h-8 bg-amber-400 rounded-full border-4 border-white shadow-lg flex items-center justify-center animate-bounce delay-400">
+                <div className="w-2 h-2 bg-white rounded-full"></div>
+              </div>
+              <div className="w-8 h-8 bg-violet-500 rounded-full border-4 border-white shadow-lg flex items-center justify-center animate-bounce delay-500">
+                <div className="w-2 h-2 bg-white rounded-full"></div>
+              </div>
+            </div>
 
             {/* Roadmap Stages */}
             <div className="overflow-x-auto scrollbar-hide">
