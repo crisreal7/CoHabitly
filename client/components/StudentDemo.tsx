@@ -364,92 +364,149 @@ export default function StudentDemo({
           </div>
         );
 
-      case "messages":
+      case "events":
         return (
-          <div className="space-y-6 p-6">
+          <div className="space-y-4 p-4">
+            {/* Community Events Header */}
+            <Card className="border-0 bg-gradient-to-br from-emerald-50 to-green-50 shadow-md">
+              <CardContent className="p-4">
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-green-500 rounded-lg flex items-center justify-center">
+                    <PartyPopper className="w-5 h-5 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-gray-900 text-lg">
+                      Community Events
+                    </h3>
+                    <p className="text-sm text-gray-600">
+                      Join dorm activities & socials
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
             {/* Community Feed */}
-            <Card className="border-0 bg-white shadow-md">
-              <CardContent className="p-6">
-                <h3 className="text-lg font-bold text-gray-900 mb-4">
-                  Community Feed
-                </h3>
-                <div className="space-y-4">
-                  {communityEvents.map((event) => (
-                    <div key={event.id} className="p-4 bg-gray-50 rounded-xl">
-                      <div className="flex items-start gap-3">
-                        <div
-                          className={`w-10 h-10 rounded-lg flex items-center justify-center ${
-                            event.category === "study"
-                              ? "bg-blue-100"
-                              : event.category === "social"
-                                ? "bg-purple-100"
-                                : event.category === "wellness"
-                                  ? "bg-green-100"
-                                  : "bg-orange-100"
-                          }`}
-                        >
-                          {event.category === "study" && (
-                            <BookOpen className="w-5 h-5 text-blue-600" />
-                          )}
-                          {event.category === "social" && (
-                            <PartyPopper className="w-5 h-5 text-purple-600" />
-                          )}
-                          {event.category === "wellness" && (
-                            <Heart className="w-5 h-5 text-green-600" />
-                          )}
-                          {event.category === "food" && (
-                            <Pizza className="w-5 h-5 text-orange-600" />
+            <div className="space-y-3">
+              {communityEvents.map((event) => (
+                <Card
+                  key={event.id}
+                  className="border-0 bg-white shadow-sm hover:shadow-md transition-all"
+                >
+                  <CardContent className="p-4">
+                    <div className="flex items-start gap-3">
+                      <div
+                        className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 ${
+                          event.category === "study"
+                            ? "bg-blue-100"
+                            : event.category === "social"
+                              ? "bg-purple-100"
+                              : event.category === "wellness"
+                                ? "bg-green-100"
+                                : "bg-orange-100"
+                        }`}
+                      >
+                        {event.category === "study" && (
+                          <BookOpen className="w-5 h-5 text-blue-600" />
+                        )}
+                        {event.category === "social" && (
+                          <PartyPopper className="w-5 h-5 text-purple-600" />
+                        )}
+                        {event.category === "wellness" && (
+                          <Heart className="w-5 h-5 text-green-600" />
+                        )}
+                        {event.category === "food" && (
+                          <Pizza className="w-5 h-5 text-orange-600" />
+                        )}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 mb-1 flex-wrap">
+                          <span className="font-semibold text-gray-900 text-sm">
+                            {event.title}
+                          </span>
+                          {event.hasRSVP && (
+                            <Badge className="bg-emerald-100 text-emerald-700 text-xs">
+                              RSVP'd
+                            </Badge>
                           )}
                         </div>
-                        <div className="flex-1">
-                          <div className="flex items-center gap-2 mb-1">
-                            <span className="font-semibold text-gray-900">
-                              {event.title}
-                            </span>
-                            {event.hasRSVP && (
-                              <Badge className="bg-emerald-100 text-emerald-700 text-xs">
-                                RSVP'd
-                              </Badge>
-                            )}
-                          </div>
-                          <p className="text-sm text-gray-600 mb-2">
-                            {event.description}
-                          </p>
-                          <div className="flex items-center gap-4 text-xs text-gray-500 mb-2">
-                            <span>
-                              📅 {new Date(event.date).toLocaleDateString()}
-                            </span>
-                            <span>🕐 {event.time}</span>
-                            <span>📍 {event.location}</span>
-                          </div>
-                          <div className="flex items-center justify-between">
-                            <span className="text-xs text-gray-500">
-                              {event.attendees}/{event.maxAttendees} attending
-                            </span>
-                            <Button
-                              size="sm"
-                              variant={event.hasRSVP ? "outline" : "default"}
-                              className={
-                                event.hasRSVP
-                                  ? "border-emerald-300 text-emerald-700"
-                                  : "bg-emerald-500 hover:bg-emerald-600 text-white"
-                              }
-                            >
-                              {event.hasRSVP ? "Cancel RSVP" : "RSVP"}
-                            </Button>
-                          </div>
+                        <p className="text-sm text-gray-600 mb-2 leading-relaxed">
+                          {event.description}
+                        </p>
+                        <div className="grid grid-cols-1 gap-1 text-xs text-gray-500 mb-3">
+                          <span>
+                            📅 {new Date(event.date).toLocaleDateString()} • 🕐{" "}
+                            {event.time}
+                          </span>
+                          <span>📍 {event.location}</span>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <span className="text-xs text-gray-500">
+                            {event.attendees}/{event.maxAttendees} attending
+                          </span>
+                          <Button
+                            size="sm"
+                            variant={event.hasRSVP ? "outline" : "default"}
+                            className={
+                              event.hasRSVP
+                                ? "border-emerald-300 text-emerald-700 text-xs h-7 px-3"
+                                : "bg-emerald-500 hover:bg-emerald-600 text-white text-xs h-7 px-3"
+                            }
+                          >
+                            {event.hasRSVP ? "Cancel" : "RSVP"}
+                          </Button>
                         </div>
                       </div>
                     </div>
-                  ))}
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        );
+
+      case "messages":
+        return (
+          <div className="space-y-4 p-4">
+            {/* RA Contact Priority */}
+            <Card className="border-0 bg-gradient-to-br from-blue-50 to-indigo-50 shadow-md">
+              <CardContent className="p-4">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-lg flex items-center justify-center">
+                    <Phone className="w-5 h-5 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-gray-900">Contact Your RA</h3>
+                    <p className="text-sm text-gray-600">Get help & support</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3 p-3 bg-white rounded-lg">
+                  <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-green-500 rounded-lg flex items-center justify-center text-white font-bold text-sm">
+                    {raContact.avatar}
+                  </div>
+                  <div className="flex-1">
+                    <div className="font-semibold text-gray-900 text-sm">
+                      {raContact.name}
+                    </div>
+                    <div className="text-xs text-gray-600">
+                      {raContact.shiftHours} •{" "}
+                      {raContact.isOnDuty ? "On Duty" : "Off Duty"}
+                    </div>
+                  </div>
+                  <Button
+                    size="sm"
+                    className="bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-600 hover:to-green-600 text-white text-xs h-8 px-4"
+                  >
+                    Message
+                  </Button>
                 </div>
               </CardContent>
             </Card>
 
             {/* Incident Reporting */}
             <Card className="border-0 bg-gradient-to-br from-red-50 to-pink-50 shadow-md">
-              <CardContent className="p-6">
-                <div className="flex items-center gap-3 mb-4">
+              <CardContent className="p-4">
+                <div className="flex items-center gap-3 mb-3">
                   <div className="w-10 h-10 bg-gradient-to-br from-red-500 to-pink-500 rounded-lg flex items-center justify-center">
                     <Shield className="w-5 h-5 text-white" />
                   </div>
@@ -460,37 +517,37 @@ export default function StudentDemo({
                     </p>
                   </div>
                 </div>
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-2 gap-2">
                   <Button
                     variant="outline"
                     size="sm"
-                    className="border-amber-300 text-amber-700 hover:bg-amber-50"
+                    className="border-amber-300 text-amber-700 hover:bg-amber-50 text-xs h-9"
                   >
-                    <Volume2 className="w-4 h-4 mr-2" />
-                    Noise Issue
+                    <Volume2 className="w-4 h-4 mr-1" />
+                    Noise
                   </Button>
                   <Button
                     variant="outline"
                     size="sm"
-                    className="border-red-300 text-red-700 hover:bg-red-50"
+                    className="border-red-300 text-red-700 hover:bg-red-50 text-xs h-9"
                   >
-                    <AlertTriangle className="w-4 h-4 mr-2" />
-                    Safety Concern
+                    <AlertTriangle className="w-4 h-4 mr-1" />
+                    Safety
                   </Button>
                   <Button
                     variant="outline"
                     size="sm"
-                    className="border-purple-300 text-purple-700 hover:bg-purple-50"
+                    className="border-purple-300 text-purple-700 hover:bg-purple-50 text-xs h-9"
                   >
-                    <Users className="w-4 h-4 mr-2" />
-                    Roommate Conflict
+                    <Users className="w-4 h-4 mr-1" />
+                    Conflict
                   </Button>
                   <Button
                     variant="outline"
                     size="sm"
-                    className="border-blue-300 text-blue-700 hover:bg-blue-50"
+                    className="border-blue-300 text-blue-700 hover:bg-blue-50 text-xs h-9"
                   >
-                    <Settings className="w-4 h-4 mr-2" />
+                    <Settings className="w-4 h-4 mr-1" />
                     Maintenance
                   </Button>
                 </div>
