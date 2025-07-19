@@ -951,7 +951,7 @@ export default function InteractiveDemo({
             <Card className="border-0 bg-gradient-to-br from-purple-50 to-pink-50 shadow-md">
               <CardContent className="p-4">
                 <Button
-                  className="w-full h-10 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white text-sm"
+                  className="w-full h-10 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white text-sm button-feedback animate-button-glow"
                   onClick={() => navigateToCompose("event")}
                 >
                   "Would y'all be down for...?"
