@@ -148,6 +148,10 @@
   animation: gradient-shift 4s ease infinite;
 }
 
+.animate-gradient-cycle {
+  animation: gradient-cycle 8s ease-in-out infinite;
+}
+
 .shimmer {
   background: linear-gradient(
     90deg,
