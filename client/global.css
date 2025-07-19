@@ -82,6 +82,24 @@
   }
 }
 
+@keyframes gradient-cycle {
+  0% {
+    background: linear-gradient(135deg, #3b82f6, #1e40af);
+  }
+  25% {
+    background: linear-gradient(135deg, #10b981, #047857);
+  }
+  50% {
+    background: linear-gradient(135deg, #f43f5e, #e11d48);
+  }
+  75% {
+    background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  }
+  100% {
+    background: linear-gradient(135deg, #3b82f6, #1e40af);
+  }
+}
+
 @keyframes glow {
   0%,
   100% {
