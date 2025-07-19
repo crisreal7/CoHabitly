@@ -1808,7 +1808,7 @@ export default function InteractiveDemo() {
                         { emoji: "🤩", mood: "excited" },
                         { emoji: "😐", mood: "neutral" },
                         { emoji: "😓", mood: "stressed" },
-                        { emoji: "😴", mood: "tired" },
+                        { emoji: "��", mood: "tired" },
                       ].map(({ emoji, mood }) => (
                         <button
                           key={mood}
@@ -1881,8 +1881,8 @@ export default function InteractiveDemo() {
                       </select>
                     )}
                     <textarea
-                      value={inputValue}
-                      onChange={(e) => setInputValue(e.target.value)}
+                      value={composeInputValue}
+                      onChange={(e) => setComposeInputValue(e.target.value)}
                       placeholder={
                         viewState.composeType === "anonymous"
                           ? "Share feedback anonymously. AI will review and deliver if constructive."
