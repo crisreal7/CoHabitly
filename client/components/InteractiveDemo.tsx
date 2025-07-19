@@ -870,11 +870,11 @@ export default function InteractiveDemo({
                       key={item.id}
                       className={`border-l-4 ${
                         item.priority === "high"
-                          ? "border-l-red-500 bg-red-50"
+                          ? "priority-high"
                           : item.priority === "medium"
-                            ? "border-l-amber-500 bg-amber-50"
-                            : "border-l-green-500 bg-green-50"
-                      } rounded-r-lg transition-all ${item.purchased ? "opacity-60" : "hover:shadow-sm"}`}
+                            ? "priority-medium"
+                            : "priority-low"
+                      } rounded-r-lg transition-all glass-surface ${item.purchased ? "opacity-60" : "hover:shadow-premium-md card-hover"}`}
                     >
                       <div className="flex items-center justify-between p-3">
                         <div className="flex items-center gap-2 flex-1 min-w-0">
