@@ -72,6 +72,17 @@ export default function Index() {
     "roommate",
   );
   const [demoTab, setDemoTab] = useState("overview");
+
+  // Update demo tab when demo type changes
+  useEffect(() => {
+    if (demoType === "couples") {
+      setDemoTab("home");
+    } else if (demoType === "student") {
+      setDemoTab("overview");
+    } else {
+      setDemoTab("overview");
+    }
+  }, [demoType]);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
 
   const handleEmailSubmit = (e: React.FormEvent) => {
