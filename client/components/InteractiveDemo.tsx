@@ -1346,17 +1346,23 @@ export default function InteractiveDemo({
                               <span className="text-lg font-bold text-purple-600">
                                 {entry.score}/10
                               </span>
-                              <span className="text-lg">
-                                {entry.mood === "happy"
-                                  ? "😊"
-                                  : entry.mood === "excited"
-                                    ? "🤩"
-                                    : entry.mood === "neutral"
-                                      ? "😐"
-                                      : entry.mood === "stressed"
-                                        ? "😓"
-                                        : "😴"}
-                              </span>
+                              <div className="w-5 h-5 flex items-center justify-center">
+                                {entry.mood === "happy" && (
+                                  <Smile className="w-4 h-4 text-green-500" />
+                                )}
+                                {entry.mood === "excited" && (
+                                  <Zap className="w-4 h-4 text-yellow-500" />
+                                )}
+                                {entry.mood === "neutral" && (
+                                  <Meh className="w-4 h-4 text-gray-500" />
+                                )}
+                                {entry.mood === "stressed" && (
+                                  <Frown className="w-4 h-4 text-red-500" />
+                                )}
+                                {entry.mood === "tired" && (
+                                  <Moon className="w-4 h-4 text-blue-500" />
+                                )}
+                              </div>
                             </div>
                             <p className="text-gray-700 text-sm mb-2 line-clamp-2">
                               {entry.comment}
