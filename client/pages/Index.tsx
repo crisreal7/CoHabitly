@@ -1000,9 +1000,19 @@ export default function Index() {
                               ? [
                                   { id: "home", label: "Home", icon: Home },
                                   {
-                                    id: "shared",
-                                    label: "Shared",
-                                    icon: Users,
+                                    id: "groceries",
+                                    label: "Groceries",
+                                    icon: ShoppingCart,
+                                  },
+                                  {
+                                    id: "tasks",
+                                    label: "Tasks",
+                                    icon: CheckCircle,
+                                  },
+                                  {
+                                    id: "goals",
+                                    label: "Goals",
+                                    icon: Target,
                                   },
                                   {
                                     id: "communicate",
