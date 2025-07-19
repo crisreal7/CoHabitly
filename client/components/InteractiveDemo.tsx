@@ -1398,7 +1398,7 @@ export default function InteractiveDemo({
                     onClick={() => navigateToCompose("anonymous")}
                   >
                     <Shield className="w-3 h-3 mr-1" />
-                    Anonymous
+                    <span className="ml-[-5px]">Anonymous</span>
                   </Button>
                 </CardContent>
               </Card>
