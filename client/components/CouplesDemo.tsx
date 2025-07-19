@@ -605,7 +605,7 @@ export default function CouplesDemo({ activeTab = "home" }: CouplesDemoProps) {
                       key={goal.id}
                       className="p-3 bg-white rounded-lg border hover:shadow-sm transition-all cursor-pointer"
                       onClick={() =>
-                        navigateToDetail("shared", { type: "goal", goal })
+                        navigateToDetail("goals", { type: "goal", goal })
                       }
                     >
                       <div className="flex items-center justify-between mb-2">
