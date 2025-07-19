@@ -483,8 +483,8 @@ export default function Index() {
                 </div>
 
                 {/* Floating capability cards */}
-                <div className="absolute top-0 left-12 transform -rotate-12 animate-float">
-                  <div className="bg-gradient-to-br from-mint-100 to-mint-200 rounded-2xl p-4 shadow-lg border border-mint-300/50 backdrop-blur-sm">
+                <div className="absolute top-0 left-12 transform -rotate-12 animate-gentle-bounce">
+                  <div className="bg-gradient-to-br from-mint-100 to-mint-200 rounded-2xl p-4 shadow-lg border border-mint-300/50 backdrop-blur-sm hover:scale-105 transition-transform duration-300 cursor-pointer">
                     <div className="flex items-center gap-2">
                       <div className="w-8 h-8 bg-mint-500 rounded-full flex items-center justify-center">
                         <MessageCircle className="w-4 h-4 text-white" />
@@ -501,8 +501,8 @@ export default function Index() {
                   </div>
                 </div>
 
-                <div className="absolute top-16 right-8 transform rotate-12 animate-float delay-1000">
-                  <div className="bg-gradient-to-br from-coral-100 to-coral-200 rounded-2xl p-4 shadow-lg border border-coral-300/50 backdrop-blur-sm">
+                <div className="absolute top-16 right-8 transform rotate-12 animate-gentle-bounce delay-1000">
+                  <div className="bg-gradient-to-br from-coral-100 to-coral-200 rounded-2xl p-4 shadow-lg border border-coral-300/50 backdrop-blur-sm hover:scale-105 transition-transform duration-300 cursor-pointer">
                     <div className="flex items-center gap-2">
                       <div className="w-8 h-8 bg-coral-500 rounded-full flex items-center justify-center">
                         <ShoppingCart className="w-4 h-4 text-white" />
@@ -517,8 +517,8 @@ export default function Index() {
                   </div>
                 </div>
 
-                <div className="absolute bottom-8 left-8 transform -rotate-6 animate-float delay-2000">
-                  <div className="bg-gradient-to-br from-lavender-100 to-lavender-200 rounded-2xl p-4 shadow-lg border border-lavender-300/50 backdrop-blur-sm">
+                <div className="absolute bottom-8 left-8 transform -rotate-6 animate-gentle-bounce delay-2000">
+                  <div className="bg-gradient-to-br from-lavender-100 to-lavender-200 rounded-2xl p-4 shadow-lg border border-lavender-300/50 backdrop-blur-sm hover:scale-105 transition-transform duration-300 cursor-pointer">
                     <div className="flex items-center gap-2">
                       <div className="w-8 h-8 bg-lavender-500 rounded-full flex items-center justify-center">
                         <Heart className="w-4 h-4 text-white" />
