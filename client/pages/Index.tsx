@@ -62,6 +62,7 @@ export default function Index() {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [activeMockup, setActiveMockup] = useState(0);
   const [selectedDemo, setSelectedDemo] = useState<string | null>(null);
+  const [demoType, setDemoType] = useState<"roommate" | "couples">("roommate");
 
   const handleEmailSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -399,7 +400,7 @@ export default function Index() {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="text-center lg:text-left max-w-2xl mx-auto lg:mx-0">
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-8 leading-tight tracking-tight">
-                Live better together — from your first dorm to your forever
+                Live better together �� from your first dorm to your forever
                 home.
               </h1>
 
@@ -770,8 +771,13 @@ export default function Index() {
               <div className="space-y-6">
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button
-                    className="h-14 px-8 bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white rounded-2xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+                    className={`h-14 px-8 rounded-2xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 ${
+                      demoType === "roommate"
+                        ? "bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white"
+                        : "bg-white/20 text-blue-100 hover:bg-white/30"
+                    }`}
                     onClick={() => {
+                      setDemoType("roommate");
                       const demoPhone = document.querySelector(".demo-phone");
                       if (demoPhone) {
                         demoPhone.scrollIntoView({
@@ -781,16 +787,28 @@ export default function Index() {
                       }
                     }}
                   >
-                    <Smartphone className="w-5 h-5 mr-2" />
-                    Start Demo
+                    <Users className="w-5 h-5 mr-2" />
+                    Roommate Demo
                   </Button>
                   <Button
-                    variant="outline"
-                    className="h-14 px-8 border-2 border-blue-300 text-blue-100 hover:bg-blue-500/20 rounded-2xl font-semibold backdrop-blur-sm"
-                    onClick={() => window.open("/admin", "_blank")}
+                    className={`h-14 px-8 rounded-2xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 ${
+                      demoType === "couples"
+                        ? "bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white"
+                        : "bg-white/20 text-blue-100 hover:bg-white/30"
+                    }`}
+                    onClick={() => {
+                      setDemoType("couples");
+                      const demoPhone = document.querySelector(".demo-phone");
+                      if (demoPhone) {
+                        demoPhone.scrollIntoView({
+                          behavior: "smooth",
+                          block: "center",
+                        });
+                      }
+                    }}
                   >
-                    <Shield className="w-5 h-5 mr-2" />
-                    Admin Demo
+                    <Heart className="w-5 h-5 mr-2" />
+                    Couples Demo
                   </Button>
                 </div>
 
