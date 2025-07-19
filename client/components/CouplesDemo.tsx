@@ -571,7 +571,7 @@ export default function CouplesDemo({ activeTab = "home" }: CouplesDemoProps) {
 
               <Card
                 className="border-0 bg-white/70 shadow-sm hover:shadow-md transition-all cursor-pointer group"
-                onClick={() => navigateToDetail("shared")}
+                onClick={() => navigateToDetail("goals")}
               >
                 <CardContent className="p-3 text-center">
                   <div className="w-10 h-10 bg-gradient-to-br from-emerald-100 to-emerald-200 rounded-lg flex items-center justify-center mx-auto mb-2 group-hover:scale-110 transition-transform">
