@@ -621,12 +621,18 @@ export default function Index() {
 
               <p
                 className={`text-xl mb-8 leading-relaxed font-light transition-all duration-700 ${
-                  demoType === "couples" ? "text-rose-100" : "text-blue-100"
+                  demoType === "couples"
+                    ? "text-rose-100"
+                    : demoType === "student"
+                      ? "text-emerald-100"
+                      : "text-blue-100"
                 }`}
               >
                 {demoType === "couples"
                   ? "Discover gentle communication tools and relationship harmony features. See how CoHabitly strengthens bonds with AI-powered insights and thoughtful design."
-                  : "Tap, scroll, and interact with a fully functional roommate experience. See how CoHabitly transforms shared living with real features and smart AI."}
+                  : demoType === "student"
+                    ? "Experience seamless dorm life management with RA contact, transfer requests, and community features designed specifically for student housing."
+                    : "Tap, scroll, and interact with a fully functional roommate experience. See how CoHabitly transforms shared living with real features and smart AI."}
               </p>
 
               <div className="space-y-6">
