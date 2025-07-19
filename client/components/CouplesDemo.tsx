@@ -1489,7 +1489,7 @@ export default function CouplesDemo() {
                 {
                   key: "communicate",
                   icon: MessageCircle,
-                  label: "Safe Talk",
+                  label: "HeartSpace",
                   color: "emerald",
                 },
                 {
