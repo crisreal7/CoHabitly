@@ -1556,7 +1556,10 @@ export default function Index() {
       </section>
 
       {/* 10. Email Capture & Pilot CTA (Simplified) */}
-      <section className="px-6 py-20 bg-gradient-to-br from-blue-50/40 via-white to-purple-50/30">
+      <section
+        id="early-access-section"
+        className="px-6 py-20 bg-gradient-to-br from-blue-50/40 via-white to-purple-50/30"
+      >
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-8">
             Ready to Transform Shared Living?
