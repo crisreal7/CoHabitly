@@ -631,7 +631,7 @@ export default function Index() {
                   <Button
                     className={`h-14 px-8 rounded-2xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 ${
                       demoType === "roommate"
-                        ? "bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white"
+                        ? "bg-gradient-to-r from-sage-600 to-mint-600 hover:from-sage-700 hover:to-mint-700 text-white"
                         : "bg-white/20 text-blue-100 hover:bg-white/30"
                     }`}
                     onClick={() => {
