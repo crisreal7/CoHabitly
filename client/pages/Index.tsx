@@ -624,7 +624,7 @@ export default function Index() {
             </p>
           </div>
 
-                    {/* Horizontal scroll cards */}
+          {/* Horizontal scroll cards */}
           <HoverScrollContainer className="py-4">
             <div className="flex gap-8 pb-8 min-w-max px-8">
               <Card className="flex-none w-80 border-2 border-blue-200 hover:border-blue-300 hover:shadow-xl transition-all duration-300 group">
@@ -727,7 +727,7 @@ export default function Index() {
                 </CardContent>
               </Card>
             </div>
-          </div>
+          </HoverScrollContainer>
         </div>
       </section>
 
