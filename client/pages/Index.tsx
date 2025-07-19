@@ -645,11 +645,11 @@ export default function Index() {
                 </div>
 
                 {/* Ambient floating particles */}
-                <div className="absolute top-8 left-8 w-2 h-2 bg-brand-400 rounded-full animate-pulse opacity-60"></div>
-                <div className="absolute top-20 right-16 w-1 h-1 bg-sage-400 rounded-full animate-pulse delay-500 opacity-70"></div>
-                <div className="absolute bottom-16 right-12 w-2 h-2 bg-lavender-400 rounded-full animate-pulse delay-1000 opacity-50"></div>
-                <div className="absolute bottom-8 left-16 w-1 h-1 bg-coral-400 rounded-full animate-pulse delay-1500 opacity-60"></div>
-                <div className="absolute top-1/3 left-4 w-1 h-1 bg-mint-400 rounded-full animate-pulse delay-2000 opacity-80"></div>
+                <div className="absolute top-8 left-8 w-2 h-2 bg-blue-400 rounded-full animate-pulse opacity-60"></div>
+                <div className="absolute top-20 right-16 w-1 h-1 bg-emerald-400 rounded-full animate-pulse delay-500 opacity-70"></div>
+                <div className="absolute bottom-16 right-12 w-2 h-2 bg-rose-400 rounded-full animate-pulse delay-1000 opacity-50"></div>
+                <div className="absolute bottom-8 left-16 w-1 h-1 bg-indigo-400 rounded-full animate-pulse delay-1500 opacity-60"></div>
+                <div className="absolute top-1/3 left-4 w-1 h-1 bg-purple-400 rounded-full animate-pulse delay-2000 opacity-80"></div>
               </div>
             </div>
           </div>
