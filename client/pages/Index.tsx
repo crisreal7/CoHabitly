@@ -727,6 +727,115 @@ export default function Index() {
         </div>
       </section>
 
+      {/* Interactive Live Demo */}
+      <section
+        id="interactive-demo"
+        className="px-6 py-32 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 relative overflow-hidden"
+      >
+        {/* Animated background elements */}
+        <div className="absolute inset-0">
+          <div className="absolute top-20 left-10 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-20 right-10 w-80 h-80 bg-purple-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute top-1/2 left-1/3 w-64 h-64 bg-indigo-500/20 rounded-full blur-2xl animate-pulse delay-500"></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            {/* Left side - Demo description */}
+            <div className="text-center lg:text-left">
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/20 rounded-full mb-8 border border-blue-400/30">
+                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                <span className="text-blue-200 text-sm font-medium">
+                  Live Interactive Demo
+                </span>
+              </div>
+
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8 leading-tight">
+                Experience CoHabitly
+                <span className="text-transparent bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text block">
+                  in Action
+                </span>
+              </h2>
+
+              <p className="text-xl text-blue-100 mb-8 leading-relaxed font-light">
+                Tap, scroll, and interact with a fully functional roommate
+                experience. See how CoHabitly transforms shared living with real
+                features and smart AI.
+              </p>
+
+              <div className="space-y-6">
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Button
+                    className="h-14 px-8 bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white rounded-2xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+                    onClick={() => {
+                      const demoPhone = document.querySelector(".demo-phone");
+                      if (demoPhone) {
+                        demoPhone.scrollIntoView({
+                          behavior: "smooth",
+                          block: "center",
+                        });
+                      }
+                    }}
+                  >
+                    <Smartphone className="w-5 h-5 mr-2" />
+                    Start Demo
+                  </Button>
+                  <Button
+                    variant="outline"
+                    className="h-14 px-8 border-2 border-blue-300 text-blue-100 hover:bg-blue-500/20 rounded-2xl font-semibold backdrop-blur-sm"
+                    onClick={() => window.open("/admin", "_blank")}
+                  >
+                    <Shield className="w-5 h-5 mr-2" />
+                    Admin Demo
+                  </Button>
+                </div>
+
+                <div className="grid grid-cols-2 gap-4 text-sm">
+                  <div className="flex items-center gap-2 text-blue-200">
+                    <CheckCircle className="w-4 h-4 text-green-400" />
+                    <span>Real-time vibe tracking</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-blue-200">
+                    <CheckCircle className="w-4 h-4 text-green-400" />
+                    <span>Smart chore management</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-blue-200">
+                    <CheckCircle className="w-4 h-4 text-green-400" />
+                    <span>Anonymous feedback</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-blue-200">
+                    <CheckCircle className="w-4 h-4 text-green-400" />
+                    <span>AI-powered mediation</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right side - Interactive iPhone */}
+            <div className="flex justify-center lg:justify-end">
+              <div className="demo-phone transform hover:scale-105 transition-all duration-500 hover:rotate-1">
+                <InteractiveDemo />
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom instruction */}
+          <div className="text-center mt-16">
+            <div className="inline-flex items-center gap-3 px-6 py-3 bg-white/10 backdrop-blur-sm rounded-full border border-white/20">
+              <div className="flex gap-1">
+                <div className="w-2 h-2 bg-blue-400 rounded-full animate-bounce"></div>
+                <div className="w-2 h-2 bg-purple-400 rounded-full animate-bounce delay-100"></div>
+                <div className="w-2 h-2 bg-pink-400 rounded-full animate-bounce delay-200"></div>
+              </div>
+              <span className="text-white font-medium">
+                Tap the tabs to explore different features
+              </span>
+              <ChevronRight className="w-4 h-4 text-white/70" />
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* 4. Key Features (Simplified & Interactive) */}
       <section className="px-6 py-20 bg-white">
         <div className="max-w-6xl mx-auto">
