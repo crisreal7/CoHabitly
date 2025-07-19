@@ -1507,10 +1507,17 @@ export default function InteractiveDemo({
                   </Button>
                   <Button
                     variant="outline"
-                    className="w-full justify-start border-red-200 text-red-700 hover:bg-red-50 h-8 text-xs"
+                    className="w-full justify-start border-blue-200 text-blue-700 hover:bg-blue-50 h-8 text-xs"
                   >
-                    <Flag className="w-3 h-3 mr-2" />
-                    Escalate to RA
+                    <Users className="w-3 h-3 mr-2" />
+                    Start group discussion
+                  </Button>
+                  <Button
+                    variant="outline"
+                    className="w-full justify-start border-purple-200 text-purple-700 hover:bg-purple-50 h-8 text-xs"
+                  >
+                    <Calendar className="w-3 h-3 mr-2" />
+                    Propose house meeting
                   </Button>
                 </div>
               </CardContent>
