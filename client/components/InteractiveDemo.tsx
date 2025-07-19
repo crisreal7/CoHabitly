@@ -841,7 +841,7 @@ export default function InteractiveDemo({
             <Card className="border-0 bg-white shadow-sm">
               <CardContent className="p-3">
                 <Button
-                  className="w-full h-9 bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 text-white text-sm"
+                  className="w-full h-9 bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 text-white text-sm button-feedback"
                   onClick={() => navigateToCompose("grocery")}
                 >
                   <Plus className="w-4 h-4 mr-2" />
