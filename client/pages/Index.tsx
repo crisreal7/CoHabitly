@@ -463,18 +463,21 @@ export default function Index() {
                 </div>
 
                 {/* Secondary CTAs */}
-                <div className="flex flex-col sm:flex-row gap-4 items-center justify-center lg:justify-start">
-                  <Button className="h-14 px-8 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white rounded-2xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300">
-                    Request Early Access
-                  </Button>
-
+                <div className="flex justify-center lg:justify-start">
                   <Button
-                    variant="outline"
-                    className="h-14 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 rounded-2xl font-semibold flex items-center gap-2"
+                    className="h-14 px-8 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white rounded-2xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+                    onClick={() => {
+                      const earlyAccessSection = document.querySelector(
+                        "#early-access-section",
+                      );
+                      if (earlyAccessSection) {
+                        earlyAccessSection.scrollIntoView({
+                          behavior: "smooth",
+                        });
+                      }
+                    }}
                   >
-                    <Building className="w-5 h-5" />
-                    Universities: Launch a Pilot
-                    <ArrowRight className="w-4 h-4" />
+                    Request Early Access
                   </Button>
                 </div>
               </div>
