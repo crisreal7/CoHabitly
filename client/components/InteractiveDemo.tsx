@@ -876,13 +876,17 @@ export default function InteractiveDemo() {
 
   return (
     <div
-      className="relative mx-auto"
+      className="relative mx-auto group"
       style={{ width: "375px", height: "812px" }}
     >
       {/* iPhone Frame */}
-      <div className="relative w-full h-full bg-gradient-to-br from-gray-900 to-black rounded-[3rem] p-2 shadow-2xl">
+      <div className="relative w-full h-full bg-gradient-to-br from-gray-900 to-black rounded-[3rem] p-2 shadow-2xl group-hover:shadow-3xl transition-all duration-500 group-hover:scale-[1.02]">
+        {/* Subtle glow effect */}
+        <div className="absolute -inset-2 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 rounded-[3.5rem] blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
         {/* Screen */}
-        <div className="w-full h-full bg-black rounded-[2.5rem] overflow-hidden relative">
+        <div className="w-full h-full bg-black rounded-[2.5rem] overflow-hidden relative z-10">
+          {/* Screen shimmer effect */}
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out pointer-events-none"></div>
           {/* Dynamic Island */}
           <div className="absolute top-2 left-1/2 transform -translate-x-1/2 w-32 h-6 bg-black rounded-full z-50"></div>
 
@@ -916,10 +920,12 @@ export default function InteractiveDemo() {
 
           {/* Tab Content */}
           <div
-            className="flex-1 bg-gray-50 overflow-y-auto"
+            className="flex-1 bg-gray-50 overflow-y-auto transition-all duration-300"
             style={{ height: "calc(100% - 180px)" }}
           >
-            {renderTabContent()}
+            <div className="transform transition-all duration-300 group-hover:scale-[0.98]">
+              {renderTabContent()}
+            </div>
           </div>
 
           {/* Bottom Navigation */}
@@ -934,10 +940,10 @@ export default function InteractiveDemo() {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id as TabType)}
-                  className={`flex flex-col items-center gap-1 px-3 py-2 rounded-lg transition-all duration-200 ${
+                  className={`flex flex-col items-center gap-1 px-3 py-2 rounded-lg transition-all duration-200 hover:scale-110 ${
                     activeTab === tab.id
-                      ? "bg-blue-100 text-blue-600 scale-105"
-                      : "text-gray-500 hover:text-gray-700 hover:bg-gray-100"
+                      ? "bg-blue-100 text-blue-600 scale-105 shadow-md"
+                      : "text-gray-500 hover:text-gray-700 hover:bg-gray-100 hover:shadow-sm"
                   }`}
                 >
                   <tab.icon className="w-5 h-5" />
@@ -949,12 +955,27 @@ export default function InteractiveDemo() {
         </div>
       </div>
 
-      {/* Floating indicators */}
-      <div className="absolute -top-4 -left-4 w-8 h-8 bg-gradient-to-br from-green-500 to-emerald-500 rounded-full flex items-center justify-center animate-pulse">
+      {/* Enhanced Floating indicators */}
+      <div className="absolute -top-4 -left-4 w-8 h-8 bg-gradient-to-br from-green-500 to-emerald-500 rounded-full flex items-center justify-center animate-pulse shadow-lg group-hover:shadow-xl group-hover:scale-125 transition-all duration-300">
         <div className="w-3 h-3 bg-white rounded-full"></div>
       </div>
-      <div className="absolute -bottom-4 -right-4 w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center animate-pulse delay-1000">
+      <div className="absolute -bottom-4 -right-4 w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center animate-pulse delay-1000 shadow-lg group-hover:shadow-xl group-hover:scale-125 transition-all duration-300">
         <Sparkles className="w-5 h-5 text-white" />
+      </div>
+
+      {/* Additional floating elements for premium feel */}
+      <div
+        className="absolute top-1/4 -right-8 w-6 h-6 bg-gradient-to-br from-blue-400 to-indigo-400 rounded-full opacity-60 animate-bounce group-hover:opacity-100 transition-opacity duration-300"
+        style={{ animationDelay: "0.5s" }}
+      ></div>
+      <div
+        className="absolute bottom-1/3 -left-6 w-4 h-4 bg-gradient-to-br from-pink-400 to-rose-400 rounded-full opacity-60 animate-bounce group-hover:opacity-100 transition-opacity duration-300"
+        style={{ animationDelay: "1s" }}
+      ></div>
+
+      {/* Interactive touch ripple effect */}
+      <div className="absolute inset-0 rounded-[3rem] pointer-events-none">
+        <div className="absolute top-1/2 left-1/2 w-4 h-4 bg-blue-400/30 rounded-full transform -translate-x-1/2 -translate-y-1/2 scale-0 group-hover:scale-[20] transition-transform duration-1000 ease-out"></div>
       </div>
     </div>
   );
