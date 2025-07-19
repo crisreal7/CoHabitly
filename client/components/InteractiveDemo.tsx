@@ -852,20 +852,19 @@ export default function InteractiveDemo({
 
             {/* Grocery List */}
             <Card className="border-0 bg-white shadow-md">
-              <CardContent className="p-6">
-                <div className="flex items-center justify-between mb-4">
+              <CardContent className="p-4">
+                <div className="flex items-center justify-between mb-3">
                   <h3 className="text-lg font-bold text-gray-900">
-                    Shared Shopping List
+                    Shopping List
                   </h3>
                   <Badge
                     variant="secondary"
-                    className="bg-blue-100 text-blue-700"
+                    className="bg-blue-100 text-blue-700 text-xs"
                   >
-                    {groceryItems.filter((item) => !item.purchased).length}{" "}
-                    items left
+                    {groceryItems.filter((item) => !item.purchased).length} left
                   </Badge>
                 </div>
-                <div className="space-y-3">
+                <div className="space-y-2">
                   {groceryItems.map((item) => (
                     <div
                       key={item.id}
@@ -875,12 +874,12 @@ export default function InteractiveDemo({
                           : item.priority === "medium"
                             ? "border-l-amber-500 bg-amber-50"
                             : "border-l-green-500 bg-green-50"
-                      } rounded-r-xl transition-all ${item.purchased ? "opacity-60" : "hover:shadow-sm"}`}
+                      } rounded-r-lg transition-all ${item.purchased ? "opacity-60" : "hover:shadow-sm"}`}
                     >
-                      <div className="flex items-center justify-between p-4">
-                        <div className="flex items-center gap-3 flex-1">
+                      <div className="flex items-center justify-between p-3">
+                        <div className="flex items-center gap-2 flex-1 min-w-0">
                           <div
-                            className={`w-6 h-6 rounded-full border-2 flex items-center justify-center cursor-pointer transition-all ${
+                            className={`w-5 h-5 rounded-full border-2 flex items-center justify-center cursor-pointer transition-all flex-shrink-0 ${
                               item.purchased
                                 ? "bg-emerald-500 border-emerald-500"
                                 : "border-gray-300 hover:border-emerald-400"
@@ -888,25 +887,24 @@ export default function InteractiveDemo({
                             onClick={() => toggleGroceryItem(item.id)}
                           >
                             {item.purchased && (
-                              <Check className="w-4 h-4 text-white" />
+                              <Check className="w-3 h-3 text-white" />
                             )}
                           </div>
-                          <div className="flex-1">
+                          <div className="flex-1 min-w-0">
                             <div
-                              className={`font-medium ${item.purchased ? "line-through text-gray-500" : "text-gray-900"}`}
+                              className={`font-medium text-sm ${item.purchased ? "line-through text-gray-500" : "text-gray-900"} truncate`}
                             >
                               {item.name}
                             </div>
-                            <div className="text-sm text-gray-500">
-                              Added by {item.addedBy} • Assigned to{" "}
-                              {item.assignedTo}
+                            <div className="text-xs text-gray-500 truncate">
+                              {item.addedBy} → {item.assignedTo}
                               {item.notes && ` • ${item.notes}`}
                             </div>
                           </div>
                         </div>
-                        <div className="text-right">
+                        <div className="text-right flex-shrink-0">
                           <div
-                            className={`font-bold ${item.purchased ? "text-gray-500" : "text-gray-900"}`}
+                            className={`font-bold text-sm ${item.purchased ? "text-gray-500" : "text-gray-900"}`}
                           >
                             ${item.price.toFixed(2)}
                           </div>
@@ -927,12 +925,12 @@ export default function InteractiveDemo({
                     </div>
                   ))}
                 </div>
-                <div className="mt-6 pt-4 border-t border-gray-200 bg-gray-50 rounded-xl p-4">
+                <div className="mt-4 pt-3 border-t border-gray-200 bg-gray-50 rounded-lg p-3">
                   <div className="flex justify-between items-center">
-                    <span className="font-bold text-gray-700">
-                      Total Remaining
+                    <span className="font-bold text-gray-700 text-sm">
+                      Remaining
                     </span>
-                    <span className="text-xl font-bold text-gray-900">
+                    <span className="text-lg font-bold text-gray-900">
                       $
                       {groceryItems
                         .filter((item) => !item.purchased)
