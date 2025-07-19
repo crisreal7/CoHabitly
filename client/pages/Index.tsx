@@ -700,22 +700,64 @@ export default function Index() {
                 </div>
 
                 <div className="grid grid-cols-2 gap-4 text-sm">
-                  <div className="flex items-center gap-2 text-blue-200">
-                    <CheckCircle className="w-4 h-4 text-green-400" />
-                    <span>Real-time vibe tracking</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-blue-200">
-                    <CheckCircle className="w-4 h-4 text-green-400" />
-                    <span>Smart chore management</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-blue-200">
-                    <CheckCircle className="w-4 h-4 text-green-400" />
-                    <span>Anonymous feedback</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-blue-200">
-                    <CheckCircle className="w-4 h-4 text-green-400" />
-                    <span>AI-powered mediation</span>
-                  </div>
+                  {demoType === "student" ? (
+                    <>
+                      <div className="flex items-center gap-2 text-emerald-200">
+                        <CheckCircle className="w-4 h-4 text-green-400" />
+                        <span>Easy dorm transfer requests</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-emerald-200">
+                        <CheckCircle className="w-4 h-4 text-green-400" />
+                        <span>One-tap RA contact</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-emerald-200">
+                        <CheckCircle className="w-4 h-4 text-green-400" />
+                        <span>Anonymous incident reporting</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-emerald-200">
+                        <CheckCircle className="w-4 h-4 text-green-400" />
+                        <span>Dorm vibe check-ins</span>
+                      </div>
+                    </>
+                  ) : demoType === "couples" ? (
+                    <>
+                      <div className="flex items-center gap-2 text-rose-200">
+                        <CheckCircle className="w-4 h-4 text-green-400" />
+                        <span>HeartSpace messaging</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-rose-200">
+                        <CheckCircle className="w-4 h-4 text-green-400" />
+                        <span>AI relationship support</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-rose-200">
+                        <CheckCircle className="w-4 h-4 text-green-400" />
+                        <span>Scheduled love notes</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-rose-200">
+                        <CheckCircle className="w-4 h-4 text-green-400" />
+                        <span>Shared goal tracking</span>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div className="flex items-center gap-2 text-blue-200">
+                        <CheckCircle className="w-4 h-4 text-green-400" />
+                        <span>Real-time vibe tracking</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-blue-200">
+                        <CheckCircle className="w-4 h-4 text-green-400" />
+                        <span>Smart chore management</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-blue-200">
+                        <CheckCircle className="w-4 h-4 text-green-400" />
+                        <span>Anonymous feedback</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-blue-200">
+                        <CheckCircle className="w-4 h-4 text-green-400" />
+                        <span>AI-powered mediation</span>
+                      </div>
+                    </>
+                  )}
                 </div>
               </div>
             </div>
