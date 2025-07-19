@@ -388,7 +388,7 @@ export default function Index() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50/30 font-['Inter',_'DM_Sans',_system-ui,_sans-serif]">
+        <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50/30 font-sans">
       {/* 1. Hero Section — Your Life-Long Living Companion */}
       <section className="relative px-6 py-20 md:py-32 lg:py-40 overflow-hidden">
         {/* Animated background mist */}
