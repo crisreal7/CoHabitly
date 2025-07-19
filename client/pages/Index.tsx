@@ -588,16 +588,16 @@ export default function Index() {
 
                 {/* Floating capability cards */}
                 <div className="absolute top-0 left-12 transform -rotate-12 animate-gentle-bounce">
-                  <div className="bg-gradient-to-br from-mint-100 to-mint-200 rounded-2xl p-4 shadow-lg border border-mint-300/50 backdrop-blur-sm hover:scale-105 transition-transform duration-300 cursor-pointer">
+                  <div className="bg-gradient-to-br from-blue-100 to-blue-200 rounded-2xl p-4 shadow-lg border border-blue-300/50 backdrop-blur-sm hover:scale-105 transition-transform duration-300 cursor-pointer">
                     <div className="flex items-center gap-2">
-                      <div className="w-8 h-8 bg-mint-500 rounded-full flex items-center justify-center">
+                      <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
                         <MessageCircle className="w-4 h-4 text-white" />
                       </div>
                       <div>
-                        <p className="text-sm font-semibold text-mint-800">
+                        <p className="text-sm font-semibold text-blue-800">
                           Vibe Check
                         </p>
-                        <p className="text-xs text-mint-600">
+                        <p className="text-xs text-blue-600">
                           Anonymous feedback
                         </p>
                       </div>
@@ -606,34 +606,32 @@ export default function Index() {
                 </div>
 
                 <div className="absolute top-16 right-8 transform rotate-12 animate-gentle-bounce delay-1000">
-                  <div className="bg-gradient-to-br from-coral-100 to-coral-200 rounded-2xl p-4 shadow-lg border border-coral-300/50 backdrop-blur-sm hover:scale-105 transition-transform duration-300 cursor-pointer">
+                  <div className="bg-gradient-to-br from-emerald-100 to-emerald-200 rounded-2xl p-4 shadow-lg border border-emerald-300/50 backdrop-blur-sm hover:scale-105 transition-transform duration-300 cursor-pointer">
                     <div className="flex items-center gap-2">
-                      <div className="w-8 h-8 bg-coral-500 rounded-full flex items-center justify-center">
+                      <div className="w-8 h-8 bg-emerald-500 rounded-full flex items-center justify-center">
                         <ShoppingCart className="w-4 h-4 text-white" />
                       </div>
                       <div>
-                        <p className="text-sm font-semibold text-coral-800">
+                        <p className="text-sm font-semibold text-emerald-800">
                           Shared Groceries
                         </p>
-                        <p className="text-xs text-coral-600">Smart lists</p>
+                        <p className="text-xs text-emerald-600">Smart lists</p>
                       </div>
                     </div>
                   </div>
                 </div>
 
                 <div className="absolute bottom-8 left-8 transform -rotate-6 animate-gentle-bounce delay-2000">
-                  <div className="bg-gradient-to-br from-lavender-100 to-lavender-200 rounded-2xl p-4 shadow-lg border border-lavender-300/50 backdrop-blur-sm hover:scale-105 transition-transform duration-300 cursor-pointer">
+                  <div className="bg-gradient-to-br from-rose-100 to-rose-200 rounded-2xl p-4 shadow-lg border border-rose-300/50 backdrop-blur-sm hover:scale-105 transition-transform duration-300 cursor-pointer">
                     <div className="flex items-center gap-2">
-                      <div className="w-8 h-8 bg-lavender-500 rounded-full flex items-center justify-center">
+                      <div className="w-8 h-8 bg-rose-500 rounded-full flex items-center justify-center">
                         <Heart className="w-4 h-4 text-white" />
                       </div>
                       <div>
-                        <p className="text-sm font-semibold text-lavender-800">
+                        <p className="text-sm font-semibold text-rose-800">
                           HeartSpace
                         </p>
-                        <p className="text-xs text-lavender-600">
-                          AI mediation
-                        </p>
+                        <p className="text-xs text-rose-600">AI mediation</p>
                       </div>
                     </div>
                   </div>
