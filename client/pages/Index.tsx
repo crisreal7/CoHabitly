@@ -477,7 +477,7 @@ export default function Index() {
               <div className="relative w-96 h-96">
                 {/* Central pulsing ring animation */}
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-64 h-64 border-4 border-sage-300 rounded-full animate-pulse opacity-30"></div>
+                  <div className="w-64 h-64 border-4 border-sage-300 rounded-full animate-ripple opacity-30"></div>
                   <div className="absolute w-48 h-48 border-2 border-brand-400 rounded-full animate-pulse delay-300 opacity-40"></div>
                   <div className="absolute w-32 h-32 border-2 border-lavender-400 rounded-full animate-pulse delay-600 opacity-50"></div>
                 </div>
