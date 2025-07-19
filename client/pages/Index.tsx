@@ -138,6 +138,37 @@ export default function Index() {
         border: "rose-200",
       },
     },
+    {
+      id: "C2",
+      phase: "Couples 2",
+      title: "Shared Goals & Milestones",
+      description:
+        "Track relationship goals and celebrate achievements together",
+      status: "Coming Soon",
+      timeline: "Q4 2024",
+      progress: 30,
+      color: {
+        primary: "pink-500",
+        secondary: "pink-600",
+        bg: "pink-50",
+        border: "pink-200",
+      },
+    },
+    {
+      id: "C3",
+      phase: "Couples 3",
+      title: "Relationship Insights",
+      description: "Deep analytics and personalized recommendations for growth",
+      status: "Planned",
+      timeline: "Q1 2025",
+      progress: 10,
+      color: {
+        primary: "purple-500",
+        secondary: "purple-600",
+        bg: "purple-50",
+        border: "purple-200",
+      },
+    },
   ];
 
   const getCurrentJourney = () => {
@@ -252,7 +283,13 @@ export default function Index() {
                       <Button
                         variant="ghost"
                         className="w-full justify-start h-12 text-left hover:bg-indigo-50"
-                        onClick={() => window.open("/admin", "_blank")}
+                        onClick={() => {
+                          const adminSection =
+                            document.querySelector("#admin-section");
+                          if (adminSection) {
+                            adminSection.scrollIntoView({ behavior: "smooth" });
+                          }
+                        }}
                       >
                         <Shield className="w-5 h-5 mr-3 text-indigo-600" />
                         Admin Dashboard
@@ -487,6 +524,397 @@ export default function Index() {
                 Tap the tabs to explore different features
               </span>
               <ChevronRight className="w-4 h-4 text-white/70" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Roadmap Section */}
+      <section className="px-6 py-32 bg-gradient-to-br from-gray-50 via-white to-blue-50/30 relative overflow-hidden">
+        <div className="absolute inset-0">
+          <div className="absolute top-20 left-10 w-96 h-96 bg-gradient-to-br from-blue-200/20 to-purple-200/20 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-20 right-10 w-80 h-80 bg-gradient-to-br from-purple-200/20 to-blue-200/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-100 rounded-full mb-8">
+              <TrendingUp className="w-4 h-4 text-blue-600" />
+              <span className="text-blue-700 text-sm font-medium">
+                Product Roadmap
+              </span>
+            </div>
+
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-8 leading-tight">
+              The Journey to Better
+              <span className="text-transparent bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text block">
+                Shared Living
+              </span>
+            </h2>
+
+            <p className="text-xl text-gray-600 mb-12 leading-relaxed font-light max-w-3xl mx-auto">
+              From college dormitories to forever homes, we're building the
+              future of cohabitation. See what's live now and what's coming
+              next.
+            </p>
+
+            {/* View Toggle */}
+            <div className="flex flex-wrap justify-center gap-4 mb-8">
+              <Button
+                variant={roadmapView === "student" ? "default" : "outline"}
+                className={`h-12 px-6 rounded-2xl font-semibold transition-all duration-300 ${
+                  roadmapView === "student"
+                    ? "bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white shadow-lg"
+                    : "border-2 border-emerald-200 text-emerald-700 hover:bg-emerald-50"
+                }`}
+                onClick={() => handleViewToggle("student")}
+                disabled={isTransitioning}
+              >
+                <GraduationCap className="w-5 h-5 mr-2" />
+                Student Journey
+              </Button>
+              <Button
+                variant={roadmapView === "admin" ? "default" : "outline"}
+                className={`h-12 px-6 rounded-2xl font-semibold transition-all duration-300 ${
+                  roadmapView === "admin"
+                    ? "bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white shadow-lg"
+                    : "border-2 border-indigo-200 text-indigo-700 hover:bg-indigo-50"
+                }`}
+                onClick={() => handleViewToggle("admin")}
+                disabled={isTransitioning}
+              >
+                <Shield className="w-5 h-5 mr-2" />
+                Admin Features
+              </Button>
+              <Button
+                variant={roadmapView === "couples" ? "default" : "outline"}
+                className={`h-12 px-6 rounded-2xl font-semibold transition-all duration-300 ${
+                  roadmapView === "couples"
+                    ? "bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white shadow-lg"
+                    : "border-2 border-rose-200 text-rose-700 hover:bg-rose-50"
+                }`}
+                onClick={() => handleViewToggle("couples")}
+                disabled={isTransitioning}
+              >
+                <Heart className="w-5 h-5 mr-2" />
+                Couples Path
+              </Button>
+            </div>
+          </div>
+
+          {/* Roadmap Timeline */}
+          <div
+            className={`transition-all duration-500 ${
+              isTransitioning
+                ? "opacity-0 transform scale-95"
+                : "opacity-100 transform scale-100"
+            }`}
+          >
+            <HoverScrollContainer className="py-4">
+              <div className="flex gap-8 pb-8 min-w-max px-8">
+                {getCurrentJourney().map((stage, index) => (
+                  <div key={stage.id} className="flex-none w-80 relative group">
+                    {/* Timeline dot */}
+                    <div
+                      className={`absolute -top-2 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-${stage.color.primary} rounded-full border-4 border-white shadow-lg z-10 group-hover:scale-125 transition-transform duration-300 flex items-center justify-center`}
+                    >
+                      <div className="w-2 h-2 bg-white rounded-full"></div>
+                    </div>
+
+                    {/* Stage card */}
+                    <Card className="mt-8 border-2 border-gray-200 hover:border-gray-300 hover:shadow-xl transition-all duration-300 group-hover:scale-105">
+                      <CardContent className="p-6">
+                        <div className="flex items-center gap-3 mb-4">
+                          <div
+                            className={`w-12 h-12 bg-gradient-to-br from-${stage.color.primary} to-${stage.color.secondary} rounded-xl flex items-center justify-center`}
+                          >
+                            {index === 0 && (
+                              <Target className="w-6 h-6 text-white" />
+                            )}
+                            {index === 1 && (
+                              <Zap className="w-6 h-6 text-white" />
+                            )}
+                            {index === 2 && (
+                              <Users className="w-6 h-6 text-white" />
+                            )}
+                            {index === 3 && (
+                              <Globe className="w-6 h-6 text-white" />
+                            )}
+                            {index === 4 && (
+                              <Heart className="w-6 h-6 text-white" />
+                            )}
+                            {index === 5 && (
+                              <Building className="w-6 h-6 text-white" />
+                            )}
+                            {index === 6 && (
+                              <Sparkles className="w-6 h-6 text-white" />
+                            )}
+                          </div>
+                          <div>
+                            <div className="flex items-center gap-2 mb-1">
+                              <span
+                                className={`text-xs font-medium text-${stage.color.primary} bg-${stage.color.bg} px-2 py-1 rounded-full`}
+                              >
+                                {stage.phase}
+                              </span>
+                              <span
+                                className={`text-xs font-medium text-gray-600 bg-gray-100 px-2 py-1 rounded-full`}
+                              >
+                                {stage.status}
+                              </span>
+                            </div>
+                            <h3 className="font-bold text-lg text-gray-900">
+                              {stage.title}
+                            </h3>
+                          </div>
+                        </div>
+
+                        <p className="text-gray-600 mb-4 leading-relaxed">
+                          {stage.description}
+                        </p>
+
+                        <div className="space-y-3">
+                          <div
+                            className={`w-full bg-${stage.color.bg} rounded-full h-2 overflow-hidden`}
+                          >
+                            <div
+                              className={`bg-gradient-to-r from-${stage.color.primary} to-${stage.color.secondary} h-full rounded-full transition-all duration-500`}
+                              style={{ width: `${stage.progress}%` }}
+                            ></div>
+                          </div>
+                          <div className="flex justify-between text-sm">
+                            <span className="text-gray-500">
+                              {stage.timeline}
+                            </span>
+                            <span
+                              className={`text-${stage.color.primary} font-semibold`}
+                            >
+                              {stage.progress}%
+                            </span>
+                          </div>
+                        </div>
+
+                        <div className="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            className={`w-full border-${stage.color.primary} text-${stage.color.primary} hover:bg-${stage.color.bg}`}
+                          >
+                            Learn More
+                          </Button>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
+                ))}
+              </div>
+            </HoverScrollContainer>
+
+            {/* Scroll hint */}
+            <div className="flex justify-center mt-8">
+              <div className="flex items-center gap-2 px-4 py-2 bg-gray-100 rounded-full text-sm text-gray-600">
+                <ChevronRight className="w-4 h-4" />
+                <span>Hover left/right to explore timeline</span>
+                <ChevronRight className="w-4 h-4" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Admin Dashboard Preview Section */}
+      <section
+        id="admin-section"
+        className="px-6 py-32 bg-gradient-to-br from-indigo-900 via-purple-900 to-blue-900 relative overflow-hidden"
+      >
+        <div className="absolute inset-0">
+          <div className="absolute top-20 left-10 w-96 h-96 bg-indigo-500/20 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-20 right-10 w-80 h-80 bg-purple-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute top-1/2 left-1/3 w-64 h-64 bg-blue-500/20 rounded-full blur-2xl animate-pulse delay-500"></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-500/20 rounded-full mb-8 border border-indigo-400/30">
+              <Shield className="w-4 h-4 text-indigo-300" />
+              <span className="text-indigo-200 text-sm font-medium">
+                Admin Dashboard
+              </span>
+            </div>
+
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8 leading-tight">
+              Empower Housing
+              <span className="text-transparent bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text block">
+                Administrators
+              </span>
+            </h2>
+
+            <p className="text-xl text-indigo-100 mb-12 leading-relaxed font-light max-w-3xl mx-auto">
+              Get real-time insights into dorm harmony, proactive conflict
+              resolution, and data-driven housing decisions.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+              <Button
+                className="h-14 px-8 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white rounded-2xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+                onClick={() => window.open("/admin", "_blank")}
+              >
+                <Shield className="w-5 h-5 mr-2" />
+                Launch Admin Demo
+                <ArrowRight className="w-5 h-5 ml-2" />
+              </Button>
+              <Button
+                variant="outline"
+                className="h-14 px-8 bg-white/10 border-2 border-white/30 text-white hover:bg-white/20 rounded-2xl font-semibold transition-all duration-300"
+              >
+                <Building className="w-5 h-5 mr-2" />
+                Request University Demo
+              </Button>
+            </div>
+          </div>
+
+          {/* Admin Features Grid */}
+          <div className="grid md:grid-cols-3 gap-8">
+            <Card className="bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/15 transition-all duration-300">
+              <CardContent className="p-8 text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                  <BarChart3 className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-4">
+                  Harmony Analytics
+                </h3>
+                <p className="text-indigo-200 leading-relaxed">
+                  Real-time dorm health scores, conflict prediction, and
+                  satisfaction trends across your housing portfolio.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/15 transition-all duration-300">
+              <CardContent className="p-8 text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-500 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                  <AlertTriangle className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-4">
+                  Early Intervention
+                </h3>
+                <p className="text-indigo-200 leading-relaxed">
+                  AI-powered alerts for tension detection, automated mediation
+                  suggestions, and proactive support workflows.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/15 transition-all duration-300">
+              <CardContent className="p-8 text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                  <Users className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-4">
+                  Smart Matching
+                </h3>
+                <p className="text-indigo-200 leading-relaxed">
+                  Advanced compatibility algorithms, preference learning, and
+                  data-driven room assignment optimization.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Showcase Section */}
+      <section className="px-6 py-32 bg-gradient-to-br from-white via-blue-50/30 to-purple-50/20">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-8">
+              Why Choose CoHabitly?
+            </h2>
+            <p className="text-xl text-gray-600 mb-12 font-light max-w-3xl mx-auto">
+              Our AI-powered platform transforms shared living with intelligent
+              features designed for real-world harmony.
+            </p>
+          </div>
+
+          <HoverScrollContainer className="py-4">
+            <div className="flex gap-8 pb-8 min-w-max px-8">
+              {[
+                {
+                  icon: <Smartphone className="w-8 h-8 text-white" />,
+                  title: "Anonymous Feedback",
+                  description:
+                    "Safe space for honest communication without confrontation",
+                  color: "emerald",
+                  gradient: "from-emerald-500 to-teal-500",
+                },
+                {
+                  icon: <Heart className="w-8 h-8 text-white" />,
+                  title: "Smart Compatibility",
+                  description:
+                    "AI-powered matching based on living habits and preferences",
+                  color: "pink",
+                  gradient: "from-pink-500 to-rose-500",
+                },
+                {
+                  icon: <CheckCircle className="w-8 h-8 text-white" />,
+                  title: "Automated Chores",
+                  description:
+                    "Fair distribution and tracking of household responsibilities",
+                  color: "blue",
+                  gradient: "from-blue-500 to-indigo-500",
+                },
+                {
+                  icon: <MessageCircle className="w-8 h-8 text-white" />,
+                  title: "AI Mediation",
+                  description:
+                    "Gentle conflict resolution with personalized suggestions",
+                  color: "purple",
+                  gradient: "from-purple-500 to-indigo-500",
+                },
+                {
+                  icon: <BarChart3 className="w-8 h-8 text-white" />,
+                  title: "Harmony Metrics",
+                  description:
+                    "Real-time insights into your living environment health",
+                  color: "orange",
+                  gradient: "from-orange-500 to-red-500",
+                },
+                {
+                  icon: <Shield className="w-8 h-8 text-white" />,
+                  title: "Privacy First",
+                  description:
+                    "End-to-end encryption with granular privacy controls",
+                  color: "gray",
+                  gradient: "from-gray-600 to-gray-700",
+                },
+              ].map((feature, index) => (
+                <Card
+                  key={index}
+                  className="flex-none w-80 border-2 border-gray-200 hover:border-gray-300 hover:shadow-xl transition-all duration-300 group"
+                >
+                  <CardContent className="p-8 text-center">
+                    <div
+                      className={`w-16 h-16 bg-gradient-to-br ${feature.gradient} rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300`}
+                    >
+                      {feature.icon}
+                    </div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-4">
+                      {feature.title}
+                    </h3>
+                    <p className="text-gray-600 leading-relaxed">
+                      {feature.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </HoverScrollContainer>
+
+          <div className="flex justify-center mt-8">
+            <div className="flex items-center gap-2 px-4 py-2 bg-gray-100 rounded-full text-sm text-gray-600">
+              <ChevronRight className="w-4 h-4" />
+              <span>Hover left/right to explore features</span>
+              <ChevronRight className="w-4 h-4" />
             </div>
           </div>
         </div>
