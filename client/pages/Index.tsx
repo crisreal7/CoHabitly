@@ -373,9 +373,10 @@ export default function Index() {
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50/30 font-sans">
       {/* 1. Hero Section */}
       <section className="relative px-6 py-20 md:py-32 lg:py-40 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/40 via-white to-purple-50/30">
-          <div className="absolute top-20 left-10 w-96 h-96 bg-gradient-to-br from-blue-200/20 to-purple-200/20 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-20 right-10 w-80 h-80 bg-gradient-to-br from-purple-200/20 to-blue-200/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-sage-50/40 via-white to-brand-50/30">
+          <div className="absolute top-20 left-10 w-96 h-96 bg-gradient-to-br from-brand-200/20 to-sage-200/20 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-20 right-10 w-80 h-80 bg-gradient-to-br from-lavender-200/20 to-mint-200/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute top-1/2 left-1/3 w-64 h-64 bg-gradient-to-br from-coral-200/20 to-brand-200/20 rounded-full blur-2xl animate-pulse delay-500"></div>
         </div>
 
         <div className="max-w-7xl mx-auto relative z-10">
