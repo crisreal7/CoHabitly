@@ -32,6 +32,7 @@ import {
   ShoppingCart,
   Bell,
   Settings,
+  User,
 } from "lucide-react";
 
 type RoadmapView = "student" | "admin" | "couples";
