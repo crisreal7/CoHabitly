@@ -29,6 +29,8 @@ import {
   Globe,
   Smartphone,
   ShoppingCart,
+  Bell,
+  Settings,
 } from "lucide-react";
 
 type RoadmapView = "student" | "admin" | "couples";
