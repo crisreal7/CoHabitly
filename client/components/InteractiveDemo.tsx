@@ -432,6 +432,10 @@ export default function InteractiveDemo() {
     },
   ]);
 
+  // Compose form state (moved from renderComposeContent to fix hooks order)
+  const [composeInputValue, setComposeInputValue] = useState("");
+  const [composeSelectedOption, setComposeSelectedOption] = useState("");
+
   const userProfile: UserProfile = {
     id: "you",
     name: "You",
