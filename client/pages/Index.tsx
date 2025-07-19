@@ -84,16 +84,16 @@ export default function Index() {
     }, 200);
   };
 
-  // Sample data
+  // Comprehensive roadmap data
   const studentJourney: RoadmapStage[] = [
     {
       id: "S1",
-      phase: "Stage 1",
-      title: "Dorm Life Optimization",
+      phase: "Foundation",
+      title: "Smart Roommate Matching",
       description:
-        "Smart roommate matching and vibe monitoring in student housing",
+        "AI-powered compatibility assessment and optimal room assignments based on lifestyle preferences",
       status: "Live",
-      timeline: "Now Available",
+      timeline: "Available Now",
       progress: 100,
       color: {
         primary: "emerald-500",
@@ -102,22 +102,135 @@ export default function Index() {
         border: "emerald-200",
       },
     },
+    {
+      id: "S2",
+      phase: "Harmony",
+      title: "Anonymous Feedback System",
+      description:
+        "Safe communication tools for addressing concerns without direct confrontation",
+      status: "Live",
+      timeline: "Available Now",
+      progress: 100,
+      color: {
+        primary: "blue-500",
+        secondary: "blue-600",
+        bg: "blue-50",
+        border: "blue-200",
+      },
+    },
+    {
+      id: "S3",
+      phase: "Growth",
+      title: "Social Integration",
+      description:
+        "Campus-wide social features, study groups, and community building tools",
+      status: "Beta",
+      timeline: "Q3 2024",
+      progress: 75,
+      color: {
+        primary: "purple-500",
+        secondary: "purple-600",
+        bg: "purple-50",
+        border: "purple-200",
+      },
+    },
+    {
+      id: "S4",
+      phase: "Intelligence",
+      title: "Predictive Conflict Resolution",
+      description:
+        "AI-driven early warning system for potential roommate conflicts with proactive solutions",
+      status: "Coming Soon",
+      timeline: "Q4 2024",
+      progress: 45,
+      color: {
+        primary: "orange-500",
+        secondary: "orange-600",
+        bg: "orange-50",
+        border: "orange-200",
+      },
+    },
   ];
 
   const adminJourney: RoadmapStage[] = [
     {
       id: "A1",
-      phase: "Admin 1",
-      title: "Dorm Health Scoring",
-      description: "Real-time harmony metrics and health dashboards",
+      phase: "Analytics",
+      title: "Real-Time Harmony Dashboard",
+      description:
+        "Comprehensive dorm health metrics, satisfaction scores, and trend analysis for housing administrators",
       status: "Live",
-      timeline: "Now Available",
+      timeline: "Available Now",
       progress: 100,
       color: {
         primary: "indigo-500",
         secondary: "indigo-600",
         bg: "indigo-50",
         border: "indigo-200",
+      },
+    },
+    {
+      id: "A2",
+      phase: "Intervention",
+      title: "Automated Alert System",
+      description:
+        "Smart notifications for potential conflicts with suggested intervention strategies",
+      status: "Live",
+      timeline: "Available Now",
+      progress: 100,
+      color: {
+        primary: "red-500",
+        secondary: "red-600",
+        bg: "red-50",
+        border: "red-200",
+      },
+    },
+    {
+      id: "A3",
+      phase: "Optimization",
+      title: "Housing Assignment AI",
+      description:
+        "Machine learning algorithms for optimal room assignments and housing policy recommendations",
+      status: "Beta",
+      timeline: "Q3 2024",
+      progress: 80,
+      color: {
+        primary: "cyan-500",
+        secondary: "cyan-600",
+        bg: "cyan-50",
+        border: "cyan-200",
+      },
+    },
+    {
+      id: "A4",
+      phase: "Integration",
+      title: "Campus Systems Integration",
+      description:
+        "Seamless integration with existing housing management, student information, and communication systems",
+      status: "Coming Soon",
+      timeline: "Q4 2024",
+      progress: 30,
+      color: {
+        primary: "teal-500",
+        secondary: "teal-600",
+        bg: "teal-50",
+        border: "teal-200",
+      },
+    },
+    {
+      id: "A5",
+      phase: "Intelligence",
+      title: "Predictive Analytics Suite",
+      description:
+        "Advanced forecasting for housing demand, satisfaction prediction, and resource optimization",
+      status: "Planned",
+      timeline: "Q1 2025",
+      progress: 15,
+      color: {
+        primary: "violet-500",
+        secondary: "violet-600",
+        bg: "violet-50",
+        border: "violet-200",
       },
     },
   ];
@@ -156,17 +269,50 @@ export default function Index() {
     },
     {
       id: "C3",
-      phase: "Couples 3",
-      title: "Relationship Insights",
-      description: "Deep analytics and personalized recommendations for growth",
-      status: "Planned",
-      timeline: "Q1 2025",
-      progress: 10,
+      phase: "Harmony",
+      title: "Living Style Compatibility",
+      description:
+        "Advanced matching for cleaning habits, social preferences, and daily routines",
+      status: "Coming Soon",
+      timeline: "Q4 2024",
+      progress: 40,
       color: {
         primary: "purple-500",
         secondary: "purple-600",
         bg: "purple-50",
         border: "purple-200",
+      },
+    },
+    {
+      id: "C4",
+      phase: "Growth",
+      title: "Relationship Milestones",
+      description:
+        "Track moving in together, financial planning, and major life decision support",
+      status: "Planned",
+      timeline: "Q1 2025",
+      progress: 20,
+      color: {
+        primary: "indigo-500",
+        secondary: "indigo-600",
+        bg: "indigo-50",
+        border: "indigo-200",
+      },
+    },
+    {
+      id: "C5",
+      phase: "Intelligence",
+      title: "AI Relationship Coach",
+      description:
+        "Personalized guidance for communication, conflict resolution, and relationship strengthening",
+      status: "Planned",
+      timeline: "Q2 2025",
+      progress: 10,
+      color: {
+        primary: "emerald-500",
+        secondary: "emerald-600",
+        bg: "emerald-50",
+        border: "emerald-200",
       },
     },
   ];
@@ -648,6 +794,9 @@ export default function Index() {
                             )}
                             {index === 6 && (
                               <Sparkles className="w-6 h-6 text-white" />
+                            )}
+                            {index === 7 && (
+                              <BarChart3 className="w-6 h-6 text-white" />
                             )}
                           </div>
                           <div>
