@@ -567,7 +567,9 @@ export default function Index() {
         className={`px-6 py-32 relative overflow-hidden transition-all duration-1000 ease-in-out ${
           demoType === "couples"
             ? "bg-gradient-to-br from-rose-900 via-pink-900 to-purple-900"
-            : "bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900"
+            : demoType === "student"
+              ? "bg-gradient-to-br from-emerald-900 via-green-900 to-teal-900"
+              : "bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900"
         }`}
       >
         <div className="absolute inset-0">
