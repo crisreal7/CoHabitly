@@ -593,6 +593,11 @@ export default function InteractiveDemo() {
       viewState.level === "compose" ||
       viewState.level === "settings"
     ) {
+      // Clear compose form state when navigating back
+      if (viewState.level === "compose") {
+        setComposeInputValue("");
+        setComposeSelectedOption("");
+      }
       setViewState({ level: "main", activeTab: viewState.activeTab });
     }
   };
