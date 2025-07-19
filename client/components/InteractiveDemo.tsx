@@ -1723,14 +1723,14 @@ export default function InteractiveDemo() {
   };
 
   const renderComposeContent = () => {
-    const [inputValue, setInputValue] = useState("");
-    const [selectedOption, setSelectedOption] = useState("");
-
     const handleSubmit = () => {
       if (viewState.composeType === "vibe") {
-        const score = parseInt(selectedOption) || 5;
-        submitVibeCheck(score, inputValue, "happy");
+        const score = parseInt(composeSelectedOption) || 5;
+        submitVibeCheck(score, composeInputValue, "happy");
       }
+      // Clear form when navigating back
+      setComposeInputValue("");
+      setComposeSelectedOption("");
       navigateBack();
     };
 
