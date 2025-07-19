@@ -624,7 +624,9 @@ export default function Index() {
                   className={`text-transparent bg-clip-text block transition-all duration-700 ${
                     demoType === "couples"
                       ? "bg-gradient-to-r from-rose-400 to-pink-400 animate-pulse"
-                      : "bg-gradient-to-r from-blue-400 to-purple-400"
+                      : demoType === "student"
+                        ? "bg-gradient-to-r from-emerald-400 to-green-400 animate-pulse"
+                        : "bg-gradient-to-r from-blue-400 to-purple-400"
                   }`}
                 >
                   in Action
