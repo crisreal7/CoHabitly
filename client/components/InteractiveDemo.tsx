@@ -1287,7 +1287,7 @@ export default function InteractiveDemo({
                     House Vibe
                   </h3>
                   <div className="text-right">
-                    <div className="text-2xl font-bold text-purple-600">
+                    <div className="text-2xl font-bold text-purple-600 animate-score-pop animate-text-glow">
                       {Math.round(
                         vibeEntries.reduce(
                           (sum, entry) => sum + entry.score,
