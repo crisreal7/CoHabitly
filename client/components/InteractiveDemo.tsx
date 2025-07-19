@@ -170,10 +170,16 @@ interface HouseStatus {
   improvements: string[];
 }
 
-export default function InteractiveDemo() {
+interface InteractiveDemoProps {
+  activeTab?: TabType;
+}
+
+export default function InteractiveDemo({
+  activeTab = "overview",
+}: InteractiveDemoProps) {
   const [viewState, setViewState] = useState<ViewState>({
     level: "main",
-    activeTab: "overview",
+    activeTab: activeTab,
   });
   const [currentTime, setCurrentTime] = useState(new Date());
 
