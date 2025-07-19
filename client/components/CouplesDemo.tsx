@@ -872,12 +872,12 @@ export default function CouplesDemo() {
           <div className="flex flex-col h-full">
             <div className="p-4 border-b border-rose-100 bg-gradient-to-r from-rose-50 to-pink-50">
               <div className="flex items-center gap-2">
-                <Lock className="w-4 h-4 text-rose-500" />
+                <Heart className="w-4 h-4 text-rose-500" />
                 <span className="text-sm font-medium text-gray-700">
-                  Safe Space
+                  HeartSpace
                 </span>
                 <span className="text-xs text-gray-500">
-                  • End-to-end encrypted
+                  • Love notes & AI support
                 </span>
               </div>
             </div>
