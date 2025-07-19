@@ -491,13 +491,13 @@ export default function CouplesDemo({ activeTab = "home" }: CouplesDemoProps) {
     switch (viewState.activeTab) {
       case "home":
         return (
-          <div className="p-6 space-y-6 h-full overflow-y-auto">
+          <div className="p-4 space-y-4 h-full overflow-y-auto">
             {/* Relationship Harmony */}
             <Card
-              className="border-0 bg-gradient-to-br from-rose-50 to-pink-50 shadow-lg cursor-pointer hover:shadow-xl transition-all"
+              className="border-0 bg-gradient-to-br from-rose-50 to-pink-50 shadow-md cursor-pointer hover:shadow-lg transition-all"
               onClick={() => navigateToDetail("home")}
             >
-              <CardContent className="p-6">
+              <CardContent className="p-4">
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-2">
                     <Sparkles className="w-5 h-5 text-rose-500" />
