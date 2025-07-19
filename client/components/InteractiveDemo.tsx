@@ -954,7 +954,6 @@ export default function InteractiveDemo({
                   className="w-full h-10 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white text-sm"
                   onClick={() => navigateToCompose("event")}
                 >
-                  <PartyPopper className="w-4 h-4 mr-2" />
                   "Would y'all be down for...?"
                 </Button>
               </CardContent>
