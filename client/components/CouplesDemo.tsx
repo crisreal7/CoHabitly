@@ -1344,7 +1344,7 @@ export default function CouplesDemo() {
                   Your message
                 </label>
                 <textarea
-                  placeholder="What's on your heart?"
+                  placeholder="Express your feelings, send love, or ask the AI for support..."
                   value={newMessage}
                   onChange={(e) => setNewMessage(e.target.value)}
                   className="w-full h-32 p-4 border border-rose-200 focus:border-rose-400 rounded-xl resize-none"
