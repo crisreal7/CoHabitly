@@ -1380,11 +1380,15 @@ export default function CouplesDemo({ activeTab = "home" }: CouplesDemoProps) {
           <h2 className="text-xl font-bold text-gray-900">
             {viewState.activeTab === "home"
               ? "Harmony Details"
-              : viewState.activeTab === "shared"
-                ? "Shared Details"
-                : viewState.activeTab === "communicate"
-                  ? "Message Details"
-                  : "Preference Details"}
+              : viewState.activeTab === "groceries"
+                ? "Grocery Details"
+                : viewState.activeTab === "tasks"
+                  ? "Task Details"
+                  : viewState.activeTab === "goals"
+                    ? "Goal Details"
+                    : viewState.activeTab === "communicate"
+                      ? "Message Details"
+                      : "Preference Details"}
           </h2>
         </div>
         <Card className="border-0 bg-white shadow-lg">
