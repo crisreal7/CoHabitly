@@ -28,6 +28,7 @@ import {
   Zap,
   Globe,
   Smartphone,
+  ShoppingCart,
 } from "lucide-react";
 
 type RoadmapView = "student" | "admin" | "couples";
