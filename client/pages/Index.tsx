@@ -1050,17 +1050,19 @@ export default function Index() {
                                 setDemoTab(id);
                                 setShowMobileMenu(false);
                               }}
-                              className={`flex flex-col items-center gap-2 p-3 rounded-xl text-xs font-medium transition-all ${
+                              className={`flex flex-col items-center gap-2 p-3 rounded-xl text-xs font-medium transition-all button-feedback tab-indicator ${
                                 demoTab === id
                                   ? demoType === "student"
-                                    ? "bg-emerald-500 text-white shadow-lg"
+                                    ? "bg-emerald-500 text-white shadow-lg animate-slide-in-right active"
                                     : demoType === "couples"
-                                      ? "bg-pink-500 text-white shadow-lg"
-                                      : "bg-blue-500 text-white shadow-lg"
-                                  : "text-gray-700 hover:bg-white/70"
+                                      ? "bg-pink-500 text-white shadow-lg animate-slide-in-right active"
+                                      : "bg-blue-500 text-white shadow-lg animate-slide-in-right active"
+                                  : "text-gray-700 hover:bg-white/70 card-hover"
                               }`}
                             >
-                              <Icon className="w-5 h-5" />
+                              <Icon
+                                className={`w-5 h-5 ${demoTab === id ? "animate-icon-bounce" : ""}`}
+                              />
                               <span>{label}</span>
                             </button>
                           ))}
