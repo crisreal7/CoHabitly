@@ -651,7 +651,7 @@ export default function Index() {
                   <Button
                     className={`h-14 px-8 rounded-2xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 ${
                       demoType === "couples"
-                        ? "bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white"
+                        ? "bg-gradient-to-r from-brand-500 to-lavender-500 hover:from-brand-600 hover:to-lavender-600 text-white"
                         : "bg-white/20 text-blue-100 hover:bg-white/30"
                     }`}
                     onClick={() => {
