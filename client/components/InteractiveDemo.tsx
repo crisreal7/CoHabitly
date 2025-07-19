@@ -29,6 +29,7 @@ import {
   Wifi,
   Battery,
   Signal,
+  Sparkles,
 } from "lucide-react";
 
 type TabType = "dashboard" | "grocery" | "roommates" | "feedback";
