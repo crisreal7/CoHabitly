@@ -2012,7 +2012,7 @@ export default function InteractiveDemo() {
         </div>
 
         {/* Content Area */}
-        <div className="flex-1 overflow-hidden bg-gray-50/50">
+        <div className="flex-1 overflow-auto bg-gray-50/50">
           {viewState.level === "main" && renderTabContent()}
           {viewState.level === "detail" && renderDetailContent()}
           {viewState.level === "compose" && renderComposeContent()}
