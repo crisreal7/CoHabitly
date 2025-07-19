@@ -122,10 +122,14 @@ interface CouplesPreference {
   settings: { [key: string]: any };
 }
 
-export default function CouplesDemo() {
+interface CouplesDemoProps {
+  activeTab?: CouplesTabType;
+}
+
+export default function CouplesDemo({ activeTab = "home" }: CouplesDemoProps) {
   const [viewState, setViewState] = useState<ViewState>({
     level: "main",
-    activeTab: "home",
+    activeTab: activeTab,
   });
   const [newMessage, setNewMessage] = useState("");
   const [newItem, setNewItem] = useState("");
