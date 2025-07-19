@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import InteractiveDemo from "@/components/InteractiveDemo";
+import HoverScrollContainer from "@/components/HoverScrollContainer";
 import {
   CheckCircle,
   Heart,
@@ -623,9 +624,9 @@ export default function Index() {
             </p>
           </div>
 
-          {/* Horizontal scroll cards */}
-          <div className="overflow-x-auto scrollbar-hide">
-            <div className="flex gap-8 pb-8 min-w-max">
+                    {/* Horizontal scroll cards */}
+          <HoverScrollContainer className="py-4">
+            <div className="flex gap-8 pb-8 min-w-max px-8">
               <Card className="flex-none w-80 border-2 border-blue-200 hover:border-blue-300 hover:shadow-xl transition-all duration-300 group">
                 <CardContent className="p-8">
                   <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
