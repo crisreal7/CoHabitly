@@ -1290,7 +1290,7 @@ export default function CouplesDemo() {
             <ArrowLeft className="w-5 h-5" />
           </Button>
           <h2 className="text-xl font-bold text-gray-900">
-            Share Your Feelings
+            HeartSpace Message
           </h2>
         </div>
 
