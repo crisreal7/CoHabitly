@@ -969,7 +969,7 @@ export default function Index() {
                       {demoType === "roommate" ? (
                         <InteractiveDemo activeTab={demoTab as any} />
                       ) : demoType === "couples" ? (
-                        <CouplesDemo />
+                        <CouplesDemo activeTab={demoTab as any} />
                       ) : (
                         <StudentDemo activeTab={demoTab as any} />
                       )}
