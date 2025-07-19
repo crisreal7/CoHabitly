@@ -1301,16 +1301,15 @@ export default function InteractiveDemo({
                 </div>
 
                 <div className="grid grid-cols-4 gap-2 mb-4">
-                  {["happy", "excited", "neutral", "stressed"].map((mood) => (
+                  {[
+                    { mood: "happy", icon: Smile, color: "text-green-500" },
+                    { mood: "excited", icon: Zap, color: "text-yellow-500" },
+                    { mood: "neutral", icon: Meh, color: "text-gray-500" },
+                    { mood: "stressed", icon: Frown, color: "text-red-500" },
+                  ].map(({ mood, icon: Icon, color }) => (
                     <div key={mood} className="text-center">
-                      <div className="text-xl mb-1">
-                        {mood === "happy"
-                          ? "😊"
-                          : mood === "excited"
-                            ? "🤩"
-                            : mood === "neutral"
-                              ? "😐"
-                              : "😓"}
+                      <div className="w-8 h-8 mx-auto mb-1 flex items-center justify-center">
+                        <Icon className={`w-6 h-6 ${color}`} />
                       </div>
                       <div className="text-xs text-gray-600 capitalize">
                         {mood}
