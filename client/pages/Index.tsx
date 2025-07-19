@@ -964,7 +964,7 @@ export default function Index() {
                     {/* Slide-down menu */}
                     {showMobileMenu && (
                       <div
-                        className={`absolute top-20 left-0 right-0 z-20 mx-3 rounded-2xl shadow-xl border backdrop-blur-sm transition-all duration-300 ${
+                        className={`absolute top-20 left-0 right-0 z-20 mx-3 rounded-2xl shadow-xl border backdrop-blur-sm animate-slide-down-bounce glass-card-enhanced ${
                           demoType === "student"
                             ? "bg-emerald-50/95 border-emerald-200"
                             : demoType === "couples"
