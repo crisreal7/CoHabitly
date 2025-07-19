@@ -1377,8 +1377,8 @@ export default function CouplesDemo() {
                   onClick={handleSendMessage}
                   disabled={!newMessage.trim()}
                 >
-                  <Send className="w-4 h-4 mr-2" />
-                  Send with Love
+                  <Heart className="w-4 h-4 mr-2" />
+                  Send to HeartSpace
                 </Button>
               </div>
             </div>
