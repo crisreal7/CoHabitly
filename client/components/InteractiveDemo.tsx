@@ -41,7 +41,7 @@ import {
   Sun,
   Timer,
   PartyPopper,
-  GameController,
+  Gamepad,
   Pizza,
   Film,
   Music,
