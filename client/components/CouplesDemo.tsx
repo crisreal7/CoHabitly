@@ -364,6 +364,15 @@ export default function CouplesDemo({ activeTab = "home" }: CouplesDemoProps) {
     return () => clearInterval(timer);
   }, []);
 
+  // Sync activeTab prop with internal state
+  useEffect(() => {
+    setViewState((prev) => ({
+      ...prev,
+      activeTab: activeTab,
+      level: "main", // Reset to main level when tab changes
+    }));
+  }, [activeTab]);
+
   // Interactive functions
   const toggleItem = (id: string) => {
     setSharedItems((items) =>
