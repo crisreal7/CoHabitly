@@ -693,41 +693,32 @@ export default function Index() {
 
             <div className="flex justify-center lg:justify-end">
               <div className="demo-phone">
-                {/* Interactive Demo Dropdown Toggle */}
+                {/* Interactive Demo Tab Selection */}
                 <div className="mb-6 flex justify-center">
-                  <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-2 border border-white/20 shadow-lg">
-                    <select
-                      className="bg-transparent text-white font-medium text-sm px-4 py-2 rounded-xl border-none outline-none cursor-pointer"
-                      defaultValue="overview"
-                    >
-                      <option
-                        value="overview"
-                        className="bg-gray-800 text-white"
-                      >
-                        🏠 Home
-                      </option>
-                      <option
-                        value="grocery"
-                        className="bg-gray-800 text-white"
-                      >
-                        🛒 Grocery
-                      </option>
-                      <option value="events" className="bg-gray-800 text-white">
-                        🎉 Events
-                      </option>
-                      <option value="chores" className="bg-gray-800 text-white">
-                        ✅ Chores
-                      </option>
-                      <option value="vibe" className="bg-gray-800 text-white">
-                        😊 Vibe
-                      </option>
-                      <option
-                        value="messages"
-                        className="bg-gray-800 text-white"
-                      >
-                        💬 Messages
-                      </option>
-                    </select>
+                  <div className="bg-white/15 backdrop-blur-sm rounded-2xl p-1 border border-white/20 shadow-lg min-w-[280px]">
+                    <div className="grid grid-cols-3 gap-1">
+                      {[
+                        { id: "overview", label: "Home", icon: "🏠" },
+                        { id: "grocery", label: "Grocery", icon: "🛒" },
+                        { id: "events", label: "Events", icon: "🎉" },
+                        { id: "chores", label: "Chores", icon: "✅" },
+                        { id: "vibe", label: "Vibe", icon: "😊" },
+                        { id: "messages", label: "Messages", icon: "💬" },
+                      ].map(({ id, label, icon }) => (
+                        <button
+                          key={id}
+                          onClick={() => setDemoTab(id)}
+                          className={`flex flex-col items-center gap-1 py-2 px-3 rounded-xl text-xs font-medium transition-all ${
+                            demoTab === id
+                              ? "bg-white/20 text-white shadow-md scale-105"
+                              : "text-white/70 hover:text-white hover:bg-white/10"
+                          }`}
+                        >
+                          <span className="text-sm">{icon}</span>
+                          <span>{label}</span>
+                        </button>
+                      ))}
+                    </div>
                   </div>
                 </div>
 
