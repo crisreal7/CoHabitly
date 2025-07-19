@@ -1829,8 +1829,8 @@ export default function InteractiveDemo() {
                       Event Title
                     </label>
                     <Input
-                      value={inputValue}
-                      onChange={(e) => setInputValue(e.target.value)}
+                      value={composeInputValue}
+                      onChange={(e) => setComposeInputValue(e.target.value)}
                       placeholder="Would y'all be down for..."
                       className="border-gray-200"
                     />
