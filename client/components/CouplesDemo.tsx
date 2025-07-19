@@ -1,793 +1,693 @@
 import { useState, useEffect } from "react";
-import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Progress } from "@/components/ui/progress";
-import { Badge } from "@/components/ui/badge";
 import {
+  Heart,
+  MessageCircle,
+  CheckCircle,
+  Plus,
+  Send,
+  Settings,
+  Calendar,
+  Star,
+  Lock,
+  Smile,
+  Coffee,
   Home,
   ShoppingCart,
-  MessageCircle,
-  Settings,
-  Plus,
-  Check,
-  Heart,
-  Calendar,
-  DollarSign,
-  Send,
-  ChevronRight,
-  CheckCircle,
+  Bell,
   User,
-  Wifi,
-  Battery,
-  Signal,
-  Smile,
-  Star,
+  MoreHorizontal,
+  Sparkles,
+  TrendingUp,
+  Moon,
+  Sun,
+  Volume2,
+  VolumeX,
+  Zap,
+  Target,
+  Users,
 } from "lucide-react";
 
-type CouplesTabType = "dashboard" | "grocery" | "feedback" | "settings";
-
-interface GroceryItem {
-  id: string;
-  name: string;
-  price: number;
-  category: string;
-  addedBy: string;
-  purchased: boolean;
-  pickupBy?: string;
-}
+type CouplesTabType = "home" | "shared" | "communicate" | "preferences";
 
 interface Message {
   id: string;
-  sender: string;
-  content: string;
+  text: string;
   timestamp: string;
-  isAnonymous: boolean;
-  aiFiltered: boolean;
-  originalTone?: string;
-  filteredTone?: string;
+  isOwn: boolean;
+  isAnonymous?: boolean;
+  mood?: "happy" | "thoughtful" | "concerned";
 }
 
-interface VibeData {
-  overall: number;
-  communication: number;
-  chores: number;
-  quality_time: number;
-  trend: "up" | "down" | "stable";
+interface SharedItem {
+  id: string;
+  text: string;
+  isCompleted: boolean;
+  addedBy: "You" | "Partner";
+  category: "groceries" | "tasks" | "goals";
+}
+
+interface MoodData {
+  date: string;
+  yourMood: number;
+  partnerMood: number;
 }
 
 export default function CouplesDemo() {
-  const [activeTab, setActiveTab] = useState<CouplesTabType>("dashboard");
-  const [newGroceryItem, setNewGroceryItem] = useState("");
+  const [activeTab, setActiveTab] = useState<CouplesTabType>("home");
   const [newMessage, setNewMessage] = useState("");
-  const [isTyping, setIsTyping] = useState(false);
-  const [currentTime, setCurrentTime] = useState(new Date());
+  const [newItem, setNewItem] = useState("");
+  const [showAddForm, setShowAddForm] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState<
+    "groceries" | "tasks" | "goals"
+  >("groceries");
 
-  // Couples-focused sample data
-  const vibeData: VibeData = {
-    overall: 92,
-    communication: 88,
-    chores: 95,
-    quality_time: 85,
-    trend: "up",
-  };
-
-  const groceryItems: GroceryItem[] = [
+  const [messages] = useState<Message[]>([
     {
       id: "1",
-      name: "Fresh Flowers",
-      price: 12.99,
-      category: "Special",
-      addedBy: "Alex",
-      purchased: false,
-      pickupBy: "Jordan",
+      text: "I've been feeling a bit overwhelmed with work lately. Could we maybe keep things a bit quieter in the evenings this week?",
+      timestamp: "2 hours ago",
+      isOwn: false,
+      isAnonymous: true,
+      mood: "thoughtful",
     },
     {
       id: "2",
-      name: "Wine for Date Night",
-      price: 24.99,
-      category: "Beverages",
-      addedBy: "Jordan",
-      purchased: true,
-      pickupBy: "Jordan",
+      text: "Of course! I didn't realize. I can use headphones for my calls after 7pm. Thank you for letting me know ❤️",
+      timestamp: "1 hour ago",
+      isOwn: true,
+      mood: "happy",
     },
     {
       id: "3",
-      name: "Cooking Ingredients",
-      price: 18.5,
-      category: "Groceries",
-      addedBy: "Alex",
-      purchased: false,
-      pickupBy: "Alex",
+      text: "You're the best! This really helps. Maybe we can plan a cozy movie night this weekend?",
+      timestamp: "45 mins ago",
+      isOwn: false,
+      mood: "happy",
+    },
+  ]);
+
+  const [sharedItems, setSharedItems] = useState<SharedItem[]>([
+    {
+      id: "1",
+      text: "Organic blueberries",
+      isCompleted: true,
+      addedBy: "You",
+      category: "groceries",
+    },
+    {
+      id: "2",
+      text: "Oat milk (vanilla)",
+      isCompleted: false,
+      addedBy: "Partner",
+      category: "groceries",
+    },
+    {
+      id: "3",
+      text: "Fresh basil for pasta",
+      isCompleted: false,
+      addedBy: "You",
+      category: "groceries",
     },
     {
       id: "4",
-      name: "Household Supplies",
-      price: 15.99,
-      category: "Cleaning",
-      addedBy: "Jordan",
-      purchased: false,
+      text: "Clean bathroom together",
+      isCompleted: true,
+      addedBy: "Partner",
+      category: "tasks",
     },
-  ];
+    {
+      id: "5",
+      text: "Plan weekend trip",
+      isCompleted: false,
+      addedBy: "You",
+      category: "goals",
+    },
+    {
+      id: "6",
+      text: "Try that new restaurant",
+      isCompleted: false,
+      addedBy: "Partner",
+      category: "goals",
+    },
+  ]);
 
-  const messages: Message[] = [
-    {
-      id: "1",
-      sender: "Jordan",
-      content:
-        "I love our new routine! The morning coffee together has been really nice 💕",
-      timestamp: "This morning",
-      isAnonymous: false,
-      aiFiltered: false,
-    },
-    {
-      id: "2",
-      sender: "AI Suggestion",
-      content:
-        "Both partners noted some stress this week. Consider planning something relaxing together this weekend?",
-      timestamp: "Yesterday",
-      isAnonymous: true,
-      aiFiltered: true,
-      originalTone: "analytical",
-      filteredTone: "supportive",
-    },
-    {
-      id: "3",
-      sender: "Alex",
-      content:
-        "Could we maybe talk about splitting the dishes differently? I'm happy to take on more cooking if you handle cleanup?",
-      timestamp: "2 days ago",
-      isAnonymous: false,
-      aiFiltered: true,
-      originalTone: "direct",
-      filteredTone: "collaborative",
-    },
-  ];
+  const [weeklyMoods] = useState<MoodData[]>([
+    { date: "Mon", yourMood: 8, partnerMood: 7 },
+    { date: "Tue", yourMood: 6, partnerMood: 8 },
+    { date: "Wed", yourMood: 9, partnerMood: 9 },
+    { date: "Thu", yourMood: 7, partnerMood: 6 },
+    { date: "Fri", yourMood: 9, partnerMood: 8 },
+    { date: "Sat", yourMood: 10, partnerMood: 9 },
+    { date: "Sun", yourMood: 8, partnerMood: 8 },
+  ]);
 
-  const chorePreferences = [
-    {
-      id: "1",
-      task: "Cooking",
-      alex_preference: "loves",
-      jordan_preference: "neutral",
-      current_split: "Alex: 70%, Jordan: 30%",
-    },
-    {
-      id: "2",
-      task: "Cleaning Dishes",
-      alex_preference: "dislikes",
-      jordan_preference: "neutral",
-      current_split: "Alex: 20%, Jordan: 80%",
-    },
-    {
-      id: "3",
-      task: "Laundry",
-      alex_preference: "neutral",
-      jordan_preference: "likes",
-      current_split: "Alex: 40%, Jordan: 60%",
-    },
-  ];
+  const toggleItem = (id: string) => {
+    setSharedItems((items) =>
+      items.map((item) =>
+        item.id === id ? { ...item, isCompleted: !item.isCompleted } : item,
+      ),
+    );
+  };
 
-  const weeklyPrompts = [
-    "What made you feel most supported this week?",
-    "Is there anything you'd like more help with?",
-    "What's one thing we could do together this weekend?",
-    "How are you feeling about our home environment lately?",
-  ];
-
-  // Update time every minute
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentTime(new Date());
-    }, 60000);
-    return () => clearInterval(timer);
-  }, []);
-
-  const handleAddGroceryItem = () => {
-    if (newGroceryItem.trim()) {
-      setNewGroceryItem("");
+  const addNewItem = () => {
+    if (newItem.trim()) {
+      const newSharedItem: SharedItem = {
+        id: Date.now().toString(),
+        text: newItem.trim(),
+        isCompleted: false,
+        addedBy: "You",
+        category: selectedCategory,
+      };
+      setSharedItems([...sharedItems, newSharedItem]);
+      setNewItem("");
+      setShowAddForm(false);
     }
   };
 
-  const handleSendMessage = () => {
-    if (newMessage.trim()) {
-      setIsTyping(true);
-      setTimeout(() => {
-        setIsTyping(false);
-        setNewMessage("");
-      }, 2000);
-    }
+  const getFilteredItems = () => {
+    return sharedItems.filter((item) => item.category === selectedCategory);
   };
 
-  const renderTabContent = () => {
-    switch (activeTab) {
-      case "dashboard":
-        return (
-          <div className="space-y-6 p-4">
-            {/* Weekly Vibe Check */}
-            <Card className="bg-gradient-to-br from-pink-50 to-rose-100 border-pink-200">
-              <CardContent className="p-4">
-                <div className="flex items-center justify-between mb-3">
-                  <h3 className="font-bold text-gray-900">
-                    How's Everything Feeling?
-                  </h3>
-                  <div className="flex items-center gap-1">
-                    <div
-                      className={`w-2 h-2 rounded-full ${
-                        vibeData.trend === "up"
-                          ? "bg-green-500"
-                          : vibeData.trend === "down"
-                            ? "bg-red-500"
-                            : "bg-yellow-500"
-                      }`}
-                    ></div>
-                    <span className="text-sm font-semibold text-gray-700">
-                      {vibeData.overall}%
-                    </span>
-                  </div>
-                </div>
-                <div className="space-y-3">
-                  <div className="grid grid-cols-3 gap-2 text-xs">
-                    <div className="text-center">
-                      <div className="text-blue-600 font-medium">
-                        {vibeData.communication}%
-                      </div>
-                      <div className="text-gray-500">Communication</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-green-600 font-medium">
-                        {vibeData.chores}%
-                      </div>
-                      <div className="text-gray-500">Home Balance</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-purple-600 font-medium">
-                        {vibeData.quality_time}%
-                      </div>
-                      <div className="text-gray-500">Quality Time</div>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+  const getMoodEmoji = (mood: number) => {
+    if (mood >= 9) return "😍";
+    if (mood >= 7) return "😊";
+    if (mood >= 5) return "😐";
+    return "😔";
+  };
 
-            {/* AI Suggestions */}
-            <Card className="border-purple-200">
-              <CardContent className="p-4">
-                <div className="flex items-center justify-between mb-3">
-                  <h3 className="font-bold text-gray-900">This Week's Nudge</h3>
-                  <Heart className="w-4 h-4 text-purple-600" />
-                </div>
-                <div className="bg-purple-50 p-3 rounded-lg">
-                  <p className="text-sm text-purple-800 font-medium">
-                    🌟 Plan something fun this weekend?
-                  </p>
-                  <p className="text-xs text-purple-600 mt-1">
-                    You both mentioned wanting more quality time together.
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
+  const averageMood = Math.round(
+    weeklyMoods.reduce((sum, day) => sum + day.yourMood + day.partnerMood, 0) /
+      (weeklyMoods.length * 2),
+  );
 
-            {/* Shared Tasks Overview */}
-            <Card className="border-green-200">
-              <CardContent className="p-4">
-                <div className="flex items-center justify-between mb-3">
-                  <h3 className="font-bold text-gray-900">Shared Tasks</h3>
-                  <CheckCircle className="w-4 h-4 text-green-600" />
-                </div>
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between p-2 bg-green-50 rounded-lg">
-                    <span className="text-sm">Grocery shopping</span>
-                    <span className="text-xs text-green-600 font-medium">
-                      Jordan's turn
-                    </span>
-                  </div>
-                  <div className="flex items-center justify-between p-2 bg-blue-50 rounded-lg">
-                    <span className="text-sm">Date night planning</span>
-                    <span className="text-xs text-blue-600 font-medium">
-                      Alex's turn
-                    </span>
-                  </div>
-                  <div className="flex items-center justify-between p-2 bg-yellow-50 rounded-lg">
-                    <span className="text-sm">Kitchen deep clean</span>
-                    <span className="text-xs text-yellow-600 font-medium">
-                      Together
-                    </span>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+  return (
+    <div className="w-80 h-[640px] bg-gradient-to-br from-gray-900 via-rose-900/20 to-gray-800 rounded-[3rem] p-3 shadow-2xl relative overflow-hidden">
+      {/* Ambient glow effects */}
+      <div className="absolute inset-0 bg-gradient-to-br from-rose-500/5 to-pink-500/5 rounded-[3rem]"></div>
+      <div className="absolute top-4 left-4 w-32 h-32 bg-rose-400/10 rounded-full blur-2xl"></div>
+      <div className="absolute bottom-4 right-4 w-24 h-24 bg-pink-400/10 rounded-full blur-xl"></div>
 
-            {/* Weekly Check-in Prompt */}
-            <Card className="border-indigo-200">
-              <CardContent className="p-4">
-                <div className="flex items-center justify-between mb-3">
-                  <h3 className="font-bold text-gray-900">Weekly Check-in</h3>
-                  <Calendar className="w-4 h-4 text-indigo-600" />
-                </div>
-                <div className="bg-indigo-50 p-4 rounded-lg">
-                  <p className="text-sm text-indigo-800 font-medium mb-2">
-                    "{weeklyPrompts[0]}"
-                  </p>
-                  <Button
-                    size="sm"
-                    className="bg-indigo-600 hover:bg-indigo-700 text-white"
-                  >
-                    Answer Together
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
+      <div className="w-full h-full bg-gradient-to-br from-white via-rose-50/50 to-pink-50/30 rounded-[2.5rem] overflow-hidden relative backdrop-blur-sm border border-white/20">
+        {/* Status bar */}
+        <div className="h-12 bg-gradient-to-r from-rose-50 to-pink-50 flex items-center justify-between px-6 border-b border-rose-100/50">
+          <div className="text-sm font-semibold text-gray-800">9:41</div>
+          <div className="flex items-center gap-1">
+            <div className="w-4 h-2 bg-rose-500 rounded-sm"></div>
+            <div className="w-6 h-3 border border-rose-300 rounded-sm">
+              <div className="w-4 h-full bg-rose-500 rounded-sm"></div>
+            </div>
           </div>
-        );
+        </div>
 
-      case "grocery":
-        return (
-          <div className="space-y-6 p-4">
-            {/* Budget Overview */}
-            <Card className="bg-gradient-to-br from-emerald-50 to-green-100 border-emerald-200">
-              <CardContent className="p-4">
-                <div className="flex items-center justify-between mb-3">
-                  <h3 className="font-bold text-gray-900">Shared Budget</h3>
-                  <DollarSign className="w-5 h-5 text-emerald-600" />
+        {/* Header */}
+        <div className="px-6 py-4 bg-gradient-to-r from-rose-500 via-pink-500 to-rose-600 text-white relative overflow-hidden">
+          <div className="absolute inset-0 bg-rose-400/20 animate-pulse"></div>
+          <div className="relative z-10">
+            <div className="flex items-center justify-between mb-2">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
+                  <Heart className="w-5 h-5 text-white animate-pulse" />
                 </div>
-                <div className="space-y-2">
-                  <div className="flex justify-between">
-                    <span className="text-sm text-gray-600">This month</span>
-                    <span className="font-semibold text-gray-900">$156.99</span>
-                  </div>
-                  <Progress value={52} className="h-2" />
-                  <div className="flex justify-between text-xs text-gray-500">
-                    <span>$156.99 of $300.00</span>
-                    <span>48% remaining</span>
-                  </div>
+                <div>
+                  <h3 className="font-bold text-lg">CoHabitly</h3>
+                  <p className="text-rose-100 text-sm">Together Mode</p>
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
+                  <Bell className="w-4 h-4 text-white" />
+                </div>
+                <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
+                  <Settings className="w-4 h-4 text-white" />
+                </div>
+              </div>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1">
+                <div className="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center">
+                  <User className="w-3 h-3 text-white" />
+                </div>
+                <div className="w-6 h-6 bg-white/30 rounded-full flex items-center justify-center border border-white/20">
+                  <User className="w-3 h-3 text-white" />
+                </div>
+              </div>
+              <span className="text-rose-100 text-xs">Connected</span>
+              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse ml-1"></div>
+            </div>
+          </div>
+        </div>
 
-            {/* Add New Item */}
-            <Card className="border-blue-200">
-              <CardContent className="p-4">
-                <div className="flex gap-2">
-                  <Input
-                    placeholder="Add to our list..."
-                    value={newGroceryItem}
-                    onChange={(e) => setNewGroceryItem(e.target.value)}
-                    className="flex-1 h-10"
-                    onKeyPress={(e) =>
-                      e.key === "Enter" && handleAddGroceryItem()
-                    }
-                  />
-                  <Button
-                    size="sm"
-                    onClick={handleAddGroceryItem}
-                    className="bg-pink-600 hover:bg-pink-700"
+        {/* Content Area */}
+        <div className="flex-1 overflow-hidden">
+          {activeTab === "home" && (
+            <div className="p-6 space-y-6 h-full overflow-y-auto">
+              {/* Harmony Score */}
+              <Card className="border-0 bg-gradient-to-br from-rose-50 to-pink-50 shadow-lg">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center gap-2">
+                      <Sparkles className="w-5 h-5 text-rose-500" />
+                      <h3 className="font-bold text-gray-900">
+                        Relationship Harmony
+                      </h3>
+                    </div>
+                    <span className="text-2xl font-bold text-rose-600">
+                      {averageMood}/10
+                    </span>
+                  </div>
+                  <div className="space-y-3">
+                    <div className="flex justify-between text-sm">
+                      <span className="text-gray-600">This week's vibe</span>
+                      <span className="text-rose-600 font-medium">
+                        Flourishing
+                      </span>
+                    </div>
+                    <div className="w-full bg-rose-100 rounded-full h-2">
+                      <div
+                        className="bg-gradient-to-r from-rose-500 to-pink-500 h-2 rounded-full transition-all duration-1000"
+                        style={{ width: `${averageMood * 10}%` }}
+                      ></div>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-xs text-gray-500">
+                        Daily check-ins help
+                      </span>
+                      <div className="flex gap-1">
+                        {weeklyMoods.slice(-3).map((day, index) => (
+                          <span key={index} className="text-lg">
+                            {getMoodEmoji(
+                              Math.round((day.yourMood + day.partnerMood) / 2),
+                            )}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Quick Actions */}
+              <div className="grid grid-cols-2 gap-4">
+                <Card className="border-0 bg-white/70 shadow-md hover:shadow-lg transition-all cursor-pointer group">
+                  <CardContent className="p-4 text-center">
+                    <div className="w-12 h-12 bg-gradient-to-br from-blue-100 to-blue-200 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+                      <MessageCircle className="w-6 h-6 text-blue-600" />
+                    </div>
+                    <h4 className="font-semibold text-gray-900 text-sm">
+                      Check In
+                    </h4>
+                    <p className="text-xs text-gray-500 mt-1">
+                      Share how you're feeling
+                    </p>
+                  </CardContent>
+                </Card>
+
+                <Card className="border-0 bg-white/70 shadow-md hover:shadow-lg transition-all cursor-pointer group">
+                  <CardContent className="p-4 text-center">
+                    <div className="w-12 h-12 bg-gradient-to-br from-emerald-100 to-emerald-200 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+                      <Target className="w-6 h-6 text-emerald-600" />
+                    </div>
+                    <h4 className="font-semibold text-gray-900 text-sm">
+                      Set Goal
+                    </h4>
+                    <p className="text-xs text-gray-500 mt-1">Plan together</p>
+                  </CardContent>
+                </Card>
+              </div>
+
+              {/* Recent Activity */}
+              <Card className="border-0 bg-white/70 shadow-md">
+                <CardContent className="p-5">
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="font-bold text-gray-900">Recent Together</h3>
+                    <MoreHorizontal className="w-4 h-4 text-gray-400" />
+                  </div>
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                        <CheckCircle className="w-4 h-4 text-green-600" />
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-sm font-medium text-gray-900">
+                          Shared grocery list completed
+                        </p>
+                        <p className="text-xs text-gray-500">2 hours ago</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 bg-rose-100 rounded-full flex items-center justify-center">
+                        <Heart className="w-4 h-4 text-rose-600" />
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-sm font-medium text-gray-900">
+                          Anonymous note sent
+                        </p>
+                        <p className="text-xs text-gray-500">Yesterday</p>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          )}
+
+          {activeTab === "shared" && (
+            <div className="p-6 space-y-4 h-full overflow-y-auto">
+              {/* Category Tabs */}
+              <div className="flex bg-gray-100 rounded-xl p-1">
+                {[
+                  { key: "groceries", label: "Groceries", icon: ShoppingCart },
+                  { key: "tasks", label: "Tasks", icon: CheckCircle },
+                  { key: "goals", label: "Goals", icon: Star },
+                ].map(({ key, label, icon: Icon }) => (
+                  <button
+                    key={key}
+                    onClick={() => setSelectedCategory(key as any)}
+                    className={`flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-lg text-sm font-medium transition-all ${
+                      selectedCategory === key
+                        ? "bg-white text-rose-600 shadow-sm"
+                        : "text-gray-600 hover:text-gray-900"
+                    }`}
                   >
-                    <Plus className="w-4 h-4" />
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
+                    <Icon className="w-4 h-4" />
+                    {label}
+                  </button>
+                ))}
+              </div>
 
-            {/* Collaborative Grocery List */}
-            <Card className="border-gray-200">
-              <CardContent className="p-4">
-                <h3 className="font-bold text-gray-900 mb-3">
-                  Our Grocery List
-                </h3>
-                <div className="space-y-2">
-                  {groceryItems.map((item) => (
-                    <div
-                      key={item.id}
-                      className={`flex items-center justify-between p-3 rounded-lg border ${
-                        item.purchased
-                          ? "bg-gray-50 border-gray-200 opacity-60"
-                          : "bg-white border-gray-200"
-                      }`}
-                    >
+              {/* Add Item */}
+              {showAddForm ? (
+                <Card className="border-2 border-rose-200 bg-rose-50/50">
+                  <CardContent className="p-4">
+                    <div className="space-y-3">
+                      <Input
+                        value={newItem}
+                        onChange={(e) => setNewItem(e.target.value)}
+                        placeholder={`Add new ${selectedCategory.slice(0, -1)}...`}
+                        className="border-rose-200 focus:border-rose-400"
+                        autoFocus
+                      />
+                      <div className="flex gap-2">
+                        <Button
+                          onClick={addNewItem}
+                          className="flex-1 bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white"
+                          size="sm"
+                        >
+                          <Plus className="w-4 h-4 mr-1" />
+                          Add
+                        </Button>
+                        <Button
+                          onClick={() => setShowAddForm(false)}
+                          variant="outline"
+                          size="sm"
+                        >
+                          Cancel
+                        </Button>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ) : (
+                <Button
+                  onClick={() => setShowAddForm(true)}
+                  className="w-full bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white"
+                >
+                  <Plus className="w-4 h-4 mr-2" />
+                  Add {selectedCategory.slice(0, -1)}
+                </Button>
+              )}
+
+              {/* Items List */}
+              <div className="space-y-3">
+                {getFilteredItems().map((item) => (
+                  <Card
+                    key={item.id}
+                    className={`border-0 cursor-pointer transition-all hover:shadow-md ${
+                      item.isCompleted
+                        ? "bg-gray-50 opacity-75"
+                        : "bg-white shadow-sm"
+                    }`}
+                    onClick={() => toggleItem(item.id)}
+                  >
+                    <CardContent className="p-4">
                       <div className="flex items-center gap-3">
                         <div
-                          className={`w-5 h-5 rounded border-2 flex items-center justify-center cursor-pointer ${
-                            item.purchased
-                              ? "bg-green-500 border-green-500"
-                              : "border-gray-300 hover:border-green-400"
+                          className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all ${
+                            item.isCompleted
+                              ? "bg-rose-500 border-rose-500"
+                              : "border-gray-300 hover:border-rose-400"
                           }`}
                         >
-                          {item.purchased && (
-                            <Check className="w-3 h-3 text-white" />
+                          {item.isCompleted && (
+                            <CheckCircle className="w-3 h-3 text-white" />
                           )}
                         </div>
-                        <div>
-                          <div
-                            className={`text-sm font-medium ${
-                              item.purchased
+                        <div className="flex-1">
+                          <p
+                            className={`font-medium ${
+                              item.isCompleted
                                 ? "line-through text-gray-500"
                                 : "text-gray-900"
                             }`}
                           >
-                            {item.name}
-                          </div>
-                          <div className="text-xs text-gray-500">
+                            {item.text}
+                          </p>
+                          <p className="text-xs text-gray-500">
                             Added by {item.addedBy}
-                            {item.pickupBy && ` • ${item.pickupBy} picking up`}
-                          </div>
+                          </p>
                         </div>
                       </div>
-                      <div className="text-right">
-                        <div
-                          className={`text-sm font-semibold ${
-                            item.purchased ? "text-gray-500" : "text-gray-900"
-                          }`}
-                        >
-                          ${item.price.toFixed(2)}
-                        </div>
-                        {!item.pickupBy && (
-                          <Button
-                            size="sm"
-                            variant="outline"
-                            className="text-xs mt-1 h-6"
-                          >
-                            I'll get it
-                          </Button>
-                        )}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                <div className="mt-4 pt-3 border-t border-gray-200">
-                  <div className="flex justify-between">
-                    <span className="text-sm font-medium text-gray-600">
-                      Total (unpurchased)
-                    </span>
-                    <span className="text-lg font-bold text-gray-900">
-                      $
-                      {groceryItems
-                        .filter((item) => !item.purchased)
-                        .reduce((sum, item) => sum + item.price, 0)
-                        .toFixed(2)}
-                    </span>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        );
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          )}
 
-      case "feedback":
-        return (
-          <div className="space-y-6 p-4">
-            {/* Private Concerns Input */}
-            <Card className="border-pink-200">
-              <CardContent className="p-4">
-                <div className="space-y-3">
-                  <div className="flex items-center gap-2">
-                    <MessageCircle className="w-5 h-5 text-pink-600" />
-                    <h3 className="font-bold text-gray-900">
-                      Private Thoughts
-                    </h3>
-                  </div>
-                  <p className="text-xs text-gray-600">
-                    Share concerns privately with our AI. We'll help you find
-                    the right way to discuss things together.
-                  </p>
-                  <div className="flex gap-2">
-                    <div className="flex-1">
-                      <Input
-                        placeholder="What's on your mind?"
-                        value={newMessage}
-                        onChange={(e) => setNewMessage(e.target.value)}
-                        className="h-10"
-                        onKeyPress={(e) =>
-                          e.key === "Enter" && handleSendMessage()
-                        }
-                      />
-                      <div className="flex items-center gap-4 mt-2">
-                        <label className="flex items-center gap-2 text-xs text-gray-600">
-                          <input
-                            type="checkbox"
-                            className="rounded"
-                            defaultChecked
-                          />
-                          Keep private until I'm ready
-                        </label>
-                      </div>
-                    </div>
-                    <Button
-                      size="sm"
-                      onClick={handleSendMessage}
-                      className="bg-pink-600 hover:bg-pink-700 self-start"
-                      disabled={isTyping}
-                    >
-                      {isTyping ? (
-                        <div className="animate-spin w-4 h-4 border-2 border-white border-t-transparent rounded-full"></div>
-                      ) : (
-                        <Send className="w-4 h-4" />
-                      )}
-                    </Button>
-                  </div>
-                  {isTyping && (
-                    <div className="text-xs text-pink-600 flex items-center gap-2">
-                      <div className="animate-pulse w-2 h-2 bg-pink-600 rounded-full"></div>
-                      AI is analyzing and preparing gentle conversation
-                      suggestions...
-                    </div>
-                  )}
+          {activeTab === "communicate" && (
+            <div className="flex flex-col h-full">
+              <div className="p-4 border-b border-rose-100 bg-gradient-to-r from-rose-50 to-pink-50">
+                <div className="flex items-center gap-2">
+                  <Lock className="w-4 h-4 text-rose-500" />
+                  <span className="text-sm font-medium text-gray-700">
+                    Safe Space
+                  </span>
+                  <span className="text-xs text-gray-500">
+                    • End-to-end encrypted
+                  </span>
                 </div>
-              </CardContent>
-            </Card>
+              </div>
 
-            {/* AI Conversation Starters */}
-            <Card className="border-blue-200">
-              <CardContent className="p-4">
-                <h3 className="font-bold text-gray-900 mb-3">
-                  Conversation Starters
-                </h3>
-                <div className="space-y-2">
-                  <div className="p-3 bg-blue-50 rounded-lg">
-                    <p className="text-sm text-blue-800 font-medium">
-                      "I've been thinking about how we split household tasks..."
-                    </p>
-                    <p className="text-xs text-blue-600 mt-1">
-                      Based on your recent check-ins about chore balance
-                    </p>
-                  </div>
-                  <div className="p-3 bg-purple-50 rounded-lg">
-                    <p className="text-sm text-purple-800 font-medium">
-                      "What would make our evenings together even better?"
-                    </p>
-                    <p className="text-xs text-purple-600 mt-1">
-                      You both mentioned wanting more quality time
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Recent Insights */}
-            <Card className="border-gray-200">
-              <CardContent className="p-4">
-                <h3 className="font-bold text-gray-900 mb-3">
-                  Recent Insights
-                </h3>
-                <div className="space-y-3">
-                  {messages.map((message) => (
+              <div className="flex-1 p-4 space-y-4 overflow-y-auto">
+                {messages.map((message) => (
+                  <div
+                    key={message.id}
+                    className={`flex ${message.isOwn ? "justify-end" : "justify-start"}`}
+                  >
                     <div
-                      key={message.id}
-                      className="p-3 rounded-lg bg-gray-50 border border-gray-200"
+                      className={`max-w-[80%] ${message.isOwn ? "order-2" : "order-1"}`}
                     >
-                      <div className="flex items-start justify-between mb-2">
-                        <div className="flex items-center gap-2">
-                          <div className="w-8 h-8 bg-gradient-to-br from-pink-500 to-rose-500 rounded-full flex items-center justify-center text-white text-xs font-bold">
-                            {message.sender === "AI Suggestion"
-                              ? "AI"
-                              : message.sender[0]}
+                      <div
+                        className={`p-3 rounded-2xl ${
+                          message.isOwn
+                            ? "bg-gradient-to-r from-rose-500 to-pink-500 text-white"
+                            : "bg-white border border-gray-200 text-gray-900"
+                        }`}
+                      >
+                        {message.isAnonymous && !message.isOwn && (
+                          <div className="flex items-center gap-1 mb-2 opacity-75">
+                            <Lock className="w-3 h-3" />
+                            <span className="text-xs">Anonymous</span>
                           </div>
-                          <div>
-                            <div className="text-sm font-medium text-gray-900">
-                              {message.sender}
-                            </div>
-                            <div className="text-xs text-gray-500">
-                              {message.timestamp}
-                            </div>
-                          </div>
-                        </div>
-                        {message.aiFiltered && (
-                          <Badge
-                            variant="secondary"
-                            className="text-xs bg-green-50 text-green-700"
-                          >
-                            AI Enhanced
-                          </Badge>
+                        )}
+                        <p className="text-sm leading-relaxed">
+                          {message.text}
+                        </p>
+                      </div>
+                      <div className="flex items-center gap-2 mt-1 px-2">
+                        <span className="text-xs text-gray-500">
+                          {message.timestamp}
+                        </span>
+                        {message.mood && (
+                          <span className="text-sm">
+                            {message.mood === "happy"
+                              ? "😊"
+                              : message.mood === "thoughtful"
+                                ? "🤔"
+                                : "😔"}
+                          </span>
                         )}
                       </div>
-                      <p className="text-sm text-gray-700 leading-relaxed">
-                        {message.content}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        );
-
-      case "settings":
-        return (
-          <div className="space-y-6 p-4">
-            {/* Chore Preferences */}
-            <Card className="border-indigo-200">
-              <CardContent className="p-4">
-                <h3 className="font-bold text-gray-900 mb-3">
-                  Task Preferences
-                </h3>
-                <div className="space-y-3">
-                  {chorePreferences.map((pref) => (
-                    <div key={pref.id} className="p-3 bg-indigo-50 rounded-lg">
-                      <div className="flex justify-between items-center mb-2">
-                        <span className="font-medium text-gray-900">
-                          {pref.task}
-                        </span>
-                        <span className="text-xs text-indigo-600">
-                          {pref.current_split}
-                        </span>
-                      </div>
-                      <div className="grid grid-cols-2 gap-2 text-xs">
-                        <div>
-                          <span className="text-gray-600">Alex: </span>
-                          <span
-                            className={`font-medium ${
-                              pref.alex_preference === "loves"
-                                ? "text-green-600"
-                                : pref.alex_preference === "dislikes"
-                                  ? "text-red-600"
-                                  : "text-gray-600"
-                            }`}
-                          >
-                            {pref.alex_preference}
-                          </span>
-                        </div>
-                        <div>
-                          <span className="text-gray-600">Jordan: </span>
-                          <span
-                            className={`font-medium ${
-                              pref.jordan_preference === "likes"
-                                ? "text-green-600"
-                                : pref.jordan_preference === "dislikes"
-                                  ? "text-red-600"
-                                  : "text-gray-600"
-                            }`}
-                          >
-                            {pref.jordan_preference}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Living Style Settings */}
-            <Card className="border-green-200">
-              <CardContent className="p-4">
-                <h3 className="font-bold text-gray-900 mb-3">
-                  "I feel most relaxed when..."
-                </h3>
-                <div className="space-y-3">
-                  <div>
-                    <label className="text-sm font-medium text-gray-700 block mb-1">
-                      Alex
-                    </label>
-                    <div className="p-3 bg-green-50 rounded-lg text-sm text-gray-700">
-                      "The kitchen is clean and there's music playing softly"
                     </div>
                   </div>
-                  <div>
-                    <label className="text-sm font-medium text-gray-700 block mb-1">
-                      Jordan
-                    </label>
-                    <div className="p-3 bg-green-50 rounded-lg text-sm text-gray-700">
-                      "We have our evening routine and some quiet time together"
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Communication Settings */}
-            <Card className="border-purple-200">
-              <CardContent className="p-4">
-                <h3 className="font-bold text-gray-900 mb-3">
-                  Communication Style
-                </h3>
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-700">
-                      Gentle conversation prompts
-                    </span>
-                    <div className="w-10 h-6 bg-green-500 rounded-full relative">
-                      <div className="absolute right-1 top-1 w-4 h-4 bg-white rounded-full"></div>
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-700">
-                      Weekly relationship check-ins
-                    </span>
-                    <div className="w-10 h-6 bg-green-500 rounded-full relative">
-                      <div className="absolute right-1 top-1 w-4 h-4 bg-white rounded-full"></div>
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-700">
-                      AI insight notifications
-                    </span>
-                    <div className="w-10 h-6 bg-gray-300 rounded-full relative">
-                      <div className="absolute left-1 top-1 w-4 h-4 bg-white rounded-full"></div>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        );
-
-      default:
-        return null;
-    }
-  };
-
-  return (
-    <div
-      className="relative mx-auto"
-      style={{ width: "375px", height: "812px" }}
-    >
-      {/* iPhone Frame */}
-      <div className="relative w-full h-full bg-gradient-to-br from-gray-900 to-black rounded-[3rem] p-2 shadow-2xl transition-all duration-300 hover:shadow-3xl">
-        {/* Screen */}
-        <div className="w-full h-full bg-black rounded-[2.5rem] overflow-hidden relative z-10">
-          {/* Dynamic Island */}
-          <div className="absolute top-2 left-1/2 transform -translate-x-1/2 w-32 h-6 bg-black rounded-full z-50"></div>
-
-          {/* Status Bar */}
-          <div className="flex items-center justify-between px-6 pt-4 pb-2 bg-white relative z-40">
-            <div className="text-sm font-semibold text-black">
-              {currentTime.toLocaleTimeString([], {
-                hour: "2-digit",
-                minute: "2-digit",
-              })}
-            </div>
-            <div className="flex items-center gap-1">
-              <Signal className="w-4 h-4 text-black" />
-              <Wifi className="w-4 h-4 text-black" />
-              <Battery className="w-4 h-4 text-black" />
-            </div>
-          </div>
-
-          {/* App Header */}
-          <div className="bg-gradient-to-r from-pink-500 to-rose-500 text-white px-6 py-4">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
-                <Heart className="w-5 h-5" />
+                ))}
               </div>
-              <div>
-                <h1 className="font-bold text-lg">CoHabitly</h1>
-                <p className="text-pink-100 text-sm">Couples Mode</p>
+
+              <div className="p-4 border-t border-rose-100 bg-white">
+                <div className="flex gap-2">
+                  <Input
+                    value={newMessage}
+                    onChange={(e) => setNewMessage(e.target.value)}
+                    placeholder="Share something thoughtful..."
+                    className="flex-1 border-rose-200 focus:border-rose-400"
+                  />
+                  <Button
+                    className="bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white"
+                    size="icon"
+                  >
+                    <Send className="w-4 h-4" />
+                  </Button>
+                </div>
+                <div className="flex items-center gap-4 mt-2">
+                  <label className="flex items-center gap-2 text-xs text-gray-600">
+                    <input type="checkbox" className="w-3 h-3 text-rose-500" />
+                    Send anonymously
+                  </label>
+                  <div className="flex gap-1">
+                    <button className="text-lg hover:scale-110 transition-transform">
+                      😊
+                    </button>
+                    <button className="text-lg hover:scale-110 transition-transform">
+                      🤔
+                    </button>
+                    <button className="text-lg hover:scale-110 transition-transform">
+                      💕
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
+          )}
 
-          {/* Tab Content */}
-          <div
-            className="flex-1 bg-gray-50 overflow-y-auto"
-            style={{ height: "calc(100% - 180px)" }}
-          >
-            {renderTabContent()}
-          </div>
+          {activeTab === "preferences" && (
+            <div className="p-6 space-y-6 h-full overflow-y-auto">
+              <Card className="border-0 bg-gradient-to-br from-blue-50 to-indigo-50 shadow-md">
+                <CardContent className="p-5">
+                  <div className="flex items-center gap-3 mb-4">
+                    <Home className="w-5 h-5 text-blue-600" />
+                    <h3 className="font-bold text-gray-900">Living Style</h3>
+                  </div>
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm text-gray-700">
+                        Cleanliness level
+                      </span>
+                      <div className="flex gap-1">
+                        {[1, 2, 3, 4, 5].map((level) => (
+                          <div
+                            key={level}
+                            className={`w-3 h-3 rounded-full ${level <= 4 ? "bg-blue-500" : "bg-gray-200"}`}
+                          ></div>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm text-gray-700">
+                        Social energy
+                      </span>
+                      <div className="flex gap-1">
+                        {[1, 2, 3, 4, 5].map((level) => (
+                          <div
+                            key={level}
+                            className={`w-3 h-3 rounded-full ${level <= 3 ? "bg-blue-500" : "bg-gray-200"}`}
+                          ></div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
 
-          {/* Bottom Navigation */}
-          <div className="absolute bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-4 py-2 pb-6">
-            <div className="flex justify-around">
-              {[
-                { id: "dashboard", icon: Home, label: "Home" },
-                { id: "grocery", icon: ShoppingCart, label: "Our List" },
-                { id: "feedback", icon: MessageCircle, label: "Private" },
-                { id: "settings", icon: Settings, label: "Preferences" },
-              ].map((tab) => (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab.id as CouplesTabType)}
-                  className={`flex flex-col items-center gap-1 px-3 py-2 rounded-lg transition-all duration-200 ${
-                    activeTab === tab.id
-                      ? "bg-pink-100 text-pink-600"
-                      : "text-gray-500 hover:text-gray-700 hover:bg-gray-100"
-                  }`}
-                >
-                  <tab.icon className="w-5 h-5" />
-                  <span className="text-xs font-medium">{tab.label}</span>
-                </button>
-              ))}
+              <Card className="border-0 bg-gradient-to-br from-emerald-50 to-teal-50 shadow-md">
+                <CardContent className="p-5">
+                  <div className="flex items-center gap-3 mb-4">
+                    <Calendar className="w-5 h-5 text-emerald-600" />
+                    <h3 className="font-bold text-gray-900">Schedule Sync</h3>
+                  </div>
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm text-gray-700">
+                        Morning person
+                      </span>
+                      <div className="w-10 h-6 bg-emerald-500 rounded-full relative">
+                        <div className="w-4 h-4 bg-white rounded-full absolute top-1 right-1 shadow-sm"></div>
+                      </div>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm text-gray-700">Quiet hours</span>
+                      <span className="text-sm font-medium text-emerald-600">
+                        10 PM - 7 AM
+                      </span>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="border-0 bg-gradient-to-br from-purple-50 to-pink-50 shadow-md">
+                <CardContent className="p-5">
+                  <div className="flex items-center gap-3 mb-4">
+                    <Settings className="w-5 h-5 text-purple-600" />
+                    <h3 className="font-bold text-gray-900">Communication</h3>
+                  </div>
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm text-gray-700">
+                        Gentle reminders
+                      </span>
+                      <div className="w-10 h-6 bg-purple-500 rounded-full relative">
+                        <div className="w-4 h-4 bg-white rounded-full absolute top-1 right-1 shadow-sm"></div>
+                      </div>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm text-gray-700">
+                        Conflict style
+                      </span>
+                      <span className="text-sm font-medium text-purple-600">
+                        Talk it through
+                      </span>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
             </div>
+          )}
+        </div>
+
+        {/* Bottom Navigation */}
+        <div className="px-4 py-3 bg-white border-t border-rose-100">
+          <div className="flex justify-around">
+            {[
+              { key: "home", icon: Home, label: "Home", color: "rose" },
+              { key: "shared", icon: Users, label: "Shared", color: "blue" },
+              {
+                key: "communicate",
+                icon: MessageCircle,
+                label: "Safe Talk",
+                color: "emerald",
+              },
+              {
+                key: "preferences",
+                icon: Settings,
+                label: "Style",
+                color: "purple",
+              },
+            ].map(({ key, icon: Icon, label, color }) => (
+              <button
+                key={key}
+                onClick={() => setActiveTab(key as CouplesTabType)}
+                className={`flex flex-col items-center gap-1 px-3 py-2 rounded-xl transition-all ${
+                  activeTab === key
+                    ? `bg-${color}-100 text-${color}-600`
+                    : "text-gray-500 hover:text-gray-700"
+                }`}
+              >
+                <Icon className="w-5 h-5" />
+                <span className="text-xs font-medium">{label}</span>
+              </button>
+            ))}
           </div>
         </div>
       </div>
