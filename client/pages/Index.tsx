@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import InteractiveDemo from "@/components/InteractiveDemo";
 import CouplesDemo from "@/components/CouplesDemo";
+import StudentDemo from "@/components/StudentDemo";
 import HoverScrollContainer from "@/components/HoverScrollContainer";
 import {
   CheckCircle,
