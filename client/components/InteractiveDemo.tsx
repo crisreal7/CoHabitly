@@ -799,38 +799,36 @@ export default function InteractiveDemo({
 
       case "grocery":
         return (
-          <div className="space-y-6 p-6">
+          <div className="space-y-4 p-4">
             {/* Budget Overview */}
-            <Card className="border-0 bg-gradient-to-br from-emerald-50 to-teal-50 shadow-lg">
-              <CardContent className="p-6">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center">
-                      <DollarSign className="w-6 h-6 text-white" />
+            <Card className="border-0 bg-gradient-to-br from-emerald-50 to-teal-50 shadow-md">
+              <CardContent className="p-4">
+                <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center gap-2">
+                    <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-lg flex items-center justify-center">
+                      <DollarSign className="w-5 h-5 text-white" />
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold text-gray-900">
-                        House Budget
+                      <h3 className="text-lg font-bold text-gray-900">
+                        Budget
                       </h3>
-                      <p className="text-sm text-gray-600">
-                        This week's spending
-                      </p>
+                      <p className="text-xs text-gray-600">This week</p>
                     </div>
                   </div>
                   <div className="text-right">
-                    <div className="text-2xl font-bold text-emerald-600">
+                    <div className="text-xl font-bold text-emerald-600">
                       $
                       {groceryItems
                         .filter((item) => item.purchased)
                         .reduce((sum, item) => sum + item.price, 0)
                         .toFixed(0)}
                     </div>
-                    <div className="text-sm text-gray-600">of $150 budget</div>
+                    <div className="text-xs text-gray-600">of $150</div>
                   </div>
                 </div>
-                <div className="w-full bg-emerald-100 rounded-full h-3">
+                <div className="w-full bg-emerald-100 rounded-full h-2">
                   <div
-                    className="bg-gradient-to-r from-emerald-500 to-teal-500 h-3 rounded-full transition-all duration-1000"
+                    className="bg-gradient-to-r from-emerald-500 to-teal-500 h-2 rounded-full transition-all duration-1000"
                     style={{
                       width: `${(groceryItems.filter((item) => item.purchased).reduce((sum, item) => sum + item.price, 0) / 150) * 100}%`,
                     }}
@@ -840,14 +838,14 @@ export default function InteractiveDemo({
             </Card>
 
             {/* Add Item */}
-            <Card className="border-0 bg-white shadow-md">
-              <CardContent className="p-4">
+            <Card className="border-0 bg-white shadow-sm">
+              <CardContent className="p-3">
                 <Button
-                  className="w-full bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 text-white"
+                  className="w-full h-9 bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 text-white text-sm"
                   onClick={() => navigateToCompose("grocery")}
                 >
                   <Plus className="w-4 h-4 mr-2" />
-                  Add Grocery Item
+                  Add Item
                 </Button>
               </CardContent>
             </Card>
