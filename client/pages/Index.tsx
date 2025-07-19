@@ -639,7 +639,7 @@ export default function Index() {
 
                 {/* Central logo with soft glow */}
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-24 h-24 bg-gradient-to-br from-brand-500 to-sage-500 rounded-2xl flex items-center justify-center shadow-2xl border border-white/20 backdrop-blur-sm">
+                  <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-2xl flex items-center justify-center shadow-2xl border border-white/20 backdrop-blur-sm">
                     <Home className="w-12 h-12 text-white animate-pulse" />
                   </div>
                 </div>
