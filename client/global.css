@@ -648,56 +648,109 @@
 
 @layer base {
   /**
-   * Tailwind CSS theme
-   * tailwind.config.ts expects the following color variables to be expressed as HSL values.
-   * A different format will require also updating the theme in tailwind.config.ts.
+   * Premium Color Theory-Based Design System
+   * Monochromatic + Analogous color schemes with WCAG 2.1 compliant contrast
   */
   :root {
-    --background: 320 43% 99%;
-    --foreground: 340 15% 15%;
+    /* Base System Colors */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 9%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 220 13% 91%;
+    --radius: 0.75rem;
 
-    --card: 320 50% 98%;
-    --card-foreground: 340 15% 15%;
+    /* Couples Theme - Blush Pink Primary */
+    --couples-primary: 350 82% 82%;
+    --couples-primary-hover: 350 82% 75%;
+    --couples-primary-active: 350 82% 68%;
+    --couples-accent: 15 77% 76%;
+    --couples-accent-soft: 15 77% 90%;
+    --couples-success: 142 70% 45%;
+    --couples-error: 0 72% 51%;
+    --couples-warning: 38 92% 50%;
+    --couples-neutral: 20 14% 96%;
+    --couples-neutral-dark: 20 9% 46%;
+    --couples-surface: 350 25% 98%;
+    --couples-surface-hover: 350 25% 95%;
 
-    --popover: 320 50% 98%;
-    --popover-foreground: 340 15% 15%;
+    /* Roommates Theme - Royal Blue Primary */
+    --roommates-primary: 217 91% 60%;
+    --roommates-primary-hover: 217 91% 53%;
+    --roommates-primary-active: 217 91% 46%;
+    --roommates-accent: 200 98% 39%;
+    --roommates-accent-soft: 200 98% 85%;
+    --roommates-success: 142 70% 45%;
+    --roommates-error: 0 72% 51%;
+    --roommates-warning: 38 92% 50%;
+    --roommates-neutral: 220 14% 96%;
+    --roommates-neutral-dark: 220 9% 46%;
+    --roommates-surface: 217 25% 98%;
+    --roommates-surface-hover: 217 25% 95%;
 
-    --primary: 305 85% 75%;
-    --primary-foreground: 340 50% 5%;
+    /* Students Theme - Emerald Green Primary */
+    --students-primary: 142 70% 45%;
+    --students-primary-hover: 142 70% 38%;
+    --students-primary-active: 142 70% 31%;
+    --students-accent: 180 98% 39%;
+    --students-accent-soft: 180 98% 85%;
+    --students-success: 142 70% 45%;
+    --students-error: 0 72% 51%;
+    --students-warning: 38 92% 50%;
+    --students-neutral: 155 14% 96%;
+    --students-neutral-dark: 155 9% 46%;
+    --students-surface: 142 25% 98%;
+    --students-surface-hover: 142 25% 95%;
 
-    --secondary: 155 25% 95%;
-    --secondary-foreground: 155 25% 25%;
+    /* Admin Theme - Deep Purple Primary */
+    --admin-primary: 259 94% 51%;
+    --admin-primary-hover: 259 94% 44%;
+    --admin-primary-active: 259 94% 37%;
+    --admin-accent: 280 87% 66%;
+    --admin-accent-soft: 280 87% 90%;
+    --admin-success: 142 70% 45%;
+    --admin-error: 0 72% 51%;
+    --admin-warning: 38 92% 50%;
+    --admin-neutral: 260 14% 96%;
+    --admin-neutral-dark: 260 9% 46%;
+    --admin-surface: 259 25% 98%;
+    --admin-surface-hover: 259 25% 95%;
 
-    --muted: 155 15% 96%;
-    --muted-foreground: 155 8% 50%;
+    /* Priority System Colors */
+    --priority-high: 0 72% 51%;
+    --priority-high-bg: 0 72% 97%;
+    --priority-medium: 38 92% 50%;
+    --priority-medium-bg: 38 92% 95%;
+    --priority-low: 142 70% 45%;
+    --priority-low-bg: 142 70% 95%;
 
-    --accent: 270 50% 95%;
-    --accent-foreground: 270 50% 25%;
+    /* Status Colors */
+    --status-success: 142 70% 45%;
+    --status-success-bg: 142 70% 95%;
+    --status-warning: 38 92% 50%;
+    --status-warning-bg: 38 92% 95%;
+    --status-error: 0 72% 51%;
+    --status-error-bg: 0 72% 97%;
+    --status-info: 217 91% 60%;
+    --status-info-bg: 217 91% 95%;
 
-    --destructive: 0 75% 70%;
-    --destructive-foreground: 0 0% 98%;
+    /* Elevation Shadows */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md:
+      0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg:
+      0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-xl:
+      0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
 
-    --border: 155 15% 90%;
-    --input: 155 15% 94%;
-    --ring: 305 85% 75%;
-
-    --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Glass Morphism */
+    --glass-bg: rgba(255, 255, 255, 0.85);
+    --glass-border: rgba(255, 255, 255, 0.3);
+    --glass-backdrop: blur(20px);
   }
 
   .dark {
