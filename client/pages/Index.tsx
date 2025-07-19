@@ -428,6 +428,8 @@ export default function Index() {
         return adminJourney;
       case "couples":
         return couplesJourney;
+      case "roommate":
+        return roommateJourney;
       default:
         return studentJourney;
     }
