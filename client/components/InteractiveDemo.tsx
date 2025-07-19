@@ -950,12 +950,12 @@ export default function InteractiveDemo({
 
       case "events":
         return (
-          <div className="space-y-6 p-6">
+          <div className="space-y-4 p-4">
             {/* Create Event */}
-            <Card className="border-0 bg-gradient-to-br from-purple-50 to-pink-50 shadow-lg">
-              <CardContent className="p-6">
+            <Card className="border-0 bg-gradient-to-br from-purple-50 to-pink-50 shadow-md">
+              <CardContent className="p-4">
                 <Button
-                  className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white"
+                  className="w-full h-10 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white text-sm"
                   onClick={() => navigateToCompose("event")}
                 >
                   <PartyPopper className="w-4 h-4 mr-2" />
@@ -965,11 +965,11 @@ export default function InteractiveDemo({
             </Card>
 
             {/* Events List */}
-            <div className="space-y-4">
+            <div className="space-y-3">
               {events.map((event) => (
                 <Card
                   key={event.id}
-                  className={`border-0 shadow-lg ${
+                  className={`border-0 shadow-sm ${
                     event.status === "confirmed"
                       ? "bg-gradient-to-br from-green-50 to-emerald-50"
                       : event.status === "cancelled"
@@ -977,11 +977,11 @@ export default function InteractiveDemo({
                         : "bg-white"
                   }`}
                 >
-                  <CardContent className="p-6">
-                    <div className="flex items-start justify-between mb-4">
-                      <div className="flex items-center gap-3">
+                  <CardContent className="p-4">
+                    <div className="flex items-start justify-between mb-3">
+                      <div className="flex items-center gap-2 min-w-0 flex-1">
                         <div
-                          className={`w-12 h-12 rounded-xl flex items-center justify-center ${
+                          className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${
                             event.category === "entertainment"
                               ? "bg-purple-100"
                               : event.category === "food"
@@ -992,51 +992,53 @@ export default function InteractiveDemo({
                           }`}
                         >
                           {event.category === "entertainment" && (
-                            <Gamepad className="w-6 h-6 text-purple-600" />
+                            <Gamepad className="w-4 h-4 text-purple-600" />
                           )}
                           {event.category === "food" && (
-                            <Pizza className="w-6 h-6 text-orange-600" />
+                            <Pizza className="w-4 h-4 text-orange-600" />
                           )}
                           {event.category === "house" && (
-                            <Home className="w-6 h-6 text-blue-600" />
+                            <Home className="w-4 h-4 text-blue-600" />
                           )}
                           {event.category === "social" && (
-                            <Users className="w-6 h-6 text-green-600" />
+                            <Users className="w-4 h-4 text-green-600" />
                           )}
                         </div>
-                        <div>
-                          <h3 className="font-bold text-gray-900">
+                        <div className="min-w-0 flex-1">
+                          <h3 className="font-bold text-gray-900 text-sm truncate">
                             {event.title}
                           </h3>
-                          <p className="text-sm text-gray-600">
-                            Proposed by {event.proposedBy}
+                          <p className="text-xs text-gray-600">
+                            by {event.proposedBy}
                           </p>
                         </div>
                       </div>
                       <Badge
-                        className={
+                        className={`text-xs flex-shrink-0 ${
                           event.status === "confirmed"
                             ? "bg-green-100 text-green-700"
                             : event.status === "cancelled"
                               ? "bg-red-100 text-red-700"
                               : "bg-blue-100 text-blue-700"
-                        }
+                        }`}
                       >
                         {event.status}
                       </Badge>
                     </div>
 
-                    <p className="text-gray-700 mb-4">{event.description}</p>
+                    <p className="text-gray-700 mb-3 text-sm line-clamp-2">
+                      {event.description}
+                    </p>
 
                     {event.date && (
-                      <div className="flex items-center gap-4 mb-4 text-sm text-gray-600">
+                      <div className="flex items-center gap-3 mb-3 text-xs text-gray-600 flex-wrap">
                         <div className="flex items-center gap-1">
-                          <Calendar className="w-4 h-4" />
+                          <Calendar className="w-3 h-3" />
                           {new Date(event.date).toLocaleDateString()}
                         </div>
                         {event.time && (
                           <div className="flex items-center gap-1">
-                            <Clock className="w-4 h-4" />
+                            <Clock className="w-3 h-3" />
                             {event.time}
                           </div>
                         )}
@@ -1044,17 +1046,19 @@ export default function InteractiveDemo({
                     )}
 
                     {/* Responses */}
-                    <div className="space-y-3">
-                      <h4 className="font-medium text-gray-900">Responses</h4>
-                      <div className="grid grid-cols-2 gap-2">
+                    <div className="space-y-2">
+                      <h4 className="font-medium text-gray-900 text-sm">
+                        Responses
+                      </h4>
+                      <div className="grid grid-cols-2 gap-1">
                         {Object.entries(event.responses).map(
                           ([person, response]) => (
                             <div
                               key={person}
-                              className="flex items-center gap-2"
+                              className="flex items-center gap-1"
                             >
                               <div
-                                className={`w-6 h-6 rounded-full flex items-center justify-center text-white text-xs ${
+                                className={`w-4 h-4 rounded-full flex items-center justify-center text-white ${
                                   response === "yes"
                                     ? "bg-green-500"
                                     : response === "no"
@@ -1063,14 +1067,14 @@ export default function InteractiveDemo({
                                 }`}
                               >
                                 {response === "yes" ? (
-                                  <Check className="w-4 h-4" />
+                                  <Check className="w-2.5 h-2.5" />
                                 ) : response === "no" ? (
-                                  <X className="w-4 h-4" />
+                                  <X className="w-2.5 h-2.5" />
                                 ) : (
                                   "?"
                                 )}
                               </div>
-                              <span className="text-sm text-gray-700">
+                              <span className="text-xs text-gray-700 truncate">
                                 {person}
                               </span>
                               <span className="text-xs text-gray-500 capitalize">
@@ -1083,11 +1087,11 @@ export default function InteractiveDemo({
 
                       {/* Your Response */}
                       {event.status === "active" && (
-                        <div className="pt-3 border-t border-gray-200">
-                          <p className="text-sm font-medium text-gray-900 mb-2">
+                        <div className="pt-2 border-t border-gray-200">
+                          <p className="text-xs font-medium text-gray-900 mb-2">
                             Your response:
                           </p>
-                          <div className="flex gap-2">
+                          <div className="flex gap-1">
                             {["yes", "maybe", "no"].map((response) => (
                               <Button
                                 key={response}
@@ -1100,20 +1104,20 @@ export default function InteractiveDemo({
                                 onClick={() =>
                                   respondToEvent(event.id, response as any)
                                 }
-                                className={
+                                className={`h-8 px-2 text-xs flex-1 ${
                                   response === "yes"
                                     ? "bg-green-500 hover:bg-green-600 text-white"
                                     : response === "no"
                                       ? "bg-red-500 hover:bg-red-600 text-white"
                                       : "bg-amber-500 hover:bg-amber-600 text-white"
-                                }
+                                }`}
                               >
                                 {response === "yes" ? (
-                                  <ThumbsUp className="w-4 h-4 mr-1" />
+                                  <ThumbsUp className="w-3 h-3 mr-1" />
                                 ) : response === "no" ? (
-                                  <ThumbsDown className="w-4 h-4 mr-1" />
+                                  <ThumbsDown className="w-3 h-3 mr-1" />
                                 ) : (
-                                  <Meh className="w-4 h-4 mr-1" />
+                                  <Meh className="w-3 h-3 mr-1" />
                                 )}
                                 {response}
                               </Button>
