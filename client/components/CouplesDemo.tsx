@@ -963,11 +963,11 @@ export default function CouplesDemo() {
             </div>
 
             <div className="p-4 border-t border-rose-100 bg-white">
-              <div className="flex gap-2 mb-2">
+              <div className="flex gap-2 mb-3">
                 <Input
                   value={newMessage}
                   onChange={(e) => setNewMessage(e.target.value)}
-                  placeholder="Share something thoughtful..."
+                  placeholder="Send a love note, chat with AI, or share feelings..."
                   className="flex-1 border-rose-200 focus:border-rose-400"
                   onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
                 />
@@ -980,30 +980,62 @@ export default function CouplesDemo() {
                   <Send className="w-4 h-4" />
                 </Button>
               </div>
-              <div className="flex items-center gap-4">
-                <label className="flex items-center gap-2 text-xs text-gray-600 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    className="w-3 h-3 text-rose-500"
-                    checked={isAnonymous}
-                    onChange={(e) => setIsAnonymous(e.target.checked)}
-                  />
-                  Send anonymously
-                </label>
+
+              {/* HeartSpace quick actions */}
+              <div className="grid grid-cols-3 gap-2 mb-3">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="text-xs border-rose-200 text-rose-600 hover:bg-rose-50"
+                >
+                  💌 Love Note
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="text-xs border-purple-200 text-purple-600 hover:bg-purple-50"
+                >
+                  🤖 Ask AI
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="text-xs border-blue-200 text-blue-600 hover:bg-blue-50"
+                >
+                  📅 Schedule
+                </Button>
+              </div>
+
+              <div className="flex items-center justify-between">
                 <div className="flex gap-1">
-                  <button className="text-lg hover:scale-110 transition-transform">
+                  <button
+                    className="text-lg hover:scale-110 transition-transform"
+                    title="Happy"
+                  >
                     😊
                   </button>
-                  <button className="text-lg hover:scale-110 transition-transform">
-                    🤔
-                  </button>
-                  <button className="text-lg hover:scale-110 transition-transform">
+                  <button
+                    className="text-lg hover:scale-110 transition-transform"
+                    title="Love"
+                  >
                     💕
                   </button>
-                  <button className="text-lg hover:scale-110 transition-transform">
+                  <button
+                    className="text-lg hover:scale-110 transition-transform"
+                    title="Hug"
+                  >
                     🤗
                   </button>
+                  <button
+                    className="text-lg hover:scale-110 transition-transform"
+                    title="Support"
+                  >
+                    🙏
+                  </button>
                 </div>
+                <span className="text-xs text-gray-500">
+                  End-to-end encrypted
+                </span>
               </div>
             </div>
           </div>
