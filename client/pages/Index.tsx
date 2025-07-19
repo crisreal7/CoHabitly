@@ -472,77 +472,80 @@ export default function Index() {
             </div>
 
             <div className="relative flex justify-center lg:justify-end">
-              <div className="relative">
-                <div className="w-80 h-[640px] bg-gradient-to-br from-gray-900 to-gray-800 rounded-[3rem] p-3 shadow-2xl">
-                  <div className="w-full h-full bg-white rounded-[2.5rem] overflow-hidden relative">
-                    <div className="h-12 bg-gray-50 flex items-center justify-between px-6">
-                      <div className="text-sm font-semibold">9:41</div>
-                      <div className="flex items-center gap-1">
-                        <div className="w-4 h-2 bg-green-500 rounded-sm"></div>
-                        <div className="w-6 h-3 border border-gray-400 rounded-sm">
-                          <div className="w-4 h-full bg-green-500 rounded-sm"></div>
-                        </div>
-                      </div>
-                    </div>
+              <div className="relative w-96 h-96">
+                {/* Central pulsing ring animation */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-64 h-64 border-4 border-sage-300 rounded-full animate-pulse opacity-30"></div>
+                  <div className="absolute w-48 h-48 border-2 border-brand-400 rounded-full animate-pulse delay-300 opacity-40"></div>
+                  <div className="absolute w-32 h-32 border-2 border-lavender-400 rounded-full animate-pulse delay-600 opacity-50"></div>
+                </div>
 
-                    <div className="px-6 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
-                      <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
-                          <Home className="w-5 h-5" />
-                        </div>
-                        <div>
-                          <h3 className="font-bold text-lg">CoHabitly</h3>
-                          <p className="text-blue-100 text-sm">
-                            Your living companion
-                          </p>
-                        </div>
+                {/* Floating capability cards */}
+                <div className="absolute top-0 left-12 transform -rotate-12 animate-float">
+                  <div className="bg-gradient-to-br from-mint-100 to-mint-200 rounded-2xl p-4 shadow-lg border border-mint-300/50 backdrop-blur-sm">
+                    <div className="flex items-center gap-2">
+                      <div className="w-8 h-8 bg-mint-500 rounded-full flex items-center justify-center">
+                        <MessageCircle className="w-4 h-4 text-white" />
                       </div>
-                    </div>
-
-                    <div className="p-6 space-y-4">
-                      {mockupCards.map((card, index) => (
-                        <div
-                          key={index}
-                          className={`p-4 rounded-xl border-2 transition-all duration-500 ${
-                            card.isActive
-                              ? `bg-${card.color}-50 border-${card.color}-200 shadow-lg scale-105`
-                              : "bg-gray-50 border-gray-200 opacity-60"
-                          }`}
-                        >
-                          <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-3">
-                              <div
-                                className={`w-8 h-8 bg-${card.color}-100 rounded-full flex items-center justify-center`}
-                              >
-                                {card.icon}
-                              </div>
-                              <div>
-                                <div
-                                  className={`text-sm font-medium ${card.isActive ? "text-gray-900" : "line-through text-gray-500"}`}
-                                >
-                                  {card.title}
-                                </div>
-                                <div className="text-xs text-gray-600">
-                                  {card.subtitle}
-                                </div>
-                              </div>
-                            </div>
-                            {card.isActive && (
-                              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                            )}
-                          </div>
-                        </div>
-                      ))}
+                      <div>
+                        <p className="text-sm font-semibold text-mint-800">
+                          Vibe Check
+                        </p>
+                        <p className="text-xs text-mint-600">
+                          Anonymous feedback
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
 
-                <div className="absolute -top-8 -left-8 w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-full flex items-center justify-center text-white shadow-lg animate-float">
-                  <Sparkles className="w-8 h-8" />
+                <div className="absolute top-16 right-8 transform rotate-12 animate-float delay-1000">
+                  <div className="bg-gradient-to-br from-coral-100 to-coral-200 rounded-2xl p-4 shadow-lg border border-coral-300/50 backdrop-blur-sm">
+                    <div className="flex items-center gap-2">
+                      <div className="w-8 h-8 bg-coral-500 rounded-full flex items-center justify-center">
+                        <ShoppingCart className="w-4 h-4 text-white" />
+                      </div>
+                      <div>
+                        <p className="text-sm font-semibold text-coral-800">
+                          Shared Groceries
+                        </p>
+                        <p className="text-xs text-coral-600">Smart lists</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div className="absolute -bottom-8 -right-8 w-20 h-20 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-full flex items-center justify-center text-white shadow-lg animate-float delay-1000">
-                  <Heart className="w-10 h-10" />
+
+                <div className="absolute bottom-8 left-8 transform -rotate-6 animate-float delay-2000">
+                  <div className="bg-gradient-to-br from-lavender-100 to-lavender-200 rounded-2xl p-4 shadow-lg border border-lavender-300/50 backdrop-blur-sm">
+                    <div className="flex items-center gap-2">
+                      <div className="w-8 h-8 bg-lavender-500 rounded-full flex items-center justify-center">
+                        <Heart className="w-4 h-4 text-white" />
+                      </div>
+                      <div>
+                        <p className="text-sm font-semibold text-lavender-800">
+                          HeartSpace
+                        </p>
+                        <p className="text-xs text-lavender-600">
+                          AI mediation
+                        </p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+
+                {/* Central logo with soft glow */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-24 h-24 bg-gradient-to-br from-brand-500 to-sage-500 rounded-2xl flex items-center justify-center shadow-2xl border border-white/20 backdrop-blur-sm">
+                    <Home className="w-12 h-12 text-white animate-pulse" />
+                  </div>
+                </div>
+
+                {/* Ambient floating particles */}
+                <div className="absolute top-8 left-8 w-2 h-2 bg-brand-400 rounded-full animate-pulse opacity-60"></div>
+                <div className="absolute top-20 right-16 w-1 h-1 bg-sage-400 rounded-full animate-pulse delay-500 opacity-70"></div>
+                <div className="absolute bottom-16 right-12 w-2 h-2 bg-lavender-400 rounded-full animate-pulse delay-1000 opacity-50"></div>
+                <div className="absolute bottom-8 left-16 w-1 h-1 bg-coral-400 rounded-full animate-pulse delay-1500 opacity-60"></div>
+                <div className="absolute top-1/3 left-4 w-1 h-1 bg-mint-400 rounded-full animate-pulse delay-2000 opacity-80"></div>
               </div>
             </div>
           </div>
