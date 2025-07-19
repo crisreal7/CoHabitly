@@ -1270,26 +1270,26 @@ export default function InteractiveDemo({
 
       case "vibe":
         return (
-          <div className="space-y-6 p-6">
+          <div className="space-y-4 p-4">
             {/* Submit Vibe Check */}
-            <Card className="border-0 bg-gradient-to-br from-purple-50 to-pink-50 shadow-lg">
-              <CardContent className="p-6">
+            <Card className="border-0 bg-gradient-to-br from-purple-50 to-pink-50 shadow-md">
+              <CardContent className="p-4">
                 <Button
-                  className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white"
+                  className="w-full h-10 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white text-sm"
                   onClick={() => navigateToCompose("vibe")}
                 >
                   <Smile className="w-4 h-4 mr-2" />
-                  Submit This Week's Vibe Check
+                  Submit Vibe Check
                 </Button>
               </CardContent>
             </Card>
 
             {/* Vibe Overview */}
-            <Card className="border-0 bg-white shadow-lg">
-              <CardContent className="p-6">
+            <Card className="border-0 bg-white shadow-md">
+              <CardContent className="p-4">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="text-lg font-bold text-gray-900">
-                    House Vibe This Week
+                    House Vibe
                   </h3>
                   <div className="text-right">
                     <div className="text-2xl font-bold text-purple-600">
@@ -1299,15 +1299,16 @@ export default function InteractiveDemo({
                           0,
                         ) / vibeEntries.length,
                       )}
+                      /10
                     </div>
-                    <div className="text-sm text-gray-600">Average Score</div>
+                    <div className="text-xs text-gray-600">Overall Score</div>
                   </div>
                 </div>
 
-                <div className="grid grid-cols-4 gap-4 mb-6">
+                <div className="grid grid-cols-4 gap-2 mb-4">
                   {["happy", "excited", "neutral", "stressed"].map((mood) => (
                     <div key={mood} className="text-center">
-                      <div className="text-2xl mb-1">
+                      <div className="text-xl mb-1">
                         {mood === "happy"
                           ? "😊"
                           : mood === "excited"
@@ -1316,10 +1317,10 @@ export default function InteractiveDemo({
                               ? "😐"
                               : "😓"}
                       </div>
-                      <div className="text-sm text-gray-600 capitalize">
+                      <div className="text-xs text-gray-600 capitalize">
                         {mood}
                       </div>
-                      <div className="text-lg font-bold text-gray-900">
+                      <div className="text-sm font-bold text-gray-900">
                         {vibeEntries.filter((e) => e.mood === mood).length}
                       </div>
                     </div>
