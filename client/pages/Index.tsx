@@ -878,26 +878,67 @@ export default function Index() {
                         }`}
                       >
                         <div className="p-4 grid grid-cols-3 gap-3">
-                          {[
-                            { id: "overview", label: "Home", icon: Home },
-                            {
-                              id: "grocery",
-                              label: "Grocery",
-                              icon: ShoppingCart,
-                            },
-                            { id: "events", label: "Events", icon: Star },
-                            {
-                              id: "chores",
-                              label: "Chores",
-                              icon: CheckCircle,
-                            },
-                            { id: "vibe", label: "Vibe", icon: Heart },
-                            {
-                              id: "messages",
-                              label: "Messages",
-                              icon: MessageCircle,
-                            },
-                          ].map(({ id, label, icon: Icon }) => (
+                          {(demoType === "student"
+                            ? [
+                                { id: "overview", label: "Home", icon: Home },
+                                {
+                                  id: "events",
+                                  label: "Community",
+                                  icon: Star,
+                                },
+                                {
+                                  id: "chores",
+                                  label: "Chores",
+                                  icon: CheckCircle,
+                                },
+                                { id: "vibe", label: "Vibe", icon: Heart },
+                                {
+                                  id: "messages",
+                                  label: "Contact RA",
+                                  icon: MessageCircle,
+                                },
+                                { id: "profile", label: "Profile", icon: User },
+                              ]
+                            : demoType === "couples"
+                              ? [
+                                  { id: "home", label: "Home", icon: Home },
+                                  {
+                                    id: "shared",
+                                    label: "Shared",
+                                    icon: Users,
+                                  },
+                                  {
+                                    id: "communicate",
+                                    label: "HeartSpace",
+                                    icon: MessageCircle,
+                                  },
+                                  {
+                                    id: "preferences",
+                                    label: "Style",
+                                    icon: Settings,
+                                  },
+                                ]
+                              : [
+                                  { id: "overview", label: "Home", icon: Home },
+                                  {
+                                    id: "grocery",
+                                    label: "Grocery",
+                                    icon: ShoppingCart,
+                                  },
+                                  { id: "events", label: "Events", icon: Star },
+                                  {
+                                    id: "chores",
+                                    label: "Chores",
+                                    icon: CheckCircle,
+                                  },
+                                  { id: "vibe", label: "Vibe", icon: Heart },
+                                  {
+                                    id: "messages",
+                                    label: "Messages",
+                                    icon: MessageCircle,
+                                  },
+                                ]
+                          ).map(({ id, label, icon: Icon }) => (
                             <button
                               key={id}
                               onClick={() => {
