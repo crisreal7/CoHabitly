@@ -50,7 +50,13 @@ import {
   Flower,
 } from "lucide-react";
 
-type CouplesTabType = "home" | "shared" | "communicate" | "preferences";
+type CouplesTabType =
+  | "home"
+  | "groceries"
+  | "tasks"
+  | "goals"
+  | "communicate"
+  | "preferences";
 type ViewLevel = "main" | "detail" | "compose" | "profile" | "settings";
 
 interface ViewState {
