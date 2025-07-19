@@ -634,7 +634,7 @@ export default function Index() {
                   <Button
                     className={`h-14 px-8 rounded-2xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 ${
                       demoType === "roommate"
-                        ? "bg-gradient-to-r from-sage-600 to-mint-600 hover:from-sage-700 hover:to-mint-700 text-white"
+                        ? "bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white"
                         : "bg-white/20 text-blue-100 hover:bg-white/30"
                     }`}
                     onClick={() => {
@@ -654,7 +654,7 @@ export default function Index() {
                   <Button
                     className={`h-14 px-8 rounded-2xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 ${
                       demoType === "couples"
-                        ? "bg-gradient-to-r from-brand-500 to-lavender-500 hover:from-brand-600 hover:to-lavender-600 text-white"
+                        ? "bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white"
                         : "bg-white/20 text-blue-100 hover:bg-white/30"
                     }`}
                     onClick={() => {
@@ -670,6 +670,26 @@ export default function Index() {
                   >
                     <Heart className="w-5 h-5 mr-2" />
                     Couples Demo
+                  </Button>
+                  <Button
+                    className={`h-14 px-8 rounded-2xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 ${
+                      demoType === "student"
+                        ? "bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white"
+                        : "bg-white/20 text-blue-100 hover:bg-white/30"
+                    }`}
+                    onClick={() => {
+                      setDemoType("student");
+                      const demoPhone = document.querySelector(".demo-phone");
+                      if (demoPhone) {
+                        demoPhone.scrollIntoView({
+                          behavior: "smooth",
+                          block: "center",
+                        });
+                      }
+                    }}
+                  >
+                    <GraduationCap className="w-5 h-5 mr-2" />
+                    Student Demo
                   </Button>
                 </div>
 
