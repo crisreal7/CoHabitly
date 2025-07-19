@@ -921,10 +921,10 @@ export default function Index() {
                     <div
                       className={`px-6 py-4 text-white relative shrink-0 ${
                         demoType === "student"
-                          ? "bg-gradient-to-r from-emerald-500 to-emerald-600"
+                          ? "bg-students-primary"
                           : demoType === "couples"
-                            ? "bg-gradient-to-r from-pink-500 to-pink-600"
-                            : "bg-gradient-to-r from-blue-600 to-blue-700"
+                            ? "bg-couples-primary"
+                            : "bg-roommates-primary"
                       }`}
                     >
                       <div className="flex items-center justify-between mb-2">
