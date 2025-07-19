@@ -1335,71 +1335,61 @@ export default function InteractiveDemo({
             </Card>
 
             {/* Recent Vibe Checks */}
-            <Card className="border-0 bg-white shadow-lg">
-              <CardContent className="p-6">
+            <Card className="border-0 bg-white shadow-md">
+              <CardContent className="p-4">
                 <h3 className="text-lg font-bold text-gray-900 mb-4">
                   Recent Check-ins
                 </h3>
-                <div className="space-y-4">
-                  {vibeEntries.map((entry) => (
-                    <div key={entry.id} className="p-4 bg-gray-50 rounded-xl">
-                      <div className="flex items-start gap-3">
-                        <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center text-white font-bold text-sm">
-                          {entry.userName[0]}
-                        </div>
-                        <div className="flex-1">
-                          <div className="flex items-center gap-2 mb-2">
-                            <span className="font-medium text-gray-900">
-                              {entry.userName}
-                            </span>
-                            <div className="flex items-center gap-1">
-                              {[...Array(10)].map((_, i) => (
-                                <div
-                                  key={i}
-                                  className={`w-2 h-2 rounded-full ${
-                                    i < entry.score
-                                      ? "bg-purple-500"
-                                      : "bg-gray-300"
-                                  }`}
-                                />
-                              ))}
-                            </div>
-                            <span className="text-sm font-bold text-purple-600">
-                              {entry.score}/10
-                            </span>
-                            <span className="text-lg">
-                              {entry.mood === "happy"
-                                ? "😊"
-                                : entry.mood === "excited"
-                                  ? "🤩"
-                                  : entry.mood === "neutral"
-                                    ? "😐"
-                                    : entry.mood === "stressed"
-                                      ? "😓"
-                                      : "😴"}
-                            </span>
+                <div className="space-y-3">
+                  {vibeEntries
+                    .filter((entry) => entry.userId === "you")
+                    .map((entry) => (
+                      <div key={entry.id} className="p-3 bg-gray-50 rounded-lg">
+                        <div className="flex items-start gap-3">
+                          <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center text-white font-bold text-sm">
+                            {entry.userName[0]}
                           </div>
-                          <p className="text-gray-700 text-sm mb-2">
-                            {entry.comment}
-                          </p>
-                          <div className="flex items-center gap-2 text-xs text-gray-500">
-                            <span>
-                              {new Date(entry.date).toLocaleDateString()}
-                            </span>
-                            {entry.streak > 0 && (
-                              <>
-                                <span>•</span>
-                                <div className="flex items-center gap-1 text-orange-600">
-                                  <Flame className="w-3 h-3" />
-                                  {entry.streak} week streak
-                                </div>
-                              </>
-                            )}
+                          <div className="flex-1">
+                            <div className="flex items-center gap-2 mb-2">
+                              <span className="font-medium text-gray-900 text-sm">
+                                {entry.userName}
+                              </span>
+                              <span className="text-lg font-bold text-purple-600">
+                                {entry.score}/10
+                              </span>
+                              <span className="text-lg">
+                                {entry.mood === "happy"
+                                  ? "😊"
+                                  : entry.mood === "excited"
+                                    ? "🤩"
+                                    : entry.mood === "neutral"
+                                      ? "😐"
+                                      : entry.mood === "stressed"
+                                        ? "😓"
+                                        : "😴"}
+                              </span>
+                            </div>
+                            <p className="text-gray-700 text-sm mb-2 line-clamp-2">
+                              {entry.comment}
+                            </p>
+                            <div className="flex items-center gap-2 text-xs text-gray-500">
+                              <span>
+                                {new Date(entry.date).toLocaleDateString()}
+                              </span>
+                              {entry.streak > 0 && (
+                                <>
+                                  <span>•</span>
+                                  <div className="flex items-center gap-1 text-orange-600">
+                                    <Flame className="w-3 h-3" />
+                                    {entry.streak} week streak
+                                  </div>
+                                </>
+                              )}
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
                 </div>
               </CardContent>
             </Card>
