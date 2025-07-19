@@ -1130,31 +1130,31 @@ export default function InteractiveDemo({
 
       case "chores":
         return (
-          <div className="space-y-4 p-4">
+          <div className="space-y-4 p-grid-2">
             {/* Chore Stats */}
-            <div className="grid grid-cols-3 gap-3">
-              <Card className="border-0 bg-gradient-to-br from-green-50 to-emerald-50 shadow-sm">
-                <CardContent className="p-3 text-center">
-                  <div className="text-xl font-bold text-emerald-600">
+            <div className="grid grid-cols-3 gap-grid-2">
+              <Card className="border-0 status-success shadow-premium-md glass-surface card-hover">
+                <CardContent className="p-grid-2 text-center">
+                  <div className="text-hierarchy-2 text-students-primary">
                     {chores.filter((c) => c.status === "completed").length}
                   </div>
-                  <div className="text-xs text-gray-600">Done</div>
+                  <div className="text-hierarchy-5 text-gray-600">Done</div>
                 </CardContent>
               </Card>
-              <Card className="border-0 bg-gradient-to-br from-amber-50 to-orange-50 shadow-sm">
-                <CardContent className="p-3 text-center">
-                  <div className="text-xl font-bold text-amber-600">
+              <Card className="border-0 status-warning shadow-premium-md glass-surface card-hover">
+                <CardContent className="p-grid-2 text-center">
+                  <div className="text-hierarchy-2 text-yellow-600">
                     {chores.filter((c) => c.status === "pending").length}
                   </div>
-                  <div className="text-xs text-gray-600">Todo</div>
+                  <div className="text-hierarchy-5 text-gray-600">Todo</div>
                 </CardContent>
               </Card>
-              <Card className="border-0 bg-gradient-to-br from-red-50 to-pink-50 shadow-sm">
-                <CardContent className="p-3 text-center">
-                  <div className="text-xl font-bold text-red-600">
+              <Card className="border-0 status-error shadow-premium-md glass-surface card-hover">
+                <CardContent className="p-grid-2 text-center">
+                  <div className="text-hierarchy-2 text-red-600">
                     {chores.filter((c) => c.status === "overdue").length}
                   </div>
-                  <div className="text-xs text-gray-600">Late</div>
+                  <div className="text-hierarchy-5 text-gray-600">Late</div>
                 </CardContent>
               </Card>
             </div>
