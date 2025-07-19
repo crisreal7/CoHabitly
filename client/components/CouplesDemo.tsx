@@ -545,14 +545,14 @@ export default function CouplesDemo({ activeTab = "home" }: CouplesDemoProps) {
             </Card>
 
             {/* Quick Actions */}
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-3">
               <Card
-                className="border-0 bg-white/70 shadow-md hover:shadow-lg transition-all cursor-pointer group"
+                className="border-0 bg-white/70 shadow-sm hover:shadow-md transition-all cursor-pointer group"
                 onClick={() => navigateToCompose()}
               >
-                <CardContent className="p-4 text-center">
-                  <div className="w-12 h-12 bg-gradient-to-br from-blue-100 to-blue-200 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
-                    <MessageCircle className="w-6 h-6 text-blue-600" />
+                <CardContent className="p-3 text-center">
+                  <div className="w-10 h-10 bg-gradient-to-br from-blue-100 to-blue-200 rounded-lg flex items-center justify-center mx-auto mb-2 group-hover:scale-110 transition-transform">
+                    <MessageCircle className="w-5 h-5 text-blue-600" />
                   </div>
                   <h4 className="font-semibold text-gray-900 text-sm">
                     Check In
@@ -564,12 +564,12 @@ export default function CouplesDemo({ activeTab = "home" }: CouplesDemoProps) {
               </Card>
 
               <Card
-                className="border-0 bg-white/70 shadow-md hover:shadow-lg transition-all cursor-pointer group"
+                className="border-0 bg-white/70 shadow-sm hover:shadow-md transition-all cursor-pointer group"
                 onClick={() => navigateToDetail("shared")}
               >
-                <CardContent className="p-4 text-center">
-                  <div className="w-12 h-12 bg-gradient-to-br from-emerald-100 to-emerald-200 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
-                    <Target className="w-6 h-6 text-emerald-600" />
+                <CardContent className="p-3 text-center">
+                  <div className="w-10 h-10 bg-gradient-to-br from-emerald-100 to-emerald-200 rounded-lg flex items-center justify-center mx-auto mb-2 group-hover:scale-110 transition-transform">
+                    <Target className="w-5 h-5 text-emerald-600" />
                   </div>
                   <h4 className="font-semibold text-gray-900 text-sm">
                     Set Goal
