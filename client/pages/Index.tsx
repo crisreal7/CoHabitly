@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import InteractiveDemo from "@/components/InteractiveDemo";
+import CouplesDemo from "@/components/CouplesDemo";
 import HoverScrollContainer from "@/components/HoverScrollContainer";
 import {
   CheckCircle,
@@ -835,8 +836,12 @@ export default function Index() {
 
             {/* Right side - Interactive iPhone */}
             <div className="flex justify-center lg:justify-end">
-              <div className="demo-phone transform hover:scale-105 transition-all duration-500 hover:rotate-1">
-                <InteractiveDemo />
+              <div className="demo-phone">
+                {demoType === "roommate" ? (
+                  <InteractiveDemo />
+                ) : (
+                  <CouplesDemo />
+                )}
               </div>
             </div>
           </div>
