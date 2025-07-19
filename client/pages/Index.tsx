@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
+import InteractiveDemo from "@/components/InteractiveDemo";
 import {
   CheckCircle,
   Heart,
@@ -413,15 +414,17 @@ export default function Index() {
                 <div className="relative group">
                   <Button
                     className="h-16 px-8 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-2xl text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-3 group-hover:scale-105"
-                    onClick={() =>
-                      setSelectedDemo(selectedDemo ? null : "dropdown")
-                    }
+                    onClick={() => {
+                      const demoElement =
+                        document.querySelector("#interactive-demo");
+                      if (demoElement) {
+                        demoElement.scrollIntoView({ behavior: "smooth" });
+                      }
+                    }}
                   >
                     <Play className="w-5 h-5" />
-                    Explore the Demo
-                    <ChevronDown
-                      className={`w-5 h-5 transition-transform duration-200 ${selectedDemo ? "rotate-180" : ""}`}
-                    />
+                    Try the Live Demo
+                    <Sparkles className="w-5 h-5 animate-pulse" />
                   </Button>
 
                   {selectedDemo && (
@@ -429,13 +432,13 @@ export default function Index() {
                       <Button
                         variant="ghost"
                         className="w-full justify-start h-12 text-left hover:bg-blue-50"
-                        onClick={() =>
-                          window.scrollTo({
-                            top: document.querySelector("#demo-section")
-                              ?.offsetTop,
-                            behavior: "smooth",
-                          })
-                        }
+                        onClick={() => {
+                          const demoElement =
+                            document.querySelector("#interactive-demo");
+                          if (demoElement) {
+                            demoElement.scrollIntoView({ behavior: "smooth" });
+                          }
+                        }}
                       >
                         <GraduationCap className="w-5 h-5 mr-3 text-blue-600" />
                         Student Experience
