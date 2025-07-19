@@ -723,7 +723,7 @@ export default function Index() {
                 </div>
 
                 {demoType === "roommate" ? (
-                  <InteractiveDemo />
+                  <InteractiveDemo activeTab={demoTab as any} />
                 ) : (
                   <CouplesDemo />
                 )}
