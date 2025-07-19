@@ -502,7 +502,7 @@ export default function Index() {
               <div className="space-y-8">
                 <div className="relative group">
                   <Button
-                    className="h-16 px-8 bg-gradient-to-r from-brand-600 to-sage-600 hover:from-brand-700 hover:to-sage-700 text-white rounded-2xl text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-3 group-hover:scale-105"
+                    className="h-16 px-8 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-2xl text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-3 group-hover:scale-105"
                     onClick={() => {
                       const demoElement =
                         document.querySelector("#interactive-demo");
