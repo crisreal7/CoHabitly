@@ -612,10 +612,10 @@ export default function InteractiveDemo({
     switch (viewState.activeTab) {
       case "overview":
         return (
-          <div className="space-y-4 p-4">
+          <div className="space-y-4 p-grid-2">
             {/* House Status Overview */}
-            <Card className="border-0 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 shadow-md">
-              <CardContent className="p-4">
+            <Card className="border-0 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 shadow-premium-md glass-surface">
+              <CardContent className="p-grid-2">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center">
                     <Home className="w-6 h-6 text-white" />
