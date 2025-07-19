@@ -1173,14 +1173,14 @@ export default function InteractiveDemo({
                   {chores.map((chore) => (
                     <div
                       key={chore.id}
-                      className={`p-3 rounded-lg border transition-all ${
+                      className={`p-grid-2 rounded-lg border transition-all glass-surface card-hover ${
                         chore.status === "completed"
-                          ? "border-green-200 bg-green-50"
+                          ? "status-success shadow-premium-sm"
                           : chore.status === "overdue"
-                            ? "border-red-200 bg-red-50"
+                            ? "priority-high shadow-premium-md animate-pulse"
                             : chore.status === "skipped"
-                              ? "border-amber-200 bg-amber-50"
-                              : "border-blue-200 bg-blue-50"
+                              ? "status-warning shadow-premium-sm"
+                              : "status-info shadow-premium-sm"
                       }`}
                     >
                       <div className="flex items-center justify-between">
