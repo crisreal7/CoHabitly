@@ -964,7 +964,7 @@ export default function InteractiveDemo({
               {events.map((event) => (
                 <Card
                   key={event.id}
-                  className={`border-0 shadow-sm ${
+                  className={`border-0 shadow-sm card-hover glass-card-enhanced transition-all ${
                     event.status === "confirmed"
                       ? "bg-gradient-to-br from-green-50 to-emerald-50"
                       : event.status === "cancelled"
