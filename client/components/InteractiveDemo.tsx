@@ -955,29 +955,6 @@ export default function InteractiveDemo() {
           </div>
         </div>
       </div>
-
-      {/* Enhanced Floating indicators */}
-      <div className="absolute -top-4 -left-4 w-8 h-8 bg-gradient-to-br from-green-500 to-emerald-500 rounded-full flex items-center justify-center animate-pulse shadow-lg group-hover:shadow-xl group-hover:scale-125 transition-all duration-300">
-        <div className="w-3 h-3 bg-white rounded-full"></div>
-      </div>
-      <div className="absolute -bottom-4 -right-4 w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center animate-pulse delay-1000 shadow-lg group-hover:shadow-xl group-hover:scale-125 transition-all duration-300">
-        <Sparkles className="w-5 h-5 text-white" />
-      </div>
-
-      {/* Additional floating elements for premium feel */}
-      <div
-        className="absolute top-1/4 -right-8 w-6 h-6 bg-gradient-to-br from-blue-400 to-indigo-400 rounded-full opacity-60 animate-bounce group-hover:opacity-100 transition-opacity duration-300"
-        style={{ animationDelay: "0.5s" }}
-      ></div>
-      <div
-        className="absolute bottom-1/3 -left-6 w-4 h-4 bg-gradient-to-br from-pink-400 to-rose-400 rounded-full opacity-60 animate-bounce group-hover:opacity-100 transition-opacity duration-300"
-        style={{ animationDelay: "1s" }}
-      ></div>
-
-      {/* Interactive touch ripple effect */}
-      <div className="absolute inset-0 rounded-[3rem] pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 w-4 h-4 bg-blue-400/30 rounded-full transform -translate-x-1/2 -translate-y-1/2 scale-0 group-hover:scale-[20] transition-transform duration-1000 ease-out"></div>
-      </div>
     </div>
   );
 }
