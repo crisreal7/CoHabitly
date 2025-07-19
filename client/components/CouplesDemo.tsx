@@ -1299,22 +1299,41 @@ export default function CouplesDemo() {
             <div className="space-y-6">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  How are you feeling?
+                  What would you like to do?
                 </label>
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 gap-3 mb-4">
                   {[
-                    { emoji: "😊", label: "Happy", mood: "happy" },
-                    { emoji: "🤔", label: "Thoughtful", mood: "thoughtful" },
-                    { emoji: "😔", label: "Concerned", mood: "concerned" },
-                    { emoji: "🤩", label: "Excited", mood: "excited" },
-                  ].map(({ emoji, label, mood }) => (
+                    {
+                      emoji: "💌",
+                      label: "Send Love Note",
+                      desc: "Share something sweet",
+                    },
+                    {
+                      emoji: "🤖",
+                      label: "Chat with AI",
+                      desc: "Private emotional support",
+                    },
+                    {
+                      emoji: "📅",
+                      label: "Schedule Message",
+                      desc: "Send when they need it",
+                    },
+                    {
+                      emoji: "💕",
+                      label: "Share Feelings",
+                      desc: "Open communication",
+                    },
+                  ].map(({ emoji, label, desc }) => (
                     <Button
-                      key={mood}
+                      key={label}
                       variant="outline"
-                      className="h-16 flex flex-col gap-1 border-rose-200 text-rose-700 hover:bg-rose-50"
+                      className="h-16 flex items-center gap-3 border-rose-200 text-rose-700 hover:bg-rose-50 text-left"
                     >
                       <span className="text-2xl">{emoji}</span>
-                      <span className="text-xs">{label}</span>
+                      <div>
+                        <div className="font-semibold">{label}</div>
+                        <div className="text-xs text-gray-500">{desc}</div>
+                      </div>
                     </Button>
                   ))}
                 </div>
