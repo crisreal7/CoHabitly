@@ -692,6 +692,44 @@ export default function Index() {
 
             <div className="flex justify-center lg:justify-end">
               <div className="demo-phone">
+                {/* Interactive Demo Dropdown Toggle */}
+                <div className="mb-6 flex justify-center">
+                  <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-2 border border-white/20 shadow-lg">
+                    <select
+                      className="bg-transparent text-white font-medium text-sm px-4 py-2 rounded-xl border-none outline-none cursor-pointer"
+                      defaultValue="overview"
+                    >
+                      <option
+                        value="overview"
+                        className="bg-gray-800 text-white"
+                      >
+                        🏠 Home
+                      </option>
+                      <option
+                        value="grocery"
+                        className="bg-gray-800 text-white"
+                      >
+                        🛒 Grocery
+                      </option>
+                      <option value="events" className="bg-gray-800 text-white">
+                        🎉 Events
+                      </option>
+                      <option value="chores" className="bg-gray-800 text-white">
+                        ✅ Chores
+                      </option>
+                      <option value="vibe" className="bg-gray-800 text-white">
+                        😊 Vibe
+                      </option>
+                      <option
+                        value="messages"
+                        className="bg-gray-800 text-white"
+                      >
+                        💬 Messages
+                      </option>
+                    </select>
+                  </div>
+                </div>
+
                 {demoType === "roommate" ? (
                   <InteractiveDemo />
                 ) : (
