@@ -224,16 +224,16 @@ export default function StudentDemo({
     switch (activeTab) {
       case "overview":
         return (
-          <div className="space-y-6 p-6">
+          <div className="space-y-4 p-4">
             {/* Student Profile Card */}
-            <Card className="border-0 bg-gradient-to-br from-emerald-50 to-green-50 shadow-lg">
-              <CardContent className="p-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-green-600 rounded-xl flex items-center justify-center">
-                    <GraduationCap className="w-6 h-6 text-white" />
+            <Card className="border-0 bg-gradient-to-br from-emerald-50 to-green-50 shadow-md">
+              <CardContent className="p-4">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-green-600 rounded-lg flex items-center justify-center">
+                    <GraduationCap className="w-5 h-5 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-gray-900">
+                    <h3 className="text-lg font-bold text-gray-900">
                       Welcome Back!
                     </h3>
                     <p className="text-sm text-gray-600">
@@ -241,7 +241,7 @@ export default function StudentDemo({
                     </p>
                   </div>
                 </div>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-3">
                   <div className="text-center">
                     <div className="text-lg font-bold text-emerald-600">
                       87%
@@ -261,25 +261,25 @@ export default function StudentDemo({
             </Card>
 
             {/* Quick Actions */}
-            <div className="grid grid-cols-2 gap-4">
-              <Card className="border-0 bg-white shadow-md hover:shadow-lg transition-all cursor-pointer group">
-                <CardContent className="p-4 text-center">
-                  <div className="w-12 h-12 bg-gradient-to-br from-blue-100 to-blue-200 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
-                    <Phone className="w-6 h-6 text-blue-600" />
+            <div className="grid grid-cols-2 gap-3">
+              <Card className="border-0 bg-white shadow-sm hover:shadow-md transition-all cursor-pointer group">
+                <CardContent className="p-3 text-center">
+                  <div className="w-10 h-10 bg-gradient-to-br from-blue-100 to-blue-200 rounded-lg flex items-center justify-center mx-auto mb-2 group-hover:scale-110 transition-transform">
+                    <Phone className="w-5 h-5 text-blue-600" />
                   </div>
-                  <h4 className="font-bold text-gray-900 text-sm">
+                  <h4 className="font-semibold text-gray-900 text-sm">
                     Contact RA
                   </h4>
                   <p className="text-xs text-gray-500 mt-1">Get help now</p>
                 </CardContent>
               </Card>
 
-              <Card className="border-0 bg-white shadow-md hover:shadow-lg transition-all cursor-pointer group">
-                <CardContent className="p-4 text-center">
-                  <div className="w-12 h-12 bg-gradient-to-br from-purple-100 to-purple-200 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
-                    <AlertTriangle className="w-6 h-6 text-purple-600" />
+              <Card className="border-0 bg-white shadow-sm hover:shadow-md transition-all cursor-pointer group">
+                <CardContent className="p-3 text-center">
+                  <div className="w-10 h-10 bg-gradient-to-br from-red-100 to-red-200 rounded-lg flex items-center justify-center mx-auto mb-2 group-hover:scale-110 transition-transform">
+                    <AlertTriangle className="w-5 h-5 text-red-600" />
                   </div>
-                  <h4 className="font-bold text-gray-900 text-sm">
+                  <h4 className="font-semibold text-gray-900 text-sm">
                     Report Issue
                   </h4>
                   <p className="text-xs text-gray-500 mt-1">Anonymous & safe</p>
@@ -288,35 +288,34 @@ export default function StudentDemo({
             </div>
 
             {/* RA Contact Card */}
-            <Card className="border-0 bg-white shadow-md">
-              <CardContent className="p-6">
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-lg font-bold text-gray-900">Your RA</h3>
-                  <Badge className="bg-green-100 text-green-700">
+            <Card className="border-0 bg-white shadow-sm">
+              <CardContent className="p-4">
+                <div className="flex items-center justify-between mb-3">
+                  <h3 className="font-bold text-gray-900">Your RA</h3>
+                  <Badge className="bg-green-100 text-green-700 text-xs">
                     <div className="w-2 h-2 bg-green-500 rounded-full mr-1"></div>
                     On Duty
                   </Badge>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-green-500 rounded-lg flex items-center justify-center text-white font-bold">
+                  <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-green-500 rounded-lg flex items-center justify-center text-white font-bold text-sm">
                     {raContact.avatar}
                   </div>
-                  <div className="flex-1">
-                    <div className="font-semibold text-gray-900">
+                  <div className="flex-1 min-w-0">
+                    <div className="font-semibold text-gray-900 text-sm">
                       {raContact.name}
                     </div>
-                    <div className="text-sm text-gray-600">
-                      Shift: {raContact.shiftHours}
+                    <div className="text-xs text-gray-600">
+                      {raContact.shiftHours}
                     </div>
-                    <div className="text-sm text-gray-500">
+                    <div className="text-xs text-gray-500">
                       Covers: {raContact.floorsCovered.join(", ")}
                     </div>
                   </div>
                   <Button
                     size="sm"
-                    className="bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-600 hover:to-green-600 text-white"
+                    className="bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-600 hover:to-green-600 text-white text-xs h-8 px-3"
                   >
-                    <MessageSquare className="w-4 h-4 mr-1" />
                     Message
                   </Button>
                 </div>
@@ -324,28 +323,29 @@ export default function StudentDemo({
             </Card>
 
             {/* Dorm Transfer Card */}
-            <Card className="border-0 bg-gradient-to-br from-amber-50 to-orange-50 shadow-md">
-              <CardContent className="p-6">
-                <div className="flex items-center gap-3 mb-4">
+            <Card className="border-0 bg-gradient-to-br from-amber-50 to-orange-50 shadow-sm">
+              <CardContent className="p-4">
+                <div className="flex items-center gap-3 mb-3">
                   <div className="w-10 h-10 bg-gradient-to-br from-amber-500 to-orange-500 rounded-lg flex items-center justify-center">
                     <Building className="w-5 h-5 text-white" />
                   </div>
-                  <div>
-                    <h3 className="font-bold text-gray-900">
+                  <div className="min-w-0">
+                    <h3 className="font-bold text-gray-900 text-sm">
                       Feeling misaligned with your dorm?
                     </h3>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-xs text-gray-600">
                       Find better matches nearby
                     </p>
                   </div>
                 </div>
-                <div className="space-y-2 mb-4">
-                  <div className="text-sm text-gray-600">
-                    Current dorm compatibility:{" "}
-                    <span className="font-semibold text-amber-600">67%</span>
+                <div className="space-y-1 mb-3">
+                  <div className="text-xs text-gray-600">
+                    Current:{" "}
+                    <span className="font-semibold text-amber-600">67%</span>{" "}
+                    compatibility
                   </div>
-                  <div className="text-sm text-gray-600">
-                    Better matches available:{" "}
+                  <div className="text-xs text-gray-600">
+                    Better options:{" "}
                     <span className="font-semibold text-emerald-600">
                       92%, 88%, 85%
                     </span>
@@ -354,9 +354,9 @@ export default function StudentDemo({
                 <Button
                   variant="outline"
                   size="sm"
-                  className="w-full border-amber-300 text-amber-700 hover:bg-amber-50"
+                  className="w-full border-amber-300 text-amber-700 hover:bg-amber-50 text-xs h-8"
                 >
-                  <Search className="w-4 h-4 mr-2" />
+                  <Search className="w-4 h-4 mr-1" />
                   View Transfer Options
                 </Button>
               </CardContent>
