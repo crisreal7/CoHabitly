@@ -1383,8 +1383,8 @@ export default function Index() {
               <div className="h-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-full w-1/3"></div>
             </div>
 
-            {/* Drag-scroll container */}
-            <div className="overflow-x-auto scrollbar-hide">
+                        {/* Drag-scroll container */}
+            <HoverScrollContainer className="py-4">
               <div className="flex gap-8 pb-8 min-w-max px-8">
                 {getCurrentJourney().map((stage, index) => (
                   <div key={stage.id} className="flex-none w-80 relative group">
