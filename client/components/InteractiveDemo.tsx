@@ -704,12 +704,12 @@ export default function InteractiveDemo({
 
             {/* Quick Actions */}
             <div className="grid grid-cols-2 gap-3">
-              <Card className="border-0 bg-white shadow-sm hover:shadow-md transition-all cursor-pointer group">
+              <Card className="border-0 bg-white shadow-sm card-hover glass-card-enhanced transition-all cursor-pointer group">
                 <CardContent
                   className="p-3 text-center"
                   onClick={() => navigateToCompose("vibe")}
                 >
-                  <div className="w-10 h-10 bg-gradient-to-br from-emerald-100 to-emerald-200 rounded-lg flex items-center justify-center mx-auto mb-2 group-hover:scale-110 transition-transform">
+                  <div className="w-10 h-10 bg-gradient-to-br from-emerald-100 to-emerald-200 rounded-lg flex items-center justify-center mx-auto mb-2 group-hover:scale-110 group-hover:animate-icon-bounce transition-transform">
                     <Smile className="w-5 h-5 text-emerald-600" />
                   </div>
                   <h4 className="font-semibold text-gray-900 text-sm">
@@ -721,12 +721,12 @@ export default function InteractiveDemo({
                 </CardContent>
               </Card>
 
-              <Card className="border-0 bg-white shadow-sm hover:shadow-md transition-all cursor-pointer group">
+              <Card className="border-0 bg-white shadow-sm card-hover glass-card-enhanced transition-all cursor-pointer group">
                 <CardContent
                   className="p-3 text-center"
                   onClick={() => navigateToCompose("event")}
                 >
-                  <div className="w-10 h-10 bg-gradient-to-br from-purple-100 to-purple-200 rounded-lg flex items-center justify-center mx-auto mb-2 group-hover:scale-110 transition-transform">
+                  <div className="w-10 h-10 bg-gradient-to-br from-purple-100 to-purple-200 rounded-lg flex items-center justify-center mx-auto mb-2 group-hover:scale-110 group-hover:animate-icon-bounce transition-transform">
                     <PartyPopper className="w-5 h-5 text-purple-600" />
                   </div>
                   <h4 className="font-semibold text-gray-900 text-sm">
