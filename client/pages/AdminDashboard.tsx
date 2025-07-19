@@ -2,20 +2,12 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Building,
   Users,
   AlertTriangle,
   TrendingUp,
-  Filter,
   ArrowLeft,
   User,
   MessageSquare,
@@ -25,12 +17,26 @@ import {
   MapPin,
   GraduationCap,
   Calendar,
-  Moon,
   Sparkles,
-  Users2,
-  BookOpen,
-  MessageCircle,
+  BarChart3,
   Home,
+  MessageCircle,
+  Shield,
+  Bell,
+  Settings,
+  Search,
+  Filter,
+  Download,
+  RefreshCw,
+  Eye,
+  Activity,
+  Target,
+  Zap,
+  Heart,
+  Globe,
+  Phone,
+  Mail,
+  AlertCircleIcon,
 } from "lucide-react";
 
 interface Student {
@@ -86,6 +92,15 @@ export default function AdminDashboard() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [viewState, setViewState] = useState<ViewState>({ level: "campus" });
   const [loading, setLoading] = useState(true);
+  const [currentTime, setCurrentTime] = useState(new Date());
+
+  // Update time every minute
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 60000);
+    return () => clearInterval(timer);
+  }, []);
 
   // Load data from CSV files
   useEffect(() => {
@@ -356,7 +371,7 @@ export default function AdminDashboard() {
       case "good":
         return "text-blue-600 bg-blue-50 border-blue-200";
       case "warning":
-        return "text-yellow-600 bg-yellow-50 border-yellow-200";
+        return "text-amber-600 bg-amber-50 border-amber-200";
       case "critical":
         return "text-red-600 bg-red-50 border-red-200";
       default:
@@ -419,53 +434,107 @@ export default function AdminDashboard() {
     if (viewState.selectedDorm) parts.push(viewState.selectedDorm);
     if (viewState.selectedFloor) parts.push(`Floor ${viewState.selectedFloor}`);
     if (viewState.selectedStudent) parts.push(viewState.selectedStudent.name);
-    return parts.join(" > ");
+    return parts.join(" › ");
   };
+
+  // Calculate summary stats
+  const totalStudents = students.length;
+  const flaggedStudents = students.filter((s) => s.flagged).length;
+  const avgCompatibility = Math.round(
+    students.reduce((sum, s) => sum + s.compatibility_score, 0) /
+      students.length,
+  );
+  const urgentMessages = messages.filter(
+    (m) => m.priority === "high" && m.status === "unreviewed",
+  ).length;
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading dashboard...</p>
+          <div className="w-16 h-16 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-2xl flex items-center justify-center mx-auto mb-6 animate-pulse">
+            <Shield className="w-8 h-8 text-white" />
+          </div>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-500 mx-auto mb-4"></div>
+          <p className="text-gray-600 font-medium">Loading dashboard...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <div className="bg-white border-b border-gray-200 px-6 py-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex items-center justify-between">
-            <div>
-              <div className="flex items-center gap-4">
-                {viewState.level !== "campus" && (
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={navigateBack}
-                    className="flex items-center gap-2"
-                  >
-                    <ArrowLeft className="w-4 h-4" />
-                    Back
-                  </Button>
-                )}
-                <div>
-                  <h1 className="text-2xl font-bold text-gray-900">
-                    CoHabitly Admin Dashboard
-                  </h1>
-                  <p className="text-sm text-gray-600">{getBreadcrumb()}</p>
+    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50">
+      {/* Premium Header */}
+      <div className="bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-700 text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-indigo-400/20 animate-pulse"></div>
+        <div className="absolute top-4 left-4 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
+        <div className="absolute bottom-4 right-4 w-24 h-24 bg-purple-400/20 rounded-full blur-xl"></div>
+
+        <div className="relative z-10 px-6 py-8">
+          <div className="max-w-7xl mx-auto">
+            <div className="flex items-center justify-between">
+              <div>
+                <div className="flex items-center gap-4 mb-4">
+                  {viewState.level !== "campus" && (
+                    <Button
+                      variant="ghost"
+                      onClick={navigateBack}
+                      className="flex items-center gap-2 text-white hover:bg-white/20 rounded-xl"
+                    >
+                      <ArrowLeft className="w-4 h-4" />
+                      Back
+                    </Button>
+                  )}
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm">
+                      <Shield className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h1 className="text-3xl font-bold">CoHabitly Admin</h1>
+                      <p className="text-indigo-100">
+                        Housing Management Dashboard
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2 text-indigo-100">
+                  <Home className="w-4 h-4" />
+                  <span className="text-sm">{getBreadcrumb()}</span>
                 </div>
               </div>
-            </div>
-            <div className="flex items-center gap-3">
-              <div className="flex items-center gap-2 px-3 py-2 bg-emerald-50 rounded-lg">
-                <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
-                <span className="text-sm text-emerald-700 font-medium">
-                  Live
-                </span>
+
+              <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2 px-4 py-2 bg-white/20 rounded-xl backdrop-blur-sm">
+                  <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
+                  <span className="text-sm font-medium">Live System</span>
+                </div>
+                <div className="text-right">
+                  <div className="text-sm text-indigo-100">
+                    {currentTime.toLocaleDateString()}
+                  </div>
+                  <div className="text-lg font-bold">
+                    {currentTime.toLocaleTimeString([], {
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })}
+                  </div>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="text-white hover:bg-white/20 rounded-xl"
+                  >
+                    <Bell className="w-5 h-5" />
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="text-white hover:bg-white/20 rounded-xl"
+                  >
+                    <Settings className="w-5 h-5" />
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
@@ -475,28 +544,120 @@ export default function AdminDashboard() {
       <div className="max-w-7xl mx-auto px-6 py-8">
         {/* Campus Overview */}
         {viewState.level === "campus" && (
-          <div>
-            <div className="mb-8">
-              <h2 className="text-xl font-semibold text-gray-900 mb-2">
-                Campus Health Overview
-              </h2>
-              <p className="text-gray-600">
-                Monitor overall campus dorm health and identify areas requiring
-                attention
-              </p>
+          <div className="space-y-8">
+            {/* Key Metrics */}
+            <div className="grid md:grid-cols-4 gap-6">
+              <Card className="border-0 bg-gradient-to-br from-blue-50 to-indigo-50 shadow-lg">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-xl flex items-center justify-center">
+                      <Users className="w-6 h-6 text-white" />
+                    </div>
+                    <div className="text-right">
+                      <div className="text-2xl font-bold text-gray-900">
+                        {totalStudents}
+                      </div>
+                      <div className="text-sm text-gray-600">
+                        Total Students
+                      </div>
+                    </div>
+                  </div>
+                  <div className="w-full bg-blue-100 rounded-full h-2">
+                    <div className="bg-gradient-to-r from-blue-500 to-indigo-500 h-2 rounded-full w-3/4"></div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="border-0 bg-gradient-to-br from-emerald-50 to-teal-50 shadow-lg">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-xl flex items-center justify-center">
+                      <TrendingUp className="w-6 h-6 text-white" />
+                    </div>
+                    <div className="text-right">
+                      <div className="text-2xl font-bold text-gray-900">
+                        {avgCompatibility}%
+                      </div>
+                      <div className="text-sm text-gray-600">
+                        Avg Compatibility
+                      </div>
+                    </div>
+                  </div>
+                  <div className="w-full bg-emerald-100 rounded-full h-2">
+                    <div
+                      className="bg-gradient-to-r from-emerald-500 to-teal-500 h-2 rounded-full"
+                      style={{ width: `${avgCompatibility}%` }}
+                    ></div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="border-0 bg-gradient-to-br from-amber-50 to-orange-50 shadow-lg">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="w-12 h-12 bg-gradient-to-br from-amber-500 to-orange-500 rounded-xl flex items-center justify-center">
+                      <AlertTriangle className="w-6 h-6 text-white" />
+                    </div>
+                    <div className="text-right">
+                      <div className="text-2xl font-bold text-gray-900">
+                        {flaggedStudents}
+                      </div>
+                      <div className="text-sm text-gray-600">
+                        Students Flagged
+                      </div>
+                    </div>
+                  </div>
+                  <div className="w-full bg-amber-100 rounded-full h-2">
+                    <div
+                      className="bg-gradient-to-r from-amber-500 to-orange-500 h-2 rounded-full"
+                      style={{
+                        width: `${(flaggedStudents / totalStudents) * 100}%`,
+                      }}
+                    ></div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="border-0 bg-gradient-to-br from-red-50 to-pink-50 shadow-lg">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-pink-500 rounded-xl flex items-center justify-center">
+                      <AlertCircleIcon className="w-6 h-6 text-white" />
+                    </div>
+                    <div className="text-right">
+                      <div className="text-2xl font-bold text-gray-900">
+                        {urgentMessages}
+                      </div>
+                      <div className="text-sm text-gray-600">Urgent Alerts</div>
+                    </div>
+                  </div>
+                  <div className="w-full bg-red-100 rounded-full h-2">
+                    <div className="bg-gradient-to-r from-red-500 to-pink-500 h-2 rounded-full w-1/2"></div>
+                  </div>
+                </CardContent>
+              </Card>
             </div>
 
             {/* High Priority Alerts */}
-            <div className="mb-8">
-              <Card className="border-red-200 bg-red-50">
-                <CardHeader className="pb-3">
-                  <CardTitle className="flex items-center gap-2 text-red-800">
-                    <AlertTriangle className="w-5 h-5" />
-                    High Priority Alerts
+            {urgentMessages > 0 && (
+              <Card className="border-0 bg-gradient-to-br from-red-50 to-pink-50 shadow-lg border-l-4 border-l-red-500">
+                <CardHeader className="pb-4">
+                  <CardTitle className="flex items-center gap-3">
+                    <div className="w-10 h-10 bg-gradient-to-br from-red-500 to-pink-500 rounded-lg flex items-center justify-center">
+                      <AlertTriangle className="w-5 h-5 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-red-800">
+                        Urgent Attention Required
+                      </h3>
+                      <p className="text-sm text-red-600">
+                        High priority issues requiring immediate review
+                      </p>
+                    </div>
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-3">
+                  <div className="space-y-4">
                     {messages
                       .filter(
                         (m) =>
@@ -505,153 +666,270 @@ export default function AdminDashboard() {
                       .map((message) => (
                         <div
                           key={message.id}
-                          className="flex items-center justify-between p-3 bg-white rounded-lg border"
+                          className="bg-white rounded-xl p-4 border border-red-200 hover:shadow-md transition-all"
                         >
-                          <div>
-                            <p className="text-sm font-medium text-gray-900">
-                              {message.message}
-                            </p>
-                            <p className="text-xs text-gray-600">
-                              {message.dorm} • Floor {message.floor} •{" "}
-                              {new Date(message.timestamp).toLocaleDateString()}
-                            </p>
+                          <div className="flex items-center justify-between">
+                            <div className="flex-1">
+                              <p className="font-medium text-gray-900 mb-2">
+                                {message.message}
+                              </p>
+                              <div className="flex items-center gap-4 text-sm text-gray-600">
+                                <span className="flex items-center gap-1">
+                                  <Building className="w-4 h-4" />
+                                  {message.dorm}
+                                </span>
+                                <span className="flex items-center gap-1">
+                                  <MapPin className="w-4 h-4" />
+                                  Floor {message.floor}
+                                </span>
+                                <span className="flex items-center gap-1">
+                                  <Clock className="w-4 h-4" />
+                                  {new Date(
+                                    message.timestamp,
+                                  ).toLocaleDateString()}
+                                </span>
+                              </div>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <Badge className="bg-red-100 text-red-700 border-red-200">
+                                {message.category}
+                              </Badge>
+                              <Button
+                                size="sm"
+                                className="bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 text-white"
+                              >
+                                Review
+                              </Button>
+                            </div>
                           </div>
-                          <Badge variant="destructive" className="text-xs">
-                            {message.category}
-                          </Badge>
                         </div>
                       ))}
                   </div>
                 </CardContent>
               </Card>
-            </div>
+            )}
 
             {/* Dorm Cards */}
-            <div className="grid lg:grid-cols-3 gap-6">
-              {dormStats.map((dorm) => (
-                <Card
-                  key={dorm.dorm}
-                  className={`cursor-pointer transition-all hover:shadow-lg ${getHealthColor(dorm.healthStatus)} border-2`}
-                  onClick={() => navigateToDorm(dorm.dorm)}
-                >
-                  <CardContent className="p-6">
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="flex items-center gap-3">
-                        <Building className="w-6 h-6" />
-                        <div>
-                          <h3 className="font-semibold text-lg">{dorm.dorm}</h3>
-                          <p className="text-sm opacity-70">
-                            {dorm.floors.length} floors
-                          </p>
+            <div>
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-2xl font-bold text-gray-900">
+                  Campus Buildings
+                </h2>
+                <div className="flex items-center gap-3">
+                  <Button variant="outline" className="flex items-center gap-2">
+                    <Download className="w-4 h-4" />
+                    Export Report
+                  </Button>
+                  <Button variant="outline" className="flex items-center gap-2">
+                    <RefreshCw className="w-4 h-4" />
+                    Refresh
+                  </Button>
+                </div>
+              </div>
+
+              <div className="grid lg:grid-cols-3 gap-6">
+                {dormStats.map((dorm) => (
+                  <Card
+                    key={dorm.dorm}
+                    className={`cursor-pointer transition-all hover:shadow-xl hover:scale-105 border-0 shadow-lg ${
+                      dorm.healthStatus === "excellent"
+                        ? "bg-gradient-to-br from-emerald-50 to-teal-50"
+                        : dorm.healthStatus === "good"
+                          ? "bg-gradient-to-br from-blue-50 to-indigo-50"
+                          : dorm.healthStatus === "warning"
+                            ? "bg-gradient-to-br from-amber-50 to-orange-50"
+                            : "bg-gradient-to-br from-red-50 to-pink-50"
+                    }`}
+                    onClick={() => navigateToDorm(dorm.dorm)}
+                  >
+                    <CardContent className="p-6">
+                      <div className="flex items-center justify-between mb-6">
+                        <div className="flex items-center gap-4">
+                          <div
+                            className={`w-14 h-14 rounded-2xl flex items-center justify-center ${
+                              dorm.healthStatus === "excellent"
+                                ? "bg-gradient-to-br from-emerald-500 to-teal-500"
+                                : dorm.healthStatus === "good"
+                                  ? "bg-gradient-to-br from-blue-500 to-indigo-500"
+                                  : dorm.healthStatus === "warning"
+                                    ? "bg-gradient-to-br from-amber-500 to-orange-500"
+                                    : "bg-gradient-to-br from-red-500 to-pink-500"
+                            }`}
+                          >
+                            <Building className="w-7 h-7 text-white" />
+                          </div>
+                          <div>
+                            <h3 className="text-xl font-bold text-gray-900">
+                              {dorm.dorm}
+                            </h3>
+                            <p className="text-gray-600">
+                              {dorm.floors.length} floors
+                            </p>
+                          </div>
+                        </div>
+                        <div className="text-right">
+                          <div
+                            className={`text-3xl font-bold ${
+                              dorm.healthStatus === "excellent"
+                                ? "text-emerald-600"
+                                : dorm.healthStatus === "good"
+                                  ? "text-blue-600"
+                                  : dorm.healthStatus === "warning"
+                                    ? "text-amber-600"
+                                    : "text-red-600"
+                            }`}
+                          >
+                            {dorm.healthScore}%
+                          </div>
+                          <Badge
+                            className={`${
+                              dorm.healthStatus === "excellent"
+                                ? "bg-emerald-100 text-emerald-700"
+                                : dorm.healthStatus === "good"
+                                  ? "bg-blue-100 text-blue-700"
+                                  : dorm.healthStatus === "warning"
+                                    ? "bg-amber-100 text-amber-700"
+                                    : "bg-red-100 text-red-700"
+                            }`}
+                          >
+                            {dorm.healthStatus}
+                          </Badge>
                         </div>
                       </div>
-                      <Badge className={getHealthColor(dorm.healthStatus)}>
-                        {dorm.healthScore}%
-                      </Badge>
-                    </div>
 
-                    <div className="space-y-2">
-                      <div className="flex justify-between text-sm">
-                        <span>Students</span>
-                        <span className="font-medium">
-                          {dorm.totalStudents}
-                        </span>
-                      </div>
-                      <div className="flex justify-between text-sm">
-                        <span>Avg. Compatibility</span>
-                        <span className="font-medium">
-                          {dorm.averageCompatibility}%
-                        </span>
-                      </div>
-                      <div className="flex justify-between text-sm">
-                        <span>Flagged Messages</span>
-                        <span
-                          className={`font-medium ${dorm.flaggedMessages > 3 ? "text-red-600" : "text-gray-900"}`}
-                        >
-                          {dorm.flaggedMessages}
-                        </span>
-                      </div>
-                    </div>
+                      <div className="space-y-4">
+                        <div className="grid grid-cols-3 gap-4 text-center">
+                          <div>
+                            <div className="text-lg font-bold text-gray-900">
+                              {dorm.totalStudents}
+                            </div>
+                            <div className="text-xs text-gray-600">
+                              Students
+                            </div>
+                          </div>
+                          <div>
+                            <div className="text-lg font-bold text-gray-900">
+                              {dorm.averageCompatibility}%
+                            </div>
+                            <div className="text-xs text-gray-600">
+                              Compatibility
+                            </div>
+                          </div>
+                          <div>
+                            <div
+                              className={`text-lg font-bold ${dorm.flaggedMessages > 3 ? "text-red-600" : "text-gray-900"}`}
+                            >
+                              {dorm.flaggedMessages}
+                            </div>
+                            <div className="text-xs text-gray-600">Issues</div>
+                          </div>
+                        </div>
 
-                    <div className="mt-4 w-full h-2 bg-gray-200 rounded-full overflow-hidden">
-                      <div
-                        className={`h-full rounded-full transition-all ${
-                          dorm.healthStatus === "excellent"
-                            ? "bg-emerald-500"
-                            : dorm.healthStatus === "good"
-                              ? "bg-blue-500"
-                              : dorm.healthStatus === "warning"
-                                ? "bg-yellow-500"
-                                : "bg-red-500"
-                        }`}
-                        style={{ width: `${dorm.healthScore}%` }}
-                      ></div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
+                        <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+                          <div
+                            className={`h-full rounded-full transition-all duration-1000 ${
+                              dorm.healthStatus === "excellent"
+                                ? "bg-gradient-to-r from-emerald-500 to-teal-500"
+                                : dorm.healthStatus === "good"
+                                  ? "bg-gradient-to-r from-blue-500 to-indigo-500"
+                                  : dorm.healthStatus === "warning"
+                                    ? "bg-gradient-to-r from-amber-500 to-orange-500"
+                                    : "bg-gradient-to-r from-red-500 to-pink-500"
+                            }`}
+                            style={{ width: `${dorm.healthScore}%` }}
+                          ></div>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
             </div>
           </div>
         )}
 
         {/* Dorm View */}
         {viewState.level === "dorm" && viewState.selectedDorm && (
-          <div>
-            <div className="mb-8">
-              <h2 className="text-xl font-semibold text-gray-900 mb-2">
-                {viewState.selectedDorm} Overview
-              </h2>
-              <p className="text-gray-600">
-                Floor-by-floor breakdown and student insights
-              </p>
+          <div className="space-y-8">
+            <div className="flex items-center justify-between">
+              <div>
+                <h2 className="text-2xl font-bold text-gray-900 mb-2">
+                  {viewState.selectedDorm} Overview
+                </h2>
+                <p className="text-gray-600">
+                  Floor-by-floor breakdown and student insights
+                </p>
+              </div>
+              <div className="flex items-center gap-3">
+                <Button variant="outline" className="flex items-center gap-2">
+                  <Eye className="w-4 h-4" />
+                  View Details
+                </Button>
+                <Button variant="outline" className="flex items-center gap-2">
+                  <MessageCircle className="w-4 h-4" />
+                  Send Notice
+                </Button>
+              </div>
             </div>
 
             {/* Dorm Summary Stats */}
-            <div className="grid md:grid-cols-4 gap-4 mb-8">
+            <div className="grid md:grid-cols-4 gap-6">
               {(() => {
                 const dorm = dormStats.find(
                   (d) => d.dorm === viewState.selectedDorm,
                 );
                 return dorm ? (
                   <>
-                    <Card>
-                      <CardContent className="p-4 text-center">
-                        <Users className="w-8 h-8 text-blue-600 mx-auto mb-2" />
-                        <p className="text-2xl font-bold">
+                    <Card className="border-0 bg-gradient-to-br from-blue-50 to-indigo-50 shadow-lg">
+                      <CardContent className="p-6 text-center">
+                        <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-xl flex items-center justify-center mx-auto mb-4">
+                          <Users className="w-6 h-6 text-white" />
+                        </div>
+                        <div className="text-3xl font-bold text-gray-900 mb-2">
                           {dorm.totalStudents}
-                        </p>
-                        <p className="text-sm text-gray-600">Total Students</p>
+                        </div>
+                        <div className="text-sm text-gray-600">
+                          Total Students
+                        </div>
                       </CardContent>
                     </Card>
-                    <Card>
-                      <CardContent className="p-4 text-center">
-                        <TrendingUp className="w-8 h-8 text-green-600 mx-auto mb-2" />
-                        <p className="text-2xl font-bold">
+                    <Card className="border-0 bg-gradient-to-br from-emerald-50 to-teal-50 shadow-lg">
+                      <CardContent className="p-6 text-center">
+                        <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-xl flex items-center justify-center mx-auto mb-4">
+                          <TrendingUp className="w-6 h-6 text-white" />
+                        </div>
+                        <div className="text-3xl font-bold text-gray-900 mb-2">
                           {dorm.averageCompatibility}%
-                        </p>
-                        <p className="text-sm text-gray-600">
+                        </div>
+                        <div className="text-sm text-gray-600">
                           Avg Compatibility
-                        </p>
+                        </div>
                       </CardContent>
                     </Card>
-                    <Card>
-                      <CardContent className="p-4 text-center">
-                        <AlertTriangle className="w-8 h-8 text-yellow-600 mx-auto mb-2" />
-                        <p className="text-2xl font-bold">
+                    <Card className="border-0 bg-gradient-to-br from-amber-50 to-orange-50 shadow-lg">
+                      <CardContent className="p-6 text-center">
+                        <div className="w-12 h-12 bg-gradient-to-br from-amber-500 to-orange-500 rounded-xl flex items-center justify-center mx-auto mb-4">
+                          <AlertTriangle className="w-6 h-6 text-white" />
+                        </div>
+                        <div className="text-3xl font-bold text-gray-900 mb-2">
                           {dorm.flaggedMessages}
-                        </p>
-                        <p className="text-sm text-gray-600">
+                        </div>
+                        <div className="text-sm text-gray-600">
                           Flagged Messages
-                        </p>
+                        </div>
                       </CardContent>
                     </Card>
-                    <Card>
-                      <CardContent className="p-4 text-center">
-                        <CheckCircle className="w-8 h-8 text-emerald-600 mx-auto mb-2" />
-                        <p className="text-2xl font-bold">
+                    <Card className="border-0 bg-gradient-to-br from-purple-50 to-pink-50 shadow-lg">
+                      <CardContent className="p-6 text-center">
+                        <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mx-auto mb-4">
+                          <Sparkles className="w-6 h-6 text-white" />
+                        </div>
+                        <div className="text-3xl font-bold text-gray-900 mb-2">
                           {dorm.healthScore}%
-                        </p>
-                        <p className="text-sm text-gray-600">Health Score</p>
+                        </div>
+                        <div className="text-sm text-gray-600">
+                          Health Score
+                        </div>
                       </CardContent>
                     </Card>
                   </>
@@ -660,75 +938,106 @@ export default function AdminDashboard() {
             </div>
 
             {/* Floor Cards */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {(() => {
-                const dorm = dormStats.find(
-                  (d) => d.dorm === viewState.selectedDorm,
-                );
-                return dorm?.floors.map((floor) => {
-                  const floorStudents = students.filter(
-                    (s) =>
-                      s.dorm === viewState.selectedDorm && s.floor === floor,
+            <div>
+              <h3 className="text-xl font-bold text-gray-900 mb-6">
+                Floor Overview
+              </h3>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {(() => {
+                  const dorm = dormStats.find(
+                    (d) => d.dorm === viewState.selectedDorm,
                   );
-                  const floorMessages = messages.filter(
-                    (m) =>
-                      m.dorm === viewState.selectedDorm && m.floor === floor,
-                  );
-                  const avgCompatibility = Math.round(
-                    floorStudents.reduce(
-                      (sum, s) => sum + s.compatibility_score,
-                      0,
-                    ) / floorStudents.length,
-                  );
-                  const flaggedCount = floorMessages.filter(
-                    (m) => m.flagged,
-                  ).length;
+                  return dorm?.floors.map((floor) => {
+                    const floorStudents = students.filter(
+                      (s) =>
+                        s.dorm === viewState.selectedDorm && s.floor === floor,
+                    );
+                    const floorMessages = messages.filter(
+                      (m) =>
+                        m.dorm === viewState.selectedDorm && m.floor === floor,
+                    );
+                    const avgCompatibility = Math.round(
+                      floorStudents.reduce(
+                        (sum, s) => sum + s.compatibility_score,
+                        0,
+                      ) / floorStudents.length,
+                    );
+                    const flaggedCount = floorMessages.filter(
+                      (m) => m.flagged,
+                    ).length;
 
-                  return (
-                    <Card
-                      key={floor}
-                      className="cursor-pointer hover:shadow-lg transition-all"
-                      onClick={() => navigateToFloor(floor)}
-                    >
-                      <CardContent className="p-6">
-                        <div className="flex items-center justify-between mb-4">
-                          <h3 className="font-semibold text-lg">
-                            Floor {floor}
-                          </h3>
-                          <Badge
-                            variant={
-                              avgCompatibility >= 80
-                                ? "default"
-                                : avgCompatibility >= 60
-                                  ? "secondary"
-                                  : "destructive"
-                            }
-                          >
-                            {avgCompatibility}%
-                          </Badge>
-                        </div>
-
-                        <div className="space-y-2">
-                          <div className="flex justify-between text-sm">
-                            <span>Students</span>
-                            <span className="font-medium">
-                              {floorStudents.length}
-                            </span>
-                          </div>
-                          <div className="flex justify-between text-sm">
-                            <span>Flagged</span>
-                            <span
-                              className={`font-medium ${flaggedCount > 0 ? "text-red-600" : "text-gray-900"}`}
+                    return (
+                      <Card
+                        key={floor}
+                        className="border-0 bg-white shadow-lg cursor-pointer hover:shadow-xl hover:scale-105 transition-all"
+                        onClick={() => navigateToFloor(floor)}
+                      >
+                        <CardContent className="p-6">
+                          <div className="flex items-center justify-between mb-4">
+                            <div className="flex items-center gap-3">
+                              <div className="w-12 h-12 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-xl flex items-center justify-center">
+                                <span className="text-white font-bold">
+                                  {floor}
+                                </span>
+                              </div>
+                              <div>
+                                <h4 className="text-lg font-bold text-gray-900">
+                                  Floor {floor}
+                                </h4>
+                                <p className="text-sm text-gray-600">
+                                  {floorStudents.length} students
+                                </p>
+                              </div>
+                            </div>
+                            <Badge
+                              className={
+                                avgCompatibility >= 80
+                                  ? "bg-emerald-100 text-emerald-700"
+                                  : avgCompatibility >= 60
+                                    ? "bg-blue-100 text-blue-700"
+                                    : "bg-red-100 text-red-700"
+                              }
                             >
-                              {flaggedCount}
-                            </span>
+                              {avgCompatibility}%
+                            </Badge>
                           </div>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  );
-                });
-              })()}
+
+                          <div className="space-y-3">
+                            <div className="flex justify-between text-sm">
+                              <span className="text-gray-600">
+                                Health Score
+                              </span>
+                              <span className="font-medium text-gray-900">
+                                {avgCompatibility}%
+                              </span>
+                            </div>
+                            <div className="flex justify-between text-sm">
+                              <span className="text-gray-600">Issues</span>
+                              <span
+                                className={`font-medium ${flaggedCount > 0 ? "text-red-600" : "text-emerald-600"}`}
+                              >
+                                {flaggedCount || "None"}
+                              </span>
+                            </div>
+                            <div className="w-full bg-gray-200 rounded-full h-2">
+                              <div
+                                className={`h-full rounded-full transition-all ${
+                                  avgCompatibility >= 80
+                                    ? "bg-gradient-to-r from-emerald-500 to-teal-500"
+                                    : avgCompatibility >= 60
+                                      ? "bg-gradient-to-r from-blue-500 to-indigo-500"
+                                      : "bg-gradient-to-r from-red-500 to-pink-500"
+                                }`}
+                                style={{ width: `${avgCompatibility}%` }}
+                              ></div>
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    );
+                  });
+                })()}
+              </div>
             </div>
           </div>
         )}
@@ -737,9 +1046,9 @@ export default function AdminDashboard() {
         {viewState.level === "floor" &&
           viewState.selectedDorm &&
           viewState.selectedFloor && (
-            <div>
-              <div className="mb-8">
-                <h2 className="text-xl font-semibold text-gray-900 mb-2">
+            <div className="space-y-8">
+              <div>
+                <h2 className="text-2xl font-bold text-gray-900 mb-2">
                   {viewState.selectedDorm} - Floor {viewState.selectedFloor}
                 </h2>
                 <p className="text-gray-600">
@@ -748,32 +1057,42 @@ export default function AdminDashboard() {
               </div>
 
               <Tabs defaultValue="students" className="space-y-6">
-                <TabsList>
-                  <TabsTrigger value="students">Students</TabsTrigger>
-                  <TabsTrigger value="messages">Messages</TabsTrigger>
+                <TabsList className="bg-white border border-gray-200 p-1 rounded-xl">
+                  <TabsTrigger
+                    value="students"
+                    className="px-6 py-3 rounded-lg"
+                  >
+                    Students
+                  </TabsTrigger>
+                  <TabsTrigger
+                    value="messages"
+                    className="px-6 py-3 rounded-lg"
+                  >
+                    Messages
+                  </TabsTrigger>
                 </TabsList>
 
                 <TabsContent value="students">
-                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {getFilteredStudents().map((student) => (
                       <Card
                         key={student.id}
-                        className={`cursor-pointer hover:shadow-lg transition-all ${
+                        className={`border-0 shadow-lg cursor-pointer hover:shadow-xl transition-all ${
                           student.flagged
-                            ? "border-red-200 bg-red-50"
-                            : "border-gray-200"
+                            ? "bg-gradient-to-br from-red-50 to-pink-50 border-l-4 border-l-red-500"
+                            : "bg-white hover:scale-105"
                         }`}
                         onClick={() => navigateToStudent(student)}
                       >
                         <CardContent className="p-6">
-                          <div className="flex items-center gap-3 mb-4">
+                          <div className="flex items-center gap-4 mb-4">
                             <div
-                              className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-semibold ${
+                              className={`w-14 h-14 rounded-2xl flex items-center justify-center text-white font-bold text-lg shadow-lg ${
                                 student.compatibility_score >= 80
-                                  ? "bg-emerald-100 text-emerald-700"
+                                  ? "bg-gradient-to-br from-emerald-500 to-teal-500"
                                   : student.compatibility_score >= 60
-                                    ? "bg-blue-100 text-blue-700"
-                                    : "bg-red-100 text-red-700"
+                                    ? "bg-gradient-to-br from-blue-500 to-indigo-500"
+                                    : "bg-gradient-to-br from-red-500 to-pink-500"
                               }`}
                             >
                               {student.name
@@ -781,42 +1100,53 @@ export default function AdminDashboard() {
                                 .map((n) => n[0])
                                 .join("")}
                             </div>
-                            <div>
-                              <h3 className="font-semibold">{student.name}</h3>
-                              <p className="text-sm text-gray-600">
+                            <div className="flex-1">
+                              <h4 className="font-bold text-gray-900 text-lg">
+                                {student.name}
+                              </h4>
+                              <p className="text-gray-600">
                                 Room {student.room}
+                              </p>
+                              <p className="text-sm text-gray-500">
+                                {student.major} • {student.year}
                               </p>
                             </div>
                           </div>
 
-                          <div className="space-y-2">
-                            <div className="flex justify-between text-sm">
-                              <span>Compatibility</span>
+                          <div className="space-y-3">
+                            <div className="flex justify-between items-center">
+                              <span className="text-sm text-gray-600">
+                                Compatibility
+                              </span>
                               <Badge
-                                variant={
+                                className={
                                   student.compatibility_score >= 80
-                                    ? "default"
+                                    ? "bg-emerald-100 text-emerald-700"
                                     : student.compatibility_score >= 60
-                                      ? "secondary"
-                                      : "destructive"
+                                      ? "bg-blue-100 text-blue-700"
+                                      : "bg-red-100 text-red-700"
                                 }
                               >
                                 {student.compatibility_score}%
                               </Badge>
                             </div>
-                            <div className="flex justify-between text-sm">
-                              <span>Profile</span>
-                              <span className="font-medium">
+                            <div className="flex justify-between items-center">
+                              <span className="text-sm text-gray-600">
+                                Profile
+                              </span>
+                              <span className="text-sm font-medium text-gray-900">
                                 {student.profile_completion}%
                               </span>
                             </div>
-                            <div className="flex justify-between text-sm">
-                              <span>Status</span>
+                            <div className="flex justify-between items-center">
+                              <span className="text-sm text-gray-600">
+                                Status
+                              </span>
                               <Badge
-                                variant={
+                                className={
                                   student.status === "active"
-                                    ? "default"
-                                    : "destructive"
+                                    ? "bg-emerald-100 text-emerald-700"
+                                    : "bg-red-100 text-red-700"
                                 }
                               >
                                 {student.status}
@@ -834,35 +1164,44 @@ export default function AdminDashboard() {
                     {getFilteredMessages().map((message) => (
                       <Card
                         key={message.id}
-                        className={
-                          message.flagged ? "border-red-200 bg-red-50" : ""
-                        }
+                        className={`border-0 shadow-lg ${
+                          message.flagged
+                            ? "bg-gradient-to-br from-red-50 to-pink-50 border-l-4 border-l-red-500"
+                            : "bg-white"
+                        }`}
                       >
-                        <CardContent className="p-4">
-                          <div className="flex items-start justify-between mb-3">
-                            <div className="flex items-center gap-2">
-                              <MessageSquare className="w-4 h-4 text-gray-500" />
-                              <span className="text-sm text-gray-600">
-                                Floor {message.floor}
-                              </span>
+                        <CardContent className="p-6">
+                          <div className="flex items-start justify-between mb-4">
+                            <div className="flex items-center gap-3">
+                              <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
+                                <MessageSquare className="w-5 h-5 text-white" />
+                              </div>
+                              <div>
+                                <p className="text-sm text-gray-600">
+                                  Floor {message.floor}
+                                </p>
+                                <p className="text-xs text-gray-500">
+                                  {new Date(message.timestamp).toLocaleString()}
+                                </p>
+                              </div>
                             </div>
                             <div className="flex gap-2">
                               <Badge
-                                variant={
+                                className={
                                   message.priority === "high"
-                                    ? "destructive"
+                                    ? "bg-red-100 text-red-700"
                                     : message.priority === "medium"
-                                      ? "secondary"
-                                      : "default"
+                                      ? "bg-amber-100 text-amber-700"
+                                      : "bg-blue-100 text-blue-700"
                                 }
                               >
                                 {message.priority}
                               </Badge>
                               <Badge
-                                variant={
+                                className={
                                   message.status === "resolved"
-                                    ? "default"
-                                    : "secondary"
+                                    ? "bg-emerald-100 text-emerald-700"
+                                    : "bg-gray-100 text-gray-700"
                                 }
                               >
                                 {message.status}
@@ -870,16 +1209,22 @@ export default function AdminDashboard() {
                             </div>
                           </div>
 
-                          <p className="text-sm text-gray-900 mb-3">
+                          <p className="text-gray-900 mb-4 leading-relaxed">
                             {message.message}
                           </p>
 
-                          <div className="flex items-center justify-between text-xs text-gray-500">
-                            <span>
-                              {new Date(message.timestamp).toLocaleString()}
-                            </span>
-                            <Button size="sm" variant="outline">
-                              Review
+                          <div className="flex items-center justify-between">
+                            <Badge
+                              variant="outline"
+                              className="border-purple-200 text-purple-700"
+                            >
+                              {message.category}
+                            </Badge>
+                            <Button
+                              size="sm"
+                              className="bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white"
+                            >
+                              Review & Respond
                             </Button>
                           </div>
                         </CardContent>
@@ -893,67 +1238,77 @@ export default function AdminDashboard() {
 
         {/* Student Detail View */}
         {viewState.level === "student" && viewState.selectedStudent && (
-          <div>
-            <div className="mb-8">
-              <h2 className="text-xl font-semibold text-gray-900 mb-2">
+          <div className="space-y-8">
+            <div>
+              <h2 className="text-2xl font-bold text-gray-900 mb-2">
                 {viewState.selectedStudent.name}
               </h2>
               <p className="text-gray-600">
-                Student profile and living situation insights
+                Detailed student profile and living situation insights
               </p>
             </div>
 
-            <div className="grid lg:grid-cols-3 gap-6">
+            <div className="grid lg:grid-cols-3 gap-8">
               {/* Profile Summary */}
-              <Card className="lg:col-span-2">
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <User className="w-5 h-5" />
-                    Profile Information
+              <Card className="lg:col-span-2 border-0 bg-white shadow-lg">
+                <CardHeader className="pb-6">
+                  <CardTitle className="flex items-center gap-3">
+                    <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-lg flex items-center justify-center">
+                      <User className="w-5 h-5 text-white" />
+                    </div>
+                    <span className="text-xl">Profile Information</span>
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div className="space-y-3">
-                      <div className="flex items-center gap-2">
-                        <MapPin className="w-4 h-4 text-gray-500" />
-                        <span className="text-sm text-gray-600">Room:</span>
-                        <span className="font-medium">
-                          {viewState.selectedStudent.room}
-                        </span>
+                <CardContent className="space-y-8">
+                  <div className="grid md:grid-cols-2 gap-8">
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-3">
+                        <MapPin className="w-5 h-5 text-gray-500" />
+                        <div>
+                          <span className="text-sm text-gray-600">Room:</span>
+                          <div className="font-bold text-gray-900">
+                            {viewState.selectedStudent.room}
+                          </div>
+                        </div>
                       </div>
-                      <div className="flex items-center gap-2">
-                        <GraduationCap className="w-4 h-4 text-gray-500" />
-                        <span className="text-sm text-gray-600">Major:</span>
-                        <span className="font-medium">
-                          {viewState.selectedStudent.major}
-                        </span>
+                      <div className="flex items-center gap-3">
+                        <GraduationCap className="w-5 h-5 text-gray-500" />
+                        <div>
+                          <span className="text-sm text-gray-600">Major:</span>
+                          <div className="font-bold text-gray-900">
+                            {viewState.selectedStudent.major}
+                          </div>
+                        </div>
                       </div>
-                      <div className="flex items-center gap-2">
-                        <Calendar className="w-4 h-4 text-gray-500" />
-                        <span className="text-sm text-gray-600">Year:</span>
-                        <span className="font-medium">
-                          {viewState.selectedStudent.year}
-                        </span>
+                      <div className="flex items-center gap-3">
+                        <Calendar className="w-5 h-5 text-gray-500" />
+                        <div>
+                          <span className="text-sm text-gray-600">
+                            Academic Year:
+                          </span>
+                          <div className="font-bold text-gray-900">
+                            {viewState.selectedStudent.year}
+                          </div>
+                        </div>
                       </div>
                     </div>
 
-                    <div className="space-y-3">
+                    <div className="space-y-4">
                       <div>
                         <span className="text-sm text-gray-600">
                           Compatibility Score
                         </span>
-                        <div className="mt-1">
+                        <div className="mt-2">
                           <Badge
-                            variant={
+                            className={`text-lg px-3 py-1 ${
                               viewState.selectedStudent.compatibility_score >=
                               80
-                                ? "default"
+                                ? "bg-emerald-100 text-emerald-700"
                                 : viewState.selectedStudent
                                       .compatibility_score >= 60
-                                  ? "secondary"
-                                  : "destructive"
-                            }
+                                  ? "bg-blue-100 text-blue-700"
+                                  : "bg-red-100 text-red-700"
+                            }`}
                           >
                             {viewState.selectedStudent.compatibility_score}%
                           </Badge>
@@ -963,16 +1318,16 @@ export default function AdminDashboard() {
                         <span className="text-sm text-gray-600">
                           Profile Completion
                         </span>
-                        <div className="mt-1 flex items-center gap-2">
-                          <div className="flex-1 h-2 bg-gray-200 rounded-full">
+                        <div className="mt-2 flex items-center gap-3">
+                          <div className="flex-1 h-3 bg-gray-200 rounded-full overflow-hidden">
                             <div
-                              className="h-full bg-blue-500 rounded-full"
+                              className="h-full bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full transition-all duration-1000"
                               style={{
                                 width: `${viewState.selectedStudent.profile_completion}%`,
                               }}
                             ></div>
                           </div>
-                          <span className="text-sm font-medium">
+                          <span className="text-sm font-bold text-gray-900">
                             {viewState.selectedStudent.profile_completion}%
                           </span>
                         </div>
@@ -981,29 +1336,30 @@ export default function AdminDashboard() {
                         <span className="text-sm text-gray-600">
                           Last Check-in
                         </span>
-                        <div className="mt-1">
-                          <span className="text-sm font-medium">
-                            {new Date(
-                              viewState.selectedStudent.last_checkin,
-                            ).toLocaleDateString()}
-                          </span>
+                        <div className="mt-1 font-bold text-gray-900">
+                          {new Date(
+                            viewState.selectedStudent.last_checkin,
+                          ).toLocaleDateString()}
                         </div>
                       </div>
                     </div>
                   </div>
 
                   {viewState.selectedStudent.flagged && (
-                    <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
-                      <div className="flex items-center gap-2 mb-2">
-                        <AlertTriangle className="w-4 h-4 text-red-600" />
-                        <span className="font-medium text-red-800">
-                          Flagged for Attention
+                    <div className="p-6 bg-gradient-to-br from-red-50 to-pink-50 border-2 border-red-200 rounded-xl">
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className="w-8 h-8 bg-red-500 rounded-lg flex items-center justify-center">
+                          <AlertTriangle className="w-5 h-5 text-white" />
+                        </div>
+                        <span className="font-bold text-red-800 text-lg">
+                          Requires Attention
                         </span>
                       </div>
-                      <p className="text-sm text-red-700">
+                      <p className="text-red-700 leading-relaxed">
                         This student has been flagged due to low compatibility
-                        scores or negative feedback. Consider reaching out or
-                        reviewing recent messages.
+                        scores or negative feedback patterns. Consider
+                        scheduling a check-in meeting or reviewing recent
+                        roommate interactions.
                       </p>
                     </div>
                   )}
@@ -1011,26 +1367,42 @@ export default function AdminDashboard() {
               </Card>
 
               {/* Quick Actions */}
-              <Card>
+              <Card className="border-0 bg-white shadow-lg">
                 <CardHeader>
                   <CardTitle className="text-lg">Quick Actions</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
-                  <Button className="w-full justify-start" variant="outline">
-                    <MessageCircle className="w-4 h-4 mr-2" />
+                  <Button className="w-full justify-start h-12 bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 text-white">
+                    <MessageCircle className="w-5 h-5 mr-3" />
                     Send Message
                   </Button>
-                  <Button className="w-full justify-start" variant="outline">
-                    <Home className="w-4 h-4 mr-2" />
+                  <Button
+                    variant="outline"
+                    className="w-full justify-start h-12 border-purple-200 text-purple-700 hover:bg-purple-50"
+                  >
+                    <Home className="w-5 h-5 mr-3" />
                     Room Reassignment
                   </Button>
-                  <Button className="w-full justify-start" variant="outline">
-                    <Users className="w-4 h-4 mr-2" />
+                  <Button
+                    variant="outline"
+                    className="w-full justify-start h-12 border-emerald-200 text-emerald-700 hover:bg-emerald-50"
+                  >
+                    <Users className="w-5 h-5 mr-3" />
                     View Roommates
                   </Button>
-                  <Button className="w-full justify-start" variant="outline">
-                    <Clock className="w-4 h-4 mr-2" />
+                  <Button
+                    variant="outline"
+                    className="w-full justify-start h-12 border-amber-200 text-amber-700 hover:bg-amber-50"
+                  >
+                    <Clock className="w-5 h-5 mr-3" />
                     Check-in History
+                  </Button>
+                  <Button
+                    variant="outline"
+                    className="w-full justify-start h-12 border-red-200 text-red-700 hover:bg-red-50"
+                  >
+                    <Phone className="w-5 h-5 mr-3" />
+                    Schedule Call
                   </Button>
                 </CardContent>
               </Card>
