@@ -559,7 +559,7 @@ export default function Index() {
 
                 <div className="flex justify-center lg:justify-start">
                   <Button
-                    className="h-14 px-8 bg-gradient-to-r from-mint-500 to-coral-500 hover:from-mint-600 hover:to-coral-600 text-white rounded-2xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+                    className="h-14 px-8 bg-gradient-to-r from-emerald-500 to-rose-500 hover:from-emerald-600 hover:to-rose-600 text-white rounded-2xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
                     onClick={() => {
                       const earlyAccessSection = document.querySelector(
                         "#early-access-section",
