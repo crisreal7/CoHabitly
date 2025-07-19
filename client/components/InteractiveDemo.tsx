@@ -977,7 +977,7 @@ export default function InteractiveDemo() {
                           }`}
                         >
                           {event.category === "entertainment" && (
-                            <GameController className="w-6 h-6 text-purple-600" />
+                            <Gamepad className="w-6 h-6 text-purple-600" />
                           )}
                           {event.category === "food" && (
                             <Pizza className="w-6 h-6 text-orange-600" />
