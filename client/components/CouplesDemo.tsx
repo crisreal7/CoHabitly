@@ -690,6 +690,330 @@ export default function CouplesDemo({ activeTab = "home" }: CouplesDemoProps) {
           </div>
         );
 
+      case "groceries":
+        return (
+          <div className="p-4 space-y-4 h-full overflow-y-auto">
+            {/* Add Item */}
+            {showAddForm ? (
+              <Card className="border-2 border-rose-200 bg-rose-50/50">
+                <CardContent className="p-4">
+                  <div className="space-y-3">
+                    <Input
+                      value={newItem}
+                      onChange={(e) => setNewItem(e.target.value)}
+                      placeholder="Add new grocery item..."
+                      className="border-rose-200 focus:border-rose-400"
+                      autoFocus
+                    />
+                    <div className="flex gap-2">
+                      <Button
+                        onClick={() => {
+                          setSelectedCategory("groceries");
+                          addNewItem();
+                        }}
+                        className="flex-1 bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white h-8"
+                        size="sm"
+                      >
+                        <Plus className="w-4 h-4 mr-1" />
+                        Add
+                      </Button>
+                      <Button
+                        onClick={() => setShowAddForm(false)}
+                        variant="outline"
+                        size="sm"
+                        className="h-8"
+                      >
+                        Cancel
+                      </Button>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ) : (
+              <Button
+                onClick={() => setShowAddForm(true)}
+                className="w-full h-10 bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white"
+              >
+                <Plus className="w-4 h-4 mr-2" />
+                Add Grocery Item
+              </Button>
+            )}
+
+            {/* Grocery Items */}
+            <div className="space-y-3">
+              {sharedItems
+                .filter((item) => item.category === "groceries")
+                .map((item) => (
+                  <Card
+                    key={item.id}
+                    className={`border-0 cursor-pointer transition-all hover:shadow-md group ${
+                      item.isCompleted
+                        ? "bg-gray-50 opacity-75"
+                        : "bg-white shadow-sm"
+                    }`}
+                    onClick={() => toggleItem(item.id)}
+                  >
+                    <CardContent className="p-4">
+                      <div className="flex items-center gap-3">
+                        <div
+                          className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all ${
+                            item.isCompleted
+                              ? "bg-rose-500 border-rose-500"
+                              : "border-gray-300 hover:border-rose-400"
+                          }`}
+                        >
+                          {item.isCompleted && (
+                            <CheckCircle className="w-3 h-3 text-white" />
+                          )}
+                        </div>
+                        <div className="flex-1">
+                          <p
+                            className={`font-medium ${
+                              item.isCompleted
+                                ? "line-through text-gray-500"
+                                : "text-gray-900"
+                            }`}
+                          >
+                            {item.text}
+                          </p>
+                          <div className="flex items-center gap-2 text-xs text-gray-500">
+                            <span>Added by {item.addedBy}</span>
+                            {item.notes && (
+                              <>
+                                <span>•</span>
+                                <span>{item.notes}</span>
+                              </>
+                            )}
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Badge
+                            variant="outline"
+                            className={`text-xs ${
+                              item.priority === "high"
+                                ? "border-red-200 text-red-700"
+                                : item.priority === "medium"
+                                  ? "border-amber-200 text-amber-700"
+                                  : "border-green-200 text-green-700"
+                            }`}
+                          >
+                            {item.priority}
+                          </Badge>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="opacity-0 group-hover:opacity-100 transition-opacity text-red-600 hover:bg-red-50 h-8 w-8 p-0"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              deleteItem(item.id);
+                            }}
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </Button>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+            </div>
+          </div>
+        );
+
+      case "tasks":
+        return (
+          <div className="p-4 space-y-4 h-full overflow-y-auto">
+            {/* Add Item */}
+            {showAddForm ? (
+              <Card className="border-2 border-rose-200 bg-rose-50/50">
+                <CardContent className="p-4">
+                  <div className="space-y-3">
+                    <Input
+                      value={newItem}
+                      onChange={(e) => setNewItem(e.target.value)}
+                      placeholder="Add new task..."
+                      className="border-rose-200 focus:border-rose-400"
+                      autoFocus
+                    />
+                    <div className="flex gap-2">
+                      <Button
+                        onClick={() => {
+                          setSelectedCategory("tasks");
+                          addNewItem();
+                        }}
+                        className="flex-1 bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white h-8"
+                        size="sm"
+                      >
+                        <Plus className="w-4 h-4 mr-1" />
+                        Add
+                      </Button>
+                      <Button
+                        onClick={() => setShowAddForm(false)}
+                        variant="outline"
+                        size="sm"
+                        className="h-8"
+                      >
+                        Cancel
+                      </Button>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ) : (
+              <Button
+                onClick={() => setShowAddForm(true)}
+                className="w-full h-10 bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white"
+              >
+                <Plus className="w-4 h-4 mr-2" />
+                Add Task
+              </Button>
+            )}
+
+            {/* Task Items */}
+            <div className="space-y-3">
+              {sharedItems
+                .filter((item) => item.category === "tasks")
+                .map((item) => (
+                  <Card
+                    key={item.id}
+                    className={`border-0 cursor-pointer transition-all hover:shadow-md group ${
+                      item.isCompleted
+                        ? "bg-gray-50 opacity-75"
+                        : "bg-white shadow-sm"
+                    }`}
+                    onClick={() => toggleItem(item.id)}
+                  >
+                    <CardContent className="p-4">
+                      <div className="flex items-center gap-3">
+                        <div
+                          className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all ${
+                            item.isCompleted
+                              ? "bg-rose-500 border-rose-500"
+                              : "border-gray-300 hover:border-rose-400"
+                          }`}
+                        >
+                          {item.isCompleted && (
+                            <CheckCircle className="w-3 h-3 text-white" />
+                          )}
+                        </div>
+                        <div className="flex-1">
+                          <p
+                            className={`font-medium ${
+                              item.isCompleted
+                                ? "line-through text-gray-500"
+                                : "text-gray-900"
+                            }`}
+                          >
+                            {item.text}
+                          </p>
+                          <div className="flex items-center gap-2 text-xs text-gray-500">
+                            <span>Added by {item.addedBy}</span>
+                            {item.dueDate && (
+                              <>
+                                <span>•</span>
+                                <span>
+                                  Due{" "}
+                                  {new Date(item.dueDate).toLocaleDateString()}
+                                </span>
+                              </>
+                            )}
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Badge
+                            variant="outline"
+                            className={`text-xs ${
+                              item.priority === "high"
+                                ? "border-red-200 text-red-700"
+                                : item.priority === "medium"
+                                  ? "border-amber-200 text-amber-700"
+                                  : "border-green-200 text-green-700"
+                            }`}
+                          >
+                            {item.priority}
+                          </Badge>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="opacity-0 group-hover:opacity-100 transition-opacity text-red-600 hover:bg-red-50 h-8 w-8 p-0"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              deleteItem(item.id);
+                            }}
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </Button>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+            </div>
+          </div>
+        );
+
+      case "goals":
+        return (
+          <div className="p-4 space-y-4 h-full overflow-y-auto">
+            {/* Goals List */}
+            <div className="space-y-3">
+              {sharedGoals.map((goal) => (
+                <Card
+                  key={goal.id}
+                  className="border-0 bg-white shadow-sm hover:shadow-md transition-all cursor-pointer"
+                  onClick={() =>
+                    navigateToDetail("goals", { type: "goal", goal })
+                  }
+                >
+                  <CardContent className="p-4">
+                    <div className="flex items-center justify-between mb-3">
+                      <h4 className="font-semibold text-gray-900 text-sm">
+                        {goal.title}
+                      </h4>
+                      <Badge
+                        variant="secondary"
+                        className={`text-xs ${
+                          goal.category === "travel"
+                            ? "bg-blue-100 text-blue-700"
+                            : goal.category === "relationship"
+                              ? "bg-rose-100 text-rose-700"
+                              : goal.category === "lifestyle"
+                                ? "bg-emerald-100 text-emerald-700"
+                                : "bg-amber-100 text-amber-700"
+                        }`}
+                      >
+                        {goal.category}
+                      </Badge>
+                    </div>
+                    <p className="text-sm text-gray-600 mb-3">
+                      {goal.description}
+                    </p>
+                    <div className="space-y-2">
+                      <div className="flex justify-between text-sm">
+                        <span className="text-gray-500">Progress</span>
+                        <span className="font-medium text-rose-600">
+                          {goal.progress}%
+                        </span>
+                      </div>
+                      <div className="w-full bg-gray-200 rounded-full h-2">
+                        <div
+                          className="bg-gradient-to-r from-rose-500 to-pink-500 h-2 rounded-full transition-all duration-500"
+                          style={{ width: `${goal.progress}%` }}
+                        ></div>
+                      </div>
+                      <div className="flex justify-between text-xs text-gray-500">
+                        <span>Created by {goal.createdBy}</span>
+                        <span>
+                          Due {new Date(goal.targetDate).toLocaleDateString()}
+                        </span>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        );
+
       case "shared":
         return (
           <div className="p-6 space-y-4 h-full overflow-y-auto">
