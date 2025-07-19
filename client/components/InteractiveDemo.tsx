@@ -1236,10 +1236,10 @@ export default function InteractiveDemo({
                               <div className="flex gap-1">
                                 <Button
                                   size="sm"
-                                  className="bg-green-500 hover:bg-green-600 text-white h-7 w-7 p-0"
+                                  className="bg-green-500 hover:bg-green-600 text-white h-7 w-7 p-0 button-feedback"
                                   onClick={() => completeChore(chore.id)}
                                 >
-                                  <Check className="w-3 h-3" />
+                                  <Check className="w-3 h-3 animate-check-bounce" />
                                 </Button>
                                 <Button
                                   size="sm"
