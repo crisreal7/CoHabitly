@@ -1938,7 +1938,7 @@ export default function InteractiveDemo() {
       <div className="absolute top-4 left-4 w-32 h-32 bg-blue-400/10 rounded-full blur-2xl"></div>
       <div className="absolute bottom-4 right-4 w-24 h-24 bg-indigo-400/10 rounded-full blur-xl"></div>
 
-      <div className="w-full h-full bg-gradient-to-br from-white via-blue-50/30 to-indigo-50/20 rounded-[2.5rem] overflow-hidden relative backdrop-blur-sm border border-white/20">
+      <div className="w-full h-full bg-gradient-to-br from-white via-blue-50/30 to-indigo-50/20 rounded-[2.5rem] overflow-hidden relative backdrop-blur-sm border border-white/20 flex flex-col">
         {/* Status bar */}
         <div className="h-12 bg-gradient-to-r from-white to-blue-50/50 flex items-center justify-between px-6 border-b border-blue-100/30">
           <div className="text-sm font-semibold text-gray-800">
