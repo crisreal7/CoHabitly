@@ -35,7 +35,7 @@ import {
   User,
 } from "lucide-react";
 
-type RoadmapView = "student" | "admin" | "couples";
+type RoadmapView = "student" | "admin" | "couples" | "roommate";
 
 interface RoadmapStage {
   id: string;
