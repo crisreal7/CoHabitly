@@ -1400,7 +1400,7 @@ export default function CouplesDemo() {
       <div className="absolute top-4 left-4 w-32 h-32 bg-rose-400/10 rounded-full blur-2xl"></div>
       <div className="absolute bottom-4 right-4 w-24 h-24 bg-pink-400/10 rounded-full blur-xl"></div>
 
-      <div className="w-full h-full bg-gradient-to-br from-white via-rose-50/50 to-pink-50/30 rounded-[2.5rem] overflow-hidden relative backdrop-blur-sm border border-white/20">
+      <div className="w-full h-full bg-gradient-to-br from-white via-rose-50/50 to-pink-50/30 rounded-[2.5rem] overflow-hidden relative backdrop-blur-sm border border-white/20 flex flex-col">
         {/* Status bar */}
         <div className="h-12 bg-gradient-to-r from-rose-50 to-pink-50 flex items-center justify-between px-6 border-b border-rose-100/50">
           <div className="text-sm font-semibold text-gray-800">
