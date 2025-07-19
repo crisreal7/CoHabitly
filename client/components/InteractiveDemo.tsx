@@ -1948,6 +1948,15 @@ export default function InteractiveDemo({
     return () => clearInterval(timer);
   }, []);
 
+  // Sync activeTab prop with internal state
+  useEffect(() => {
+    setViewState((prev) => ({
+      ...prev,
+      activeTab: activeTab,
+      level: "main", // Reset to main level when tab changes
+    }));
+  }, [activeTab]);
+
   return (
     <div className="w-80 h-[640px] bg-gradient-to-br from-gray-900 via-blue-900/20 to-gray-800 rounded-[3rem] p-3 shadow-2xl relative overflow-hidden">
       {/* Premium ambient effects */}
