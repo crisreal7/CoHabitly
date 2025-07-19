@@ -64,7 +64,9 @@ export default function Index() {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [activeMockup, setActiveMockup] = useState(0);
   const [selectedDemo, setSelectedDemo] = useState<string | null>(null);
-  const [demoType, setDemoType] = useState<"roommate" | "couples">("roommate");
+  const [demoType, setDemoType] = useState<"roommate" | "couples" | "student">(
+    "roommate",
+  );
   const [demoTab, setDemoTab] = useState("overview");
 
   const handleEmailSubmit = (e: React.FormEvent) => {
