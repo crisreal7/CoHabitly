@@ -255,6 +255,89 @@ export default function Index() {
     },
   ];
 
+  const roommateJourney: RoadmapStage[] = [
+    {
+      id: "R1",
+      phase: "Foundation",
+      title: "Smart Roommate Matching",
+      description:
+        "AI-powered compatibility assessment based on lifestyle habits, cleanliness, and social preferences",
+      status: "Live",
+      timeline: "Available Now",
+      progress: 100,
+      color: {
+        primary: "blue-500",
+        secondary: "blue-600",
+        bg: "blue-50",
+        border: "blue-200",
+      },
+    },
+    {
+      id: "R2",
+      phase: "Communication",
+      title: "Anonymous Feedback System",
+      description:
+        "Safe space for addressing concerns without confrontation, with AI tone filtering",
+      status: "Live",
+      timeline: "Available Now",
+      progress: 100,
+      color: {
+        primary: "indigo-500",
+        secondary: "indigo-600",
+        bg: "indigo-50",
+        border: "indigo-200",
+      },
+    },
+    {
+      id: "R3",
+      phase: "Organization",
+      title: "Smart Chore Management",
+      description:
+        "Automated chore distribution, progress tracking, and gamification with streaks and points",
+      status: "Live",
+      timeline: "Available Now",
+      progress: 100,
+      color: {
+        primary: "cyan-500",
+        secondary: "cyan-600",
+        bg: "cyan-50",
+        border: "cyan-200",
+      },
+    },
+    {
+      id: "R4",
+      phase: "Social",
+      title: "Event Planning & Social Features",
+      description:
+        "Collaborative event planning, group activities, and social integration tools",
+      status: "Beta",
+      timeline: "Q3 2024",
+      progress: 85,
+      color: {
+        primary: "purple-500",
+        secondary: "purple-600",
+        bg: "purple-50",
+        border: "purple-200",
+      },
+    },
+    {
+      id: "R5",
+      phase: "Intelligence",
+      title: "Predictive Harmony Analytics",
+      description:
+        "AI-driven insights for preventing conflicts and optimizing house harmony",
+      status: "Coming Soon",
+      timeline: "Q4 2024",
+      progress: 60,
+      color: {
+        primary: "violet-500",
+        secondary: "violet-600",
+        bg: "violet-50",
+        border: "violet-200",
+      },
+    },
+  ];
+
   const couplesJourney: RoadmapStage[] = [
     {
       id: "C1",
