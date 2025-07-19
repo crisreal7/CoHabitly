@@ -703,16 +703,16 @@ export default function InteractiveDemo({
             </Card>
 
             {/* Quick Actions */}
-            <div className="grid grid-cols-2 gap-4">
-              <Card className="border-0 bg-white shadow-md hover:shadow-lg transition-all cursor-pointer group">
+            <div className="grid grid-cols-2 gap-3">
+              <Card className="border-0 bg-white shadow-sm hover:shadow-md transition-all cursor-pointer group">
                 <CardContent
-                  className="p-4 text-center"
+                  className="p-3 text-center"
                   onClick={() => navigateToCompose("vibe")}
                 >
-                  <div className="w-12 h-12 bg-gradient-to-br from-emerald-100 to-emerald-200 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
-                    <Smile className="w-6 h-6 text-emerald-600" />
+                  <div className="w-10 h-10 bg-gradient-to-br from-emerald-100 to-emerald-200 rounded-lg flex items-center justify-center mx-auto mb-2 group-hover:scale-110 transition-transform">
+                    <Smile className="w-5 h-5 text-emerald-600" />
                   </div>
-                  <h4 className="font-bold text-gray-900 text-sm">
+                  <h4 className="font-semibold text-gray-900 text-sm">
                     Vibe Check
                   </h4>
                   <p className="text-xs text-gray-500 mt-1">
@@ -721,15 +721,15 @@ export default function InteractiveDemo({
                 </CardContent>
               </Card>
 
-              <Card className="border-0 bg-white shadow-md hover:shadow-lg transition-all cursor-pointer group">
+              <Card className="border-0 bg-white shadow-sm hover:shadow-md transition-all cursor-pointer group">
                 <CardContent
-                  className="p-4 text-center"
+                  className="p-3 text-center"
                   onClick={() => navigateToCompose("event")}
                 >
-                  <div className="w-12 h-12 bg-gradient-to-br from-purple-100 to-purple-200 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
-                    <PartyPopper className="w-6 h-6 text-purple-600" />
+                  <div className="w-10 h-10 bg-gradient-to-br from-purple-100 to-purple-200 rounded-lg flex items-center justify-center mx-auto mb-2 group-hover:scale-110 transition-transform">
+                    <PartyPopper className="w-5 h-5 text-purple-600" />
                   </div>
-                  <h4 className="font-bold text-gray-900 text-sm">
+                  <h4 className="font-semibold text-gray-900 text-sm">
                     Plan Event
                   </h4>
                   <p className="text-xs text-gray-500 mt-1">
