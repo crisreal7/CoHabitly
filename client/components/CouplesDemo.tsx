@@ -1423,9 +1423,25 @@ export default function CouplesDemo() {
           <div className="relative z-10">
             <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
+                {viewState.level !== "main" && (
+                  <button
+                    onClick={() =>
+                      setViewState({
+                        level: "main",
+                        activeTab: viewState.activeTab,
+                      })
+                    }
+                    className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm hover:bg-white/30 transition-colors"
+                  >
+                    <ArrowLeft className="w-4 h-4 text-white" />
+                  </button>
+                )}
+                <button
+                  onClick={() => (window.location.href = "/")}
+                  className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm hover:bg-white/30 transition-colors"
+                >
                   <Heart className="w-5 h-5 text-white animate-pulse" />
-                </div>
+                </button>
                 <div>
                   <h3 className="font-bold text-lg">CoHabitly</h3>
                   <p className="text-rose-100 text-sm">Together Mode</p>
