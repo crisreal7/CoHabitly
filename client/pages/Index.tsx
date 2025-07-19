@@ -68,6 +68,7 @@ export default function Index() {
     "roommate",
   );
   const [demoTab, setDemoTab] = useState("overview");
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
 
   const handleEmailSubmit = (e: React.FormEvent) => {
     e.preventDefault();
