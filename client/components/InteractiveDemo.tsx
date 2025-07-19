@@ -887,7 +887,7 @@ export default function InteractiveDemo({
                             onClick={() => toggleGroceryItem(item.id)}
                           >
                             {item.purchased && (
-                              <Check className="w-3 h-3 text-white" />
+                              <Check className="w-3 h-3 text-white animate-check-bounce" />
                             )}
                           </div>
                           <div className="flex-1 min-w-0">
