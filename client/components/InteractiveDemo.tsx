@@ -1792,8 +1792,8 @@ export default function InteractiveDemo() {
                       Any comments? (Optional)
                     </label>
                     <textarea
-                      value={inputValue}
-                      onChange={(e) => setInputValue(e.target.value)}
+                      value={composeInputValue}
+                      onChange={(e) => setComposeInputValue(e.target.value)}
                       placeholder="Share what's working well or what could be better..."
                       className="w-full h-24 p-3 border border-gray-200 rounded-xl resize-none"
                     />
