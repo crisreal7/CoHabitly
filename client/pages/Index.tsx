@@ -763,41 +763,163 @@ export default function Index() {
             </div>
 
             <div className="flex justify-center lg:justify-end">
-              <div className="demo-phone">
-                {/* Interactive Demo Tab Selection */}
-                <div className="mb-6 flex justify-center">
-                  <div className="bg-white/15 backdrop-blur-sm rounded-2xl p-1 border border-white/20 shadow-lg min-w-[280px]">
-                    <div className="grid grid-cols-3 gap-1">
-                      {[
-                        { id: "overview", label: "Home", icon: "🏠" },
-                        { id: "grocery", label: "Grocery", icon: "🛒" },
-                        { id: "events", label: "Events", icon: "🎉" },
-                        { id: "chores", label: "Chores", icon: "✅" },
-                        { id: "vibe", label: "Vibe", icon: "😊" },
-                        { id: "messages", label: "Messages", icon: "💬" },
-                      ].map(({ id, label, icon }) => (
-                        <button
-                          key={id}
-                          onClick={() => setDemoTab(id)}
-                          className={`flex flex-col items-center gap-1 py-2 px-3 rounded-xl text-xs font-medium transition-all ${
-                            demoTab === id
-                              ? "bg-white/20 text-white shadow-md scale-105"
-                              : "text-white/70 hover:text-white hover:bg-white/10"
-                          }`}
-                        >
-                          <span className="text-sm">{icon}</span>
-                          <span>{label}</span>
-                        </button>
-                      ))}
-                    </div>
+              <div className="demo-phone relative">
+                {/* Mode indicator above phone */}
+                <div className="text-center mb-4">
+                  <div
+                    className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                      demoType === "student"
+                        ? "bg-emerald-500/20 text-emerald-300 shadow-emerald-500/20 shadow-lg"
+                        : demoType === "couples"
+                          ? "bg-pink-500/20 text-pink-300 shadow-pink-500/20 shadow-lg"
+                          : "bg-blue-500/20 text-blue-300 shadow-blue-500/20 shadow-lg"
+                    }`}
+                  >
+                    {demoType === "student" ? (
+                      <>
+                        <GraduationCap className="w-4 h-4" />
+                        Student Mode
+                      </>
+                    ) : demoType === "couples" ? (
+                      <>
+                        <Heart className="w-4 h-4" />
+                        Couples Mode
+                      </>
+                    ) : (
+                      <>
+                        <Users className="w-4 h-4" />
+                        Roommate Mode
+                      </>
+                    )}
                   </div>
                 </div>
 
-                {demoType === "roommate" ? (
-                  <InteractiveDemo activeTab={demoTab as any} />
-                ) : (
-                  <CouplesDemo />
-                )}
+                {/* Mobile App Frame */}
+                <div className="w-80 h-[640px] bg-gradient-to-br from-gray-900 to-gray-800 rounded-[3rem] p-3 shadow-2xl relative">
+                  <div className="w-full h-full bg-white rounded-[2.5rem] overflow-hidden relative flex flex-col">
+                    {/* Status bar */}
+                    <div className="h-12 bg-gray-50 flex items-center justify-between px-6 shrink-0">
+                      <div className="text-sm font-semibold">9:41</div>
+                      <div className="flex items-center gap-1">
+                        <div className="w-4 h-2 bg-green-500 rounded-sm"></div>
+                        <div className="w-6 h-3 border border-gray-400 rounded-sm">
+                          <div className="w-4 h-full bg-green-500 rounded-sm"></div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* App Header with Navigation */}
+                    <div
+                      className={`px-6 py-4 text-white relative shrink-0 ${
+                        demoType === "student"
+                          ? "bg-gradient-to-r from-emerald-500 to-emerald-600"
+                          : demoType === "couples"
+                            ? "bg-gradient-to-r from-pink-500 to-pink-600"
+                            : "bg-gradient-to-r from-blue-600 to-blue-700"
+                      }`}
+                    >
+                      <div className="flex items-center justify-between mb-2">
+                        <div className="flex items-center gap-3">
+                          <button
+                            onClick={() => setShowMobileMenu(!showMobileMenu)}
+                            className="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center backdrop-blur-sm hover:bg-white/30 transition-colors"
+                          >
+                            <div className="flex flex-col gap-1">
+                              <div className="w-4 h-0.5 bg-white rounded"></div>
+                              <div className="w-4 h-0.5 bg-white rounded"></div>
+                              <div className="w-4 h-0.5 bg-white rounded"></div>
+                            </div>
+                          </button>
+                          <div>
+                            <h3 className="font-bold text-lg">CoHabitly</h3>
+                            <p className="text-white/80 text-sm">
+                              {demoType === "student"
+                                ? "Student Mode"
+                                : demoType === "couples"
+                                  ? "Together Mode"
+                                  : "Roommate Mode"}
+                            </p>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <div className="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center">
+                            <Bell className="w-4 h-4 text-white" />
+                          </div>
+                          <div className="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center">
+                            <Settings className="w-4 h-4 text-white" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Slide-down menu */}
+                    {showMobileMenu && (
+                      <div
+                        className={`absolute top-20 left-0 right-0 z-20 mx-3 rounded-2xl shadow-xl border backdrop-blur-sm transition-all duration-300 ${
+                          demoType === "student"
+                            ? "bg-emerald-50/95 border-emerald-200"
+                            : demoType === "couples"
+                              ? "bg-pink-50/95 border-pink-200"
+                              : "bg-blue-50/95 border-blue-200"
+                        }`}
+                      >
+                        <div className="p-4 grid grid-cols-3 gap-3">
+                          {[
+                            { id: "overview", label: "Home", icon: Home },
+                            {
+                              id: "grocery",
+                              label: "Grocery",
+                              icon: ShoppingCart,
+                            },
+                            { id: "events", label: "Events", icon: Star },
+                            {
+                              id: "chores",
+                              label: "Chores",
+                              icon: CheckCircle,
+                            },
+                            { id: "vibe", label: "Vibe", icon: Heart },
+                            {
+                              id: "messages",
+                              label: "Messages",
+                              icon: MessageCircle,
+                            },
+                          ].map(({ id, label, icon: Icon }) => (
+                            <button
+                              key={id}
+                              onClick={() => {
+                                setDemoTab(id);
+                                setShowMobileMenu(false);
+                              }}
+                              className={`flex flex-col items-center gap-2 p-3 rounded-xl text-xs font-medium transition-all ${
+                                demoTab === id
+                                  ? demoType === "student"
+                                    ? "bg-emerald-500 text-white shadow-lg"
+                                    : demoType === "couples"
+                                      ? "bg-pink-500 text-white shadow-lg"
+                                      : "bg-blue-500 text-white shadow-lg"
+                                  : "text-gray-700 hover:bg-white/70"
+                              }`}
+                            >
+                              <Icon className="w-5 h-5" />
+                              <span>{label}</span>
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Content Area - This is where the specific demo content will go */}
+                    <div className="flex-1 overflow-auto bg-gray-50">
+                      {demoType === "roommate" ? (
+                        <InteractiveDemo activeTab={demoTab as any} />
+                      ) : demoType === "couples" ? (
+                        <CouplesDemo />
+                      ) : (
+                        <StudentDemo activeTab={demoTab as any} />
+                      )}
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
