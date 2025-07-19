@@ -593,7 +593,7 @@ export default function CouplesDemo({ activeTab = "home" }: CouplesDemoProps) {
                   <Button
                     variant="ghost"
                     size="sm"
-                    onClick={() => navigateToDetail("shared")}
+                    onClick={() => navigateToDetail("goals")}
                     className="text-rose-600 hover:bg-rose-50"
                   >
                     View All
