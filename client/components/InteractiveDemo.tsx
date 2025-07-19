@@ -1398,48 +1398,48 @@ export default function InteractiveDemo({
 
       case "messages":
         return (
-          <div className="space-y-6 p-6">
+          <div className="space-y-4 p-4">
             {/* Message Actions */}
-            <div className="grid grid-cols-2 gap-4">
-              <Card className="border-0 bg-gradient-to-br from-blue-50 to-indigo-50 shadow-md">
-                <CardContent className="p-4">
+            <div className="grid grid-cols-2 gap-3">
+              <Card className="border-0 bg-gradient-to-br from-blue-50 to-indigo-50 shadow-sm">
+                <CardContent className="p-3">
                   <Button
-                    className="w-full bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 text-white"
+                    className="w-full h-9 bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 text-white text-xs"
                     onClick={() => navigateToCompose("anonymous")}
                   >
-                    <Shield className="w-4 h-4 mr-2" />
-                    Anonymous Feedback
+                    <Shield className="w-3 h-3 mr-1" />
+                    Anonymous
                   </Button>
                 </CardContent>
               </Card>
-              <Card className="border-0 bg-gradient-to-br from-green-50 to-emerald-50 shadow-md">
-                <CardContent className="p-4">
+              <Card className="border-0 bg-gradient-to-br from-green-50 to-emerald-50 shadow-sm">
+                <CardContent className="p-3">
                   <Button
-                    className="w-full bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white"
+                    className="w-full h-9 bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white text-xs"
                     onClick={() => navigateToCompose("private")}
                   >
-                    <MessageSquare className="w-4 h-4 mr-2" />
-                    Private Message
+                    <MessageSquare className="w-3 h-3 mr-1" />
+                    Private
                   </Button>
                 </CardContent>
               </Card>
             </div>
 
             {/* Messages List */}
-            <Card className="border-0 bg-white shadow-lg">
-              <CardContent className="p-6">
-                <h3 className="text-lg font-bold text-gray-900 mb-4">
+            <Card className="border-0 bg-white shadow-md">
+              <CardContent className="p-4">
+                <h3 className="text-lg font-bold text-gray-900 mb-3">
                   Recent Messages
                 </h3>
-                <div className="space-y-4">
+                <div className="space-y-3">
                   {messages.map((message) => (
                     <div
                       key={message.id}
-                      className="p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors"
+                      className="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
                     >
-                      <div className="flex items-start gap-3">
+                      <div className="flex items-start gap-2">
                         <div
-                          className={`w-10 h-10 rounded-lg flex items-center justify-center text-white font-bold text-sm ${
+                          className={`w-8 h-8 rounded-lg flex items-center justify-center text-white font-bold text-xs flex-shrink-0 ${
                             message.type === "anonymous"
                               ? "bg-purple-500"
                               : message.type === "private"
@@ -1451,9 +1451,9 @@ export default function InteractiveDemo({
                             ? "?"
                             : message.sender[0]}
                         </div>
-                        <div className="flex-1">
-                          <div className="flex items-center gap-2 mb-2">
-                            <span className="font-medium text-gray-900">
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-2 mb-1 flex-wrap">
+                            <span className="font-medium text-gray-900 text-sm">
                               {message.type === "anonymous"
                                 ? "Anonymous"
                                 : message.sender}
@@ -1470,13 +1470,8 @@ export default function InteractiveDemo({
                             >
                               {message.type}
                             </Badge>
-                            {message.recipient && (
-                              <span className="text-xs text-gray-500">
-                                to {message.recipient}
-                              </span>
-                            )}
                           </div>
-                          <p className="text-gray-700 text-sm mb-2">
+                          <p className="text-gray-700 text-sm mb-2 line-clamp-3">
                             {message.content}
                           </p>
                           <div className="flex items-center gap-2 text-xs text-gray-500">
@@ -1484,13 +1479,9 @@ export default function InteractiveDemo({
                             {message.isAIFiltered && (
                               <>
                                 <span>•</span>
-                                <Badge
-                                  variant="outline"
-                                  className="text-xs bg-emerald-50 text-emerald-700 border-emerald-200"
-                                >
-                                  AI Enhanced: {message.originalTone} →{" "}
-                                  {message.filteredTone}
-                                </Badge>
+                                <span className="text-emerald-600">
+                                  AI Enhanced
+                                </span>
                               </>
                             )}
                           </div>
@@ -1503,35 +1494,33 @@ export default function InteractiveDemo({
             </Card>
 
             {/* Conflict Resolution */}
-            <Card className="border-0 bg-gradient-to-br from-orange-50 to-red-50 shadow-lg">
-              <CardContent className="p-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-red-500 rounded-lg flex items-center justify-center">
-                    <AlertCircle className="w-5 h-5 text-white" />
+            <Card className="border-0 bg-gradient-to-br from-orange-50 to-red-50 shadow-md">
+              <CardContent className="p-4">
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="w-8 h-8 bg-gradient-to-br from-orange-500 to-red-500 rounded-lg flex items-center justify-center">
+                    <AlertCircle className="w-4 h-4 text-white" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-gray-900">
-                      Need Help Resolving an Issue?
+                    <h3 className="font-bold text-gray-900 text-sm">
+                      Need Help?
                     </h3>
-                    <p className="text-sm text-gray-600">
-                      Guided support for difficult conversations
-                    </p>
+                    <p className="text-xs text-gray-600">Guided support</p>
                   </div>
                 </div>
-                <div className="space-y-3">
+                <div className="space-y-2">
                   <Button
                     variant="outline"
-                    className="w-full justify-start border-orange-200 text-orange-700 hover:bg-orange-50"
+                    className="w-full justify-start border-orange-200 text-orange-700 hover:bg-orange-50 h-8 text-xs"
                   >
-                    <MessageCircle className="w-4 h-4 mr-2" />
-                    Get conversation suggestions
+                    <MessageCircle className="w-3 h-3 mr-2" />
+                    Get suggestions
                   </Button>
                   <Button
                     variant="outline"
-                    className="w-full justify-start border-red-200 text-red-700 hover:bg-red-50"
+                    className="w-full justify-start border-red-200 text-red-700 hover:bg-red-50 h-8 text-xs"
                   >
-                    <Flag className="w-4 h-4 mr-2" />
-                    Escalate to RA/Housing Admin
+                    <Flag className="w-3 h-3 mr-2" />
+                    Escalate to RA
                   </Button>
                 </div>
               </CardContent>
