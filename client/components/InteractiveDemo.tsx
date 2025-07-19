@@ -1773,9 +1773,11 @@ export default function InteractiveDemo() {
                       {[...Array(10)].map((_, i) => (
                         <button
                           key={i}
-                          onClick={() => setSelectedOption((i + 1).toString())}
+                          onClick={() =>
+                            setComposeSelectedOption((i + 1).toString())
+                          }
                           className={`w-8 h-8 rounded-full border-2 font-bold transition-all ${
-                            selectedOption === (i + 1).toString()
+                            composeSelectedOption === (i + 1).toString()
                               ? "bg-purple-500 border-purple-500 text-white"
                               : "border-gray-300 text-gray-600 hover:border-purple-400"
                           }`}
