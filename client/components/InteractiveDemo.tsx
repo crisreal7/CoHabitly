@@ -1135,52 +1135,50 @@ export default function InteractiveDemo({
 
       case "chores":
         return (
-          <div className="space-y-6 p-6">
+          <div className="space-y-4 p-4">
             {/* Chore Stats */}
-            <div className="grid grid-cols-3 gap-4">
-              <Card className="border-0 bg-gradient-to-br from-green-50 to-emerald-50 shadow-md">
-                <CardContent className="p-4 text-center">
-                  <div className="text-2xl font-bold text-emerald-600">
+            <div className="grid grid-cols-3 gap-3">
+              <Card className="border-0 bg-gradient-to-br from-green-50 to-emerald-50 shadow-sm">
+                <CardContent className="p-3 text-center">
+                  <div className="text-xl font-bold text-emerald-600">
                     {chores.filter((c) => c.status === "completed").length}
                   </div>
-                  <div className="text-sm text-gray-600">Completed</div>
+                  <div className="text-xs text-gray-600">Done</div>
                 </CardContent>
               </Card>
-              <Card className="border-0 bg-gradient-to-br from-amber-50 to-orange-50 shadow-md">
-                <CardContent className="p-4 text-center">
-                  <div className="text-2xl font-bold text-amber-600">
+              <Card className="border-0 bg-gradient-to-br from-amber-50 to-orange-50 shadow-sm">
+                <CardContent className="p-3 text-center">
+                  <div className="text-xl font-bold text-amber-600">
                     {chores.filter((c) => c.status === "pending").length}
                   </div>
-                  <div className="text-sm text-gray-600">Pending</div>
+                  <div className="text-xs text-gray-600">Todo</div>
                 </CardContent>
               </Card>
-              <Card className="border-0 bg-gradient-to-br from-red-50 to-pink-50 shadow-md">
-                <CardContent className="p-4 text-center">
-                  <div className="text-2xl font-bold text-red-600">
+              <Card className="border-0 bg-gradient-to-br from-red-50 to-pink-50 shadow-sm">
+                <CardContent className="p-3 text-center">
+                  <div className="text-xl font-bold text-red-600">
                     {chores.filter((c) => c.status === "overdue").length}
                   </div>
-                  <div className="text-sm text-gray-600">Overdue</div>
+                  <div className="text-xs text-gray-600">Late</div>
                 </CardContent>
               </Card>
             </div>
 
             {/* Chore Calendar/List */}
-            <Card className="border-0 bg-white shadow-lg">
-              <CardContent className="p-6">
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-lg font-bold text-gray-900">
-                    Chore Assignment
-                  </h3>
-                  <Button variant="outline" size="sm">
-                    <CalendarDays className="w-4 h-4 mr-2" />
-                    Calendar View
+            <Card className="border-0 bg-white shadow-md">
+              <CardContent className="p-4">
+                <div className="flex items-center justify-between mb-3">
+                  <h3 className="text-lg font-bold text-gray-900">Chores</h3>
+                  <Button variant="outline" size="sm" className="h-8 text-xs">
+                    <CalendarDays className="w-3 h-3 mr-1" />
+                    Calendar
                   </Button>
                 </div>
-                <div className="space-y-3">
+                <div className="space-y-2">
                   {chores.map((chore) => (
                     <div
                       key={chore.id}
-                      className={`p-4 rounded-xl border-2 transition-all ${
+                      className={`p-3 rounded-lg border transition-all ${
                         chore.status === "completed"
                           ? "border-green-200 bg-green-50"
                           : chore.status === "overdue"
@@ -1191,9 +1189,9 @@ export default function InteractiveDemo({
                       }`}
                     >
                       <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3">
+                        <div className="flex items-center gap-2 flex-1 min-w-0">
                           <div
-                            className={`w-8 h-8 rounded-lg flex items-center justify-center ${
+                            className={`w-6 h-6 rounded-md flex items-center justify-center flex-shrink-0 ${
                               chore.status === "completed"
                                 ? "bg-green-500"
                                 : chore.status === "overdue"
@@ -1204,43 +1202,38 @@ export default function InteractiveDemo({
                             }`}
                           >
                             {chore.status === "completed" ? (
-                              <CheckCircle className="w-5 h-5 text-white" />
+                              <CheckCircle className="w-3 h-3 text-white" />
                             ) : chore.status === "overdue" ? (
-                              <AlertCircle className="w-5 h-5 text-white" />
+                              <AlertCircle className="w-3 h-3 text-white" />
                             ) : chore.status === "skipped" ? (
-                              <X className="w-5 h-5 text-white" />
+                              <X className="w-3 h-3 text-white" />
                             ) : (
-                              <Clock className="w-5 h-5 text-white" />
+                              <Clock className="w-3 h-3 text-white" />
                             )}
                           </div>
-                          <div>
-                            <h4 className="font-semibold text-gray-900">
+                          <div className="min-w-0 flex-1">
+                            <h4 className="font-semibold text-gray-900 text-sm truncate">
                               {chore.task}
                             </h4>
-                            <div className="text-sm text-gray-600">
-                              Assigned to {chore.assignedTo} • Due{" "}
+                            <div className="text-xs text-gray-600">
+                              {chore.assignedTo} •{" "}
                               {new Date(chore.dueDate).toLocaleDateString()}
                             </div>
                             {chore.streak > 0 && (
-                              <div className="flex items-center gap-1 text-sm text-orange-600">
-                                <Flame className="w-4 h-4" />
-                                {chore.streak} week streak
-                              </div>
-                            )}
-                            {chore.skipReason && (
-                              <div className="text-sm text-amber-700">
-                                Reason: {chore.skipReason}
+                              <div className="flex items-center gap-1 text-xs text-orange-600">
+                                <Flame className="w-3 h-3" />
+                                {chore.streak} streak
                               </div>
                             )}
                           </div>
                         </div>
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-2 flex-shrink-0">
                           <div className="text-right">
-                            <div className="text-sm font-bold text-gray-900">
-                              +{chore.points} pts
+                            <div className="text-xs font-bold text-gray-900">
+                              +{chore.points}
                             </div>
                             <div className="text-xs text-gray-500">
-                              {"★".repeat(chore.difficulty)} difficulty
+                              {"★".repeat(chore.difficulty)}
                             </div>
                           </div>
                           {chore.assignedTo === "You" &&
@@ -1248,14 +1241,15 @@ export default function InteractiveDemo({
                               <div className="flex gap-1">
                                 <Button
                                   size="sm"
-                                  className="bg-green-500 hover:bg-green-600 text-white"
+                                  className="bg-green-500 hover:bg-green-600 text-white h-7 w-7 p-0"
                                   onClick={() => completeChore(chore.id)}
                                 >
-                                  <Check className="w-4 h-4" />
+                                  <Check className="w-3 h-3" />
                                 </Button>
                                 <Button
                                   size="sm"
                                   variant="outline"
+                                  className="h-7 px-2 text-xs"
                                   onClick={() =>
                                     navigateToCompose("skip-chore")
                                   }
