@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
@@ -377,12 +377,12 @@ export default function Index() {
   ];
 
   // Animate through mockups
-  useState(() => {
+  useEffect(() => {
     const interval = setInterval(() => {
       setActiveMockup((prev) => (prev + 1) % mockupCards.length);
     }, 3000);
     return () => clearInterval(interval);
-  });
+  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50/30 font-['Inter',_'DM_Sans',_system-ui,_sans-serif]">
