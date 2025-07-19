@@ -638,16 +638,16 @@ export default function StudentDemo({
 
       case "chores":
         return (
-          <div className="space-y-6 p-6">
+          <div className="space-y-4 p-4">
             {/* Dorm Cleaning Leaderboard */}
-            <Card className="border-0 bg-gradient-to-br from-purple-50 to-indigo-50 shadow-lg">
-              <CardContent className="p-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-xl flex items-center justify-center">
-                    <Trophy className="w-6 h-6 text-white" />
+            <Card className="border-0 bg-gradient-to-br from-purple-50 to-indigo-50 shadow-md">
+              <CardContent className="p-4">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-lg flex items-center justify-center">
+                    <Trophy className="w-5 h-5 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-gray-900">
+                    <h3 className="text-lg font-bold text-gray-900">
                       Floor Leaderboard
                     </h3>
                     <p className="text-sm text-gray-600">
@@ -655,7 +655,7 @@ export default function StudentDemo({
                     </p>
                   </div>
                 </div>
-                <div className="space-y-3">
+                <div className="space-y-2">
                   {[
                     { name: "Alex Chen", room: "247A", points: 850, rank: 1 },
                     { name: "You", room: "247B", points: 720, rank: 2 },
@@ -664,10 +664,10 @@ export default function StudentDemo({
                   ].map((student, index) => (
                     <div
                       key={index}
-                      className="flex items-center gap-3 p-3 bg-white rounded-lg"
+                      className="flex items-center gap-3 p-2 bg-white rounded-lg"
                     >
                       <div
-                        className={`w-8 h-8 rounded-lg flex items-center justify-center text-white font-bold ${
+                        className={`w-7 h-7 rounded-lg flex items-center justify-center text-white font-bold text-sm ${
                           student.rank === 1
                             ? "bg-yellow-500"
                             : student.rank === 2
@@ -679,18 +679,18 @@ export default function StudentDemo({
                       >
                         {student.rank}
                       </div>
-                      <div className="flex-1">
+                      <div className="flex-1 min-w-0">
                         <div
-                          className={`font-semibold ${student.name === "You" ? "text-emerald-600" : "text-gray-900"}`}
+                          className={`font-semibold text-sm ${student.name === "You" ? "text-emerald-600" : "text-gray-900"}`}
                         >
                           {student.name}
                         </div>
-                        <div className="text-sm text-gray-600">
+                        <div className="text-xs text-gray-600">
                           Room {student.room}
                         </div>
                       </div>
                       <div className="text-right">
-                        <div className="font-bold text-purple-600">
+                        <div className="font-bold text-purple-600 text-sm">
                           {student.points}
                         </div>
                         <div className="text-xs text-gray-500">points</div>
@@ -702,12 +702,12 @@ export default function StudentDemo({
             </Card>
 
             {/* Weekly Chore Schedule */}
-            <Card className="border-0 bg-white shadow-md">
-              <CardContent className="p-6">
-                <h3 className="text-lg font-bold text-gray-900 mb-4">
+            <Card className="border-0 bg-white shadow-sm">
+              <CardContent className="p-4">
+                <h3 className="font-bold text-gray-900 mb-3">
                   Your Chores This Week
                 </h3>
-                <div className="space-y-3">
+                <div className="space-y-2">
                   {[
                     {
                       task: "Common Room Vacuum",
@@ -730,7 +730,7 @@ export default function StudentDemo({
                   ].map((chore, index) => (
                     <div
                       key={index}
-                      className={`p-4 rounded-xl border-2 ${
+                      className={`p-3 rounded-lg border ${
                         chore.status === "completed"
                           ? "border-green-200 bg-green-50"
                           : "border-gray-200 bg-gray-50"
@@ -739,29 +739,29 @@ export default function StudentDemo({
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-3">
                           <div
-                            className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${
+                            className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
                               chore.status === "completed"
                                 ? "bg-green-500 border-green-500"
                                 : "border-gray-300"
                             }`}
                           >
                             {chore.status === "completed" && (
-                              <Check className="w-4 h-4 text-white" />
+                              <Check className="w-3 h-3 text-white" />
                             )}
                           </div>
-                          <div>
+                          <div className="min-w-0">
                             <div
-                              className={`font-semibold ${chore.status === "completed" ? "line-through text-gray-500" : "text-gray-900"}`}
+                              className={`font-semibold text-sm ${chore.status === "completed" ? "line-through text-gray-500" : "text-gray-900"}`}
                             >
                               {chore.task}
                             </div>
-                            <div className="text-sm text-gray-600">
+                            <div className="text-xs text-gray-600">
                               Due: {chore.day}
                             </div>
                           </div>
                         </div>
                         <div className="text-right">
-                          <div className="font-bold text-emerald-600">
+                          <div className="font-bold text-emerald-600 text-sm">
                             +{chore.points}
                           </div>
                           <div className="text-xs text-gray-500">points</div>
