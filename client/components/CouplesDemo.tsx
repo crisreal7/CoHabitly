@@ -50,7 +50,13 @@ import {
   Flower,
 } from "lucide-react";
 
-type CouplesTabType = "home" | "shared" | "communicate" | "preferences";
+type CouplesTabType =
+  | "home"
+  | "groceries"
+  | "tasks"
+  | "goals"
+  | "communicate"
+  | "preferences";
 type ViewLevel = "main" | "detail" | "compose" | "profile" | "settings";
 
 interface ViewState {
@@ -122,10 +128,14 @@ interface CouplesPreference {
   settings: { [key: string]: any };
 }
 
-export default function CouplesDemo() {
+interface CouplesDemoProps {
+  activeTab?: CouplesTabType;
+}
+
+export default function CouplesDemo({ activeTab = "home" }: CouplesDemoProps) {
   const [viewState, setViewState] = useState<ViewState>({
     level: "main",
-    activeTab: "home",
+    activeTab: activeTab,
   });
   const [newMessage, setNewMessage] = useState("");
   const [newItem, setNewItem] = useState("");
@@ -185,16 +195,34 @@ export default function CouplesDemo() {
     setMessages([
       {
         id: "1",
-        text: "I've been feeling a bit overwhelmed with work lately. Could we maybe keep things a bit quieter in the evenings this week? ❤️",
-        timestamp: "2 hours ago",
+        text: "💌 Scheduled Love Note: You looked so peaceful this morning while you slept. I made your favorite coffee for when you wake up. Have an amazing day, beautiful! ☕️💕",
+        timestamp: "8:30 AM",
         isOwn: false,
-        isAnonymous: true,
-        mood: "thoughtful",
+        isAnonymous: false,
+        mood: "happy",
         replies: [
           {
             id: "r1",
-            text: "Of course! I didn't realize. I can use headphones for my calls after 7pm. Thank you for letting me know ❤️",
-            timestamp: "1 hour ago",
+            text: "This just made my whole day! How did you know I needed this today? 🥰",
+            timestamp: "9:15 AM",
+            isOwn: true,
+          },
+        ],
+        likes: 5,
+        isLiked: true,
+      },
+      {
+        id: "2",
+        text: "🤖 AI Insight: Your partner mentioned feeling overwhelmed lately. Here's a gentle suggestion: Maybe surprise them with their favorite takeout tonight? They love Thai food when stressed.",
+        timestamp: "2 hours ago",
+        isOwn: false,
+        isAnonymous: false,
+        mood: "thoughtful",
+        replies: [
+          {
+            id: "r2",
+            text: "Perfect timing! I was wondering how to help. Ordering from Bangkok Garden now 🍜",
+            timestamp: "1:45 PM",
             isOwn: true,
           },
         ],
@@ -202,24 +230,25 @@ export default function CouplesDemo() {
         isLiked: true,
       },
       {
-        id: "2",
-        text: "You're the best! This really helps. Maybe we can plan a cozy movie night this weekend? 🍿",
-        timestamp: "45 mins ago",
-        isOwn: false,
-        mood: "happy",
-        replies: [],
-        likes: 2,
-        isLiked: true,
-      },
-      {
         id: "3",
-        text: "I love how we're getting better at talking about these things. It makes me feel so much closer to you! 💕",
-        timestamp: "30 mins ago",
+        text: "I talked to the AI today about feeling anxious about work. It gave me some great breathing exercises and asked if you could give me extra cuddles tonight 🤗",
+        timestamp: "4:30 PM",
         isOwn: true,
-        mood: "excited",
+        mood: "thoughtful",
         replies: [],
         likes: 4,
         isLiked: false,
+      },
+      {
+        id: "4",
+        text: "📅 Tomorrow's Love Note Preview: 'Remember when we danced in the kitchen last week? Your laugh is my favorite sound in the world.'",
+        timestamp: "5:00 PM",
+        isOwn: false,
+        isAnonymous: false,
+        mood: "excited",
+        replies: [],
+        likes: 2,
+        isLiked: true,
       },
     ]);
 
@@ -341,6 +370,15 @@ export default function CouplesDemo() {
     return () => clearInterval(timer);
   }, []);
 
+  // Sync activeTab prop with internal state
+  useEffect(() => {
+    setViewState((prev) => ({
+      ...prev,
+      activeTab: activeTab,
+      level: "main", // Reset to main level when tab changes
+    }));
+  }, [activeTab]);
+
   // Interactive functions
   const toggleItem = (id: string) => {
     setSharedItems((items) =>
@@ -459,13 +497,13 @@ export default function CouplesDemo() {
     switch (viewState.activeTab) {
       case "home":
         return (
-          <div className="p-6 space-y-6 h-full overflow-y-auto">
+          <div className="p-4 space-y-4 h-full overflow-y-auto">
             {/* Relationship Harmony */}
             <Card
-              className="border-0 bg-gradient-to-br from-rose-50 to-pink-50 shadow-lg cursor-pointer hover:shadow-xl transition-all"
+              className="border-0 bg-gradient-to-br from-rose-50 to-pink-50 shadow-md cursor-pointer hover:shadow-lg transition-all"
               onClick={() => navigateToDetail("home")}
             >
-              <CardContent className="p-6">
+              <CardContent className="p-4">
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-2">
                     <Sparkles className="w-5 h-5 text-rose-500" />
@@ -513,14 +551,14 @@ export default function CouplesDemo() {
             </Card>
 
             {/* Quick Actions */}
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-3">
               <Card
-                className="border-0 bg-white/70 shadow-md hover:shadow-lg transition-all cursor-pointer group"
+                className="border-0 bg-white/70 shadow-sm hover:shadow-md transition-all cursor-pointer group"
                 onClick={() => navigateToCompose()}
               >
-                <CardContent className="p-4 text-center">
-                  <div className="w-12 h-12 bg-gradient-to-br from-blue-100 to-blue-200 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
-                    <MessageCircle className="w-6 h-6 text-blue-600" />
+                <CardContent className="p-3 text-center">
+                  <div className="w-10 h-10 bg-gradient-to-br from-blue-100 to-blue-200 rounded-lg flex items-center justify-center mx-auto mb-2 group-hover:scale-110 transition-transform">
+                    <MessageCircle className="w-5 h-5 text-blue-600" />
                   </div>
                   <h4 className="font-semibold text-gray-900 text-sm">
                     Check In
@@ -532,12 +570,12 @@ export default function CouplesDemo() {
               </Card>
 
               <Card
-                className="border-0 bg-white/70 shadow-md hover:shadow-lg transition-all cursor-pointer group"
-                onClick={() => navigateToDetail("shared")}
+                className="border-0 bg-white/70 shadow-sm hover:shadow-md transition-all cursor-pointer group"
+                onClick={() => navigateToDetail("goals")}
               >
-                <CardContent className="p-4 text-center">
-                  <div className="w-12 h-12 bg-gradient-to-br from-emerald-100 to-emerald-200 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
-                    <Target className="w-6 h-6 text-emerald-600" />
+                <CardContent className="p-3 text-center">
+                  <div className="w-10 h-10 bg-gradient-to-br from-emerald-100 to-emerald-200 rounded-lg flex items-center justify-center mx-auto mb-2 group-hover:scale-110 transition-transform">
+                    <Target className="w-5 h-5 text-emerald-600" />
                   </div>
                   <h4 className="font-semibold text-gray-900 text-sm">
                     Set Goal
@@ -555,7 +593,7 @@ export default function CouplesDemo() {
                   <Button
                     variant="ghost"
                     size="sm"
-                    onClick={() => navigateToDetail("shared")}
+                    onClick={() => navigateToDetail("goals")}
                     className="text-rose-600 hover:bg-rose-50"
                   >
                     View All
@@ -567,7 +605,7 @@ export default function CouplesDemo() {
                       key={goal.id}
                       className="p-3 bg-white rounded-lg border hover:shadow-sm transition-all cursor-pointer"
                       onClick={() =>
-                        navigateToDetail("shared", { type: "goal", goal })
+                        navigateToDetail("goals", { type: "goal", goal })
                       }
                     >
                       <div className="flex items-center justify-between mb-2">
@@ -652,32 +690,9 @@ export default function CouplesDemo() {
           </div>
         );
 
-      case "shared":
+      case "groceries":
         return (
-          <div className="p-6 space-y-4 h-full overflow-y-auto">
-            {/* Category Tabs */}
-            <div className="flex bg-gray-100 rounded-xl p-1">
-              {[
-                { key: "groceries", label: "Groceries", icon: ShoppingCart },
-                { key: "tasks", label: "Tasks", icon: CheckCircle },
-                { key: "goals", label: "Goals", icon: Star },
-                { key: "dates", label: "Dates", icon: Heart },
-              ].map(({ key, label, icon: Icon }) => (
-                <button
-                  key={key}
-                  onClick={() => setSelectedCategory(key as any)}
-                  className={`flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-lg text-sm font-medium transition-all ${
-                    selectedCategory === key
-                      ? "bg-white text-rose-600 shadow-sm"
-                      : "text-gray-600 hover:text-gray-900"
-                  }`}
-                >
-                  <Icon className="w-4 h-4" />
-                  {label}
-                </button>
-              ))}
-            </div>
-
+          <div className="p-4 space-y-4 h-full overflow-y-auto">
             {/* Add Item */}
             {showAddForm ? (
               <Card className="border-2 border-rose-200 bg-rose-50/50">
@@ -686,14 +701,17 @@ export default function CouplesDemo() {
                     <Input
                       value={newItem}
                       onChange={(e) => setNewItem(e.target.value)}
-                      placeholder={`Add new ${selectedCategory.slice(0, -1)}...`}
+                      placeholder="Add new grocery item..."
                       className="border-rose-200 focus:border-rose-400"
                       autoFocus
                     />
                     <div className="flex gap-2">
                       <Button
-                        onClick={addNewItem}
-                        className="flex-1 bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white"
+                        onClick={() => {
+                          setSelectedCategory("groceries");
+                          addNewItem();
+                        }}
+                        className="flex-1 bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white h-8"
                         size="sm"
                       >
                         <Plus className="w-4 h-4 mr-1" />
@@ -703,6 +721,7 @@ export default function CouplesDemo() {
                         onClick={() => setShowAddForm(false)}
                         variant="outline"
                         size="sm"
+                        className="h-8"
                       >
                         Cancel
                       </Button>
@@ -713,156 +732,284 @@ export default function CouplesDemo() {
             ) : (
               <Button
                 onClick={() => setShowAddForm(true)}
-                className="w-full bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white"
+                className="w-full h-10 bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white"
               >
                 <Plus className="w-4 h-4 mr-2" />
-                Add {selectedCategory.slice(0, -1)}
+                Add Grocery Item
               </Button>
             )}
 
-            {/* Items List */}
+            {/* Grocery Items */}
             <div className="space-y-3">
-              {selectedCategory === "goals"
-                ? // Goals view
-                  sharedGoals.map((goal) => (
-                    <Card
-                      key={goal.id}
-                      className="border-0 bg-white shadow-sm hover:shadow-md transition-all cursor-pointer"
-                      onClick={() =>
-                        navigateToDetail("shared", { type: "goal", goal })
-                      }
-                    >
-                      <CardContent className="p-4">
-                        <div className="flex items-center justify-between mb-3">
-                          <h4 className="font-semibold text-gray-900">
-                            {goal.title}
-                          </h4>
-                          <Badge
-                            variant="secondary"
-                            className={`text-xs ${
-                              goal.category === "travel"
-                                ? "bg-blue-100 text-blue-700"
-                                : goal.category === "relationship"
-                                  ? "bg-rose-100 text-rose-700"
-                                  : goal.category === "lifestyle"
-                                    ? "bg-emerald-100 text-emerald-700"
-                                    : "bg-amber-100 text-amber-700"
-                            }`}
-                          >
-                            {goal.category}
-                          </Badge>
+              {sharedItems
+                .filter((item) => item.category === "groceries")
+                .map((item) => (
+                  <Card
+                    key={item.id}
+                    className={`border-0 cursor-pointer transition-all hover:shadow-md group ${
+                      item.isCompleted
+                        ? "bg-gray-50 opacity-75"
+                        : "bg-white shadow-sm"
+                    }`}
+                    onClick={() => toggleItem(item.id)}
+                  >
+                    <CardContent className="p-4">
+                      <div className="flex items-center gap-3">
+                        <div
+                          className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all ${
+                            item.isCompleted
+                              ? "bg-rose-500 border-rose-500"
+                              : "border-gray-300 hover:border-rose-400"
+                          }`}
+                        >
+                          {item.isCompleted && (
+                            <CheckCircle className="w-3 h-3 text-white" />
+                          )}
                         </div>
-                        <p className="text-sm text-gray-600 mb-3">
-                          {goal.description}
-                        </p>
-                        <div className="space-y-2">
-                          <div className="flex justify-between text-sm">
-                            <span className="text-gray-500">Progress</span>
-                            <span className="font-medium text-rose-600">
-                              {goal.progress}%
-                            </span>
-                          </div>
-                          <div className="w-full bg-gray-200 rounded-full h-2">
-                            <div
-                              className="bg-gradient-to-r from-rose-500 to-pink-500 h-2 rounded-full transition-all duration-500"
-                              style={{ width: `${goal.progress}%` }}
-                            ></div>
-                          </div>
-                          <div className="flex justify-between text-xs text-gray-500">
-                            <span>Created by {goal.createdBy}</span>
-                            <span>
-                              Due{" "}
-                              {new Date(goal.targetDate).toLocaleDateString()}
-                            </span>
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  ))
-                : // Regular items view
-                  getFilteredItems().map((item) => (
-                    <Card
-                      key={item.id}
-                      className={`border-0 cursor-pointer transition-all hover:shadow-md group ${
-                        item.isCompleted
-                          ? "bg-gray-50 opacity-75"
-                          : "bg-white shadow-sm"
-                      }`}
-                      onClick={() => toggleItem(item.id)}
-                    >
-                      <CardContent className="p-4">
-                        <div className="flex items-center gap-3">
-                          <div
-                            className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all ${
+                        <div className="flex-1">
+                          <p
+                            className={`font-medium ${
                               item.isCompleted
-                                ? "bg-rose-500 border-rose-500"
-                                : "border-gray-300 hover:border-rose-400"
+                                ? "line-through text-gray-500"
+                                : "text-gray-900"
                             }`}
                           >
-                            {item.isCompleted && (
-                              <CheckCircle className="w-3 h-3 text-white" />
+                            {item.text}
+                          </p>
+                          <div className="flex items-center gap-2 text-xs text-gray-500">
+                            <span>Added by {item.addedBy}</span>
+                            {item.notes && (
+                              <>
+                                <span>•</span>
+                                <span>{item.notes}</span>
+                              </>
                             )}
                           </div>
-                          <div className="flex-1">
-                            <p
-                              className={`font-medium ${
-                                item.isCompleted
-                                  ? "line-through text-gray-500"
-                                  : "text-gray-900"
-                              }`}
-                            >
-                              {item.text}
-                            </p>
-                            <div className="flex items-center gap-2 text-xs text-gray-500">
-                              <span>Added by {item.addedBy}</span>
-                              {item.dueDate && (
-                                <>
-                                  <span>•</span>
-                                  <span>
-                                    Due{" "}
-                                    {new Date(
-                                      item.dueDate,
-                                    ).toLocaleDateString()}
-                                  </span>
-                                </>
-                              )}
-                              {item.notes && (
-                                <>
-                                  <span>•</span>
-                                  <span>{item.notes}</span>
-                                </>
-                              )}
-                            </div>
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <Badge
-                              variant="outline"
-                              className={`text-xs ${
-                                item.priority === "high"
-                                  ? "border-red-200 text-red-700"
-                                  : item.priority === "medium"
-                                    ? "border-amber-200 text-amber-700"
-                                    : "border-green-200 text-green-700"
-                              }`}
-                            >
-                              {item.priority}
-                            </Badge>
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              className="opacity-0 group-hover:opacity-100 transition-opacity text-red-600 hover:bg-red-50"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                deleteItem(item.id);
-                              }}
-                            >
-                              <Trash2 className="w-4 h-4" />
-                            </Button>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Badge
+                            variant="outline"
+                            className={`text-xs ${
+                              item.priority === "high"
+                                ? "border-red-200 text-red-700"
+                                : item.priority === "medium"
+                                  ? "border-amber-200 text-amber-700"
+                                  : "border-green-200 text-green-700"
+                            }`}
+                          >
+                            {item.priority}
+                          </Badge>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="opacity-0 group-hover:opacity-100 transition-opacity text-red-600 hover:bg-red-50 h-8 w-8 p-0"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              deleteItem(item.id);
+                            }}
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </Button>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+            </div>
+          </div>
+        );
+
+      case "tasks":
+        return (
+          <div className="p-4 space-y-4 h-full overflow-y-auto">
+            {/* Add Item */}
+            {showAddForm ? (
+              <Card className="border-2 border-rose-200 bg-rose-50/50">
+                <CardContent className="p-4">
+                  <div className="space-y-3">
+                    <Input
+                      value={newItem}
+                      onChange={(e) => setNewItem(e.target.value)}
+                      placeholder="Add new task..."
+                      className="border-rose-200 focus:border-rose-400"
+                      autoFocus
+                    />
+                    <div className="flex gap-2">
+                      <Button
+                        onClick={() => {
+                          setSelectedCategory("tasks");
+                          addNewItem();
+                        }}
+                        className="flex-1 bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white h-8"
+                        size="sm"
+                      >
+                        <Plus className="w-4 h-4 mr-1" />
+                        Add
+                      </Button>
+                      <Button
+                        onClick={() => setShowAddForm(false)}
+                        variant="outline"
+                        size="sm"
+                        className="h-8"
+                      >
+                        Cancel
+                      </Button>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ) : (
+              <Button
+                onClick={() => setShowAddForm(true)}
+                className="w-full h-10 bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white"
+              >
+                <Plus className="w-4 h-4 mr-2" />
+                Add Task
+              </Button>
+            )}
+
+            {/* Task Items */}
+            <div className="space-y-3">
+              {sharedItems
+                .filter((item) => item.category === "tasks")
+                .map((item) => (
+                  <Card
+                    key={item.id}
+                    className={`border-0 cursor-pointer transition-all hover:shadow-md group ${
+                      item.isCompleted
+                        ? "bg-gray-50 opacity-75"
+                        : "bg-white shadow-sm"
+                    }`}
+                    onClick={() => toggleItem(item.id)}
+                  >
+                    <CardContent className="p-4">
+                      <div className="flex items-center gap-3">
+                        <div
+                          className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all ${
+                            item.isCompleted
+                              ? "bg-rose-500 border-rose-500"
+                              : "border-gray-300 hover:border-rose-400"
+                          }`}
+                        >
+                          {item.isCompleted && (
+                            <CheckCircle className="w-3 h-3 text-white" />
+                          )}
+                        </div>
+                        <div className="flex-1">
+                          <p
+                            className={`font-medium ${
+                              item.isCompleted
+                                ? "line-through text-gray-500"
+                                : "text-gray-900"
+                            }`}
+                          >
+                            {item.text}
+                          </p>
+                          <div className="flex items-center gap-2 text-xs text-gray-500">
+                            <span>Added by {item.addedBy}</span>
+                            {item.dueDate && (
+                              <>
+                                <span>•</span>
+                                <span>
+                                  Due{" "}
+                                  {new Date(item.dueDate).toLocaleDateString()}
+                                </span>
+                              </>
+                            )}
                           </div>
                         </div>
-                      </CardContent>
-                    </Card>
-                  ))}
+                        <div className="flex items-center gap-2">
+                          <Badge
+                            variant="outline"
+                            className={`text-xs ${
+                              item.priority === "high"
+                                ? "border-red-200 text-red-700"
+                                : item.priority === "medium"
+                                  ? "border-amber-200 text-amber-700"
+                                  : "border-green-200 text-green-700"
+                            }`}
+                          >
+                            {item.priority}
+                          </Badge>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="opacity-0 group-hover:opacity-100 transition-opacity text-red-600 hover:bg-red-50 h-8 w-8 p-0"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              deleteItem(item.id);
+                            }}
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </Button>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+            </div>
+          </div>
+        );
+
+      case "goals":
+        return (
+          <div className="p-4 space-y-4 h-full overflow-y-auto">
+            {/* Goals List */}
+            <div className="space-y-3">
+              {sharedGoals.map((goal) => (
+                <Card
+                  key={goal.id}
+                  className="border-0 bg-white shadow-sm hover:shadow-md transition-all cursor-pointer"
+                  onClick={() =>
+                    navigateToDetail("goals", { type: "goal", goal })
+                  }
+                >
+                  <CardContent className="p-4">
+                    <div className="flex items-center justify-between mb-3">
+                      <h4 className="font-semibold text-gray-900 text-sm">
+                        {goal.title}
+                      </h4>
+                      <Badge
+                        variant="secondary"
+                        className={`text-xs ${
+                          goal.category === "travel"
+                            ? "bg-blue-100 text-blue-700"
+                            : goal.category === "relationship"
+                              ? "bg-rose-100 text-rose-700"
+                              : goal.category === "lifestyle"
+                                ? "bg-emerald-100 text-emerald-700"
+                                : "bg-amber-100 text-amber-700"
+                        }`}
+                      >
+                        {goal.category}
+                      </Badge>
+                    </div>
+                    <p className="text-sm text-gray-600 mb-3">
+                      {goal.description}
+                    </p>
+                    <div className="space-y-2">
+                      <div className="flex justify-between text-sm">
+                        <span className="text-gray-500">Progress</span>
+                        <span className="font-medium text-rose-600">
+                          {goal.progress}%
+                        </span>
+                      </div>
+                      <div className="w-full bg-gray-200 rounded-full h-2">
+                        <div
+                          className="bg-gradient-to-r from-rose-500 to-pink-500 h-2 rounded-full transition-all duration-500"
+                          style={{ width: `${goal.progress}%` }}
+                        ></div>
+                      </div>
+                      <div className="flex justify-between text-xs text-gray-500">
+                        <span>Created by {goal.createdBy}</span>
+                        <span>
+                          Due {new Date(goal.targetDate).toLocaleDateString()}
+                        </span>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
           </div>
         );
@@ -872,12 +1019,12 @@ export default function CouplesDemo() {
           <div className="flex flex-col h-full">
             <div className="p-4 border-b border-rose-100 bg-gradient-to-r from-rose-50 to-pink-50">
               <div className="flex items-center gap-2">
-                <Lock className="w-4 h-4 text-rose-500" />
+                <Heart className="w-4 h-4 text-rose-500" />
                 <span className="text-sm font-medium text-gray-700">
-                  Safe Space
+                  HeartSpace
                 </span>
                 <span className="text-xs text-gray-500">
-                  • End-to-end encrypted
+                  • Love notes & AI support
                 </span>
               </div>
             </div>
@@ -944,11 +1091,11 @@ export default function CouplesDemo() {
             </div>
 
             <div className="p-4 border-t border-rose-100 bg-white">
-              <div className="flex gap-2 mb-2">
+              <div className="flex gap-2 mb-3">
                 <Input
                   value={newMessage}
                   onChange={(e) => setNewMessage(e.target.value)}
-                  placeholder="Share something thoughtful..."
+                  placeholder="Send a love note, chat with AI, or share feelings..."
                   className="flex-1 border-rose-200 focus:border-rose-400"
                   onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
                 />
@@ -961,30 +1108,62 @@ export default function CouplesDemo() {
                   <Send className="w-4 h-4" />
                 </Button>
               </div>
-              <div className="flex items-center gap-4">
-                <label className="flex items-center gap-2 text-xs text-gray-600 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    className="w-3 h-3 text-rose-500"
-                    checked={isAnonymous}
-                    onChange={(e) => setIsAnonymous(e.target.checked)}
-                  />
-                  Send anonymously
-                </label>
+
+              {/* HeartSpace quick actions */}
+              <div className="grid grid-cols-3 gap-2 mb-3">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="text-xs border-rose-200 text-rose-600 hover:bg-rose-50"
+                >
+                  💌 Love Note
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="text-xs border-purple-200 text-purple-600 hover:bg-purple-50"
+                >
+                  🤖 Ask AI
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="text-xs border-blue-200 text-blue-600 hover:bg-blue-50"
+                >
+                  📅 Schedule
+                </Button>
+              </div>
+
+              <div className="flex items-center justify-between">
                 <div className="flex gap-1">
-                  <button className="text-lg hover:scale-110 transition-transform">
+                  <button
+                    className="text-lg hover:scale-110 transition-transform"
+                    title="Happy"
+                  >
                     😊
                   </button>
-                  <button className="text-lg hover:scale-110 transition-transform">
-                    🤔
-                  </button>
-                  <button className="text-lg hover:scale-110 transition-transform">
+                  <button
+                    className="text-lg hover:scale-110 transition-transform"
+                    title="Love"
+                  >
                     💕
                   </button>
-                  <button className="text-lg hover:scale-110 transition-transform">
+                  <button
+                    className="text-lg hover:scale-110 transition-transform"
+                    title="Hug"
+                  >
                     🤗
                   </button>
+                  <button
+                    className="text-lg hover:scale-110 transition-transform"
+                    title="Support"
+                  >
+                    🙏
+                  </button>
                 </div>
+                <span className="text-xs text-gray-500">
+                  End-to-end encrypted
+                </span>
               </div>
             </div>
           </div>
@@ -1201,11 +1380,15 @@ export default function CouplesDemo() {
           <h2 className="text-xl font-bold text-gray-900">
             {viewState.activeTab === "home"
               ? "Harmony Details"
-              : viewState.activeTab === "shared"
-                ? "Shared Details"
-                : viewState.activeTab === "communicate"
-                  ? "Message Details"
-                  : "Preference Details"}
+              : viewState.activeTab === "groceries"
+                ? "Grocery Details"
+                : viewState.activeTab === "tasks"
+                  ? "Task Details"
+                  : viewState.activeTab === "goals"
+                    ? "Goal Details"
+                    : viewState.activeTab === "communicate"
+                      ? "Message Details"
+                      : "Preference Details"}
           </h2>
         </div>
         <Card className="border-0 bg-white shadow-lg">
@@ -1239,7 +1422,7 @@ export default function CouplesDemo() {
             <ArrowLeft className="w-5 h-5" />
           </Button>
           <h2 className="text-xl font-bold text-gray-900">
-            Share Your Feelings
+            HeartSpace Message
           </h2>
         </div>
 
@@ -1248,22 +1431,41 @@ export default function CouplesDemo() {
             <div className="space-y-6">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  How are you feeling?
+                  What would you like to do?
                 </label>
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 gap-3 mb-4">
                   {[
-                    { emoji: "😊", label: "Happy", mood: "happy" },
-                    { emoji: "🤔", label: "Thoughtful", mood: "thoughtful" },
-                    { emoji: "😔", label: "Concerned", mood: "concerned" },
-                    { emoji: "🤩", label: "Excited", mood: "excited" },
-                  ].map(({ emoji, label, mood }) => (
+                    {
+                      emoji: "💌",
+                      label: "Send Love Note",
+                      desc: "Share something sweet",
+                    },
+                    {
+                      emoji: "🤖",
+                      label: "Chat with AI",
+                      desc: "Private emotional support",
+                    },
+                    {
+                      emoji: "📅",
+                      label: "Schedule Message",
+                      desc: "Send when they need it",
+                    },
+                    {
+                      emoji: "💕",
+                      label: "Share Feelings",
+                      desc: "Open communication",
+                    },
+                  ].map(({ emoji, label, desc }) => (
                     <Button
-                      key={mood}
+                      key={label}
                       variant="outline"
-                      className="h-16 flex flex-col gap-1 border-rose-200 text-rose-700 hover:bg-rose-50"
+                      className="h-16 flex items-center gap-3 border-rose-200 text-rose-700 hover:bg-rose-50 text-left"
                     >
                       <span className="text-2xl">{emoji}</span>
-                      <span className="text-xs">{label}</span>
+                      <div>
+                        <div className="font-semibold">{label}</div>
+                        <div className="text-xs text-gray-500">{desc}</div>
+                      </div>
                     </Button>
                   ))}
                 </div>
@@ -1274,7 +1476,7 @@ export default function CouplesDemo() {
                   Your message
                 </label>
                 <textarea
-                  placeholder="What's on your heart?"
+                  placeholder="Express your feelings, send love, or ask the AI for support..."
                   value={newMessage}
                   onChange={(e) => setNewMessage(e.target.value)}
                   className="w-full h-32 p-4 border border-rose-200 focus:border-rose-400 rounded-xl resize-none"
@@ -1307,8 +1509,8 @@ export default function CouplesDemo() {
                   onClick={handleSendMessage}
                   disabled={!newMessage.trim()}
                 >
-                  <Send className="w-4 h-4 mr-2" />
-                  Send with Love
+                  <Heart className="w-4 h-4 mr-2" />
+                  Send to HeartSpace
                 </Button>
               </div>
             </div>
@@ -1394,133 +1596,11 @@ export default function CouplesDemo() {
   };
 
   return (
-    <div className="w-80 h-[640px] bg-gradient-to-br from-gray-900 via-rose-900/20 to-gray-800 rounded-[3rem] p-3 shadow-2xl relative overflow-hidden">
-      {/* Ambient glow effects */}
-      <div className="absolute inset-0 bg-gradient-to-br from-rose-500/5 to-pink-500/5 rounded-[3rem]"></div>
-      <div className="absolute top-4 left-4 w-32 h-32 bg-rose-400/10 rounded-full blur-2xl"></div>
-      <div className="absolute bottom-4 right-4 w-24 h-24 bg-pink-400/10 rounded-full blur-xl"></div>
-
-      <div className="w-full h-full bg-gradient-to-br from-white via-rose-50/50 to-pink-50/30 rounded-[2.5rem] overflow-hidden relative backdrop-blur-sm border border-white/20 flex flex-col">
-        {/* Status bar */}
-        <div className="h-12 bg-gradient-to-r from-rose-50 to-pink-50 flex items-center justify-between px-6 border-b border-rose-100/50">
-          <div className="text-sm font-semibold text-gray-800">
-            {currentTime.toLocaleTimeString([], {
-              hour: "2-digit",
-              minute: "2-digit",
-            })}
-          </div>
-          <div className="flex items-center gap-1">
-            <div className="w-4 h-2 bg-rose-500 rounded-sm"></div>
-            <div className="w-6 h-3 border border-rose-300 rounded-sm">
-              <div className="w-4 h-full bg-rose-500 rounded-sm"></div>
-            </div>
-          </div>
-        </div>
-
-        {/* Header */}
-        <div className="px-6 py-4 bg-gradient-to-r from-rose-500 via-pink-500 to-rose-600 text-white relative overflow-hidden">
-          <div className="absolute inset-0 bg-rose-400/20 animate-pulse"></div>
-          <div className="relative z-10">
-            <div className="flex items-center justify-between mb-2">
-              <div className="flex items-center gap-3">
-                {viewState.level !== "main" && (
-                  <button
-                    onClick={() =>
-                      setViewState({
-                        level: "main",
-                        activeTab: viewState.activeTab,
-                      })
-                    }
-                    className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm hover:bg-white/30 transition-colors"
-                  >
-                    <ArrowLeft className="w-4 h-4 text-white" />
-                  </button>
-                )}
-                <button
-                  onClick={() => (window.location.href = "/")}
-                  className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm hover:bg-white/30 transition-colors"
-                >
-                  <Heart className="w-5 h-5 text-white animate-pulse" />
-                </button>
-                <div>
-                  <h3 className="font-bold text-lg">CoHabitly</h3>
-                  <p className="text-rose-100 text-sm">Together Mode</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
-                  <Bell className="w-4 h-4 text-white" />
-                </div>
-                <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
-                  <Settings className="w-4 h-4 text-white" />
-                </div>
-              </div>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="flex items-center gap-1">
-                <div className="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center">
-                  <User className="w-3 h-3 text-white" />
-                </div>
-                <div className="w-6 h-6 bg-white/30 rounded-full flex items-center justify-center border border-white/20">
-                  <User className="w-3 h-3 text-white" />
-                </div>
-              </div>
-              <span className="text-rose-100 text-xs">Connected</span>
-              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse ml-1"></div>
-            </div>
-          </div>
-        </div>
-
-        {/* Content Area */}
-        <div className="flex-1 overflow-auto">
-          {viewState.level === "main" && renderMainContent()}
-          {viewState.level === "detail" && renderDetailContent()}
-          {viewState.level === "compose" && renderComposeContent()}
-          {viewState.level === "settings" && renderSettingsContent()}
-        </div>
-
-        {/* Bottom Navigation */}
-        {viewState.level === "main" && (
-          <div className="px-4 py-3 bg-white border-t border-rose-100">
-            <div className="flex justify-around">
-              {[
-                { key: "home", icon: Home, label: "Home", color: "rose" },
-                { key: "shared", icon: Users, label: "Shared", color: "blue" },
-                {
-                  key: "communicate",
-                  icon: MessageCircle,
-                  label: "Safe Talk",
-                  color: "emerald",
-                },
-                {
-                  key: "preferences",
-                  icon: Settings,
-                  label: "Style",
-                  color: "purple",
-                },
-              ].map(({ key, icon: Icon, label, color }) => (
-                <button
-                  key={key}
-                  onClick={() =>
-                    setViewState({
-                      level: "main",
-                      activeTab: key as CouplesTabType,
-                    })
-                  }
-                  className={`flex flex-col items-center gap-1 px-3 py-2 rounded-xl transition-all ${
-                    viewState.activeTab === key
-                      ? `bg-${color}-100 text-${color}-600 scale-105 shadow-md`
-                      : "text-gray-500 hover:text-gray-700 hover:bg-gray-100"
-                  }`}
-                >
-                  <Icon className="w-5 h-5" />
-                  <span className="text-xs font-medium">{label}</span>
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
-      </div>
-    </div>
+    <>
+      {viewState.level === "main" && renderMainContent()}
+      {viewState.level === "detail" && renderDetailContent()}
+      {viewState.level === "compose" && renderComposeContent()}
+      {viewState.level === "settings" && renderSettingsContent()}
+    </>
   );
 }

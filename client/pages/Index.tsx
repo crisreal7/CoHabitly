@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import InteractiveDemo from "@/components/InteractiveDemo";
 import CouplesDemo from "@/components/CouplesDemo";
+import StudentDemo from "@/components/StudentDemo";
 import HoverScrollContainer from "@/components/HoverScrollContainer";
 import {
   CheckCircle,
@@ -28,9 +29,13 @@ import {
   Zap,
   Globe,
   Smartphone,
+  ShoppingCart,
+  Bell,
+  Settings,
+  User,
 } from "lucide-react";
 
-type RoadmapView = "student" | "admin" | "couples";
+type RoadmapView = "student" | "admin" | "couples" | "roommate";
 
 interface RoadmapStage {
   id: string;
@@ -63,7 +68,22 @@ export default function Index() {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [activeMockup, setActiveMockup] = useState(0);
   const [selectedDemo, setSelectedDemo] = useState<string | null>(null);
-  const [demoType, setDemoType] = useState<"roommate" | "couples">("roommate");
+  const [demoType, setDemoType] = useState<"roommate" | "couples" | "student">(
+    "roommate",
+  );
+  const [demoTab, setDemoTab] = useState("overview");
+
+  // Update demo tab when demo type changes
+  useEffect(() => {
+    if (demoType === "couples") {
+      setDemoTab("home");
+    } else if (demoType === "student") {
+      setDemoTab("overview");
+    } else {
+      setDemoTab("overview");
+    }
+  }, [demoType]);
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
 
   const handleEmailSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -235,6 +255,89 @@ export default function Index() {
     },
   ];
 
+  const roommateJourney: RoadmapStage[] = [
+    {
+      id: "R1",
+      phase: "Foundation",
+      title: "Smart Roommate Matching",
+      description:
+        "AI-powered compatibility assessment based on lifestyle habits, cleanliness, and social preferences",
+      status: "Live",
+      timeline: "Available Now",
+      progress: 100,
+      color: {
+        primary: "blue-500",
+        secondary: "blue-600",
+        bg: "blue-50",
+        border: "blue-200",
+      },
+    },
+    {
+      id: "R2",
+      phase: "Communication",
+      title: "Anonymous Feedback System",
+      description:
+        "Safe space for addressing concerns without confrontation, with AI tone filtering",
+      status: "Live",
+      timeline: "Available Now",
+      progress: 100,
+      color: {
+        primary: "indigo-500",
+        secondary: "indigo-600",
+        bg: "indigo-50",
+        border: "indigo-200",
+      },
+    },
+    {
+      id: "R3",
+      phase: "Organization",
+      title: "Smart Chore Management",
+      description:
+        "Automated chore distribution, progress tracking, and gamification with streaks and points",
+      status: "Live",
+      timeline: "Available Now",
+      progress: 100,
+      color: {
+        primary: "cyan-500",
+        secondary: "cyan-600",
+        bg: "cyan-50",
+        border: "cyan-200",
+      },
+    },
+    {
+      id: "R4",
+      phase: "Social",
+      title: "Event Planning & Social Features",
+      description:
+        "Collaborative event planning, group activities, and social integration tools",
+      status: "Beta",
+      timeline: "Q3 2024",
+      progress: 85,
+      color: {
+        primary: "purple-500",
+        secondary: "purple-600",
+        bg: "purple-50",
+        border: "purple-200",
+      },
+    },
+    {
+      id: "R5",
+      phase: "Intelligence",
+      title: "Predictive Harmony Analytics",
+      description:
+        "AI-driven insights for preventing conflicts and optimizing house harmony",
+      status: "Coming Soon",
+      timeline: "Q4 2024",
+      progress: 60,
+      color: {
+        primary: "violet-500",
+        secondary: "violet-600",
+        bg: "violet-50",
+        border: "violet-200",
+      },
+    },
+  ];
+
   const couplesJourney: RoadmapStage[] = [
     {
       id: "C1",
@@ -325,6 +428,8 @@ export default function Index() {
         return adminJourney;
       case "couples":
         return couplesJourney;
+      case "roommate":
+        return roommateJourney;
       default:
         return studentJourney;
     }
@@ -373,9 +478,10 @@ export default function Index() {
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50/30 font-sans">
       {/* 1. Hero Section */}
       <section className="relative px-6 py-20 md:py-32 lg:py-40 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/40 via-white to-purple-50/30">
-          <div className="absolute top-20 left-10 w-96 h-96 bg-gradient-to-br from-blue-200/20 to-purple-200/20 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-20 right-10 w-80 h-80 bg-gradient-to-br from-purple-200/20 to-blue-200/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/40 via-white to-emerald-50/30">
+          <div className="absolute top-20 left-10 w-96 h-96 bg-gradient-to-br from-blue-200/20 to-emerald-200/20 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-20 right-10 w-80 h-80 bg-gradient-to-br from-rose-200/20 to-pink-200/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute top-1/2 left-1/3 w-64 h-64 bg-gradient-to-br from-indigo-200/20 to-purple-200/20 rounded-full blur-2xl animate-pulse delay-500"></div>
         </div>
 
         <div className="max-w-7xl mx-auto relative z-10">
@@ -453,7 +559,7 @@ export default function Index() {
 
                 <div className="flex justify-center lg:justify-start">
                   <Button
-                    className="h-14 px-8 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white rounded-2xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+                    className="h-14 px-8 bg-gradient-to-r from-emerald-500 to-rose-500 hover:from-emerald-600 hover:to-rose-600 text-white rounded-2xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
                     onClick={() => {
                       const earlyAccessSection = document.querySelector(
                         "#early-access-section",
@@ -472,77 +578,78 @@ export default function Index() {
             </div>
 
             <div className="relative flex justify-center lg:justify-end">
-              <div className="relative">
-                <div className="w-80 h-[640px] bg-gradient-to-br from-gray-900 to-gray-800 rounded-[3rem] p-3 shadow-2xl">
-                  <div className="w-full h-full bg-white rounded-[2.5rem] overflow-hidden relative">
-                    <div className="h-12 bg-gray-50 flex items-center justify-between px-6">
-                      <div className="text-sm font-semibold">9:41</div>
-                      <div className="flex items-center gap-1">
-                        <div className="w-4 h-2 bg-green-500 rounded-sm"></div>
-                        <div className="w-6 h-3 border border-gray-400 rounded-sm">
-                          <div className="w-4 h-full bg-green-500 rounded-sm"></div>
-                        </div>
-                      </div>
-                    </div>
+              <div className="relative w-96 h-96">
+                {/* Central pulsing ring animation */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-64 h-64 border-4 border-sage-300 rounded-full animate-ripple opacity-30"></div>
+                  <div className="absolute w-48 h-48 border-2 border-brand-400 rounded-full animate-pulse delay-300 opacity-40"></div>
+                  <div className="absolute w-32 h-32 border-2 border-lavender-400 rounded-full animate-pulse delay-600 opacity-50"></div>
+                </div>
 
-                    <div className="px-6 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
-                      <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
-                          <Home className="w-5 h-5" />
-                        </div>
-                        <div>
-                          <h3 className="font-bold text-lg">CoHabitly</h3>
-                          <p className="text-blue-100 text-sm">
-                            Your living companion
-                          </p>
-                        </div>
+                {/* Floating capability cards */}
+                <div className="absolute top-0 left-12 transform -rotate-12 animate-gentle-bounce">
+                  <div className="bg-gradient-to-br from-blue-100 to-blue-200 rounded-2xl p-4 shadow-lg border border-blue-300/50 backdrop-blur-sm hover:scale-105 transition-transform duration-300 cursor-pointer">
+                    <div className="flex items-center gap-2">
+                      <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
+                        <MessageCircle className="w-4 h-4 text-white" />
                       </div>
-                    </div>
-
-                    <div className="p-6 space-y-4">
-                      {mockupCards.map((card, index) => (
-                        <div
-                          key={index}
-                          className={`p-4 rounded-xl border-2 transition-all duration-500 ${
-                            card.isActive
-                              ? `bg-${card.color}-50 border-${card.color}-200 shadow-lg scale-105`
-                              : "bg-gray-50 border-gray-200 opacity-60"
-                          }`}
-                        >
-                          <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-3">
-                              <div
-                                className={`w-8 h-8 bg-${card.color}-100 rounded-full flex items-center justify-center`}
-                              >
-                                {card.icon}
-                              </div>
-                              <div>
-                                <div
-                                  className={`text-sm font-medium ${card.isActive ? "text-gray-900" : "line-through text-gray-500"}`}
-                                >
-                                  {card.title}
-                                </div>
-                                <div className="text-xs text-gray-600">
-                                  {card.subtitle}
-                                </div>
-                              </div>
-                            </div>
-                            {card.isActive && (
-                              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                            )}
-                          </div>
-                        </div>
-                      ))}
+                      <div>
+                        <p className="text-sm font-semibold text-blue-800">
+                          Vibe Check
+                        </p>
+                        <p className="text-xs text-blue-600">
+                          Anonymous feedback
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
 
-                <div className="absolute -top-8 -left-8 w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-full flex items-center justify-center text-white shadow-lg animate-float">
-                  <Sparkles className="w-8 h-8" />
+                <div className="absolute top-16 right-8 transform rotate-12 animate-gentle-bounce delay-1000">
+                  <div className="bg-gradient-to-br from-emerald-100 to-emerald-200 rounded-2xl p-4 shadow-lg border border-emerald-300/50 backdrop-blur-sm hover:scale-105 transition-transform duration-300 cursor-pointer">
+                    <div className="flex items-center gap-2">
+                      <div className="w-8 h-8 bg-emerald-500 rounded-full flex items-center justify-center">
+                        <ShoppingCart className="w-4 h-4 text-white" />
+                      </div>
+                      <div>
+                        <p className="text-sm font-semibold text-emerald-800">
+                          Shared Groceries
+                        </p>
+                        <p className="text-xs text-emerald-600">Smart lists</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div className="absolute -bottom-8 -right-8 w-20 h-20 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-full flex items-center justify-center text-white shadow-lg animate-float delay-1000">
-                  <Heart className="w-10 h-10" />
+
+                <div className="absolute bottom-8 left-8 transform -rotate-6 animate-gentle-bounce delay-2000">
+                  <div className="bg-gradient-to-br from-rose-100 to-rose-200 rounded-2xl p-4 shadow-lg border border-rose-300/50 backdrop-blur-sm hover:scale-105 transition-transform duration-300 cursor-pointer">
+                    <div className="flex items-center gap-2">
+                      <div className="w-8 h-8 bg-rose-500 rounded-full flex items-center justify-center">
+                        <Heart className="w-4 h-4 text-white" />
+                      </div>
+                      <div>
+                        <p className="text-sm font-semibold text-rose-800">
+                          HeartSpace
+                        </p>
+                        <p className="text-xs text-rose-600">AI mediation</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+
+                {/* Central logo with soft glow */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-24 h-24 rounded-2xl flex items-center justify-center shadow-2xl border border-white/20 backdrop-blur-sm animate-gradient-cycle">
+                    <Home className="w-12 h-12 text-white animate-pulse" />
+                  </div>
+                </div>
+
+                {/* Ambient floating particles */}
+                <div className="absolute top-8 left-8 w-2 h-2 bg-blue-400 rounded-full animate-pulse opacity-60"></div>
+                <div className="absolute top-20 right-16 w-1 h-1 bg-emerald-400 rounded-full animate-pulse delay-500 opacity-70"></div>
+                <div className="absolute bottom-16 right-12 w-2 h-2 bg-rose-400 rounded-full animate-pulse delay-1000 opacity-50"></div>
+                <div className="absolute bottom-8 left-16 w-1 h-1 bg-indigo-400 rounded-full animate-pulse delay-1500 opacity-60"></div>
+                <div className="absolute top-1/3 left-4 w-1 h-1 bg-purple-400 rounded-full animate-pulse delay-2000 opacity-80"></div>
               </div>
             </div>
           </div>
@@ -555,7 +662,9 @@ export default function Index() {
         className={`px-6 py-32 relative overflow-hidden transition-all duration-1000 ease-in-out ${
           demoType === "couples"
             ? "bg-gradient-to-br from-rose-900 via-pink-900 to-purple-900"
-            : "bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900"
+            : demoType === "student"
+              ? "bg-gradient-to-br from-emerald-900 via-green-900 to-teal-900"
+              : "bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900"
         }`}
       >
         <div className="absolute inset-0">
@@ -564,6 +673,12 @@ export default function Index() {
               <div className="absolute top-20 left-10 w-96 h-96 bg-rose-500/20 rounded-full blur-3xl animate-pulse transition-all duration-1000"></div>
               <div className="absolute bottom-20 right-10 w-80 h-80 bg-pink-500/20 rounded-full blur-3xl animate-pulse delay-1000 transition-all duration-1000"></div>
               <div className="absolute top-1/2 left-1/3 w-64 h-64 bg-purple-500/20 rounded-full blur-2xl animate-pulse delay-500 transition-all duration-1000"></div>
+            </>
+          ) : demoType === "student" ? (
+            <>
+              <div className="absolute top-20 left-10 w-96 h-96 bg-emerald-500/20 rounded-full blur-3xl animate-pulse transition-all duration-1000"></div>
+              <div className="absolute bottom-20 right-10 w-80 h-80 bg-green-500/20 rounded-full blur-3xl animate-pulse delay-1000 transition-all duration-1000"></div>
+              <div className="absolute top-1/2 left-1/3 w-64 h-64 bg-teal-500/20 rounded-full blur-2xl animate-pulse delay-500 transition-all duration-1000"></div>
             </>
           ) : (
             <>
@@ -604,7 +719,9 @@ export default function Index() {
                   className={`text-transparent bg-clip-text block transition-all duration-700 ${
                     demoType === "couples"
                       ? "bg-gradient-to-r from-rose-400 to-pink-400 animate-pulse"
-                      : "bg-gradient-to-r from-blue-400 to-purple-400"
+                      : demoType === "student"
+                        ? "bg-gradient-to-r from-emerald-400 to-green-400 animate-pulse"
+                        : "bg-gradient-to-r from-blue-400 to-purple-400"
                   }`}
                 >
                   in Action
@@ -613,12 +730,18 @@ export default function Index() {
 
               <p
                 className={`text-xl mb-8 leading-relaxed font-light transition-all duration-700 ${
-                  demoType === "couples" ? "text-rose-100" : "text-blue-100"
+                  demoType === "couples"
+                    ? "text-rose-100"
+                    : demoType === "student"
+                      ? "text-emerald-100"
+                      : "text-blue-100"
                 }`}
               >
                 {demoType === "couples"
                   ? "Discover gentle communication tools and relationship harmony features. See how CoHabitly strengthens bonds with AI-powered insights and thoughtful design."
-                  : "Tap, scroll, and interact with a fully functional roommate experience. See how CoHabitly transforms shared living with real features and smart AI."}
+                  : demoType === "student"
+                    ? "Experience seamless dorm life management with RA contact, transfer requests, and community features designed specifically for student housing."
+                    : "Tap, scroll, and interact with a fully functional roommate experience. See how CoHabitly transforms shared living with real features and smart AI."}
               </p>
 
               <div className="space-y-6">
@@ -646,7 +769,7 @@ export default function Index() {
                   <Button
                     className={`h-14 px-8 rounded-2xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 ${
                       demoType === "couples"
-                        ? "bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white"
+                        ? "bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white"
                         : "bg-white/20 text-blue-100 hover:bg-white/30"
                     }`}
                     onClick={() => {
@@ -663,36 +786,302 @@ export default function Index() {
                     <Heart className="w-5 h-5 mr-2" />
                     Couples Demo
                   </Button>
+                  <Button
+                    className={`h-14 px-8 rounded-2xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 ${
+                      demoType === "student"
+                        ? "bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white"
+                        : "bg-white/20 text-blue-100 hover:bg-white/30"
+                    }`}
+                    onClick={() => {
+                      setDemoType("student");
+                      const demoPhone = document.querySelector(".demo-phone");
+                      if (demoPhone) {
+                        demoPhone.scrollIntoView({
+                          behavior: "smooth",
+                          block: "center",
+                        });
+                      }
+                    }}
+                  >
+                    <GraduationCap className="w-5 h-5 mr-2" />
+                    Student Demo
+                  </Button>
                 </div>
 
                 <div className="grid grid-cols-2 gap-4 text-sm">
-                  <div className="flex items-center gap-2 text-blue-200">
-                    <CheckCircle className="w-4 h-4 text-green-400" />
-                    <span>Real-time vibe tracking</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-blue-200">
-                    <CheckCircle className="w-4 h-4 text-green-400" />
-                    <span>Smart chore management</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-blue-200">
-                    <CheckCircle className="w-4 h-4 text-green-400" />
-                    <span>Anonymous feedback</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-blue-200">
-                    <CheckCircle className="w-4 h-4 text-green-400" />
-                    <span>AI-powered mediation</span>
-                  </div>
+                  {demoType === "student" ? (
+                    <>
+                      <div className="flex items-center gap-2 text-emerald-200">
+                        <CheckCircle className="w-4 h-4 text-green-400" />
+                        <span>Easy dorm transfer requests</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-emerald-200">
+                        <CheckCircle className="w-4 h-4 text-green-400" />
+                        <span>One-tap RA contact</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-emerald-200">
+                        <CheckCircle className="w-4 h-4 text-green-400" />
+                        <span>Anonymous incident reporting</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-emerald-200">
+                        <CheckCircle className="w-4 h-4 text-green-400" />
+                        <span>Dorm vibe check-ins</span>
+                      </div>
+                    </>
+                  ) : demoType === "couples" ? (
+                    <>
+                      <div className="flex items-center gap-2 text-rose-200">
+                        <CheckCircle className="w-4 h-4 text-green-400" />
+                        <span>HeartSpace messaging</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-rose-200">
+                        <CheckCircle className="w-4 h-4 text-green-400" />
+                        <span>AI relationship support</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-rose-200">
+                        <CheckCircle className="w-4 h-4 text-green-400" />
+                        <span>Scheduled love notes</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-rose-200">
+                        <CheckCircle className="w-4 h-4 text-green-400" />
+                        <span>Shared goal tracking</span>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div className="flex items-center gap-2 text-blue-200">
+                        <CheckCircle className="w-4 h-4 text-green-400" />
+                        <span>Real-time vibe tracking</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-blue-200">
+                        <CheckCircle className="w-4 h-4 text-green-400" />
+                        <span>Smart chore management</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-blue-200">
+                        <CheckCircle className="w-4 h-4 text-green-400" />
+                        <span>Anonymous feedback</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-blue-200">
+                        <CheckCircle className="w-4 h-4 text-green-400" />
+                        <span>AI-powered mediation</span>
+                      </div>
+                    </>
+                  )}
                 </div>
               </div>
             </div>
 
             <div className="flex justify-center lg:justify-end">
-              <div className="demo-phone">
-                {demoType === "roommate" ? (
-                  <InteractiveDemo />
-                ) : (
-                  <CouplesDemo />
-                )}
+              <div className="demo-phone relative">
+                {/* Mode indicator above phone */}
+                <div className="text-center mb-4">
+                  <div
+                    className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                      demoType === "student"
+                        ? "bg-emerald-500/20 text-emerald-300 shadow-emerald-500/20 shadow-lg"
+                        : demoType === "couples"
+                          ? "bg-pink-500/20 text-pink-300 shadow-pink-500/20 shadow-lg"
+                          : "bg-blue-500/20 text-blue-300 shadow-blue-500/20 shadow-lg"
+                    }`}
+                  >
+                    {demoType === "student" ? (
+                      <>
+                        <GraduationCap className="w-4 h-4" />
+                        Student Mode
+                      </>
+                    ) : demoType === "couples" ? (
+                      <>
+                        <Heart className="w-4 h-4" />
+                        Couples Mode
+                      </>
+                    ) : (
+                      <>
+                        <Users className="w-4 h-4" />
+                        Roommate Mode
+                      </>
+                    )}
+                  </div>
+                </div>
+
+                {/* Mobile App Frame */}
+                <div className="w-80 h-[640px] bg-gradient-to-br from-gray-900 to-gray-800 rounded-[3rem] p-3 shadow-2xl relative">
+                  <div className="w-full h-full bg-white rounded-[2.5rem] overflow-hidden relative flex flex-col">
+                    {/* Status bar */}
+                    <div className="h-12 bg-gray-50 flex items-center justify-between px-6 shrink-0">
+                      <div className="text-sm font-semibold">9:41</div>
+                      <div className="flex items-center gap-1">
+                        <div className="w-4 h-2 bg-green-500 rounded-sm"></div>
+                        <div className="w-6 h-3 border border-gray-400 rounded-sm">
+                          <div className="w-4 h-full bg-green-500 rounded-sm"></div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* App Header with Navigation */}
+                    <div
+                      className={`px-6 py-4 text-white relative shrink-0 ${
+                        demoType === "student"
+                          ? "bg-students-primary"
+                          : demoType === "couples"
+                            ? "bg-couples-primary"
+                            : "bg-roommates-primary"
+                      }`}
+                    >
+                      <div className="flex items-center justify-between mb-2">
+                        <div className="flex items-center gap-3">
+                          <button
+                            onClick={() => setShowMobileMenu(!showMobileMenu)}
+                            className="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center backdrop-blur-sm hover:bg-white/30 transition-colors"
+                          >
+                            <div className="flex flex-col gap-1">
+                              <div className="w-4 h-0.5 bg-white rounded"></div>
+                              <div className="w-4 h-0.5 bg-white rounded"></div>
+                              <div className="w-4 h-0.5 bg-white rounded"></div>
+                            </div>
+                          </button>
+                          <div>
+                            <h3 className="font-bold text-lg">CoHabitly</h3>
+                            <p className="text-white/80 text-sm">
+                              {demoType === "student"
+                                ? "Student Mode"
+                                : demoType === "couples"
+                                  ? "Together Mode"
+                                  : "Roommate Mode"}
+                            </p>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <div className="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center">
+                            <Bell className="w-4 h-4 text-white" />
+                          </div>
+                          <div className="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center">
+                            <Settings className="w-4 h-4 text-white" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Slide-down menu */}
+                    {showMobileMenu && (
+                      <div
+                        className={`absolute top-20 left-0 right-0 z-20 mx-3 rounded-2xl shadow-xl border backdrop-blur-sm animate-slide-down-bounce glass-card-enhanced ${
+                          demoType === "student"
+                            ? "bg-emerald-50/95 border-emerald-200"
+                            : demoType === "couples"
+                              ? "bg-pink-50/95 border-pink-200"
+                              : "bg-blue-50/95 border-blue-200"
+                        }`}
+                      >
+                        <div className="p-4 grid grid-cols-3 gap-3">
+                          {(demoType === "student"
+                            ? [
+                                { id: "overview", label: "Home", icon: Home },
+                                {
+                                  id: "events",
+                                  label: "Community",
+                                  icon: Star,
+                                },
+                                {
+                                  id: "chores",
+                                  label: "Chores",
+                                  icon: CheckCircle,
+                                },
+                                { id: "vibe", label: "Vibe", icon: Heart },
+                                {
+                                  id: "messages",
+                                  label: "Contact RA",
+                                  icon: MessageCircle,
+                                },
+                                { id: "profile", label: "Profile", icon: User },
+                              ]
+                            : demoType === "couples"
+                              ? [
+                                  { id: "home", label: "Home", icon: Home },
+                                  {
+                                    id: "groceries",
+                                    label: "Groceries",
+                                    icon: ShoppingCart,
+                                  },
+                                  {
+                                    id: "tasks",
+                                    label: "Tasks",
+                                    icon: CheckCircle,
+                                  },
+                                  {
+                                    id: "goals",
+                                    label: "Goals",
+                                    icon: Target,
+                                  },
+                                  {
+                                    id: "communicate",
+                                    label: "HeartSpace",
+                                    icon: MessageCircle,
+                                  },
+                                  {
+                                    id: "preferences",
+                                    label: "Style",
+                                    icon: Settings,
+                                  },
+                                ]
+                              : [
+                                  { id: "overview", label: "Home", icon: Home },
+                                  {
+                                    id: "grocery",
+                                    label: "Grocery",
+                                    icon: ShoppingCart,
+                                  },
+                                  { id: "events", label: "Events", icon: Star },
+                                  {
+                                    id: "chores",
+                                    label: "Chores",
+                                    icon: CheckCircle,
+                                  },
+                                  { id: "vibe", label: "Vibe", icon: Heart },
+                                  {
+                                    id: "messages",
+                                    label: "Messages",
+                                    icon: MessageCircle,
+                                  },
+                                ]
+                          ).map(({ id, label, icon: Icon }) => (
+                            <button
+                              key={id}
+                              onClick={() => {
+                                setDemoTab(id);
+                                setShowMobileMenu(false);
+                              }}
+                              className={`flex flex-col items-center gap-2 p-3 rounded-xl text-xs font-medium transition-all button-feedback tab-indicator ${
+                                demoTab === id
+                                  ? demoType === "student"
+                                    ? "bg-emerald-500 text-white shadow-lg animate-slide-in-right active"
+                                    : demoType === "couples"
+                                      ? "bg-pink-500 text-white shadow-lg animate-slide-in-right active"
+                                      : "bg-blue-500 text-white shadow-lg animate-slide-in-right active"
+                                  : "text-gray-700 hover:bg-white/70 card-hover"
+                              }`}
+                            >
+                              <Icon
+                                className={`w-5 h-5 ${demoTab === id ? "animate-icon-bounce" : ""}`}
+                              />
+                              <span>{label}</span>
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Content Area - This is where the specific demo content will go */}
+                    <div className="flex-1 overflow-auto bg-gray-50">
+                      {demoType === "roommate" ? (
+                        <InteractiveDemo activeTab={demoTab as any} />
+                      ) : demoType === "couples" ? (
+                        <CouplesDemo activeTab={demoTab as any} />
+                      ) : (
+                        <StudentDemo activeTab={demoTab as any} />
+                      )}
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -756,6 +1145,19 @@ export default function Index() {
               >
                 <GraduationCap className="w-5 h-5 mr-2" />
                 Student Journey
+              </Button>
+              <Button
+                variant={roadmapView === "roommate" ? "default" : "outline"}
+                className={`h-12 px-6 rounded-2xl font-semibold transition-all duration-300 ${
+                  roadmapView === "roommate"
+                    ? "bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 text-white shadow-lg"
+                    : "border-2 border-blue-200 text-blue-700 hover:bg-blue-50"
+                }`}
+                onClick={() => handleViewToggle("roommate")}
+                disabled={isTransitioning}
+              >
+                <Users className="w-5 h-5 mr-2" />
+                Roommate Journey
               </Button>
               <Button
                 variant={roadmapView === "admin" ? "default" : "outline"}

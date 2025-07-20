@@ -170,10 +170,16 @@ interface HouseStatus {
   improvements: string[];
 }
 
-export default function InteractiveDemo() {
+interface InteractiveDemoProps {
+  activeTab?: TabType;
+}
+
+export default function InteractiveDemo({
+  activeTab = "overview",
+}: InteractiveDemoProps) {
   const [viewState, setViewState] = useState<ViewState>({
     level: "main",
-    activeTab: "overview",
+    activeTab: activeTab,
   });
   const [currentTime, setCurrentTime] = useState(new Date());
 
@@ -606,10 +612,10 @@ export default function InteractiveDemo() {
     switch (viewState.activeTab) {
       case "overview":
         return (
-          <div className="space-y-6 p-6">
+          <div className="space-y-4 p-grid-2">
             {/* House Status Overview */}
-            <Card className="border-0 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 shadow-lg">
-              <CardContent className="p-6">
+            <Card className="border-0 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 shadow-premium-md glass-surface">
+              <CardContent className="p-grid-2">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center">
                     <Home className="w-6 h-6 text-white" />
@@ -697,16 +703,16 @@ export default function InteractiveDemo() {
             </Card>
 
             {/* Quick Actions */}
-            <div className="grid grid-cols-2 gap-4">
-              <Card className="border-0 bg-white shadow-md hover:shadow-lg transition-all cursor-pointer group">
+            <div className="grid grid-cols-2 gap-3">
+              <Card className="border-0 bg-white shadow-sm card-hover glass-card-enhanced transition-all cursor-pointer group">
                 <CardContent
-                  className="p-4 text-center"
+                  className="p-3 text-center"
                   onClick={() => navigateToCompose("vibe")}
                 >
-                  <div className="w-12 h-12 bg-gradient-to-br from-emerald-100 to-emerald-200 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
-                    <Smile className="w-6 h-6 text-emerald-600" />
+                  <div className="w-10 h-10 bg-gradient-to-br from-emerald-100 to-emerald-200 rounded-lg flex items-center justify-center mx-auto mb-2 group-hover:scale-110 group-hover:animate-icon-bounce transition-transform">
+                    <Smile className="w-5 h-5 text-emerald-600" />
                   </div>
-                  <h4 className="font-bold text-gray-900 text-sm">
+                  <h4 className="font-semibold text-gray-900 text-sm">
                     Vibe Check
                   </h4>
                   <p className="text-xs text-gray-500 mt-1">
@@ -715,15 +721,15 @@ export default function InteractiveDemo() {
                 </CardContent>
               </Card>
 
-              <Card className="border-0 bg-white shadow-md hover:shadow-lg transition-all cursor-pointer group">
+              <Card className="border-0 bg-white shadow-sm card-hover glass-card-enhanced transition-all cursor-pointer group">
                 <CardContent
-                  className="p-4 text-center"
+                  className="p-3 text-center"
                   onClick={() => navigateToCompose("event")}
                 >
-                  <div className="w-12 h-12 bg-gradient-to-br from-purple-100 to-purple-200 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
-                    <PartyPopper className="w-6 h-6 text-purple-600" />
+                  <div className="w-10 h-10 bg-gradient-to-br from-purple-100 to-purple-200 rounded-lg flex items-center justify-center mx-auto mb-2 group-hover:scale-110 group-hover:animate-icon-bounce transition-transform">
+                    <PartyPopper className="w-5 h-5 text-purple-600" />
                   </div>
-                  <h4 className="font-bold text-gray-900 text-sm">
+                  <h4 className="font-semibold text-gray-900 text-sm">
                     Plan Event
                   </h4>
                   <p className="text-xs text-gray-500 mt-1">
@@ -793,38 +799,36 @@ export default function InteractiveDemo() {
 
       case "grocery":
         return (
-          <div className="space-y-6 p-6">
+          <div className="space-y-4 p-4">
             {/* Budget Overview */}
-            <Card className="border-0 bg-gradient-to-br from-emerald-50 to-teal-50 shadow-lg">
-              <CardContent className="p-6">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center">
-                      <DollarSign className="w-6 h-6 text-white" />
+            <Card className="border-0 bg-gradient-to-br from-emerald-50 to-teal-50 shadow-md">
+              <CardContent className="p-4">
+                <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center gap-2">
+                    <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-lg flex items-center justify-center">
+                      <DollarSign className="w-5 h-5 text-white" />
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold text-gray-900">
-                        House Budget
+                      <h3 className="text-lg font-bold text-gray-900">
+                        Budget
                       </h3>
-                      <p className="text-sm text-gray-600">
-                        This week's spending
-                      </p>
+                      <p className="text-xs text-gray-600">This week</p>
                     </div>
                   </div>
                   <div className="text-right">
-                    <div className="text-2xl font-bold text-emerald-600">
+                    <div className="text-xl font-bold text-emerald-600">
                       $
                       {groceryItems
                         .filter((item) => item.purchased)
                         .reduce((sum, item) => sum + item.price, 0)
                         .toFixed(0)}
                     </div>
-                    <div className="text-sm text-gray-600">of $150 budget</div>
+                    <div className="text-xs text-gray-600">of $150</div>
                   </div>
                 </div>
-                <div className="w-full bg-emerald-100 rounded-full h-3">
+                <div className="w-full bg-emerald-100 rounded-full h-2">
                   <div
-                    className="bg-gradient-to-r from-emerald-500 to-teal-500 h-3 rounded-full transition-all duration-1000"
+                    className="bg-gradient-to-r from-emerald-500 to-teal-500 h-2 rounded-full transition-all duration-1000"
                     style={{
                       width: `${(groceryItems.filter((item) => item.purchased).reduce((sum, item) => sum + item.price, 0) / 150) * 100}%`,
                     }}
@@ -834,49 +838,48 @@ export default function InteractiveDemo() {
             </Card>
 
             {/* Add Item */}
-            <Card className="border-0 bg-white shadow-md">
-              <CardContent className="p-4">
+            <Card className="border-0 bg-white shadow-sm">
+              <CardContent className="p-3">
                 <Button
-                  className="w-full bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 text-white"
+                  className="w-full h-9 bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 text-white text-sm button-feedback"
                   onClick={() => navigateToCompose("grocery")}
                 >
                   <Plus className="w-4 h-4 mr-2" />
-                  Add Grocery Item
+                  Add Item
                 </Button>
               </CardContent>
             </Card>
 
             {/* Grocery List */}
             <Card className="border-0 bg-white shadow-md">
-              <CardContent className="p-6">
-                <div className="flex items-center justify-between mb-4">
+              <CardContent className="p-4">
+                <div className="flex items-center justify-between mb-3">
                   <h3 className="text-lg font-bold text-gray-900">
-                    Shared Shopping List
+                    Shopping List
                   </h3>
                   <Badge
                     variant="secondary"
-                    className="bg-blue-100 text-blue-700"
+                    className="bg-blue-100 text-blue-700 text-xs"
                   >
-                    {groceryItems.filter((item) => !item.purchased).length}{" "}
-                    items left
+                    {groceryItems.filter((item) => !item.purchased).length} left
                   </Badge>
                 </div>
-                <div className="space-y-3">
+                <div className="space-y-2">
                   {groceryItems.map((item) => (
                     <div
                       key={item.id}
                       className={`border-l-4 ${
                         item.priority === "high"
-                          ? "border-l-red-500 bg-red-50"
+                          ? "priority-high"
                           : item.priority === "medium"
-                            ? "border-l-amber-500 bg-amber-50"
-                            : "border-l-green-500 bg-green-50"
-                      } rounded-r-xl transition-all ${item.purchased ? "opacity-60" : "hover:shadow-sm"}`}
+                            ? "priority-medium"
+                            : "priority-low"
+                      } rounded-r-lg transition-all glass-surface ${item.purchased ? "opacity-60" : "hover:shadow-premium-md card-hover"}`}
                     >
-                      <div className="flex items-center justify-between p-4">
-                        <div className="flex items-center gap-3 flex-1">
+                      <div className="flex items-center justify-between p-3">
+                        <div className="flex items-center gap-2 flex-1 min-w-0">
                           <div
-                            className={`w-6 h-6 rounded-full border-2 flex items-center justify-center cursor-pointer transition-all ${
+                            className={`w-5 h-5 rounded-full border-2 flex items-center justify-center cursor-pointer transition-all flex-shrink-0 ${
                               item.purchased
                                 ? "bg-emerald-500 border-emerald-500"
                                 : "border-gray-300 hover:border-emerald-400"
@@ -884,25 +887,24 @@ export default function InteractiveDemo() {
                             onClick={() => toggleGroceryItem(item.id)}
                           >
                             {item.purchased && (
-                              <Check className="w-4 h-4 text-white" />
+                              <Check className="w-3 h-3 text-white animate-check-bounce" />
                             )}
                           </div>
-                          <div className="flex-1">
+                          <div className="flex-1 min-w-0">
                             <div
-                              className={`font-medium ${item.purchased ? "line-through text-gray-500" : "text-gray-900"}`}
+                              className={`font-medium text-sm ${item.purchased ? "line-through text-gray-500" : "text-gray-900"} truncate`}
                             >
                               {item.name}
                             </div>
-                            <div className="text-sm text-gray-500">
-                              Added by {item.addedBy} • Assigned to{" "}
-                              {item.assignedTo}
+                            <div className="text-xs text-gray-500 truncate">
+                              {item.addedBy} → {item.assignedTo}
                               {item.notes && ` • ${item.notes}`}
                             </div>
                           </div>
                         </div>
-                        <div className="text-right">
+                        <div className="text-right flex-shrink-0">
                           <div
-                            className={`font-bold ${item.purchased ? "text-gray-500" : "text-gray-900"}`}
+                            className={`font-bold text-sm ${item.purchased ? "text-gray-500" : "text-gray-900"}`}
                           >
                             ${item.price.toFixed(2)}
                           </div>
@@ -923,12 +925,12 @@ export default function InteractiveDemo() {
                     </div>
                   ))}
                 </div>
-                <div className="mt-6 pt-4 border-t border-gray-200 bg-gray-50 rounded-xl p-4">
+                <div className="mt-4 pt-3 border-t border-gray-200 bg-gray-50 rounded-lg p-3">
                   <div className="flex justify-between items-center">
-                    <span className="font-bold text-gray-700">
-                      Total Remaining
+                    <span className="font-bold text-gray-700 text-sm">
+                      Remaining
                     </span>
-                    <span className="text-xl font-bold text-gray-900">
+                    <span className="text-lg font-bold text-gray-900">
                       $
                       {groceryItems
                         .filter((item) => !item.purchased)
@@ -944,26 +946,25 @@ export default function InteractiveDemo() {
 
       case "events":
         return (
-          <div className="space-y-6 p-6">
+          <div className="space-y-4 p-4">
             {/* Create Event */}
-            <Card className="border-0 bg-gradient-to-br from-purple-50 to-pink-50 shadow-lg">
-              <CardContent className="p-6">
+            <Card className="border-0 bg-gradient-to-br from-purple-50 to-pink-50 shadow-md">
+              <CardContent className="p-4">
                 <Button
-                  className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white"
+                  className="w-full h-10 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white text-sm button-feedback animate-button-glow"
                   onClick={() => navigateToCompose("event")}
                 >
-                  <PartyPopper className="w-4 h-4 mr-2" />
                   "Would y'all be down for...?"
                 </Button>
               </CardContent>
             </Card>
 
             {/* Events List */}
-            <div className="space-y-4">
+            <div className="space-y-3">
               {events.map((event) => (
                 <Card
                   key={event.id}
-                  className={`border-0 shadow-lg ${
+                  className={`border-0 shadow-sm card-hover glass-card-enhanced transition-all ${
                     event.status === "confirmed"
                       ? "bg-gradient-to-br from-green-50 to-emerald-50"
                       : event.status === "cancelled"
@@ -971,11 +972,11 @@ export default function InteractiveDemo() {
                         : "bg-white"
                   }`}
                 >
-                  <CardContent className="p-6">
-                    <div className="flex items-start justify-between mb-4">
-                      <div className="flex items-center gap-3">
+                  <CardContent className="p-4">
+                    <div className="flex items-start justify-between mb-3">
+                      <div className="flex items-center gap-2 min-w-0 flex-1">
                         <div
-                          className={`w-12 h-12 rounded-xl flex items-center justify-center ${
+                          className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${
                             event.category === "entertainment"
                               ? "bg-purple-100"
                               : event.category === "food"
@@ -986,51 +987,53 @@ export default function InteractiveDemo() {
                           }`}
                         >
                           {event.category === "entertainment" && (
-                            <Gamepad className="w-6 h-6 text-purple-600" />
+                            <Gamepad className="w-4 h-4 text-purple-600" />
                           )}
                           {event.category === "food" && (
-                            <Pizza className="w-6 h-6 text-orange-600" />
+                            <Pizza className="w-4 h-4 text-orange-600" />
                           )}
                           {event.category === "house" && (
-                            <Home className="w-6 h-6 text-blue-600" />
+                            <Home className="w-4 h-4 text-blue-600" />
                           )}
                           {event.category === "social" && (
-                            <Users className="w-6 h-6 text-green-600" />
+                            <Users className="w-4 h-4 text-green-600" />
                           )}
                         </div>
-                        <div>
-                          <h3 className="font-bold text-gray-900">
+                        <div className="min-w-0 flex-1">
+                          <h3 className="font-bold text-gray-900 text-sm truncate">
                             {event.title}
                           </h3>
-                          <p className="text-sm text-gray-600">
-                            Proposed by {event.proposedBy}
+                          <p className="text-xs text-gray-600">
+                            by {event.proposedBy}
                           </p>
                         </div>
                       </div>
                       <Badge
-                        className={
+                        className={`text-xs flex-shrink-0 ${
                           event.status === "confirmed"
                             ? "bg-green-100 text-green-700"
                             : event.status === "cancelled"
                               ? "bg-red-100 text-red-700"
                               : "bg-blue-100 text-blue-700"
-                        }
+                        }`}
                       >
                         {event.status}
                       </Badge>
                     </div>
 
-                    <p className="text-gray-700 mb-4">{event.description}</p>
+                    <p className="text-gray-700 mb-3 text-sm line-clamp-2">
+                      {event.description}
+                    </p>
 
                     {event.date && (
-                      <div className="flex items-center gap-4 mb-4 text-sm text-gray-600">
+                      <div className="flex items-center gap-3 mb-3 text-xs text-gray-600 flex-wrap">
                         <div className="flex items-center gap-1">
-                          <Calendar className="w-4 h-4" />
+                          <Calendar className="w-3 h-3" />
                           {new Date(event.date).toLocaleDateString()}
                         </div>
                         {event.time && (
                           <div className="flex items-center gap-1">
-                            <Clock className="w-4 h-4" />
+                            <Clock className="w-3 h-3" />
                             {event.time}
                           </div>
                         )}
@@ -1038,17 +1041,19 @@ export default function InteractiveDemo() {
                     )}
 
                     {/* Responses */}
-                    <div className="space-y-3">
-                      <h4 className="font-medium text-gray-900">Responses</h4>
-                      <div className="grid grid-cols-2 gap-2">
+                    <div className="space-y-2">
+                      <h4 className="font-medium text-gray-900 text-sm">
+                        Responses
+                      </h4>
+                      <div className="grid grid-cols-2 gap-1">
                         {Object.entries(event.responses).map(
                           ([person, response]) => (
                             <div
                               key={person}
-                              className="flex items-center gap-2"
+                              className="flex items-center gap-1"
                             >
                               <div
-                                className={`w-6 h-6 rounded-full flex items-center justify-center text-white text-xs ${
+                                className={`w-4 h-4 rounded-full flex items-center justify-center text-white ${
                                   response === "yes"
                                     ? "bg-green-500"
                                     : response === "no"
@@ -1057,14 +1062,14 @@ export default function InteractiveDemo() {
                                 }`}
                               >
                                 {response === "yes" ? (
-                                  <Check className="w-4 h-4" />
+                                  <Check className="w-2.5 h-2.5" />
                                 ) : response === "no" ? (
-                                  <X className="w-4 h-4" />
+                                  <X className="w-2.5 h-2.5" />
                                 ) : (
                                   "?"
                                 )}
                               </div>
-                              <span className="text-sm text-gray-700">
+                              <span className="text-xs text-gray-700 truncate">
                                 {person}
                               </span>
                               <span className="text-xs text-gray-500 capitalize">
@@ -1077,11 +1082,11 @@ export default function InteractiveDemo() {
 
                       {/* Your Response */}
                       {event.status === "active" && (
-                        <div className="pt-3 border-t border-gray-200">
-                          <p className="text-sm font-medium text-gray-900 mb-2">
+                        <div className="pt-2 border-t border-gray-200">
+                          <p className="text-xs font-medium text-gray-900 mb-2">
                             Your response:
                           </p>
-                          <div className="flex gap-2">
+                          <div className="flex gap-1">
                             {["yes", "maybe", "no"].map((response) => (
                               <Button
                                 key={response}
@@ -1094,20 +1099,20 @@ export default function InteractiveDemo() {
                                 onClick={() =>
                                   respondToEvent(event.id, response as any)
                                 }
-                                className={
+                                className={`h-8 px-2 text-xs flex-1 ${
                                   response === "yes"
                                     ? "bg-green-500 hover:bg-green-600 text-white"
                                     : response === "no"
                                       ? "bg-red-500 hover:bg-red-600 text-white"
                                       : "bg-amber-500 hover:bg-amber-600 text-white"
-                                }
+                                }`}
                               >
                                 {response === "yes" ? (
-                                  <ThumbsUp className="w-4 h-4 mr-1" />
+                                  <ThumbsUp className="w-3 h-3 mr-1" />
                                 ) : response === "no" ? (
-                                  <ThumbsDown className="w-4 h-4 mr-1" />
+                                  <ThumbsDown className="w-3 h-3 mr-1" />
                                 ) : (
-                                  <Meh className="w-4 h-4 mr-1" />
+                                  <Meh className="w-3 h-3 mr-1" />
                                 )}
                                 {response}
                               </Button>
@@ -1125,65 +1130,63 @@ export default function InteractiveDemo() {
 
       case "chores":
         return (
-          <div className="space-y-6 p-6">
+          <div className="space-y-4 p-grid-2">
             {/* Chore Stats */}
-            <div className="grid grid-cols-3 gap-4">
-              <Card className="border-0 bg-gradient-to-br from-green-50 to-emerald-50 shadow-md">
-                <CardContent className="p-4 text-center">
-                  <div className="text-2xl font-bold text-emerald-600">
+            <div className="grid grid-cols-3 gap-grid-2">
+              <Card className="border-0 status-success shadow-premium-md glass-surface card-hover">
+                <CardContent className="p-grid-2 text-center">
+                  <div className="text-hierarchy-2 text-students-primary">
                     {chores.filter((c) => c.status === "completed").length}
                   </div>
-                  <div className="text-sm text-gray-600">Completed</div>
+                  <div className="text-hierarchy-5 text-gray-600">Done</div>
                 </CardContent>
               </Card>
-              <Card className="border-0 bg-gradient-to-br from-amber-50 to-orange-50 shadow-md">
-                <CardContent className="p-4 text-center">
-                  <div className="text-2xl font-bold text-amber-600">
+              <Card className="border-0 status-warning shadow-premium-md glass-surface card-hover">
+                <CardContent className="p-grid-2 text-center">
+                  <div className="text-hierarchy-2 text-yellow-600">
                     {chores.filter((c) => c.status === "pending").length}
                   </div>
-                  <div className="text-sm text-gray-600">Pending</div>
+                  <div className="text-hierarchy-5 text-gray-600">Todo</div>
                 </CardContent>
               </Card>
-              <Card className="border-0 bg-gradient-to-br from-red-50 to-pink-50 shadow-md">
-                <CardContent className="p-4 text-center">
-                  <div className="text-2xl font-bold text-red-600">
+              <Card className="border-0 status-error shadow-premium-md glass-surface card-hover">
+                <CardContent className="p-grid-2 text-center">
+                  <div className="text-hierarchy-2 text-red-600">
                     {chores.filter((c) => c.status === "overdue").length}
                   </div>
-                  <div className="text-sm text-gray-600">Overdue</div>
+                  <div className="text-hierarchy-5 text-gray-600">Late</div>
                 </CardContent>
               </Card>
             </div>
 
             {/* Chore Calendar/List */}
-            <Card className="border-0 bg-white shadow-lg">
-              <CardContent className="p-6">
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-lg font-bold text-gray-900">
-                    Chore Assignment
-                  </h3>
-                  <Button variant="outline" size="sm">
-                    <CalendarDays className="w-4 h-4 mr-2" />
-                    Calendar View
+            <Card className="border-0 bg-white shadow-md">
+              <CardContent className="p-4">
+                <div className="flex items-center justify-between mb-3">
+                  <h3 className="text-lg font-bold text-gray-900">Chores</h3>
+                  <Button variant="outline" size="sm" className="h-8 text-xs">
+                    <CalendarDays className="w-3 h-3 mr-1" />
+                    Calendar
                   </Button>
                 </div>
-                <div className="space-y-3">
+                <div className="space-y-2">
                   {chores.map((chore) => (
                     <div
                       key={chore.id}
-                      className={`p-4 rounded-xl border-2 transition-all ${
+                      className={`p-grid-2 rounded-lg border transition-all glass-surface card-hover ${
                         chore.status === "completed"
-                          ? "border-green-200 bg-green-50"
+                          ? "status-success shadow-premium-sm"
                           : chore.status === "overdue"
-                            ? "border-red-200 bg-red-50"
+                            ? "priority-high shadow-premium-md animate-pulse"
                             : chore.status === "skipped"
-                              ? "border-amber-200 bg-amber-50"
-                              : "border-blue-200 bg-blue-50"
+                              ? "status-warning shadow-premium-sm"
+                              : "status-info shadow-premium-sm"
                       }`}
                     >
                       <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3">
+                        <div className="flex items-center gap-2 flex-1 min-w-0">
                           <div
-                            className={`w-8 h-8 rounded-lg flex items-center justify-center ${
+                            className={`w-6 h-6 rounded-md flex items-center justify-center flex-shrink-0 ${
                               chore.status === "completed"
                                 ? "bg-green-500"
                                 : chore.status === "overdue"
@@ -1194,43 +1197,38 @@ export default function InteractiveDemo() {
                             }`}
                           >
                             {chore.status === "completed" ? (
-                              <CheckCircle className="w-5 h-5 text-white" />
+                              <CheckCircle className="w-3 h-3 text-white" />
                             ) : chore.status === "overdue" ? (
-                              <AlertCircle className="w-5 h-5 text-white" />
+                              <AlertCircle className="w-3 h-3 text-white" />
                             ) : chore.status === "skipped" ? (
-                              <X className="w-5 h-5 text-white" />
+                              <X className="w-3 h-3 text-white" />
                             ) : (
-                              <Clock className="w-5 h-5 text-white" />
+                              <Clock className="w-3 h-3 text-white" />
                             )}
                           </div>
-                          <div>
-                            <h4 className="font-semibold text-gray-900">
+                          <div className="min-w-0 flex-1">
+                            <h4 className="font-semibold text-gray-900 text-sm truncate">
                               {chore.task}
                             </h4>
-                            <div className="text-sm text-gray-600">
-                              Assigned to {chore.assignedTo} • Due{" "}
+                            <div className="text-xs text-gray-600">
+                              {chore.assignedTo} •{" "}
                               {new Date(chore.dueDate).toLocaleDateString()}
                             </div>
                             {chore.streak > 0 && (
-                              <div className="flex items-center gap-1 text-sm text-orange-600">
-                                <Flame className="w-4 h-4" />
-                                {chore.streak} week streak
-                              </div>
-                            )}
-                            {chore.skipReason && (
-                              <div className="text-sm text-amber-700">
-                                Reason: {chore.skipReason}
+                              <div className="flex items-center gap-1 text-xs text-orange-600">
+                                <Flame className="w-3 h-3" />
+                                {chore.streak} streak
                               </div>
                             )}
                           </div>
                         </div>
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-2 flex-shrink-0">
                           <div className="text-right">
-                            <div className="text-sm font-bold text-gray-900">
-                              +{chore.points} pts
+                            <div className="text-xs font-bold text-gray-900">
+                              +{chore.points}
                             </div>
                             <div className="text-xs text-gray-500">
-                              {"★".repeat(chore.difficulty)} difficulty
+                              {"★".repeat(chore.difficulty)}
                             </div>
                           </div>
                           {chore.assignedTo === "You" &&
@@ -1238,14 +1236,15 @@ export default function InteractiveDemo() {
                               <div className="flex gap-1">
                                 <Button
                                   size="sm"
-                                  className="bg-green-500 hover:bg-green-600 text-white"
+                                  className="bg-green-500 hover:bg-green-600 text-white h-7 w-7 p-0 button-feedback"
                                   onClick={() => completeChore(chore.id)}
                                 >
-                                  <Check className="w-4 h-4" />
+                                  <Check className="w-3 h-3 animate-check-bounce" />
                                 </Button>
                                 <Button
                                   size="sm"
                                   variant="outline"
+                                  className="h-7 px-2 text-xs"
                                   onClick={() =>
                                     navigateToCompose("skip-chore")
                                   }
@@ -1266,56 +1265,56 @@ export default function InteractiveDemo() {
 
       case "vibe":
         return (
-          <div className="space-y-6 p-6">
+          <div className="space-y-4 p-4">
             {/* Submit Vibe Check */}
-            <Card className="border-0 bg-gradient-to-br from-purple-50 to-pink-50 shadow-lg">
-              <CardContent className="p-6">
+            <Card className="border-0 bg-gradient-to-br from-purple-50 to-pink-50 shadow-md">
+              <CardContent className="p-4">
                 <Button
-                  className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white"
+                  className="w-full h-10 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white text-sm button-feedback animate-button-glow"
                   onClick={() => navigateToCompose("vibe")}
                 >
-                  <Smile className="w-4 h-4 mr-2" />
-                  Submit This Week's Vibe Check
+                  <Smile className="w-4 h-4 mr-2 animate-icon-bounce" />
+                  Submit Vibe Check
                 </Button>
               </CardContent>
             </Card>
 
             {/* Vibe Overview */}
-            <Card className="border-0 bg-white shadow-lg">
-              <CardContent className="p-6">
+            <Card className="border-0 bg-white shadow-md">
+              <CardContent className="p-4">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="text-lg font-bold text-gray-900">
-                    House Vibe This Week
+                    House Vibe
                   </h3>
                   <div className="text-right">
-                    <div className="text-2xl font-bold text-purple-600">
+                    <div className="text-2xl font-bold text-purple-600 animate-score-pop animate-text-glow">
                       {Math.round(
                         vibeEntries.reduce(
                           (sum, entry) => sum + entry.score,
                           0,
                         ) / vibeEntries.length,
                       )}
+                      /10
                     </div>
-                    <div className="text-sm text-gray-600">Average Score</div>
+                    <div className="text-xs text-gray-600">Overall Score</div>
                   </div>
                 </div>
 
-                <div className="grid grid-cols-4 gap-4 mb-6">
-                  {["happy", "excited", "neutral", "stressed"].map((mood) => (
+                <div className="grid grid-cols-4 gap-2 mb-4">
+                  {[
+                    { mood: "happy", icon: Smile, color: "text-green-500" },
+                    { mood: "excited", icon: Zap, color: "text-yellow-500" },
+                    { mood: "neutral", icon: Meh, color: "text-gray-500" },
+                    { mood: "stressed", icon: Frown, color: "text-red-500" },
+                  ].map(({ mood, icon: Icon, color }) => (
                     <div key={mood} className="text-center">
-                      <div className="text-2xl mb-1">
-                        {mood === "happy"
-                          ? "😊"
-                          : mood === "excited"
-                            ? "🤩"
-                            : mood === "neutral"
-                              ? "😐"
-                              : "😓"}
+                      <div className="w-8 h-8 mx-auto mb-1 flex items-center justify-center">
+                        <Icon className={`w-6 h-6 ${color}`} />
                       </div>
-                      <div className="text-sm text-gray-600 capitalize">
+                      <div className="text-xs text-gray-600 capitalize">
                         {mood}
                       </div>
-                      <div className="text-lg font-bold text-gray-900">
+                      <div className="text-sm font-bold text-gray-900">
                         {vibeEntries.filter((e) => e.mood === mood).length}
                       </div>
                     </div>
@@ -1325,71 +1324,67 @@ export default function InteractiveDemo() {
             </Card>
 
             {/* Recent Vibe Checks */}
-            <Card className="border-0 bg-white shadow-lg">
-              <CardContent className="p-6">
+            <Card className="border-0 bg-white shadow-md">
+              <CardContent className="p-4">
                 <h3 className="text-lg font-bold text-gray-900 mb-4">
                   Recent Check-ins
                 </h3>
-                <div className="space-y-4">
-                  {vibeEntries.map((entry) => (
-                    <div key={entry.id} className="p-4 bg-gray-50 rounded-xl">
-                      <div className="flex items-start gap-3">
-                        <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center text-white font-bold text-sm">
-                          {entry.userName[0]}
-                        </div>
-                        <div className="flex-1">
-                          <div className="flex items-center gap-2 mb-2">
-                            <span className="font-medium text-gray-900">
-                              {entry.userName}
-                            </span>
-                            <div className="flex items-center gap-1">
-                              {[...Array(10)].map((_, i) => (
-                                <div
-                                  key={i}
-                                  className={`w-2 h-2 rounded-full ${
-                                    i < entry.score
-                                      ? "bg-purple-500"
-                                      : "bg-gray-300"
-                                  }`}
-                                />
-                              ))}
-                            </div>
-                            <span className="text-sm font-bold text-purple-600">
-                              {entry.score}/10
-                            </span>
-                            <span className="text-lg">
-                              {entry.mood === "happy"
-                                ? "😊"
-                                : entry.mood === "excited"
-                                  ? "🤩"
-                                  : entry.mood === "neutral"
-                                    ? "😐"
-                                    : entry.mood === "stressed"
-                                      ? "😓"
-                                      : "😴"}
-                            </span>
+                <div className="space-y-3">
+                  {vibeEntries
+                    .filter((entry) => entry.userId === "you")
+                    .map((entry) => (
+                      <div key={entry.id} className="p-3 bg-gray-50 rounded-lg">
+                        <div className="flex items-start gap-3">
+                          <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center text-white font-bold text-sm">
+                            {entry.userName[0]}
                           </div>
-                          <p className="text-gray-700 text-sm mb-2">
-                            {entry.comment}
-                          </p>
-                          <div className="flex items-center gap-2 text-xs text-gray-500">
-                            <span>
-                              {new Date(entry.date).toLocaleDateString()}
-                            </span>
-                            {entry.streak > 0 && (
-                              <>
-                                <span>•</span>
-                                <div className="flex items-center gap-1 text-orange-600">
-                                  <Flame className="w-3 h-3" />
-                                  {entry.streak} week streak
-                                </div>
-                              </>
-                            )}
+                          <div className="flex-1">
+                            <div className="flex items-center gap-2 mb-2">
+                              <span className="font-medium text-gray-900 text-sm">
+                                {entry.userName}
+                              </span>
+                              <span className="text-lg font-bold text-purple-600">
+                                {entry.score}/10
+                              </span>
+                              <div className="w-5 h-5 flex items-center justify-center">
+                                {entry.mood === "happy" && (
+                                  <Smile className="w-4 h-4 text-green-500" />
+                                )}
+                                {entry.mood === "excited" && (
+                                  <Zap className="w-4 h-4 text-yellow-500" />
+                                )}
+                                {entry.mood === "neutral" && (
+                                  <Meh className="w-4 h-4 text-gray-500" />
+                                )}
+                                {entry.mood === "stressed" && (
+                                  <Frown className="w-4 h-4 text-red-500" />
+                                )}
+                                {entry.mood === "tired" && (
+                                  <Moon className="w-4 h-4 text-blue-500" />
+                                )}
+                              </div>
+                            </div>
+                            <p className="text-gray-700 text-sm mb-2 line-clamp-2">
+                              {entry.comment}
+                            </p>
+                            <div className="flex items-center gap-2 text-xs text-gray-500">
+                              <span>
+                                {new Date(entry.date).toLocaleDateString()}
+                              </span>
+                              {entry.streak > 0 && (
+                                <>
+                                  <span>•</span>
+                                  <div className="flex items-center gap-1 text-orange-600">
+                                    <Flame className="w-3 h-3" />
+                                    {entry.streak} week streak
+                                  </div>
+                                </>
+                              )}
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
                 </div>
               </CardContent>
             </Card>
@@ -1398,48 +1393,48 @@ export default function InteractiveDemo() {
 
       case "messages":
         return (
-          <div className="space-y-6 p-6">
+          <div className="space-y-4 p-4">
             {/* Message Actions */}
-            <div className="grid grid-cols-2 gap-4">
-              <Card className="border-0 bg-gradient-to-br from-blue-50 to-indigo-50 shadow-md">
-                <CardContent className="p-4">
+            <div className="grid grid-cols-2 gap-3">
+              <Card className="border-0 bg-gradient-to-br from-blue-50 to-indigo-50 shadow-sm">
+                <CardContent className="p-3">
                   <Button
-                    className="w-full bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 text-white"
+                    className="w-full h-9 bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 text-white text-xs"
                     onClick={() => navigateToCompose("anonymous")}
                   >
-                    <Shield className="w-4 h-4 mr-2" />
-                    Anonymous Feedback
+                    <Shield className="w-3 h-3 mr-1" />
+                    <span className="ml-[-5px]">Anonymous</span>
                   </Button>
                 </CardContent>
               </Card>
-              <Card className="border-0 bg-gradient-to-br from-green-50 to-emerald-50 shadow-md">
-                <CardContent className="p-4">
+              <Card className="border-0 bg-gradient-to-br from-green-50 to-emerald-50 shadow-sm">
+                <CardContent className="p-3">
                   <Button
-                    className="w-full bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white"
+                    className="w-full h-9 bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white text-xs"
                     onClick={() => navigateToCompose("private")}
                   >
-                    <MessageSquare className="w-4 h-4 mr-2" />
-                    Private Message
+                    <MessageSquare className="w-3 h-3 mr-1" />
+                    Private
                   </Button>
                 </CardContent>
               </Card>
             </div>
 
             {/* Messages List */}
-            <Card className="border-0 bg-white shadow-lg">
-              <CardContent className="p-6">
-                <h3 className="text-lg font-bold text-gray-900 mb-4">
+            <Card className="border-0 bg-white shadow-md">
+              <CardContent className="p-4">
+                <h3 className="text-lg font-bold text-gray-900 mb-3">
                   Recent Messages
                 </h3>
-                <div className="space-y-4">
+                <div className="space-y-3">
                   {messages.map((message) => (
                     <div
                       key={message.id}
-                      className="p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors"
+                      className="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
                     >
-                      <div className="flex items-start gap-3">
+                      <div className="flex items-start gap-2">
                         <div
-                          className={`w-10 h-10 rounded-lg flex items-center justify-center text-white font-bold text-sm ${
+                          className={`w-8 h-8 rounded-lg flex items-center justify-center text-white font-bold text-xs flex-shrink-0 ${
                             message.type === "anonymous"
                               ? "bg-purple-500"
                               : message.type === "private"
@@ -1451,9 +1446,9 @@ export default function InteractiveDemo() {
                             ? "?"
                             : message.sender[0]}
                         </div>
-                        <div className="flex-1">
-                          <div className="flex items-center gap-2 mb-2">
-                            <span className="font-medium text-gray-900">
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-2 mb-1 flex-wrap">
+                            <span className="font-medium text-gray-900 text-sm">
                               {message.type === "anonymous"
                                 ? "Anonymous"
                                 : message.sender}
@@ -1470,13 +1465,8 @@ export default function InteractiveDemo() {
                             >
                               {message.type}
                             </Badge>
-                            {message.recipient && (
-                              <span className="text-xs text-gray-500">
-                                to {message.recipient}
-                              </span>
-                            )}
                           </div>
-                          <p className="text-gray-700 text-sm mb-2">
+                          <p className="text-gray-700 text-sm mb-2 line-clamp-3">
                             {message.content}
                           </p>
                           <div className="flex items-center gap-2 text-xs text-gray-500">
@@ -1484,13 +1474,9 @@ export default function InteractiveDemo() {
                             {message.isAIFiltered && (
                               <>
                                 <span>•</span>
-                                <Badge
-                                  variant="outline"
-                                  className="text-xs bg-emerald-50 text-emerald-700 border-emerald-200"
-                                >
-                                  AI Enhanced: {message.originalTone} →{" "}
-                                  {message.filteredTone}
-                                </Badge>
+                                <span className="text-emerald-600">
+                                  AI Enhanced
+                                </span>
                               </>
                             )}
                           </div>
@@ -1503,35 +1489,40 @@ export default function InteractiveDemo() {
             </Card>
 
             {/* Conflict Resolution */}
-            <Card className="border-0 bg-gradient-to-br from-orange-50 to-red-50 shadow-lg">
-              <CardContent className="p-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-red-500 rounded-lg flex items-center justify-center">
-                    <AlertCircle className="w-5 h-5 text-white" />
+            <Card className="border-0 bg-gradient-to-br from-orange-50 to-red-50 shadow-md">
+              <CardContent className="p-4">
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="w-8 h-8 bg-gradient-to-br from-orange-500 to-red-500 rounded-lg flex items-center justify-center">
+                    <AlertCircle className="w-4 h-4 text-white" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-gray-900">
-                      Need Help Resolving an Issue?
+                    <h3 className="font-bold text-gray-900 text-sm">
+                      Need Help?
                     </h3>
-                    <p className="text-sm text-gray-600">
-                      Guided support for difficult conversations
-                    </p>
+                    <p className="text-xs text-gray-600">Guided support</p>
                   </div>
                 </div>
-                <div className="space-y-3">
+                <div className="space-y-2">
                   <Button
                     variant="outline"
-                    className="w-full justify-start border-orange-200 text-orange-700 hover:bg-orange-50"
+                    className="w-full justify-start border-orange-200 text-orange-700 hover:bg-orange-50 h-8 text-xs"
                   >
-                    <MessageCircle className="w-4 h-4 mr-2" />
-                    Get conversation suggestions
+                    <MessageCircle className="w-3 h-3 mr-2" />
+                    Get suggestions
                   </Button>
                   <Button
                     variant="outline"
-                    className="w-full justify-start border-red-200 text-red-700 hover:bg-red-50"
+                    className="w-full justify-start border-blue-200 text-blue-700 hover:bg-blue-50 h-8 text-xs"
                   >
-                    <Flag className="w-4 h-4 mr-2" />
-                    Escalate to RA/Housing Admin
+                    <Users className="w-3 h-3 mr-2" />
+                    Start group discussion
+                  </Button>
+                  <Button
+                    variant="outline"
+                    className="w-full justify-start border-purple-200 text-purple-700 hover:bg-purple-50 h-8 text-xs"
+                  >
+                    <Calendar className="w-3 h-3 mr-2" />
+                    Propose house meeting
                   </Button>
                 </div>
               </CardContent>
@@ -1942,145 +1933,20 @@ export default function InteractiveDemo() {
     return () => clearInterval(timer);
   }, []);
 
+  // Sync activeTab prop with internal state
+  useEffect(() => {
+    setViewState((prev) => ({
+      ...prev,
+      activeTab: activeTab,
+      level: "main", // Reset to main level when tab changes
+    }));
+  }, [activeTab]);
+
   return (
-    <div className="w-80 h-[640px] bg-gradient-to-br from-gray-900 via-blue-900/20 to-gray-800 rounded-[3rem] p-3 shadow-2xl relative overflow-hidden">
-      {/* Premium ambient effects */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-indigo-500/5 rounded-[3rem]"></div>
-      <div className="absolute top-4 left-4 w-32 h-32 bg-blue-400/10 rounded-full blur-2xl"></div>
-      <div className="absolute bottom-4 right-4 w-24 h-24 bg-indigo-400/10 rounded-full blur-xl"></div>
-
-      <div className="w-full h-full bg-gradient-to-br from-white via-blue-50/30 to-indigo-50/20 rounded-[2.5rem] overflow-hidden relative backdrop-blur-sm border border-white/20 flex flex-col">
-        {/* Status bar */}
-        <div className="h-12 bg-gradient-to-r from-white to-blue-50/50 flex items-center justify-between px-6 border-b border-blue-100/30">
-          <div className="text-sm font-semibold text-gray-800">
-            {currentTime.toLocaleTimeString([], {
-              hour: "2-digit",
-              minute: "2-digit",
-            })}
-          </div>
-          <div className="flex items-center gap-1">
-            <div className="w-4 h-2 bg-blue-500 rounded-sm"></div>
-            <div className="w-6 h-3 border border-blue-300 rounded-sm">
-              <div className="w-4 h-full bg-blue-500 rounded-sm"></div>
-            </div>
-          </div>
-        </div>
-
-        {/* Header */}
-        <div className="px-6 py-4 bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 text-white relative overflow-hidden">
-          <div className="absolute inset-0 bg-blue-400/20 animate-pulse"></div>
-          <div className="relative z-10">
-            <div className="flex items-center justify-between mb-2">
-              <div className="flex items-center gap-3">
-                {viewState.level !== "main" && (
-                  <button
-                    onClick={() =>
-                      setViewState({
-                        level: "main",
-                        activeTab: viewState.activeTab,
-                      })
-                    }
-                    className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm hover:bg-white/30 transition-colors"
-                  >
-                    <ArrowLeft className="w-4 h-4 text-white" />
-                  </button>
-                )}
-                <button
-                  onClick={() => (window.location.href = "/")}
-                  className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm hover:bg-white/30 transition-colors"
-                >
-                  <Home className="w-5 h-5 text-white" />
-                </button>
-                <div>
-                  <h3 className="font-bold text-lg">CoHabitly</h3>
-                  <p className="text-blue-100 text-sm">Roommate Mode</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
-                  <Bell className="w-4 h-4 text-white" />
-                </div>
-                <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
-                  <Settings className="w-4 h-4 text-white" />
-                </div>
-              </div>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="flex items-center gap-1">
-                {roommates.slice(0, 3).map((roommate, index) => (
-                  <div
-                    key={roommate.id}
-                    className="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center border border-white/20 text-xs font-medium"
-                  >
-                    {roommate.avatar[0]}
-                  </div>
-                ))}
-              </div>
-              <span className="text-blue-100 text-xs">3 roommates</span>
-              <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse ml-1"></div>
-            </div>
-          </div>
-        </div>
-
-        {/* Content Area */}
-        <div className="flex-1 overflow-auto bg-gray-50/50">
-          {viewState.level === "main" && renderTabContent()}
-          {viewState.level === "detail" && renderDetailContent()}
-          {viewState.level === "compose" && renderComposeContent()}
-        </div>
-
-        {/* Bottom Navigation */}
-        {viewState.level === "main" && (
-          <div className="px-2 py-3 bg-white border-t border-gray-200">
-            <div className="flex justify-around">
-              {[
-                { id: "overview", icon: Home, label: "Home", color: "blue" },
-                {
-                  id: "grocery",
-                  icon: ShoppingCart,
-                  label: "Grocery",
-                  color: "emerald",
-                },
-                {
-                  id: "events",
-                  icon: PartyPopper,
-                  label: "Events",
-                  color: "purple",
-                },
-                {
-                  id: "chores",
-                  icon: CheckCircle,
-                  label: "Chores",
-                  color: "orange",
-                },
-                { id: "vibe", icon: Smile, label: "Vibe", color: "pink" },
-                {
-                  id: "messages",
-                  icon: MessageCircle,
-                  label: "Messages",
-                  color: "indigo",
-                },
-                { id: "profile", icon: User, label: "Profile", color: "gray" },
-              ].map(({ id, icon: Icon, label, color }) => (
-                <button
-                  key={id}
-                  onClick={() =>
-                    setViewState({ level: "main", activeTab: id as TabType })
-                  }
-                  className={`flex flex-col items-center gap-1 px-2 py-2 rounded-xl transition-all ${
-                    viewState.activeTab === id
-                      ? `bg-${color}-100 text-${color}-600 scale-105 shadow-md`
-                      : "text-gray-500 hover:text-gray-700 hover:bg-gray-100"
-                  }`}
-                >
-                  <Icon className="w-4 h-4" />
-                  <span className="text-xs font-medium">{label}</span>
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
-      </div>
-    </div>
+    <>
+      {viewState.level === "main" && renderTabContent()}
+      {viewState.level === "detail" && renderDetailContent()}
+      {viewState.level === "compose" && renderComposeContent()}
+    </>
   );
 }
